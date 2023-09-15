@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:id="@+id/llBaseLoadMoreDefaultItm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/fbase_dimen_16"
+        android:paddingBottom="@dimen/fbase_dimen_24"
+        android:visibility="visible">
+
+        <ProgressBar
+            android:id="@+id/pbBaseLoadMoreDefaultItmLoading"
+            android:layout_width="@dimen/fbase_dimen_14"
+            android:layout_height="@dimen/fbase_dimen_14"
+            android:indeterminateTint="@color/gray" />
+
+        <TextView
+            android:id="@+id/tvBaseLoadMoreDefaultItmMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="8dp"
+            android:includeFontPadding="false"
+            android:text="Đang tải thêm..."
+            android:textColor="@color/gray"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+</layout>

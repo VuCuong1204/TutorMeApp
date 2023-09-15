@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rlHeaderAlert"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent"
+    android:paddingBottom="@dimen/fbase_dimen_8">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/fbase_dimen_12"
+        android:layout_marginTop="@dimen/fbase_dimen_50"
+        android:minHeight="@dimen/fbase_dimen_60"
+        app:cardBackgroundColor="@color/transparent"
+        app:cardCornerRadius="@dimen/fbase_corner_16">
+
+        <RelativeLayout
+            android:id="@+id/rlHeaderAlertBg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/green"
+            android:minHeight="@dimen/fbase_dimen_60"
+            android:stateListAnimator="@null">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivHeaderAlertIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/fbase_dimen_16"
+                android:src="@drawable/ic_success_white" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvHeaderAlert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginVertical="@dimen/fbase_dimen_10"
+                android:layout_marginEnd="@dimen/fbase_dimen_10"
+                android:layout_toEndOf="@id/ivHeaderAlertIcon"
+                android:drawablePadding="@dimen/fbase_dimen_6"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:lineSpacingExtra="@dimen/fbase_dimen_8"
+                android:maxLines="3"
+                android:paddingHorizontal="@dimen/fbase_dimen_12"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fbase_text_size_14"
+                tools:text="Tên đăng phải chứa ít nhất 6 ký tự và tối đa 50 ký tự Tên đăng phải chứa ít nhất 6 ký tự và tối đa 50 ký tự Tên đăng phải chứa ít nhất 6 ký tự và tối đa 50 ký tự" />
+
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</RelativeLayout>
