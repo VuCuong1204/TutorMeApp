@@ -1,4 +1,4 @@
-package vn.tutorme.mobile.presention.widget.headeralert
+package vn.tutorme.mobile.presenter.widget.headeralert
 
 import android.graphics.drawable.Drawable
 import android.view.View
