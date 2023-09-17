@@ -3,12 +3,12 @@ package vn.tutorme.mobile.base.screen
 import android.graphics.drawable.Drawable
 import androidx.databinding.ViewDataBinding
 import vn.tutorme.mobile.base.BaseBindingActivity
-import vn.tutorme.mobile.presention.widget.headeralert.HeaderAlertDefault
+import vn.tutorme.mobile.presenter.widget.headeralert.HeaderAlertDefault
 import vn.tutorme.mobile.base.common.eventbus.IEvent
 import vn.tutorme.mobile.base.common.eventbus.IEventHandler
 import vn.tutorme.mobile.base.common.screenstate.IDisplayState
-import vn.tutorme.mobile.presention.widget.headeralert.HEADER_ALERT_TIME_SHOWN
-import vn.tutorme.mobile.presention.widget.headeralert.HEADER_ALERT_TYPE
+import vn.tutorme.mobile.presenter.widget.headeralert.HEADER_ALERT_TIME_SHOWN
+import vn.tutorme.mobile.presenter.widget.headeralert.HEADER_ALERT_TYPE
 
 abstract class TutorMeActivity<DB : ViewDataBinding>(layoutId: Int) : BaseBindingActivity<DB>(layoutId), IDisplayState, IEventHandler {
     private var headerAlertDefault: HeaderAlertDefault? = null

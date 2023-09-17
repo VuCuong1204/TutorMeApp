@@ -1,8 +1,8 @@
 package vn.tutorme.mobile.base.common.screenstate
 
 import android.graphics.drawable.Drawable
-import vn.tutorme.mobile.presention.widget.headeralert.HEADER_ALERT_TIME_SHOWN
-import vn.tutorme.mobile.presention.widget.headeralert.HEADER_ALERT_TYPE
+import vn.tutorme.mobile.presenter.widget.headeralert.HEADER_ALERT_TIME_SHOWN
+import vn.tutorme.mobile.presenter.widget.headeralert.HEADER_ALERT_TYPE
 
 interface IDisplayState {
     fun showLoading()

@@ -1,4 +1,4 @@
-package vn.tutorme.mobile.presention.main
+package vn.tutorme.mobile.presenter.main
 
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel

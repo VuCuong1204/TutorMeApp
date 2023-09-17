@@ -1,6 +1,6 @@
 package com.example.basegraduate.presentation.widget.headeralert
 
-import vn.tutorme.mobile.presention.widget.headeralert.HEADER_ALERT_TYPE
+import vn.tutorme.mobile.presenter.widget.headeralert.HEADER_ALERT_TYPE
 
 data class MessageInfo(
     var type: HEADER_ALERT_TYPE? = null,
