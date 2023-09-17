@@ -1,9 +1,12 @@
 <resources>
-    <string name="app_name">TutorMeApp</string>
+    <string name="app_name">Tutor Me</string>
     <string name="no_network">Vui lòng kiểm tra lại kết nối và thử lại</string>
     <string name="server_time_out">Server không phản hồi</string>
     <string name="convert_response_error">Lỗi convert response từ server</string>
     <string name="response_error">Lỗi response</string>
 
     <string name="main_exit_confirm">Ấn back lần nữa để thoát app</string>
+
+    <string name="title_first">Tutor</string>
+    <string name="title_second">Me</string>
 </resources>
