@@ -2,35 +2,31 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <FrameLayout
-        android:background="@color/primary"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clMainRoot"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tvMainName"
-            android:layout_width="@dimen/fbase_dimen_430"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@color/black"
-            android:text="Hello World!"
+        <FrameLayout
+            android:id="@+id/flMainRoot"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tvMainName1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/fbase_dimen_20"
-            android:text="Hello World!"
+        <include
+            android:id="@+id/icMainLoading"
+            layout="@layout/loading_dialog"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

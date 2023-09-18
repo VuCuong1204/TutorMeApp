@@ -10,9 +10,9 @@ import vn.tutorme.mobile.base.common.screenstate.IDisplayState
 import vn.tutorme.mobile.base.extension.getAppString
 import vn.tutorme.mobile.base.extension.hideToast
 import vn.tutorme.mobile.base.extension.toast
-import vn.tutorme.mobile.presention.main.MainActivity
-import vn.tutorme.mobile.presention.widget.headeralert.HEADER_ALERT_TIME_SHOWN
-import vn.tutorme.mobile.presention.widget.headeralert.HEADER_ALERT_TYPE
+import vn.tutorme.mobile.presenter.main.MainActivity
+import vn.tutorme.mobile.presenter.widget.headeralert.HEADER_ALERT_TIME_SHOWN
+import vn.tutorme.mobile.presenter.widget.headeralert.HEADER_ALERT_TYPE
 
 abstract class TutorMeFragment<DB : ViewDataBinding>(layoutId: Int) : BaseBindingFragment<DB>(layoutId), IDisplayState, IEventHandler {
 
@@ -24,7 +24,7 @@ abstract class TutorMeFragment<DB : ViewDataBinding>(layoutId: Int) : BaseBindin
         super.onInitView()
     }
 
-    private val mainActivity by lazy { requireActivity() as MainActivity }
+    val mainActivity by lazy { requireActivity() as MainActivity }
 
     private var timeBeginClick: Long = 0L
 

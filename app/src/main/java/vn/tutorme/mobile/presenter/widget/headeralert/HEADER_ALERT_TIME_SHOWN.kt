@@ -1,4 +1,4 @@
-package vn.tutorme.mobile.presention.widget.headeralert
+package vn.tutorme.mobile.presenter.widget.headeralert
 
 enum class HEADER_ALERT_TIME_SHOWN(val time: Long) {
     DELAY_DEFAULT(2000L),

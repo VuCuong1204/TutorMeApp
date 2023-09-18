@@ -39,11 +39,12 @@
     <color name="bg_filter">#F7F7F7</color>
     <color name="white_10">#FAFAFF</color>
     <color name="gray_ripple">#DFDFDF</color>
-    <color name="primary">#FF884B</color>
+    <color name="primary">#3C2C9E</color>
     <color name="green">#3DCC1D</color>
     <color name="success">#0FD186</color>
     <color name="error">#FF6259</color>
     <color name="warning">#787878</color>
+    <color name="yellow">#FFB524</color>
 
     <color name="neutral_1">#000000</color>
     <color name="neutral_2">#1C1C1C</color>
