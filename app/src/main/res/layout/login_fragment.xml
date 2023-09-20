@@ -1,26 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnMainGoogle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginEnd="@dimen/fbase_dimen_50"
-            android:text="Google" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivLoginBackground"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/fbase_dimen_400"
+            android:scaleType="center"
+            android:src="@drawable/bg_login"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnMainFacebook"
-            android:layout_width="wrap_content"
+        <vn.tutorme.mobile.presenter.widget.background.CircleInSideView
+            android:id="@+id/civLoginAvatar"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="@dimen/fbase_dimen_50"
-            android:text="Facebook" />
+            app:layout_constraintBottom_toBottomOf="@+id/ivLoginBackground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/neutral_15"
+            android:paddingHorizontal="@dimen/fbase_dimen_32"
+            android:paddingTop="@dimen/fbase_dimen_6"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/civLoginAvatar">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLoginTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_raleway_bold"
+                android:text="@string/login"
+                android:textColor="@color/primary"
+                android:textSize="@dimen/fbase_text_size_26"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLoginWelcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fbase_dimen_8"
+                android:fontFamily="@font/font_raleway_medium"
+                android:text="@string/welcome"
+                android:textColor="@color/neutral_13"
+                android:textSize="@dimen/fbase_text_size_16"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvLoginTitle" />
+
+            <vn.tutorme.mobile.presenter.widget.textfield.TextFieldView
+                android:id="@+id/tfvLoginAccount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fbase_dimen_30"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvLoginWelcome"
+                app:padding_right_icon="@dimen/fbase_dimen_12"
+                app:right_icon="@drawable/ic_delete_gray"
+                app:text_hint="@string/account_hint"
+                app:text_title="@string/account_hint" />
+
+            <vn.tutorme.mobile.presenter.widget.textfield.TextFieldView
+                android:id="@+id/tfvLoginPassword"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fbase_dimen_12"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tfvLoginAccount"
+                app:padding_right_icon="@dimen/fbase_dimen_10"
+                app:right_icon="@drawable/ic_eye_gone"
+                app:text_hint="@string/password_hint"
+                app:text_title="@string/password_hint" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivLoginCheck"
+                android:layout_width="@dimen/fbase_dimen_40"
+                android:layout_height="@dimen/fbase_dimen_40"
+                android:layout_marginTop="@dimen/fbase_dimen_12"
+                android:background="?selectableItemBackgroundBorderless"
+                android:padding="@dimen/fbase_dimen_10"
+                android:src="@drawable/ic_tick_gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tfvLoginPassword" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_raleway_medium"
+                android:text="@string/remember_password"
+                android:textColor="@color/neutral_13"
+                android:textSize="@dimen/fbase_text_size_14"
+                app:layout_constraintBottom_toBottomOf="@id/ivLoginCheck"
+                app:layout_constraintStart_toEndOf="@id/ivLoginCheck"
+                app:layout_constraintTop_toTopOf="@id/ivLoginCheck" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fbase_dimen_6"
+                android:fontFamily="@font/font_raleway_medium"
+                android:text="@string/forgot_password"
+                android:textColor="@color/primary"
+                android:textSize="@dimen/fbase_text_size_14"
+                app:layout_constraintBottom_toBottomOf="@id/ivLoginCheck"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/ivLoginCheck" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLoginConfirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fbase_dimen_24"
+                android:background="@drawable/ripple_bg_primary_corner_14"
+                android:fontFamily="@font/font_raleway_semibold"
+                android:gravity="center"
+                android:paddingVertical="@dimen/fbase_dimen_16"
+                android:text="@string/login"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fbase_text_size_14"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivLoginCheck" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLoginNoMember"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fbase_dimen_16"
+                android:layout_marginEnd="@dimen/fbase_dimen_64"
+                android:fontFamily="@font/font_raleway_medium"
+                android:text="@string/no_member"
+                android:textColor="@color/neutral_13"
+                android:textSize="@dimen/fbase_text_size_14"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvLoginConfirm" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLoginRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fbase_dimen_120"
+                android:background="?selectableItemBackgroundBorderless"
+                android:fontFamily="@font/font_raleway_medium"
+                android:text="@string/register"
+                android:textColor="@color/violet_200"
+                android:textSize="@dimen/fbase_text_size_14"
+                app:layout_constraintBottom_toBottomOf="@+id/tvLoginNoMember"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvLoginNoMember" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivLoginGoogle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fbase_dimen_20"
+                android:layout_marginEnd="@dimen/fbase_dimen_90"
+                android:background="?selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_google"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvLoginNoMember" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivLoginFacebook"
+                android:layout_width="@dimen/fbase_dimen_60"
+                android:layout_height="@dimen/fbase_dimen_60"
+                android:layout_marginStart="@dimen/fbase_dimen_90"
+                android:background="?selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_facebook"
+                app:layout_constraintBottom_toBottomOf="@+id/ivLoginGoogle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ivLoginGoogle" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

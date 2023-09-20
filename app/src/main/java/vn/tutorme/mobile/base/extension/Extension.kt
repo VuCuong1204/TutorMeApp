@@ -248,7 +248,6 @@ fun <T> TutorMeFragment<*>.handleUiState(
     }
 }
 
-
 fun SpannableStringBuilder.withSpanTextClick(
     character: String,
     action: () -> Unit,
@@ -273,4 +272,10 @@ fun SpannableStringBuilder.withSpanTextClick(
         clickableTextIndex + character.length,
         Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
     )
+}
+
+fun isEmailValid(email: String): Boolean {
+    val emailPattern = Regex("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}")
+
+    return emailPattern.matches(email)
 }

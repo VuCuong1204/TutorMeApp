@@ -16,7 +16,7 @@ class SplashFragment : TutorMeFragment<SplashFragmentBinding>(R.layout.splash_fr
             .appendText(getAppString(R.string.title_first))
             .withSpan(ForegroundColorSpan(getAppColor(R.color.primary)))
             .appendText(" " + getAppString(R.string.title_second))
-            .withSpan(ForegroundColorSpan(getAppColor(R.color.yellow)))
+            .withSpan(ForegroundColorSpan(getAppColor(R.color.secondary)))
             .spannedText
 
         binding.tvSplashTitle.text = spannedText

@@ -6,13 +6,15 @@ import vn.tutorme.mobile.base.extension.gone
 import vn.tutorme.mobile.base.extension.show
 import vn.tutorme.mobile.base.screen.TutorMeActivity
 import vn.tutorme.mobile.databinding.MainActivityBinding
-import vn.tutorme.mobile.presenter.splash.SplashFragment
+import vn.tutorme.mobile.presenter.login.LoginFragment
 
 @AndroidEntryPoint
 class MainActivity : TutorMeActivity<MainActivityBinding>(R.layout.main_activity) {
 
     override fun onInitView() {
         super.onInitView()
+
+        replaceFragment(LoginFragment(), null)
     }
 
     override fun getContainerId(): Int = R.id.flMainRoot

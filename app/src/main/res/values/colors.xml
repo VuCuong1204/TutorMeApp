@@ -7,7 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="black_10">#222222</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="white">#FFFFFF</color>
     <color name="transparent">#00000000</color>
     <color name="dark_brown">#7C2E0E</color>
     <color name="gray_scale_60">#988F90</color>
@@ -38,13 +38,16 @@
     <color name="black_70">#B3000000</color>
     <color name="bg_filter">#F7F7F7</color>
     <color name="white_10">#FAFAFF</color>
-    <color name="gray_ripple">#DFDFDF</color>
+    <color name="gray_ripple">#5E4FB5</color>
     <color name="primary">#3C2C9E</color>
     <color name="green">#3DCC1D</color>
     <color name="success">#0FD186</color>
     <color name="error">#FF6259</color>
     <color name="warning">#787878</color>
-    <color name="yellow">#FFB524</color>
+    <color name="secondary">#FFB524</color>
+    <color name="tertiary">#3CBAEC</color>
+
+    <color name="red_20">#FF7575</color>
 
     <color name="neutral_1">#000000</color>
     <color name="neutral_2">#1C1C1C</color>
@@ -57,5 +60,8 @@
     <color name="neutral_10">#FFFFFF</color>
     <color name="neutral_11">#EBEBEB</color>
     <color name="neutral_12">#F4F4F4</color>
+    <color name="neutral_13">#404040</color>
+    <color name="neutral_14">#A9A9A9</color>
+    <color name="neutral_15">#F8F8F8</color>
 
 </resources>

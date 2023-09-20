@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="TextFieldView">
+        <attr name="text_title" format="string" />
+        <attr name="right_icon" format="reference" />
+        <attr name="text_hint" format="string" />
+        <attr name="padding_right_icon" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="CircleInSideView">
+
+    </declare-styleable>
+
+</resources>

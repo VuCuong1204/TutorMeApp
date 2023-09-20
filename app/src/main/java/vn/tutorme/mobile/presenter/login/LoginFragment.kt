@@ -1,8 +1,10 @@
 package vn.tutorme.mobile.presenter.login
 
 import android.util.Log
+import android.view.inputmethod.EditorInfo
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FacebookAuthProvider
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -10,17 +12,29 @@ import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.common.sociallogin.FacebookLogin
 import vn.tutorme.mobile.base.common.sociallogin.GoogleLogin
 import vn.tutorme.mobile.base.common.sociallogin.ISocialTokenListener
+import vn.tutorme.mobile.base.extension.getAppColor
+import vn.tutorme.mobile.base.extension.getAppDrawable
+import vn.tutorme.mobile.base.extension.getAppString
+import vn.tutorme.mobile.base.extension.isEmailValid
 import vn.tutorme.mobile.base.extension.setOnSafeClick
+import vn.tutorme.mobile.base.extension.toast
 import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.LoginFragmentBinding
+import vn.tutorme.mobile.presenter.widget.textfield.INPUT_TYPE
 
 class LoginFragment : TutorMeFragment<LoginFragmentBinding>(R.layout.login_fragment) {
 
     private var facebookLogin: FacebookLogin? = null
     private var googleLogin: GoogleLogin? = null
 
+    private lateinit var auth: FirebaseAuth
+
+    private var isCheckSavePassWord = false
     override fun onInitView() {
         super.onInitView()
+
+        auth = Firebase.auth
+        addHeader()
         initSocialLogin()
         addEventOnClick()
     }
@@ -31,6 +45,94 @@ class LoginFragment : TutorMeFragment<LoginFragmentBinding>(R.layout.login_fragm
         googleLogin?.release(mainActivity)
         googleLogin = null
         super.onDestroyView()
+    }
+
+    private fun addHeader() {
+        binding.tfvLoginAccount.apply {
+            setInputType(INPUT_TYPE.TEXT_TYPE)
+            setImgOptions(EditorInfo.IME_ACTION_NEXT)
+        }
+
+        binding.tfvLoginPassword.apply {
+            setInputType(INPUT_TYPE.TEXT_PASSWORD_TYPE)
+            setImgOptions(EditorInfo.IME_ACTION_DONE)
+        }
+    }
+
+    private fun addEventOnClick() {
+
+        binding.ivLoginCheck.setOnSafeClick {
+            binding.ivLoginCheck.setImageDrawable(
+                if (!isCheckSavePassWord) getAppDrawable(R.drawable.ic_tick_show)
+                else getAppDrawable(R.drawable.ic_tick_gone)
+            )
+
+            isCheckSavePassWord = !isCheckSavePassWord
+        }
+
+        binding.tvLoginConfirm.setOnSafeClick {
+            binding.tfvLoginAccount.clearFocus()
+            binding.tfvLoginPassword.clearFocus()
+            checkLogin()
+        }
+
+        binding.tvLoginRegister.setOnSafeClick {
+
+        }
+
+        binding.ivLoginGoogle.setOnSafeClick {
+            Log.d("TAG", "singInEmailPassword: ${auth.currentUser?.uid}")
+        }
+
+        binding.ivLoginFacebook.setOnSafeClick {
+            FirebaseAuth.getInstance().signOut()
+            Log.d("TAG", "singInEmailPassword: ${auth.currentUser?.uid}")
+        }
+    }
+
+    private fun checkLogin() {
+        val username = binding.tfvLoginAccount.getTextContent()
+        val password = binding.tfvLoginPassword.getTextContent()
+        if (username.isEmpty()) {
+            binding.tfvLoginAccount.apply {
+                setTextDescription(getAppString(R.string.field_has_not_filled))
+                setTextDescriptionColor(getAppColor(R.color.red_20))
+                setBackgroundRoot(getAppDrawable(R.drawable.shape_bg_white_corner_14_stroke_2_bg_red20))
+                setTextDescriptionState(true)
+            }
+        } else {
+            if (!isEmailValid(username)) {
+                binding.tfvLoginAccount.apply {
+                    setTextDescription(getAppString(R.string.account_wrong))
+                    setTextDescriptionColor(getAppColor(R.color.red_20))
+                    setBackgroundRoot(getAppDrawable(R.drawable.shape_bg_white_corner_14_stroke_2_bg_red20))
+                    setTextDescriptionState(true)
+                }
+            } else {
+                if (password.isEmpty()) {
+                    binding.tfvLoginPassword.apply {
+                        setTextDescription(getAppString(R.string.field_has_not_filled))
+                        setTextDescriptionColor(getAppColor(R.color.red_20))
+                        setBackgroundRoot(getAppDrawable(R.drawable.shape_bg_white_corner_14_stroke_2_bg_red20))
+                        setTextDescriptionState(true)
+                    }
+                } else {
+                    singInEmailPassword(username, password)
+                }
+            }
+        }
+    }
+
+    private fun singInEmailPassword(email: String, password: String) {
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(mainActivity) { task ->
+            if (task.isSuccessful) {
+                val user = auth.currentUser
+                Log.d("TAG", "singInEmailPassword: ${user?.email.toString()} ${user?.getIdToken(false)?.result?.token} ${user?.uid}")
+                toast("success")
+            } else {
+                Log.w(TAG, "signInWithEmail:failure", task.exception)
+            }
+        }
     }
 
     private fun initSocialLogin() {
@@ -74,30 +176,12 @@ class LoginFragment : TutorMeFragment<LoginFragmentBinding>(R.layout.login_fragm
     private fun singInFirebase(credential: AuthCredential) {
         Firebase.auth.signInWithCredential(credential)
             .addOnSuccessListener { _ ->
-                val token = Firebase.auth.currentUser?.getIdToken(false)?.result?.token
+                val token = auth.currentUser?.getIdToken(false)?.result?.token
                 Log.d(TAG, "singInFirebase: $token")
             }
             .addOnFailureListener { exception ->
                 Log.d(TAG, "${exception.message}")
                 hideLoading()
             }
-    }
-
-    private fun addEventOnClick() {
-        binding.btnMainGoogle.setOnSafeClick {
-            facebookLogin?.login()
-        }
-
-        binding.btnMainFacebook.setOnSafeClick {
-            facebookLogin?.logout()
-        }
-    }
-
-    override fun showLoading() {
-        //   TODO("Not yet implemented")
-    }
-
-    override fun hideLoading() {
-        //   TODO("Not yet implemented")
     }
 }
