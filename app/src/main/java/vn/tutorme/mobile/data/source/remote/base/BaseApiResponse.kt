@@ -3,7 +3,7 @@ package vn.tutorme.mobile.data.source.remote.base
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class BaseApiResponse : IApiResponse {
+open class BaseApiResponse : IApiResponse {
 
     @SerializedName("msg")
     @Expose

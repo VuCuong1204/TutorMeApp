@@ -10,7 +10,7 @@ import androidx.databinding.ViewDataBinding
 abstract class BaseBindingDialog<DB : ViewDataBinding>(layoutId: Int) : BaseDialog(layoutId), BaseView {
 
     private var _binding: DB? = null
-    private val binding: DB
+    val binding: DB
         get() = _binding!!
 
     override fun attachView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {

@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.catch
+import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.application.getApplication
 import vn.tutorme.mobile.base.common.FlowResult
@@ -233,6 +234,7 @@ fun <T> TutorMeFragment<*>.handleUiState(
 
         UI_STATE.FAILURE -> {
             if (canShowLoading) {
+                showError(flowResult.getMessage())
                 this.hideLoading()
             }
 
@@ -247,7 +249,6 @@ fun <T> TutorMeFragment<*>.handleUiState(
         }
     }
 }
-
 
 fun SpannableStringBuilder.withSpanTextClick(
     character: String,
@@ -273,4 +274,14 @@ fun SpannableStringBuilder.withSpanTextClick(
         clickableTextIndex + character.length,
         Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
     )
+}
+
+fun isEmailValid(email: String): Boolean {
+    val emailPattern = Regex("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}")
+
+    return emailPattern.matches(email)
+}
+
+fun isLogin(): Boolean {
+    return AppPreferences.userInfo != null
 }

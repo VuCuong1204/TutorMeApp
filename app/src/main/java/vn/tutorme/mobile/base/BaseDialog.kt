@@ -1,5 +1,7 @@
 package vn.tutorme.mobile.base
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
@@ -12,10 +14,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.view.WindowManager
+import android.view.animation.AnimationUtils
+import android.view.animation.BounceInterpolator
 import android.widget.RelativeLayout
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.common.DialogScreen
 import vn.tutorme.mobile.base.common.LAYOUT_INVALID
 
@@ -42,18 +47,17 @@ abstract class BaseDialog(@LayoutRes val layoutId: Int) : DialogFragment(), Base
         return viewRoot
     }
 
-    override fun onPrepareInitView() {
-        TODO("Not yet implemented")
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        initAnimation()
         super.onViewCreated(view, savedInstanceState)
-        val background: View = view.findViewById(getBackground())
+        val background: View = view.findViewById(getBackgroundId())
         background.setOnClickListener {
             if (screen().isDismissByTouchOutSide) {
                 dismissDialog()
             }
         }
+
+        onInitView()
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -120,7 +124,7 @@ abstract class BaseDialog(@LayoutRes val layoutId: Int) : DialogFragment(), Base
         return myInflater.inflate(layoutId, container, false)
     }
 
-    open fun getBackground(): Int = LAYOUT_INVALID
+    open fun getBackgroundId(): Int = LAYOUT_INVALID
 
     open fun screen(): DialogScreen = DialogScreen()
 
@@ -133,6 +137,42 @@ abstract class BaseDialog(@LayoutRes val layoutId: Int) : DialogFragment(), Base
     private fun dismissDialog() {
         if (this.isAdded) {
             dismiss()
+        }
+    }
+
+
+    private fun animateDialog(viewGroup: ViewGroup) {
+        when (screen().mode) {
+            DialogScreen.DIALOG_MODE.SCALE -> {
+                val set = AnimatorSet()
+                val animatorX = ObjectAnimator.ofFloat(viewGroup, ViewGroup.SCALE_X, 0.7f, 1f)
+                val animatorY = ObjectAnimator.ofFloat(viewGroup, ViewGroup.SCALE_Y, 0.7f, 1f)
+                set.playTogether(animatorX, animatorY)
+                set.interpolator = BounceInterpolator()
+                set.duration = 500
+                set.start()
+            }
+
+            DialogScreen.DIALOG_MODE.BOTTOM -> {
+                viewGroup.startAnimation(
+                    AnimationUtils.loadAnimation(
+                        context,
+                        R.anim.slide_enter_bottom_to_top
+                    )
+                )
+            }
+
+            else -> {}
+        }
+    }
+
+    open fun getRootViewGroup(): ViewGroup? {
+        return viewRoot as? ViewGroup
+    }
+
+    private fun initAnimation() {
+        getRootViewGroup()?.let {
+            animateDialog(it)
         }
     }
 }

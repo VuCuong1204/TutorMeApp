@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import vn.tutorme.mobile.base.common.LAYOUT_INVALID
 import vn.tutorme.mobile.base.common.StatusBar
+import vn.tutorme.mobile.base.common.anim.FadeAnim
+import vn.tutorme.mobile.base.common.anim.IScreenAnim
 import vn.tutorme.mobile.base.extension.getAppColor
 
 abstract class BaseActivity(protected val layoutId: Int) : AppCompatActivity(), BaseView {
@@ -107,28 +109,32 @@ abstract class BaseActivity(protected val layoutId: Int) : AppCompatActivity(), 
     fun addFragment(
         fragment: Fragment,
         bundle: Bundle?,
-        keepToBackStack: Boolean = true
+        keepToBackStack: Boolean = true,
+        screenAnim: IScreenAnim = FadeAnim()
     ) {
         includeFragment(
             fragment,
             bundle,
             getContainerId(),
             false,
-            keepToBackStack
+            keepToBackStack,
+            screenAnim
         )
     }
 
     fun replaceFragment(
         fragment: Fragment,
         bundle: Bundle?,
-        keepToBackStack: Boolean = true
+        keepToBackStack: Boolean = true,
+        screenAnim: IScreenAnim = FadeAnim()
     ) {
         includeFragment(
             fragment,
             bundle,
             getContainerId(),
             true,
-            keepToBackStack
+            keepToBackStack,
+            screenAnim
         )
     }
 
@@ -210,7 +216,8 @@ abstract class BaseActivity(protected val layoutId: Int) : AppCompatActivity(), 
         bundle: Bundle?,
         containerId: Int,
         isReplace: Boolean,
-        keepToBackStack: Boolean
+        keepToBackStack: Boolean,
+        screenAnim: IScreenAnim
     ) {
         if (containerId == -1) {
             throw IllegalArgumentException("Cần truyền layout để có thể thục hiện replace hoặc add")
@@ -221,6 +228,12 @@ abstract class BaseActivity(protected val layoutId: Int) : AppCompatActivity(), 
                 fragment.arguments = it
             }
             supportFragmentManager.beginTransaction().apply {
+                setCustomAnimations(
+                    screenAnim.enter(),
+                    screenAnim.exit(),
+                    screenAnim.popEnter(),
+                    screenAnim.popExit()
+                )
                 if (isReplace) {
                     replace(containerId, fragment, tag)
                 } else {

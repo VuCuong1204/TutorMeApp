@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import vn.tutorme.mobile.base.common.StatusBar
+import vn.tutorme.mobile.base.common.anim.FadeAnim
+import vn.tutorme.mobile.base.common.anim.IScreenAnim
 
 abstract class BaseFragment(@LayoutRes protected val layoutId: Int) : Fragment(), BaseView {
     protected val TAG = this::class.java.simpleName
@@ -88,13 +90,19 @@ abstract class BaseFragment(@LayoutRes protected val layoutId: Int) : Fragment()
     fun replaceFragment(
         fragment: BaseFragment,
         bundle: Bundle? = null,
-        keepToBackStack: Boolean = true
+        keepToBackStack: Boolean = true,
+        screenAnim: IScreenAnim
     ) {
         baseActivity.replaceFragment(
             fragment,
             bundle,
-            keepToBackStack
+            keepToBackStack,
+            screenAnim
         )
+    }
+
+    fun clearBackStackFragment() {
+        baseActivity.clearBackStackFragment()
     }
 
     fun backFragment() {
@@ -104,40 +112,46 @@ abstract class BaseFragment(@LayoutRes protected val layoutId: Int) : Fragment()
     fun addFragment(
         fragment: BaseFragment,
         bundle: Bundle?,
-        keepToBackStack: Boolean
+        keepToBackStack: Boolean,
+        screenAnim: IScreenAnim = FadeAnim()
     ) {
         baseActivity.addFragment(
             fragment,
             bundle,
-            keepToBackStack
+            keepToBackStack,
+            screenAnim
         )
     }
 
     fun replaceFragmentInsideFragment(
         fragment: Fragment,
         bundle: Bundle?,
-        keepToBackStack: Boolean = true
+        keepToBackStack: Boolean = true,
+        screenAnim: IScreenAnim = FadeAnim()
     ) {
         includeFragment(
             fragment,
             bundle,
             getContainerId(),
             true,
-            keepToBackStack
+            keepToBackStack,
+            screenAnim
         )
     }
 
     fun addFragmentInsideFragment(
         fragment: Fragment,
         bundle: Bundle?,
-        keepToBackStack: Boolean = true
+        keepToBackStack: Boolean = true,
+        screenAnim: IScreenAnim
     ) {
         includeFragment(
             fragment,
             bundle,
             getContainerId(),
             false,
-            keepToBackStack
+            keepToBackStack,
+            screenAnim
         )
     }
 
@@ -146,7 +160,8 @@ abstract class BaseFragment(@LayoutRes protected val layoutId: Int) : Fragment()
         bundle: Bundle?,
         containerId: Int,
         isReplace: Boolean,
-        keepToBackStack: Boolean
+        keepToBackStack: Boolean,
+        screenAnim: IScreenAnim
     ) {
         if (containerId == -1) {
             throw IllegalArgumentException("Cần truyền layout để có thể thục hiện replace hoặc add")
@@ -157,6 +172,12 @@ abstract class BaseFragment(@LayoutRes protected val layoutId: Int) : Fragment()
                 fragment.arguments = it
             }
             childFragmentManager.beginTransaction().apply {
+                setCustomAnimations(
+                    screenAnim.enter(),
+                    screenAnim.exit(),
+                    screenAnim.popEnter(),
+                    screenAnim.popExit()
+                )
                 if (isReplace) {
                     replace(containerId, fragment, tag)
                 } else {
