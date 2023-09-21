@@ -6,7 +6,7 @@ import vn.tutorme.mobile.base.extension.gone
 import vn.tutorme.mobile.base.extension.show
 import vn.tutorme.mobile.base.screen.TutorMeActivity
 import vn.tutorme.mobile.databinding.MainActivityBinding
-import vn.tutorme.mobile.presenter.login.LoginFragment
+import vn.tutorme.mobile.presenter.authen.login.LoginFragment
 
 @AndroidEntryPoint
 class MainActivity : TutorMeActivity<MainActivityBinding>(R.layout.main_activity) {

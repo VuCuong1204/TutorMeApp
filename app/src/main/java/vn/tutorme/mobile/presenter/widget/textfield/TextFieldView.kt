@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.addTextChangedListener
 import vn.tutorme.mobile.R
+import vn.tutorme.mobile.base.extension.getAppColor
 import vn.tutorme.mobile.base.extension.getAppDimension
 import vn.tutorme.mobile.base.extension.getAppDrawable
 import vn.tutorme.mobile.base.extension.getAppString
@@ -130,6 +131,13 @@ class TextFieldView(
 
     fun setBackgroundRoot(drawable: Drawable?) {
         clRoot.background = drawable
+    }
+
+    fun showError(value: CharSequence) {
+        setTextDescription(value)
+        setTextDescriptionColor(getAppColor(R.color.red_20))
+        setBackgroundRoot(getAppDrawable(R.drawable.shape_bg_white_corner_14_stroke_2_bg_red20))
+        setTextDescriptionState(true)
     }
 
     private fun setEventSelectIconRight() {

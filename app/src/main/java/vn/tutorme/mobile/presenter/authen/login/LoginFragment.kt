@@ -1,4 +1,4 @@
-package vn.tutorme.mobile.presenter.login
+package vn.tutorme.mobile.presenter.authen.login
 
 import android.util.Log
 import android.view.inputmethod.EditorInfo
@@ -9,10 +9,11 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import vn.tutorme.mobile.R
+import vn.tutorme.mobile.base.common.anim.SLIDE_TYPE
+import vn.tutorme.mobile.base.common.anim.SlideAnimation
 import vn.tutorme.mobile.base.common.sociallogin.FacebookLogin
 import vn.tutorme.mobile.base.common.sociallogin.GoogleLogin
 import vn.tutorme.mobile.base.common.sociallogin.ISocialTokenListener
-import vn.tutorme.mobile.base.extension.getAppColor
 import vn.tutorme.mobile.base.extension.getAppDrawable
 import vn.tutorme.mobile.base.extension.getAppString
 import vn.tutorme.mobile.base.extension.isEmailValid
@@ -20,6 +21,7 @@ import vn.tutorme.mobile.base.extension.setOnSafeClick
 import vn.tutorme.mobile.base.extension.toast
 import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.LoginFragmentBinding
+import vn.tutorme.mobile.presenter.authen.register.RegisterFragment
 import vn.tutorme.mobile.presenter.widget.textfield.INPUT_TYPE
 
 class LoginFragment : TutorMeFragment<LoginFragmentBinding>(R.layout.login_fragment) {
@@ -77,7 +79,12 @@ class LoginFragment : TutorMeFragment<LoginFragmentBinding>(R.layout.login_fragm
         }
 
         binding.tvLoginRegister.setOnSafeClick {
-
+            addFragment(
+                RegisterFragment(),
+                null,
+                true,
+                SlideAnimation(SLIDE_TYPE.BOTTOM_TO_TOP)
+            )
         }
 
         binding.ivLoginGoogle.setOnSafeClick {
@@ -94,28 +101,13 @@ class LoginFragment : TutorMeFragment<LoginFragmentBinding>(R.layout.login_fragm
         val username = binding.tfvLoginAccount.getTextContent()
         val password = binding.tfvLoginPassword.getTextContent()
         if (username.isEmpty()) {
-            binding.tfvLoginAccount.apply {
-                setTextDescription(getAppString(R.string.field_has_not_filled))
-                setTextDescriptionColor(getAppColor(R.color.red_20))
-                setBackgroundRoot(getAppDrawable(R.drawable.shape_bg_white_corner_14_stroke_2_bg_red20))
-                setTextDescriptionState(true)
-            }
+            binding.tfvLoginAccount.showError(getAppString(R.string.field_has_not_filled))
         } else {
             if (!isEmailValid(username)) {
-                binding.tfvLoginAccount.apply {
-                    setTextDescription(getAppString(R.string.account_wrong))
-                    setTextDescriptionColor(getAppColor(R.color.red_20))
-                    setBackgroundRoot(getAppDrawable(R.drawable.shape_bg_white_corner_14_stroke_2_bg_red20))
-                    setTextDescriptionState(true)
-                }
+                binding.tfvLoginAccount.showError(getAppString(R.string.account_wrong))
             } else {
                 if (password.isEmpty()) {
-                    binding.tfvLoginPassword.apply {
-                        setTextDescription(getAppString(R.string.field_has_not_filled))
-                        setTextDescriptionColor(getAppColor(R.color.red_20))
-                        setBackgroundRoot(getAppDrawable(R.drawable.shape_bg_white_corner_14_stroke_2_bg_red20))
-                        setTextDescriptionState(true)
-                    }
+                    binding.tfvLoginPassword.showError(getAppString(R.string.field_has_not_filled))
                 } else {
                     singInEmailPassword(username, password)
                 }
@@ -165,8 +157,8 @@ class LoginFragment : TutorMeFragment<LoginFragmentBinding>(R.layout.login_fragm
             }
 
             override fun onFailed(e: Exception?) {
-                hideLoading()
                 Log.d(TAG, "${e?.message}")
+                hideLoading()
             }
         }).also {
             it.register(this)

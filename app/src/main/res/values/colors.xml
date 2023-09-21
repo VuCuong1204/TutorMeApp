@@ -46,6 +46,7 @@
     <color name="warning">#787878</color>
     <color name="secondary">#FFB524</color>
     <color name="tertiary">#3CBAEC</color>
+    <color name="bg_dialog">#80182537</color>
 
     <color name="red_20">#FF7575</color>
 
