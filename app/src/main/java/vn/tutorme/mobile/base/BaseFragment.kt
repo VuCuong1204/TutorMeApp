@@ -101,6 +101,10 @@ abstract class BaseFragment(@LayoutRes protected val layoutId: Int) : Fragment()
         )
     }
 
+    fun clearBackStackFragment() {
+        baseActivity.clearBackStackFragment()
+    }
+
     fun backFragment() {
         baseActivity.backFragment()
     }

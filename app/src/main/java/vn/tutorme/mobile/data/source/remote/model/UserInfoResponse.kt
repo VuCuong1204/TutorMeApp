@@ -7,6 +7,6 @@ import vn.tutorme.mobile.data.source.remote.base.BaseApiResponse
 data class UserInfoResponse(
     @SerializedName("data")
     @Expose
-    var data: UserInfoDTO? = null
+    var data: UserInfoMainDTO? = null
 
 ) : BaseApiResponse()

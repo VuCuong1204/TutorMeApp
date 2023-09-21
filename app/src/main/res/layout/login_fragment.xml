@@ -168,10 +168,10 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivLoginGoogle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/fbase_dimen_50"
+                android:layout_height="@dimen/fbase_dimen_50"
                 android:layout_marginTop="@dimen/fbase_dimen_20"
-                android:layout_marginEnd="@dimen/fbase_dimen_90"
+                android:layout_marginEnd="@dimen/fbase_dimen_80"
                 android:background="?selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_google"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -180,9 +180,9 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivLoginFacebook"
-                android:layout_width="@dimen/fbase_dimen_60"
-                android:layout_height="@dimen/fbase_dimen_60"
-                android:layout_marginStart="@dimen/fbase_dimen_90"
+                android:layout_width="@dimen/fbase_dimen_44"
+                android:layout_height="@dimen/fbase_dimen_44"
+                android:layout_marginStart="@dimen/fbase_dimen_70"
                 android:background="?selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_facebook"
                 app:layout_constraintBottom_toBottomOf="@+id/ivLoginGoogle"

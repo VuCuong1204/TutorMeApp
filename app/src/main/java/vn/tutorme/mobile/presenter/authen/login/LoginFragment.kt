@@ -2,29 +2,42 @@ package vn.tutorme.mobile.presenter.authen.login
 
 import android.util.Log
 import android.view.inputmethod.EditorInfo
+import androidx.core.os.bundleOf
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.AndroidEntryPoint
+import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.R
+import vn.tutorme.mobile.base.common.IViewListener
+import vn.tutorme.mobile.base.common.anim.FadeAnim
 import vn.tutorme.mobile.base.common.anim.SLIDE_TYPE
 import vn.tutorme.mobile.base.common.anim.SlideAnimation
 import vn.tutorme.mobile.base.common.sociallogin.FacebookLogin
 import vn.tutorme.mobile.base.common.sociallogin.GoogleLogin
 import vn.tutorme.mobile.base.common.sociallogin.ISocialTokenListener
+import vn.tutorme.mobile.base.extension.Extension.STRING_DEFAULT
 import vn.tutorme.mobile.base.extension.getAppDrawable
 import vn.tutorme.mobile.base.extension.getAppString
+import vn.tutorme.mobile.base.extension.handleUiState
 import vn.tutorme.mobile.base.extension.isEmailValid
 import vn.tutorme.mobile.base.extension.setOnSafeClick
-import vn.tutorme.mobile.base.extension.toast
 import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.LoginFragmentBinding
 import vn.tutorme.mobile.presenter.authen.register.RegisterFragment
+import vn.tutorme.mobile.presenter.home.HomeFragment
+import vn.tutorme.mobile.presenter.dialog.BottomSheetConfirmDialog
 import vn.tutorme.mobile.presenter.widget.textfield.INPUT_TYPE
 
+@AndroidEntryPoint
 class LoginFragment : TutorMeFragment<LoginFragmentBinding>(R.layout.login_fragment) {
+
+    private val viewModel by viewModels<LoginViewModel>()
 
     private var facebookLogin: FacebookLogin? = null
     private var googleLogin: GoogleLogin? = null
@@ -39,6 +52,26 @@ class LoginFragment : TutorMeFragment<LoginFragmentBinding>(R.layout.login_fragm
         addHeader()
         initSocialLogin()
         addEventOnClick()
+    }
+
+    override fun onObserverViewModel() {
+        super.onObserverViewModel()
+        lifecycleScope.launchWhenCreated {
+            viewModel.userInfoState.collect {
+                handleUiState(it, object : IViewListener {
+                    override fun onSuccess() {
+                        clearBackStackFragment()
+                        replaceFragment(
+                            fragment = HomeFragment(),
+                            bundle = bundleOf(
+                                HomeFragment.USER_ID_KEY to it.data?.userId
+                            ),
+                            screenAnim = FadeAnim()
+                        )
+                    }
+                }, canShowLoading = true)
+            }
+        }
     }
 
     override fun onDestroyView() {
@@ -59,6 +92,12 @@ class LoginFragment : TutorMeFragment<LoginFragmentBinding>(R.layout.login_fragm
             setInputType(INPUT_TYPE.TEXT_PASSWORD_TYPE)
             setImgOptions(EditorInfo.IME_ACTION_DONE)
         }
+
+        AppPreferences.userNameAccount?.let { binding.tfvLoginAccount.setTextContent(it) }
+        AppPreferences.passwordAccount?.let { binding.tfvLoginPassword.setTextContent(it) }
+        if (AppPreferences.checkSaveInfo == true)
+            binding.ivLoginCheck.setImageDrawable(getAppDrawable(R.drawable.ic_tick_show))
+        else binding.ivLoginCheck.setImageDrawable(getAppDrawable(R.drawable.ic_tick_gone))
     }
 
     private fun addEventOnClick() {
@@ -88,12 +127,11 @@ class LoginFragment : TutorMeFragment<LoginFragmentBinding>(R.layout.login_fragm
         }
 
         binding.ivLoginGoogle.setOnSafeClick {
-            Log.d("TAG", "singInEmailPassword: ${auth.currentUser?.uid}")
+            googleLogin?.login()
         }
 
         binding.ivLoginFacebook.setOnSafeClick {
-            FirebaseAuth.getInstance().signOut()
-            Log.d("TAG", "singInEmailPassword: ${auth.currentUser?.uid}")
+            facebookLogin?.login()
         }
     }
 
@@ -118,11 +156,20 @@ class LoginFragment : TutorMeFragment<LoginFragmentBinding>(R.layout.login_fragm
     private fun singInEmailPassword(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(mainActivity) { task ->
             if (task.isSuccessful) {
-                val user = auth.currentUser
-                Log.d("TAG", "singInEmailPassword: ${user?.email.toString()} ${user?.getIdToken(false)?.result?.token} ${user?.uid}")
-                toast("success")
+                val id = auth.currentUser?.uid
+                id?.let {
+                    if (isCheckSavePassWord) {
+                        AppPreferences.userNameAccount = email
+                        AppPreferences.passwordAccount = password
+                        AppPreferences.checkSaveInfo = true
+                    } else {
+                        AppPreferences.passwordAccount = STRING_DEFAULT
+                        AppPreferences.checkSaveInfo = false
+                    }
+                    viewModel.login(it)
+                }
             } else {
-                Log.w(TAG, "signInWithEmail:failure", task.exception)
+                showLoginFailedDialog()
             }
         }
     }
@@ -168,12 +215,18 @@ class LoginFragment : TutorMeFragment<LoginFragmentBinding>(R.layout.login_fragm
     private fun singInFirebase(credential: AuthCredential) {
         Firebase.auth.signInWithCredential(credential)
             .addOnSuccessListener { _ ->
-                val token = auth.currentUser?.getIdToken(false)?.result?.token
-                Log.d(TAG, "singInFirebase: $token")
+                val id = auth.currentUser?.uid
+                id?.let { viewModel.register(it) }
             }
             .addOnFailureListener { exception ->
                 Log.d(TAG, "${exception.message}")
                 hideLoading()
             }
+    }
+
+    private fun showLoginFailedDialog() {
+        BottomSheetConfirmDialog().apply {
+            eventLeftClick {}
+        }.show(childFragmentManager, BottomSheetConfirmDialog::class.java.simpleName)
     }
 }

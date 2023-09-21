@@ -48,6 +48,8 @@
     <color name="tertiary">#3CBAEC</color>
     <color name="bg_dialog">#80182537</color>
 
+    <color name="popup_background">#80000000</color>
+
     <color name="red_20">#FF7575</color>
 
     <color name="neutral_1">#000000</color>
@@ -64,5 +66,9 @@
     <color name="neutral_13">#404040</color>
     <color name="neutral_14">#A9A9A9</color>
     <color name="neutral_15">#F8F8F8</color>
+
+    <color name="text1">#404040</color>
+
+    <color name="purple">#DDD8FF</color>
 
 </resources>

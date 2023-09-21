@@ -117,6 +117,10 @@ class TextFieldView(
         tvDescription.text = charSequence
     }
 
+    fun setTextContent(value: String) {
+        edtContent.setText(value)
+    }
+
     fun setTextDescriptionColor(color: Int) {
         tvDescription.setTextColor(color)
     }

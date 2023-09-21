@@ -9,7 +9,8 @@
     </declare-styleable>
 
     <declare-styleable name="CircleInSideView">
-
+        <attr name="center_icon" format="reference" />
+        <attr name="center_icon_padding" format="dimension" />
     </declare-styleable>
 
 </resources>

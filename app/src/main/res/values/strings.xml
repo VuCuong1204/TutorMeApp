@@ -14,12 +14,16 @@
     <string name="password_hint">Mật khẩu</string>
     <string name="fill_in_here">Điền vào đây</string>
     <string name="login">Đăng nhập</string>
+    <string name="login_failed">Đăng nhập thất bại</string>
+    <string name="login_failed_content">Tên đăng nhập hoặc mật khẩu không hợp lệ.\nVui lòng thử lại hoặc ấn Quên mật khẩu!</string>
     <string name="welcome">Chào mừng bạn đến với Tutor Me</string>
     <string name="remember_password">Nhớ mật khẩu</string>
     <string name="forgot_password">Quên mật khẩu?</string>
+    <string name="forgot_password_v2">Quên mật khẩu</string>
     <string name="no_member">Chưa là thành viên</string>
     <string name="register">đăng ký</string>
     <string name="register_bold">Đăng ký</string>
+    <string name="register_fail">Đăng ký thất bại vui lòng thử lại</string>
 
     <string name="account_wrong">Email đăng nhập chưa đúng định dạng</string>
     <string name="password_wrong">Mật khẩu sai</string>
@@ -31,5 +35,6 @@
 
 
     <string name="register_success">Đăng kí tài khoản thành công</string>
+    <string name="retry">Thử lại</string>
 
 </resources>

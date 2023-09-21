@@ -7,7 +7,7 @@ enum class ROLE_TYPE(val value: Int) {
     TEACHER_TYPE(1);
 
     companion object {
-        fun valuesOfName(value: Int) {
+        fun valuesOfName(value: Int?): ROLE_TYPE? {
             val item = ROLE_TYPE.values().find {
                 it.value == value
             }
@@ -15,6 +15,8 @@ enum class ROLE_TYPE(val value: Int) {
             if (item == null) {
                 Log.d("ROLE_TYPE", "Can't find ROLE_TYPE with value: $value")
             }
+
+            return item
         }
     }
 }

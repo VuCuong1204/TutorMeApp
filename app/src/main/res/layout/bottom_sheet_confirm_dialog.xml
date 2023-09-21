@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+        android:id="@+id/flBottomSheetConfirmRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/popup_background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:orientation="vertical">
+
+            <vn.tutorme.mobile.presenter.widget.background.CircleInSideView
+                android:id="@+id/civBottomSheetConfirmRoot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:center_icon="@drawable/ic_login_failed"
+                app:center_icon_padding="@dimen/fbase_dimen_34" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/neutral_15"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/fbase_dimen_60">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvBottomSheetConfirmTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fbase_dimen_20"
+                    android:fontFamily="@font/font_raleway_bold"
+                    android:text="@string/login_failed"
+                    android:textColor="@color/primary"
+                    android:textSize="@dimen/fbase_text_size_18"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/civBottomSheetConfirmRoot" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvBottomSheetConfirmContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fbase_dimen_10"
+                    android:fontFamily="@font/font_raleway_medium"
+                    android:gravity="center"
+                    android:lineSpacingExtra="@dimen/fbase_dimen_4"
+                    android:text="@string/login_failed_content"
+                    android:textColor="@color/text1"
+                    android:textSize="@dimen/fbase_text_size_14" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/fbase_dimen_20"
+                    android:layout_marginTop="@dimen/fbase_dimen_18"
+                    android:layout_marginBottom="@dimen/fbase_dimen_30"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvBottomSheetConfirmLeft"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/fbase_dimen_40"
+                        android:layout_marginEnd="@dimen/fbase_dimen_6"
+                        android:layout_weight="1"
+                        android:background="@drawable/ripple_bg_purple_corner_14"
+                        android:fontFamily="@font/font_raleway_semibold"
+                        android:gravity="center"
+                        android:text="@string/forgot_password_v2"
+                        android:textColor="@color/primary"
+                        android:textSize="@dimen/fbase_text_size_14" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvBottomSheetConfirmRight"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/fbase_dimen_40"
+                        android:layout_marginStart="@dimen/fbase_dimen_6"
+                        android:layout_weight="1"
+                        android:background="@drawable/ripple_bg_purple_corner_14"
+                        android:fontFamily="@font/font_raleway_semibold"
+                        android:gravity="center"
+                        android:text="@string/retry"
+                        android:textColor="@color/primary"
+                        android:textSize="@dimen/fbase_text_size_14" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</layout>
