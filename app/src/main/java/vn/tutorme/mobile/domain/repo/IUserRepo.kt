@@ -1,6 +1,8 @@
 package vn.tutorme.mobile.domain.repo
 
-interface IUserRepo {
-    fun getName(): String
-    fun getOld(): String
+import vn.tutorme.mobile.domain.model.authen.UserInfo
+
+interface IAuthRepo {
+    fun register(userId: String): UserInfo
+    fun login(userId: String): UserInfo
 }

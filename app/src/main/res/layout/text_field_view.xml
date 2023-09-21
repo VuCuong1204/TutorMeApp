@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@color/neutral_15"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clTextFieldRoot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_bg_white_corner_14">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTextFieldTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/fbase_dimen_24"
+            android:layout_marginStart="@dimen/fbase_dimen_14"
+            android:layout_marginTop="@dimen/fbase_dimen_4"
+            android:fontFamily="@font/font_raleway_bold"
+            android:gravity="center"
+            android:paddingVertical="@dimen/fbase_dimen_4"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/fbase_text_size_10"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Tên đăng nhập" />
+
+        <EditText
+            android:id="@+id/edtTextFieldContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/fbase_dimen_12"
+            android:layout_marginStart="@dimen/fbase_dimen_14"
+            android:layout_marginEnd="@dimen/fbase_dimen_26"
+            android:background="@null"
+            android:fontFamily="@font/font_raleway_medium"
+            android:gravity="start"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:maxLength="50"
+            android:maxLines="1"
+            android:paddingVertical="@dimen/fbase_dimen_4"
+            android:textColor="@color/neutral_13"
+            android:textColorHint="@color/neutral_14"
+            android:textCursorDrawable="@drawable/shape_primary_bg_cursor_edit_text"
+            android:textSize="@dimen/fbase_text_size_14"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ivTextFieldRight"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:hint="Điền vào đây" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivTextFieldRight"
+            android:layout_width="@dimen/fbase_dimen_40"
+            android:layout_height="@dimen/fbase_dimen_40"
+            android:layout_marginEnd="@dimen/fbase_dimen_10"
+            android:background="?selectableItemBackgroundBorderless"
+            android:padding="@dimen/fbase_dimen_12"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTextFieldDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fbase_dimen_4"
+        android:fontFamily="@font/font_raleway_medium"
+        android:gravity="start"
+        android:textColor="@color/red_20"
+        android:textSize="@dimen/fbase_text_size_12"
+        android:visibility="gone"
+        tools:text="Mật khẩu mới không khớp" />
+
+</LinearLayout>

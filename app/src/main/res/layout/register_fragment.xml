@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:id="@+id/flRegisterContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent"
+        tools:background="@color/bg_dialog">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/fbase_dimen_70"
+            android:fillViewport="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/shape_bg_white_corner_top_16">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvRegisterLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fbase_dimen_12"
+                    android:fontFamily="@font/font_raleway_bold"
+                    android:text="@string/register_bold"
+                    android:textColor="@color/primary"
+                    android:textSize="@dimen/fbase_text_size_24"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivRegisterClose"
+                    android:layout_width="@dimen/fbase_dimen_30"
+                    android:layout_height="@dimen/fbase_dimen_30"
+                    android:layout_marginEnd="@dimen/fbase_dimen_8"
+                    android:background="?selectableItemBackgroundBorderless"
+                    app:layout_constraintBottom_toBottomOf="@id/tvRegisterLabel"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tvRegisterLabel"
+                    app:srcCompat="@drawable/ic_close_gray" />
+
+                <vn.tutorme.mobile.presenter.widget.textfield.TextFieldView
+                    android:id="@+id/tfvRegisterUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/fbase_dimen_16"
+                    android:layout_marginTop="@dimen/fbase_dimen_24"
+                    app:layout_constraintTop_toBottomOf="@+id/tvRegisterLabel"
+                    app:padding_right_icon="@dimen/fbase_dimen_12"
+                    app:right_icon="@drawable/ic_delete_gray"
+                    app:text_hint="@string/account_hint"
+                    app:text_title="@string/account_hint" />
+
+                <vn.tutorme.mobile.presenter.widget.textfield.TextFieldView
+                    android:id="@+id/tfvRegisterPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/fbase_dimen_16"
+                    android:layout_marginTop="@dimen/fbase_dimen_12"
+                    app:layout_constraintTop_toBottomOf="@+id/tfvRegisterUsername"
+                    app:padding_right_icon="@dimen/fbase_dimen_10"
+                    app:right_icon="@drawable/ic_eye_gone"
+                    app:text_hint="@string/password_new"
+                    app:text_title="@string/password_new" />
+
+                <vn.tutorme.mobile.presenter.widget.textfield.TextFieldView
+                    android:id="@+id/tfvRegisterPasswordConfirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/fbase_dimen_16"
+                    android:layout_marginTop="@dimen/fbase_dimen_12"
+                    app:layout_constraintTop_toBottomOf="@+id/tfvRegisterPassword"
+                    app:padding_right_icon="@dimen/fbase_dimen_10"
+                    app:right_icon="@drawable/ic_eye_gone"
+                    app:text_hint="@string/password_confirm"
+                    app:text_title="@string/password_confirm" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnRegister"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/fbase_dimen_16"
+                    android:layout_marginTop="@dimen/fbase_dimen_20"
+                    android:background="@drawable/ripple_bg_primary_corner_14"
+                    android:fontFamily="@font/font_raleway_medium"
+                    android:text="@string/register"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/fbase_text_size_14"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tfvRegisterPasswordConfirm" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </FrameLayout>
+
+</layout>
