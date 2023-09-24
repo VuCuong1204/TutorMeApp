@@ -33,8 +33,12 @@
     <string name="password_wrong_not_equal">Mật khẩu xác nhận phải trùng mật khẩu mới</string>
     <string name="field_has_not_filled">Chưa điền trường thông tin này</string>
 
-
     <string name="register_success">Đăng kí tài khoản thành công</string>
     <string name="retry">Thử lại</string>
+
+    <string name="home">Trang chủ</string>
+    <string name="class_manager">Quản lý lớp</string>
+    <string name="notify">Thông báo</string>
+    <string name="profile">Tài khoản</string>
 
 </resources>
