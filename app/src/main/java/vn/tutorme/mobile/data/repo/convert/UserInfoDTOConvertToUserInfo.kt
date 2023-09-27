@@ -1,9 +1,7 @@
 package vn.tutorme.mobile.data.repo.convert
 
-import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
 import vn.tutorme.mobile.base.common.converter.IConverter
-import vn.tutorme.mobile.data.source.remote.model.UserInfoDTO
+import vn.tutorme.mobile.data.source.remote.model.user.UserInfoDTO
 import vn.tutorme.mobile.domain.model.authen.GENDER_TYPE
 import vn.tutorme.mobile.domain.model.authen.ROLE_TYPE
 import vn.tutorme.mobile.domain.model.authen.UserInfo

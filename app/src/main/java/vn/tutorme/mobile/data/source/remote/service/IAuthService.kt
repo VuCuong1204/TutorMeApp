@@ -4,7 +4,7 @@ import retrofit2.Call
 import retrofit2.http.POST
 import retrofit2.http.Query
 import vn.tutorme.mobile.data.source.remote.base.IApiService
-import vn.tutorme.mobile.data.source.remote.model.UserInfoResponse
+import vn.tutorme.mobile.data.source.remote.model.user.UserInfoResponse
 
 interface IAuthService : IApiService {
 
