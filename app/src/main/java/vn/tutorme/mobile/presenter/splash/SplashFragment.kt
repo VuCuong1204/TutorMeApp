@@ -8,6 +8,7 @@ import kotlinx.coroutines.launch
 import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.common.anim.FadeAnim
+import vn.tutorme.mobile.base.common.anim.SlideAnimation
 import vn.tutorme.mobile.base.common.view.SpannableBuilder
 import vn.tutorme.mobile.base.extension.getAppColor
 import vn.tutorme.mobile.base.extension.getAppString
@@ -38,19 +39,19 @@ class SplashFragment : TutorMeFragment<SplashFragmentBinding>(R.layout.splash_fr
     }
 
     private fun checkLogin() {
-        if (isLogin()) {
+//        if (isLogin()) {
             replaceFragment(
                 fragment = HomeFragment(),
                 bundle = bundleOf(
                     HomeFragment.USER_ID_KEY to AppPreferences.userInfo?.userId
                 ),
-                screenAnim = FadeAnim()
+                screenAnim = SlideAnimation()
             )
-        } else {
-            replaceFragment(
-                fragment = LoginFragment(),
-                screenAnim = FadeAnim()
-            )
-        }
+//        } else {
+//            replaceFragment(
+//                fragment = LoginFragment(),
+//                screenAnim = SlideAnimation()
+//            )
+//        }
     }
 }

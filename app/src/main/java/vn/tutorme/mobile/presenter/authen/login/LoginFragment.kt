@@ -66,7 +66,7 @@ class LoginFragment : TutorMeFragment<LoginFragmentBinding>(R.layout.login_fragm
                             bundle = bundleOf(
                                 HomeFragment.USER_ID_KEY to it.data?.userId
                             ),
-                            screenAnim = FadeAnim()
+                            screenAnim = SlideAnimation()
                         )
                     }
                 }, canShowLoading = true)

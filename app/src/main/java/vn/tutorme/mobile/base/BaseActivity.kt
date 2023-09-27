@@ -151,7 +151,7 @@ abstract class BaseActivity(protected val layoutId: Int) : AppCompatActivity(), 
     fun clearBackStackFragment(index: Int) {
         supportFragmentManager.let { fm ->
             if (index > 0) {
-                for (i in 0 until index) {
+                for (i in 0 until index - 1) {
                     fm.popBackStack()
                 }
             }
@@ -187,7 +187,7 @@ abstract class BaseActivity(protected val layoutId: Int) : AppCompatActivity(), 
 
     // thay thế fragment trong backstack và xóa bỏ các fragment tại 1 vị trí cụ thể
     fun replaceFragmentInitialState(fragmentInitial: Fragment, keepIndex: Int) {
-        clearBackStackFragment(supportFragmentManager.backStackEntryCount - keepIndex - 1)
+        clearBackStackFragment(supportFragmentManager.backStackEntryCount - keepIndex)
         val tag = fragmentInitial::class.java.simpleName
         val fragmentFind = supportFragmentManager.findFragmentByTag(tag)
         if (fragmentFind == null) {

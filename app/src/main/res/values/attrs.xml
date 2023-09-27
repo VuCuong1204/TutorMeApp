@@ -13,4 +13,22 @@
         <attr name="center_icon_padding" format="dimension" />
     </declare-styleable>
 
+    <declare-styleable name="BottomItemView">
+        <attr name="text_content" format="string" />
+        <attr name="text_color_content" format="color" />
+        <attr name="text_font_content" format="reference" />
+        <attr name="background_parent" format="color" />
+        <attr name="background_parent_show" format="boolean" />
+        <attr name="background_child" format="reference" />
+        <attr name="background_child_show" format="boolean" />
+        <attr name="icon_active_show" format="boolean" />
+        <attr name="icon_active" format="reference" />
+        <attr name="icon_inactive_show" format="boolean" />
+        <attr name="icon_inactive" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="BottomMainView">
+
+    </declare-styleable>
+
 </resources>
