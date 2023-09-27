@@ -13,6 +13,7 @@ import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.extension.getAppColor
 import vn.tutorme.mobile.base.extension.gone
 import vn.tutorme.mobile.base.extension.hide
+import vn.tutorme.mobile.base.extension.scaleAnimation
 import vn.tutorme.mobile.base.extension.setCustomFont
 import vn.tutorme.mobile.base.extension.show
 
@@ -113,6 +114,7 @@ class BottomItemView(
             setBackGround(getAppColor(R.color.transparent))
             tvTitle.setTextColor(getAppColor(R.color.primary))
             tvTitle.setCustomFont(fontPath = R.font.font_raleway_bold)
+            ivAvatarInactive.scaleAnimation()
         } else {
             ivBackground.hide()
             setImageActiveState(false)

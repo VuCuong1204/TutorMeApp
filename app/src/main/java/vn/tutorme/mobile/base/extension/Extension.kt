@@ -8,6 +8,8 @@ import android.text.Spanned
 import android.text.TextPaint
 import android.text.style.ClickableSpan
 import android.view.View
+import android.view.animation.AccelerateInterpolator
+import android.view.animation.DecelerateInterpolator
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.ColorRes
@@ -16,6 +18,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -284,4 +287,18 @@ fun isEmailValid(email: String): Boolean {
 
 fun isLogin(): Boolean {
     return AppPreferences.userInfo != null
+}
+
+fun View.scaleAnimation() {
+    animate()
+        .scaleX(1.1f)
+        .scaleY(1.1f)
+        .setDuration(150)
+        .setInterpolator(DecelerateInterpolator())
+        .withEndAction {
+            ViewCompat.animate(this)
+                .scaleX(1.0f)
+                .scaleY(1.0f)
+                .setDuration(50).interpolator = AccelerateInterpolator()
+        }
 }

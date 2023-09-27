@@ -68,7 +68,7 @@
             android:id="@+id/ivBottomItemAvatarInactive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/fbase_dimen_14"
+            android:layout_marginTop="@dimen/fbase_dimen_18"
             android:background="?selectableItemBackgroundBorderless"
             android:src="@drawable/ic_profile_inactive"
             app:layout_constraintEnd_toEndOf="parent"
