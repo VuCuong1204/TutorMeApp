@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/fbase_dimen_6"
+        android:background="@drawable/ripple_bg_white_corner_12"
+        android:paddingHorizontal="@dimen/fbase_dimen_16"
+        android:paddingVertical="@dimen/fbase_dimen_16">
+
+        <RelativeLayout
+            android:id="@+id/rlLessonHomeLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="@drawable/shape_bg_back2_corner_14"
+            android:gravity="center_horizontal"
+            app:layout_constraintBottom_toBottomOf="@+id/tvLessonHomeConfirm"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLessonHomeTimeSlot"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/fbase_dimen_20"
+                android:layout_marginHorizontal="@dimen/fbase_dimen_10"
+                android:layout_marginTop="@dimen/fbase_dimen_14"
+                android:background="@drawable/shape_bg_secondary_corner_8"
+                android:fontFamily="@font/font_worksans_semibold"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/fbase_dimen_6"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fbase_text_size_10"
+                tools:text="19:00 - 19:45" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/tvLessonHomeAvatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_took_place" />
+
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLessonHomeId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fbase_dimen_10"
+            android:fontFamily="@font/font_worksans_semibold"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/fbase_text_size_16"
+            app:layout_constraintStart_toEndOf="@id/rlLessonHomeLeft"
+            app:layout_constraintTop_toTopOf="@id/rlLessonHomeLeft"
+            tools:text="Mã lớp D5C.045137" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivLessonHomeIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_right_text1"
+            app:layout_constraintBottom_toBottomOf="@id/tvLessonHomeId"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvLessonHomeId" />
+
+        <View
+            android:id="@+id/vLessonHomeFirst"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/fbase_dimen_1"
+            android:layout_marginStart="@dimen/fbase_dimen_10"
+            android:layout_marginTop="@dimen/fbase_dimen_6"
+            android:background="@color/text5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/rlLessonHomeLeft"
+            app:layout_constraintTop_toBottomOf="@id/tvLessonHomeId" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLessonHomeState"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/fbase_dimen_26"
+            android:layout_marginStart="@dimen/fbase_dimen_10"
+            android:layout_marginTop="@dimen/fbase_dimen_10"
+            android:background="@drawable/shape_bg_status_manual_corner_10"
+            android:fontFamily="@font/font_worksans_regular"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/fbase_dimen_12"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fbase_text_size_12"
+            app:layout_constraintStart_toEndOf="@id/rlLessonHomeLeft"
+            app:layout_constraintTop_toBottomOf="@id/vLessonHomeFirst"
+            tools:text="Đang diễn ra" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLessonHomeType"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/fbase_dimen_26"
+            android:layout_marginStart="@dimen/fbase_dimen_8"
+            android:layout_marginTop="@dimen/fbase_dimen_10"
+            android:background="@drawable/shape_bg_classic_corner_10"
+            android:fontFamily="@font/font_worksans_regular"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/fbase_dimen_12"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fbase_text_size_12"
+            app:layout_constraintStart_toEndOf="@id/tvLessonHomeState"
+            app:layout_constraintTop_toBottomOf="@id/vLessonHomeFirst"
+            tools:text="Học bù" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLessonHomeClass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fbase_dimen_10"
+            android:layout_marginTop="@dimen/fbase_dimen_8"
+            android:drawableStart="@drawable/ic_id_card"
+            android:drawablePadding="@dimen/fbase_dimen_6"
+            android:fontFamily="@font/font_worksans_regular"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/fbase_text_size_14"
+            app:layout_constraintStart_toEndOf="@id/rlLessonHomeLeft"
+            app:layout_constraintTop_toBottomOf="@id/tvLessonHomeState"
+            tools:text="Lớp 2 - Khá" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLessonHomeNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fbase_dimen_10"
+            android:layout_marginTop="@dimen/fbase_dimen_8"
+            android:drawableStart="@drawable/ic_number"
+            android:drawablePadding="@dimen/fbase_dimen_6"
+            android:fontFamily="@font/font_worksans_regular"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/fbase_text_size_14"
+            app:layout_constraintStart_toEndOf="@id/rlLessonHomeLeft"
+            app:layout_constraintTop_toBottomOf="@id/tvLessonHomeClass"
+            tools:text="Sĩ số 1/2" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLessonHomeAdvanced"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fbase_dimen_10"
+            android:drawableStart="@drawable/ic_advanced"
+            android:drawablePadding="@dimen/fbase_dimen_6"
+            android:fontFamily="@font/font_worksans_regular"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/fbase_text_size_14"
+            app:layout_constraintBottom_toBottomOf="@+id/tvLessonHomeClass"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvLessonHomeClass"
+            tools:text="Nâng cao" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLessonHomeLesson"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_lesson"
+            android:drawablePadding="@dimen/fbase_dimen_6"
+            android:fontFamily="@font/font_worksans_regular"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/fbase_text_size_14"
+            app:layout_constraintBottom_toBottomOf="@+id/tvLessonHomeNumber"
+            app:layout_constraintStart_toStartOf="@+id/tvLessonHomeAdvanced"
+            app:layout_constraintTop_toTopOf="@id/tvLessonHomeNumber"
+            tools:text="Buổi 12" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLessonHomePencil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fbase_dimen_8"
+            android:layout_marginBottom="@dimen/fbase_dimen_12"
+            android:drawableStart="@drawable/ic_pencil"
+            android:drawablePadding="@dimen/fbase_dimen_6"
+            android:fontFamily="@font/font_worksans_regular"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/fbase_text_size_14"
+            app:layout_constraintStart_toStartOf="@+id/tvLessonHomeNumber"
+            app:layout_constraintTop_toBottomOf="@id/tvLessonHomeNumber"
+            tools:text="Đánh giá 0/2" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLessonHomeConfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fbase_dimen_10"
+            android:layout_marginTop="@dimen/fbase_dimen_8"
+            android:background="@drawable/ripple_bg_primary_corner_14"
+            android:fontFamily="@font/font_raleway_semibold"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/fbase_dimen_28"
+            android:paddingVertical="@dimen/fbase_dimen_10"
+            android:text="@string/accept_class"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fbase_text_size_14"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/rlLessonHomeLeft"
+            app:layout_constraintTop_toBottomOf="@+id/tvLessonHomePencil" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

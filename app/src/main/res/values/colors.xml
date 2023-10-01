@@ -68,7 +68,27 @@
     <color name="neutral_15">#F8F8F8</color>
 
     <color name="text1">#404040</color>
+    <color name="text5">#D6D5D5</color>
+    <color name="text3">#818181</color>
+    <color name="secondary_1">#FFB524</color>
 
     <color name="purple">#DDD8FF</color>
+
+    <color name="light_purple">#E5D6FF</color>
+    <color name="purple_0">#00E2D3FA</color>
+
+    <color name="light_yellow">#FFE8BA</color>
+    <color name="yellow_0">#00FFF6D8</color>
+    <color name="comp">#9B8BFF</color>
+    <color name="comp_70">#C7C0F3</color>
+
+    <color name="back1">#EFEFEF</color>
+    <color name="back2">#F8F8F8</color>
+    <color name="gray1">#565656</color>
+    <color name="status_success">#05C669</color>
+    <color name="status_manual">#2A6BE8</color>
+    <color name="status_classic">#644DF1</color>
+    <color name="blue_10">#00ABEF</color>
+    <color name="status_warring">#F49A2F</color>
 
 </resources>

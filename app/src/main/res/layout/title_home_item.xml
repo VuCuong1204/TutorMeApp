@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fbase_dimen_24"
+        android:layout_marginBottom="@dimen/fbase_dimen_10"
+        android:paddingHorizontal="@dimen/fbase_dimen_16">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitleHomeRoot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_raleway_bold"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/fbase_text_size_18"
+            tools:text="Lớp chờ xác nhận" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitleHomeViewMore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:fontFamily="@font/font_raleway_medium"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/fbase_text_size_14"
+            tools:text="Xem tất cả" />
+
+    </FrameLayout>
+
+</layout>

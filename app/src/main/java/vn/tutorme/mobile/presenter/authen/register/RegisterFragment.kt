@@ -56,9 +56,6 @@ class RegisterFragment : TutorMeFragment<RegisterFragmentBinding>(R.layout.regis
                         clearBackStackFragment()
                         replaceFragment(
                             fragment = HomeFragment(),
-                            bundle = bundleOf(
-                                HomeFragment.USER_ID_KEY to it.data?.userId
-                            ),
                             screenAnim = FadeAnim()
                         )
                     }

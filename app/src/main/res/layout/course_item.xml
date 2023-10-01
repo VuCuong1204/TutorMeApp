@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fbase_dimen_140"
+        android:layout_marginHorizontal="@dimen/fbase_dimen_16"
+        android:layout_marginTop="@dimen/fbase_dimen_14"
+        android:background="@drawable/ripple_bg_white_corner_14"
+        android:padding="@dimen/fbase_dimen_14"
+        android:paddingHorizontal="@dimen/fbase_dimen_12">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvCourseImage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/fbase_corner_14"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivCourseAvatar"
+                android:layout_width="@dimen/fbase_dimen_158"
+                android:layout_height="@dimen/fbase_dimen_110"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_background" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCourseTime"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/fbase_dimen_18"
+                android:layout_gravity="bottom|end"
+                android:background="@drawable/shape_bg_white_topleft_14_bottomright_14"
+                android:fontFamily="@font/font_worksans_semibold"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/fbase_dimen_10"
+                android:textColor="@color/primary"
+                android:textSize="@dimen/fbase_text_size_12"
+                tools:text="02:00:00" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCourseTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fbase_dimen_14"
+            android:ellipsize="end"
+            android:fontFamily="@font/font_raleway_bold"
+            android:maxLines="2"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/fbase_text_size_16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cvCourseImage"
+            app:layout_constraintTop_toTopOf="@id/cvCourseImage"
+            tools:text="Giọng nói chuẩn Tiếng Anh trong sư phạm" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCourseRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fbase_dimen_6"
+            android:fontFamily="@font/font_worksans_regular"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/fbase_text_size_12"
+            app:layout_constraintStart_toStartOf="@+id/tvCourseTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvCourseTitle"
+            tools:text="4,9 sao 30 ratings" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCourseCountMember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fbase_dimen_6"
+            android:fontFamily="@font/font_worksans_regular"
+            android:textColor="@color/red"
+            android:textSize="@dimen/fbase_text_size_12"
+            app:layout_constraintStart_toStartOf="@+id/tvCourseRate"
+            app:layout_constraintTop_toBottomOf="@id/tvCourseRate"
+            tools:text="124 người đã đăng kí" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCourseDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fbase_dimen_6"
+            android:fontFamily="@font/font_worksans_semibold"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/fbase_text_size_14"
+            app:layout_constraintStart_toStartOf="@+id/tvCourseCountMember"
+            app:layout_constraintTop_toBottomOf="@id/tvCourseCountMember"
+            tools:text="18/10/2023" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCoursePrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_worksans_medium"
+            android:textColor="@color/status_success"
+            android:textSize="@dimen/fbase_text_size_14"
+            app:layout_constraintBottom_toBottomOf="@+id/tvCourseDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvCourseDate"
+            tools:text="2,140,000đ" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

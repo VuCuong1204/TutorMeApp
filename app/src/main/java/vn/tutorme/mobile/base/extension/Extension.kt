@@ -10,6 +10,7 @@ import android.text.style.ClickableSpan
 import android.view.View
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.ColorRes
@@ -20,9 +21,13 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.launch
 import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.application.getApplication
@@ -31,6 +36,7 @@ import vn.tutorme.mobile.base.common.IViewListener
 import vn.tutorme.mobile.base.common.UiState
 import vn.tutorme.mobile.base.common.exception.ApiException
 import vn.tutorme.mobile.base.common.exception.HandleExceptionImpl
+import vn.tutorme.mobile.base.common.loader.LoaderFactory
 import vn.tutorme.mobile.base.common.utils.ToastUtils
 import vn.tutorme.mobile.base.common.view.DELAY_BETWEEN_TIME_DEFAULT
 import vn.tutorme.mobile.base.common.view.SingleOnClickListener
@@ -78,6 +84,65 @@ fun View.show() {
     this.visibility = View.VISIBLE
 }
 
+fun ImageView.loadUser(
+    url: String?,
+    ignoreCache: Boolean = false,
+    placeHolder: Drawable? = getPlaceHolderUser()
+) {
+    LoaderFactory.glide().loadImage(
+        view = this,
+        url = url,
+        placeHolder = placeHolder,
+        ignoreCache = ignoreCache
+    )
+}
+
+private fun getPlaceHolderUser(): Drawable? {
+    return getAppDrawable(R.drawable.bg_avatar_mock)
+}
+
+fun ImageView.loadImage(
+    url: String?,
+    ignoreCache: Boolean = false,
+    placeHolder: Drawable? = getPlaceHolderDefault()
+) {
+    LoaderFactory.glide().loadImage(
+        view = this,
+        url = url,
+        placeHolder = placeHolder,
+        ignoreCache = ignoreCache
+    )
+}
+
+fun getPlaceHolderDefault(): Drawable? {
+    return getAppDrawable(R.drawable.ic_no_img_default)
+}
+
+fun getPlaceHolderImageLoading(): Drawable? {
+    return getAppDrawable(R.drawable.ic_place_holder_loading)
+}
+
+fun ImageView.loadImage(drawable: Drawable?) {
+    setImageDrawable(drawable)
+}
+
+fun ImageView.loadImage(
+    drawable: Drawable?,
+    ignoreCache: Boolean = false,
+    placeHolder: Drawable? = getPlaceHolderDefault()
+) {
+    LoaderFactory.glide().loadImage(
+        view = this,
+        drawable = drawable,
+        placeHolder = placeHolder,
+        ignoreCache = ignoreCache
+    )
+}
+
+fun ImageView.loadImage(drawable: Int) {
+    setImageResource(drawable)
+}
+
 fun View.createVisibility(status: Boolean) {
     if (status) {
         this.visibility = View.VISIBLE
@@ -108,6 +173,15 @@ fun View.setOnSafeClick(
     setOnClickListener(object : SingleOnClickListener(delayBetweenTime) {
         override fun onDebouncedClick(view: View) = onClick(view)
     })
+}
+
+fun TextView.setImageTextView(
+    left: Drawable? = null,
+    top: Drawable? = null,
+    right: Drawable? = null,
+    bottom: Drawable? = null
+) {
+    setCompoundDrawablesWithIntrinsicBounds(left, top, right, bottom)
 }
 
 fun TextView.setOnTouchClick(
@@ -249,6 +323,20 @@ fun <T> TutorMeFragment<*>.handleUiState(
                 this.hideLoading()
             }
             listener?.onSuccess()
+        }
+    }
+}
+
+fun <DATA> Fragment.coroutinesLaunch(
+    flow: Flow<FlowResult<DATA>>,
+    state: Lifecycle.State = Lifecycle.State.STARTED,
+    launch: suspend (flowResult: FlowResult<DATA>) -> Unit
+) {
+    lifecycleScope.launch {
+        repeatOnLifecycle(state = state) {
+            flow.collect {
+                launch.invoke(it)
+            }
         }
     }
 }

@@ -27,6 +27,10 @@ class DataPage<DATA> {
         }
     }
 
+    fun addData(data: DATA) {
+        this.dataList.add(data)
+    }
+
     fun clearDataPage() {
         dataList.clear()
         page = 0

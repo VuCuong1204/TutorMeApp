@@ -63,9 +63,6 @@ class LoginFragment : TutorMeFragment<LoginFragmentBinding>(R.layout.login_fragm
                         clearBackStackFragment()
                         replaceFragment(
                             fragment = HomeFragment(),
-                            bundle = bundleOf(
-                                HomeFragment.USER_ID_KEY to it.data?.userId
-                            ),
                             screenAnim = SlideAnimation()
                         )
                     }

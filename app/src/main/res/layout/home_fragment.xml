@@ -1,10 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clHomeRoot"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fbase_dimen_120"
+            android:background="@drawable/bg_home_blue">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivHomeAvatar"
+                android:layout_width="@dimen/fbase_dimen_60"
+                android:layout_height="@dimen/fbase_dimen_60"
+                android:layout_marginStart="@dimen/fbase_dimen_16"
+                android:layout_marginBottom="@dimen/fbase_dimen_22"
+                android:src="@mipmap/ic_tutor_me"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:shapeAppearanceOverlay="@style/CircleImageView" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvHomeTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fbase_dimen_10"
+                android:layout_marginTop="@dimen/fbase_dimen_8"
+                android:fontFamily="@font/font_raleway_medium"
+                android:text="@string/hello"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fbase_text_size_14"
+                app:layout_constraintStart_toEndOf="@id/ivHomeAvatar"
+                app:layout_constraintTop_toTopOf="@id/ivHomeAvatar" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvHomeName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fbase_dimen_10"
+                android:fontFamily="@font/font_raleway_bold"
+                android:text="@string/name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fbase_text_size_18"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/ivHomeAvatar"
+                app:layout_constraintTop_toBottomOf="@id/tvHomeTitle" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <vn.tutorme.mobile.presenter.widget.collection.CollectionView
+            android:id="@+id/cvHomeRoot"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/clHomeRoot"
+            android:paddingTop="@dimen/fbase_dimen_12"
+            android:paddingBottom="@dimen/fbase_dimen_48" />
+
+    </RelativeLayout>
 
 </layout>
