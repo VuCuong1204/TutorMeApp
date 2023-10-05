@@ -31,6 +31,11 @@ class DataPage<DATA> {
         this.dataList.add(data)
     }
 
+    fun replaceDataList(list: List<DATA>) {
+        this.dataList.clear()
+        this.dataList.addAll(list)
+    }
+
     fun clearDataPage() {
         dataList.clear()
         page = 0

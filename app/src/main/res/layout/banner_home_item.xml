@@ -4,12 +4,14 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fbase_dimen_12">
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vpBannerHomeRoot"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/fbase_dimen_210" />
+            android:layout_height="@dimen/fbase_dimen_210"
+            android:overScrollMode="never" />
 
         <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
             android:id="@+id/crBannerHomeNext"

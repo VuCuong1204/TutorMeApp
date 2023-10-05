@@ -49,7 +49,9 @@ typealias UI_STATE = UiState.UI_STATE
 object Extension {
     val STRING_DEFAULT: String = ""
     val INT_DEFAULT: Int = 0
+    val LONG_DEFAULT: Long = 0L
     val COLUMN_IN_ROW_DEFAULT = 3
+    val LIMIT_SIZE = 20
 }
 
 fun getAppColor(

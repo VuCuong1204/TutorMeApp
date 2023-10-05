@@ -11,6 +11,7 @@ import vn.tutorme.mobile.base.common.FlowResult
 import vn.tutorme.mobile.base.extension.failure
 import vn.tutorme.mobile.base.extension.loading
 import vn.tutorme.mobile.base.extension.onException
+import vn.tutorme.mobile.base.extension.reset
 import vn.tutorme.mobile.base.extension.success
 import vn.tutorme.mobile.domain.model.authen.UserInfo
 import vn.tutorme.mobile.domain.usecase.GetUserInfoLoginUseCase
@@ -55,5 +56,9 @@ class LoginViewModel @Inject constructor(
                     _userInfoState.success(it)
                 }
         }
+    }
+
+    fun resetState() {
+        _userInfoState.reset()
     }
 }

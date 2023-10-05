@@ -4,13 +4,14 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
+import vn.tutorme.mobile.data.source.remote.base.IApiService
 import vn.tutorme.mobile.data.source.remote.model.banner.bannerevent.BannerInfoEventResponse
 import vn.tutorme.mobile.data.source.remote.model.banner.bannerjob.BannerInfoJobResponse
 import vn.tutorme.mobile.data.source.remote.model.classinfo.ClassInfoResponse
 import vn.tutorme.mobile.data.source.remote.model.course.CourseInfoResponse
 import vn.tutorme.mobile.data.source.remote.model.lesson.LessonInfoResponse
 
-interface ILessonService {
+interface ILessonService : IApiService {
 
     @GET("banner/event")
     fun getBannerEvent(
@@ -29,14 +30,15 @@ interface ILessonService {
         @Query("id") teacherId: String,
         @Query("beginTime") beginTime: Long,
         @Query("endTime") endTime: Long,
-        @Query("taught") taught: String?,
+        @Query("stateRate") stateRate: Int?,
         @Query("page") page: Int?,
         @Query("size") size: Int?
     ): Call<LessonInfoResponse>
 
     @GET("register/class")
-    fun getBannerJob(
-        @Query("currentTime") currentTime: Long
+    fun getClassTeacherRegistered(
+        @Query("currentTime") currentTime: Long?,
+        @Query("state") state: Int
     ): Call<ClassInfoResponse>
 
     @GET("course")

@@ -2,6 +2,7 @@ package vn.tutorme.mobile.base.screen
 
 import android.graphics.drawable.Drawable
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.BaseBindingFragment
 import vn.tutorme.mobile.base.common.eventbus.IEvent
@@ -56,6 +57,10 @@ abstract class TutorMeFragment<DB : ViewDataBinding>(layoutId: Int) : BaseBindin
         mainActivity.showWarning(msg, timeShown)
     }
 
+    override fun onBackPressByFragment() {
+        mainActivity.backFragment()
+    }
+
     fun exitScreen() {
         val currentTime = System.currentTimeMillis()
         if (currentTime - timeBeginClick > TIME_SPACE_DELAY) {
@@ -66,6 +71,14 @@ abstract class TutorMeFragment<DB : ViewDataBinding>(layoutId: Int) : BaseBindin
         }
 
         timeBeginClick = currentTime
+    }
+
+    fun replaceFragmentInitialState(fragmentInitial: Fragment, keepIndex: Int) {
+        mainActivity.replaceFragmentInitialState(fragmentInitial, keepIndex)
+    }
+
+    fun replaceFragmentInitialState(fragmentInitial: Fragment) {
+        mainActivity.replaceFragmentInitialState(fragmentInitial)
     }
 
     override fun onEvent(event: IEvent) {

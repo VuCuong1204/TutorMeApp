@@ -12,7 +12,7 @@ class GetUserInfoRegisterUseCase @Inject constructor(
 ) : BaseUseCase<GetUserInfoRegisterUseCase.GetUserInfoRegisterRV, UserInfo>() {
 
     override suspend fun execute(rv: GetUserInfoRegisterRV): UserInfo {
-        val userInfo = authRepo.login(rv.id)
+        val userInfo = authRepo.register(rv.id)
         AppPreferences.userInfo = userInfo
         AppPreferences.userNameAccount = STRING_DEFAULT
         AppPreferences.passwordAccount = STRING_DEFAULT

@@ -8,7 +8,9 @@
         <vn.tutorme.mobile.presenter.widget.collection.CollectionView
             android:id="@+id/cvLessonRoot"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fbase_dimen_16"
+            android:overScrollMode="never" />
 
     </FrameLayout>
 

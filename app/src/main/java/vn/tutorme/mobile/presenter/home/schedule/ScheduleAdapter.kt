@@ -32,11 +32,11 @@ class ScheduleAdapter : TutorMeAdapter() {
         override fun onBind(data: LessonInfo) {
             super.onBind(data)
             with(binding) {
-                tvLessonHomeTimeSlot.text = data.getTimeLearn()
+                tvLessonHomeTimeSlot.text = data.getTimeLearnHour()
                 tvLessonHomeAvatar.setImageDrawable(
                     when (data.status) {
                         LESSON_STATUS.UPCOMING_STATUS -> getAppDrawable(R.drawable.ic_upcoming)
-                        LESSON_STATUS.HAPPENNING_STATUS -> getAppDrawable(R.drawable.ic_happenning)
+                        LESSON_STATUS.HAPPENING_STATUS -> getAppDrawable(R.drawable.ic_happenning)
                         LESSON_STATUS.CANCEL_STATUS -> getAppDrawable(R.drawable.ic_cancel)
                         LESSON_STATUS.TOOK_PLACE_STATUS -> getAppDrawable(R.drawable.ic_took_place)
                         else -> getAppDrawable(R.drawable.ic_upcoming)
@@ -45,12 +45,12 @@ class ScheduleAdapter : TutorMeAdapter() {
                 tvLessonHomeId.text = data.classId
                 tvLessonHomeState.text = when (data.status) {
                     LESSON_STATUS.UPCOMING_STATUS -> getAppString(R.string.upcoming)
-                    LESSON_STATUS.HAPPENNING_STATUS -> getAppString(R.string.happening)
+                    LESSON_STATUS.HAPPENING_STATUS -> getAppString(R.string.happening)
                     LESSON_STATUS.CANCEL_STATUS -> getAppString(R.string.cancel)
                     LESSON_STATUS.TOOK_PLACE_STATUS -> getAppString(R.string.took_place)
                     else -> getAppString(R.string.upcoming)
                 }
-                tvLessonHomeClass.text = data.title
+                tvLessonHomeClass.text = data.getClassTitle()
                 tvLessonHomeAdvanced.text = data.level
                 tvLessonHomeNumber.text = data.getNumberMember()
                 tvLessonHomeLesson.text = data.getSession()

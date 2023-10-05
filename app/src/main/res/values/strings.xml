@@ -58,4 +58,13 @@
     <string name="mission_home_complete">Bạn đã hoàn thành xuất sắc nhiệm vụ tuần này!</string>
     <string name="mission_home_no_complete">Bạn ơi, hoàn thành các nhiệm vụ tuần này đi!</string>
 
+    <string name="view_all">Xem tất cả</string>
+    <string name="view_detail">Xem chi tiết</string>
+    <string name="rating_count">%s rating</string>
+    <string name="people_register">%s người đăng ký</string>
+    <string name="price_value">%s đ</string>
+    <string name="class_title">Lớp %s</string>
+    <string name="opening">Khai giảng %s</string>
+    <string name="log_out">Logout</string>
+
 </resources>

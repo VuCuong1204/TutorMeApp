@@ -2,13 +2,17 @@ package vn.tutorme.mobile.presenter.home
 
 import androidx.fragment.app.viewModels
 import com.example.syntheticapp.presenter.widget.collection.LAYOUT_MANAGER
+import dagger.hilt.android.AndroidEntryPoint
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.common.IViewListener
 import vn.tutorme.mobile.base.extension.coroutinesLaunch
 import vn.tutorme.mobile.base.extension.handleUiState
+import vn.tutorme.mobile.base.extension.setOnSafeClick
 import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.HomeFragmentBinding
+import vn.tutorme.mobile.domain.usecase.GetHomeStudentUseCase
 
+@AndroidEntryPoint
 class HomeFragment : TutorMeFragment<HomeFragmentBinding>(R.layout.home_fragment) {
 
     private val viewModel by viewModels<HomeViewModel>()
@@ -26,9 +30,14 @@ class HomeFragment : TutorMeFragment<HomeFragmentBinding>(R.layout.home_fragment
             handleUiState(it, object : IViewListener {
                 override fun onSuccess() {
                     binding.cvHomeRoot.submitList(it.data?.dataList)
+                    viewModel.resetState()
                 }
             })
         }
+    }
+
+    override fun onBackPressByFragment() {
+        exitScreen()
     }
 
     private fun addAdapter() {

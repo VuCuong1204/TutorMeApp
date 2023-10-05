@@ -2,8 +2,10 @@ package vn.tutorme.mobile.domain.model.clazz
 
 import kotlinx.parcelize.Parcelize
 import vn.tutorme.mobile.R
+import vn.tutorme.mobile.base.extension.Extension.LONG_DEFAULT
 import vn.tutorme.mobile.base.extension.getAppString
 import vn.tutorme.mobile.base.model.IParcelable
+import vn.tutorme.mobile.utils.TimeUtils
 
 @Parcelize
 data class ClassInfo(
@@ -12,10 +14,13 @@ data class ClassInfo(
     var level: String? = null,
     var classStatus: CLASS_STATUS,
     var titleClass: String? = null,
-    var totalNumber: Int? = null
+    var totalNumber: Int? = null,
+    var timeBegin: Long? = null,
+    var teacherId: String? = null
 ) : IParcelable {
-    fun getTimeBegin(): String {
-        return "Khai giảng 21.12.2023"
+    fun getTimeDayBegin(): String {
+        val time = TimeUtils.convertTimeToDay(timeBegin ?: LONG_DEFAULT)
+        return String.format(getAppString(R.string.opening), time)
     }
 
     fun getNumberMember(): String {
@@ -23,7 +28,7 @@ data class ClassInfo(
     }
 }
 
-fun mockDataClassInfo(size: Int = 20): List<ClassInfo> {
+fun mockDataClassInfo(size: Int = 6): List<ClassInfo> {
 
     val list = mutableListOf<ClassInfo>()
 

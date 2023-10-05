@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import vn.tutorme.mobile.base.common.StatusBar
@@ -17,6 +18,7 @@ abstract class BaseFragment(@LayoutRes protected val layoutId: Int) : Fragment()
     }
     protected lateinit var myInflater: LayoutInflater
     protected lateinit var viewRoot: View
+    private lateinit var callback: OnBackPressedCallback
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +41,7 @@ abstract class BaseFragment(@LayoutRes protected val layoutId: Int) : Fragment()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setBackPressedDispatcher()
         onObserverViewModel()
     }
 
@@ -69,6 +72,15 @@ abstract class BaseFragment(@LayoutRes protected val layoutId: Int) : Fragment()
         baseActivity.setStatusColor(color, isDarkText)
     }
 
+    private fun setBackPressedDispatcher() {
+        callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                onBackPressByFragment()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+    }
+
     fun replaceFragmentState(fragment: Fragment) {
         val tag = fragment::class.java.simpleName
         val fragmentFind = childFragmentManager.findFragmentByTag(tag)
@@ -91,7 +103,7 @@ abstract class BaseFragment(@LayoutRes protected val layoutId: Int) : Fragment()
         fragment: BaseFragment,
         bundle: Bundle? = null,
         keepToBackStack: Boolean = true,
-        screenAnim: IScreenAnim
+        screenAnim: IScreenAnim = FadeAnim()
     ) {
         baseActivity.replaceFragment(
             fragment,

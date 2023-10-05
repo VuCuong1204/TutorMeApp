@@ -2,29 +2,32 @@ package vn.tutorme.mobile.domain.model.lesson
 
 import kotlinx.parcelize.Parcelize
 import vn.tutorme.mobile.R
+import vn.tutorme.mobile.base.extension.Extension
 import vn.tutorme.mobile.base.extension.getAppString
 import vn.tutorme.mobile.base.model.IParcelable
+import vn.tutorme.mobile.utils.TimeUtils
 
 @Parcelize
 data class LessonInfo(
-    var lessonId: String? = null,
+    var lessonId: Int? = null,
     var classId: String? = null,
     var timeBegin: Long? = null,
     var timeEnd: Long? = null,
     var status: LESSON_STATUS? = null,
-    var title: String? = null,
+    var nameClass: String? = null,
     var level: String? = null,
     var memberNumber: Int? = null,
     var totalNumber: Int? = null,
     var lessonSession: Int? = null,
-    var assessment: Int? = null
+    var type: LESSON_TYPE? = null,
+    var countAssessment: Int? = null
 ) : IParcelable {
     fun getAssessmentState(): Boolean {
-        return assessment != null
+        return type == LESSON_TYPE.NOT_YET_RATE_TYPE
     }
 
-    fun getTimeLearn(): String {
-        return "19:00 - 19:45"
+    fun getTimeLearnHour(): String {
+        return "${getHourBegin()} - ${getHourEnd()}"
     }
 
     fun getNumberMember(): String {
@@ -36,7 +39,7 @@ data class LessonInfo(
     }
 
     fun getNumberEvaluate(): String {
-        return String.format(getAppString(R.string.number_evaluate_lesson), assessment, totalNumber)
+        return String.format(getAppString(R.string.number_evaluate_lesson), countAssessment, memberNumber)
     }
 
     fun getSession(): String {
@@ -45,6 +48,26 @@ data class LessonInfo(
 
     fun getTimeBegin(): String {
         return "12.12.2023"
+    }
+
+    fun getClassTitle(): String {
+        return nameClass ?: Extension.STRING_DEFAULT
+    }
+
+    fun getHourBegin(): String {
+        return TimeUtils.convertTimeToHour(timeBegin ?: Extension.LONG_DEFAULT)
+    }
+
+    fun getHourEnd(): String {
+        return TimeUtils.convertTimeToHour(timeEnd ?: Extension.LONG_DEFAULT)
+    }
+
+    fun getDayBegin(): String {
+        return TimeUtils.convertTimeToDay(timeBegin ?: Extension.LONG_DEFAULT)
+    }
+
+    fun getDayEnd(): String {
+        return TimeUtils.convertTimeToDay(timeEnd ?: Extension.LONG_DEFAULT)
     }
 }
 
@@ -56,7 +79,7 @@ fun mockDataLessonInfo(size: Int = 9): List<LessonInfo> {
         list.add(LessonInfo(
             classId = "Mã lớp D5C.045137",
             status = LESSON_STATUS.UPCOMING_STATUS,
-            title = "Lớp 2",
+            nameClass = "Lớp 3",
             level = "Nâng cao",
             memberNumber = 20,
             totalNumber = 20,
@@ -74,12 +97,12 @@ fun mockDataLessonInfoEvaluate(size: Int = 9): List<LessonInfo> {
         list.add(LessonInfo(
             classId = "Mã lớp D5C.045137",
             status = LESSON_STATUS.UPCOMING_STATUS,
-            title = "Lớp 2",
+            nameClass = "Lớp 3",
             level = "Nâng cao",
             memberNumber = 20,
             totalNumber = 20,
             lessonSession = 12,
-            assessment = 10
+            countAssessment = 10
         ))
     }
 

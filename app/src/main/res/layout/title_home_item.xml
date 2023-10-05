@@ -5,7 +5,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/fbase_dimen_24"
+        android:layout_marginTop="@dimen/fbase_dimen_14"
         android:layout_marginBottom="@dimen/fbase_dimen_10"
         android:paddingHorizontal="@dimen/fbase_dimen_16">
 
@@ -22,7 +22,7 @@
             android:id="@+id/tvTitleHomeViewMore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
+            android:layout_gravity="end|center"
             android:fontFamily="@font/font_raleway_medium"
             android:textColor="@color/primary"
             android:textSize="@dimen/fbase_text_size_14"

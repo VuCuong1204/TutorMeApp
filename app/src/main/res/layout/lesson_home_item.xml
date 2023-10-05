@@ -4,16 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:id="@+id/clLessonHomeRoot"
+        android:layout_width="@dimen/fbase_dimen_374"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/fbase_dimen_6"
+        android:layout_marginEnd="@dimen/fbase_dimen_12"
         android:background="@drawable/ripple_bg_white_corner_12"
         android:paddingHorizontal="@dimen/fbase_dimen_16"
         android:paddingVertical="@dimen/fbase_dimen_16">
 
         <RelativeLayout
             android:id="@+id/rlLessonHomeLeft"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/fbase_dimen_94"
             android:layout_height="0dp"
             android:background="@drawable/shape_bg_back2_corner_14"
             android:gravity="center_horizontal"
@@ -25,22 +26,26 @@
                 android:id="@+id/tvLessonHomeTimeSlot"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/fbase_dimen_20"
-                android:layout_marginHorizontal="@dimen/fbase_dimen_10"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/fbase_dimen_14"
                 android:background="@drawable/shape_bg_secondary_corner_8"
                 android:fontFamily="@font/font_worksans_semibold"
                 android:gravity="center"
-                android:paddingHorizontal="@dimen/fbase_dimen_6"
+                android:maxLines="1"
+                android:paddingHorizontal="@dimen/fbase_dimen_8"
                 android:textColor="@color/white"
                 android:textSize="@dimen/fbase_text_size_10"
                 tools:text="19:00 - 19:45" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/tvLessonHomeAvatar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/fbase_dimen_80"
+                android:layout_height="@dimen/fbase_dimen_80"
+                android:layout_below="@+id/tvLessonHomeTimeSlot"
                 android:layout_centerInParent="true"
-                android:src="@drawable/ic_took_place" />
+                android:layout_marginTop="@dimen/fbase_dimen_12"
+                android:scaleType="center"
+                android:src="@drawable/ic_upcoming" />
 
         </RelativeLayout>
 

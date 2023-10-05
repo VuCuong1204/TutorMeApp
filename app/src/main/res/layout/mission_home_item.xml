@@ -6,7 +6,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/gray">
+        android:layout_marginStart="@dimen/fbase_dimen_16"
+        android:layout_marginEnd="@dimen/fbase_dimen_8">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="0dp"
@@ -98,6 +99,8 @@
             android:layout_marginTop="@dimen/fbase_dimen_16"
             android:layout_marginBottom="@dimen/fbase_dimen_18"
             android:background="@drawable/shape_bg_light_purple_corner_8"
+            android:paddingTop="@dimen/fbase_dimen_12"
+            android:paddingBottom="@dimen/fbase_dimen_6"
             app:layout_constraintBottom_toBottomOf="@+id/ivMissionHomeMain"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvMissionHomeNotify"
@@ -108,8 +111,7 @@
                 android:id="@+id/tvMissionHomeTitleFirst"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/fbase_dimen_12"
-                android:layout_marginTop="@dimen/fbase_dimen_12"
+                android:layout_marginStart="@dimen/fbase_dimen_6"
                 android:fontFamily="@font/font_raleway_medium"
                 android:text="@string/title_count_case"
                 android:textColor="@color/text1"
@@ -120,10 +122,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvMissionHomeTitleFirst"
-                android:layout_marginStart="@dimen/fbase_dimen_12"
+                android:layout_marginStart="@dimen/fbase_dimen_6"
                 android:fontFamily="@font/font_worksans_bold"
                 android:textColor="@color/text1"
-                android:textSize="@dimen/fbase_text_size_20"
+                android:textSize="@dimen/fbase_text_size_16"
                 tools:text="20/20" />
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -132,8 +134,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginEnd="@dimen/fbase_dimen_14"
-                android:layout_marginBottom="@dimen/fbase_dimen_10"
+                android:layout_marginEnd="@dimen/fbase_dimen_6"
                 android:src="@drawable/ic_tick_show" />
 
         </RelativeLayout>
@@ -145,8 +146,10 @@
             android:layout_marginStart="@dimen/fbase_dimen_20"
             android:layout_marginTop="@dimen/fbase_dimen_16"
             android:layout_marginEnd="@dimen/fbase_dimen_14"
-            android:layout_marginBottom="@dimen/fbase_dimen_20"
+            android:layout_marginBottom="@dimen/fbase_dimen_18"
             android:background="@drawable/shape_bg_light_yellow_corner_8"
+            android:paddingTop="@dimen/fbase_dimen_12"
+            android:paddingBottom="@dimen/fbase_dimen_6"
             app:layout_constraintBottom_toBottomOf="@+id/ivMissionHomeMain"
             app:layout_constraintEnd_toEndOf="@+id/ivMissionHomeMain"
             app:layout_constraintStart_toEndOf="@id/rlMissionHomeCases"
@@ -158,8 +161,8 @@
                 android:id="@+id/tvMissionHomeTitleSecond"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/fbase_dimen_12"
-                android:layout_marginTop="@dimen/fbase_dimen_12"
+                android:layout_marginStart="@dimen/fbase_dimen_6"
+
                 android:fontFamily="@font/font_raleway_medium"
                 android:text="@string/title_count_lesson"
                 android:textColor="@color/text1"
@@ -170,10 +173,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvMissionHomeTitleSecond"
-                android:layout_marginStart="@dimen/fbase_dimen_12"
+                android:layout_marginStart="@dimen/fbase_dimen_6"
                 android:fontFamily="@font/font_worksans_bold"
                 android:textColor="@color/text1"
-                android:textSize="@dimen/fbase_text_size_20"
+                android:textSize="@dimen/fbase_text_size_16"
                 tools:text="20/20" />
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -182,8 +185,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginEnd="@dimen/fbase_dimen_14"
-                android:layout_marginBottom="@dimen/fbase_dimen_10"
+                android:layout_marginEnd="@dimen/fbase_dimen_6"
                 android:src="@drawable/ic_tick_show" />
 
         </RelativeLayout>

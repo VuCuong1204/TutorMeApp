@@ -4,12 +4,13 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/back2">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clHomeRoot"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/fbase_dimen_120"
+            android:layout_height="@dimen/fbase_dimen_90"
             android:background="@drawable/bg_home_blue">
 
             <com.google.android.material.imageview.ShapeableImageView
@@ -17,10 +18,10 @@
                 android:layout_width="@dimen/fbase_dimen_60"
                 android:layout_height="@dimen/fbase_dimen_60"
                 android:layout_marginStart="@dimen/fbase_dimen_16"
-                android:layout_marginBottom="@dimen/fbase_dimen_22"
                 android:src="@mipmap/ic_tutor_me"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:shapeAppearanceOverlay="@style/CircleImageView" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -56,8 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/clHomeRoot"
-            android:paddingTop="@dimen/fbase_dimen_12"
-            android:paddingBottom="@dimen/fbase_dimen_48" />
+            android:overScrollMode="never" />
 
     </RelativeLayout>
 

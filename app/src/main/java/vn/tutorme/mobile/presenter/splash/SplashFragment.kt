@@ -9,8 +9,10 @@ import vn.tutorme.mobile.base.common.anim.SlideAnimation
 import vn.tutorme.mobile.base.common.view.SpannableBuilder
 import vn.tutorme.mobile.base.extension.getAppColor
 import vn.tutorme.mobile.base.extension.getAppString
+import vn.tutorme.mobile.base.extension.isLogin
 import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.SplashFragmentBinding
+import vn.tutorme.mobile.presenter.authen.login.LoginFragment
 import vn.tutorme.mobile.presenter.home.HomeFragment
 
 class SplashFragment : TutorMeFragment<SplashFragmentBinding>(R.layout.splash_fragment) {
@@ -34,16 +36,17 @@ class SplashFragment : TutorMeFragment<SplashFragmentBinding>(R.layout.splash_fr
     }
 
     private fun checkLogin() {
-//        if (isLogin()) {
-        replaceFragment(
-            fragment = HomeFragment(),
-            screenAnim = SlideAnimation()
-        )
-//        } else {
-//            replaceFragment(
-//                fragment = LoginFragment(),
-//                screenAnim = SlideAnimation()
-//            )
-//        }
+        if (isLogin()) {
+            replaceFragment(
+                fragment = HomeFragment(),
+                screenAnim = SlideAnimation()
+            )
+        } else {
+            replaceFragment(
+                fragment = LoginFragment(),
+                keepToBackStack = false,
+                screenAnim = SlideAnimation()
+            )
+        }
     }
 }

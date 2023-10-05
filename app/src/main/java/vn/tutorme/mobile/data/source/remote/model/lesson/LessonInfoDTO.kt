@@ -40,7 +40,11 @@ data class LessonInfoDTO(
     @Expose
     var rating: Float? = null,
 
-    @SerializedName("updateTaught")
+    @SerializedName("updateAssessment")
     @Expose
-    var updateTaught: Int? = null,
+    var updateAssessment: Int? = null,
+
+    @SerializedName("assessmentCount")
+    @Expose
+    var assessmentCount: Int? = null,
 )

@@ -5,7 +5,11 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import vn.tutorme.mobile.data.repo.authen.AuthRepoImpl
+import vn.tutorme.mobile.data.repo.banner.BannerRepoImpl
+import vn.tutorme.mobile.data.repo.lesson.LessonRepoImpl
 import vn.tutorme.mobile.domain.repo.IAuthRepo
+import vn.tutorme.mobile.domain.repo.IBannerRepo
+import vn.tutorme.mobile.domain.repo.ILessonRepo
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -13,4 +17,10 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun provideUserRepository(userRepoImpl: AuthRepoImpl): IAuthRepo
+
+    @Binds
+    abstract fun provideBannerRepository(bannerRepoImpl: BannerRepoImpl): IBannerRepo
+
+    @Binds
+    abstract fun provideLessonRepository(lessonRepoImpl: LessonRepoImpl): ILessonRepo
 }

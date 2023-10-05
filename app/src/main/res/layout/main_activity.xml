@@ -11,7 +11,7 @@
             android:id="@+id/flMainRoot"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@color/neutral_40"
+            android:background="@color/transparent"
             app:layout_constraintBottom_toBottomOf="@+id/vMain"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
