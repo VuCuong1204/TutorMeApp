@@ -35,7 +35,7 @@ class LessonUnderratedAdapter : TutorMeAdapter() {
                 tvLessonHomeAvatar.setImageDrawable(getAppDrawable(R.drawable.ic_took_place))
                 tvLessonHomeAvatar.background = (getAppDrawable(R.drawable.shape_bg_state_sucess_corner_8))
                 tvLessonHomeId.text = data.classId
-                tvLessonHomeState.text = data.getTimeBegin()
+                tvLessonHomeState.text = data.getDayBegin()
                 tvLessonHomeClass.text = data.getClassTitle()
                 tvLessonHomeAdvanced.text = data.level
                 tvLessonHomeNumber.text = data.getNumberMemberRatio()

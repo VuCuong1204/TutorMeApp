@@ -14,6 +14,7 @@ import vn.tutorme.mobile.base.extension.getAppColor
 import vn.tutorme.mobile.base.extension.getAppDimension
 import vn.tutorme.mobile.base.extension.getAppDrawable
 import vn.tutorme.mobile.base.extension.getAppString
+import vn.tutorme.mobile.base.extension.gone
 import vn.tutorme.mobile.base.extension.hide
 import vn.tutorme.mobile.base.extension.loadImage
 import vn.tutorme.mobile.base.extension.setImageTextView
@@ -153,11 +154,11 @@ class HomeAdapter : TutorMeAdapter() {
 
             binding.tvTitleHomeRoot.text = data.value
 
-            binding.tvTitleHomeViewMore.text = if (data == TITLE_HOME_TYPE.MISSION_TYPE) {
-                getAppString(R.string.view_detail)
-            } else {
-                getAppString(R.string.view_all)
+            if (data == TITLE_HOME_TYPE.MISSION_TYPE) {
+                binding.tvTitleHomeViewMore.gone()
             }
+
+            binding.tvTitleHomeViewMore.text = getAppString(R.string.view_all)
         }
     }
 

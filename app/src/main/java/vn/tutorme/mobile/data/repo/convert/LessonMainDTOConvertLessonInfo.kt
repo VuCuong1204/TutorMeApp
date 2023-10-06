@@ -22,7 +22,9 @@ class LessonMainDTOConvertLessonInfo : IConverter<List<LessonInfoMainDTO>, List<
                 level = it.classInfo?.describeClass,
                 totalNumber = it.classInfo?.countStudent,
                 lessonSession = it.classInfo?.countLesson,
-                type = LESSON_TYPE.valueOfName(it.lessonInfo?.updateAssessment)
+                type = LESSON_TYPE.valueOfName(it.lessonInfo?.updateAssessment),
+                memberNumber = it.lessonInfo?.countAttendance,
+                countAssessment = it.lessonInfo?.countReview
             ))
         }
 
