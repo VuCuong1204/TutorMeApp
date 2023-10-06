@@ -12,11 +12,14 @@ import vn.tutorme.mobile.domain.model.lesson.LESSON_STATUS
 import vn.tutorme.mobile.domain.model.lesson.LessonInfo
 
 class ScheduleAdapter : TutorMeAdapter() {
+
     override fun getLayoutResource(viewType: Int): Int = R.layout.lesson_home_item
 
     override fun onCreateViewHolder(viewType: Int, binding: ViewDataBinding): BaseVH<*>? {
         return ScheduleVH(binding as LessonHomeItemBinding)
     }
+
+    override fun getLayoutEmpty(): Empty = Empty(layoutResource = R.layout.lesson_empty_teacher_item)
 
     inner class ScheduleVH(private val binding: LessonHomeItemBinding) : BaseVH<LessonInfo>(binding) {
 

@@ -40,8 +40,9 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun getHomeTeacher() {
+    fun getHomeTeacher(reload: Boolean = false) {
         viewModelScope.launch {
+            homeDataList = DataPage.newInstance(_homeState.value.data, reload)
             val rv = GetHomeTeacherUseCase.GetHomeTeacherRV("vucuonghihi").apply {
                 sizeSchedule = 10
                 sizeEvaluator = 10
@@ -56,7 +57,9 @@ class HomeViewModel @Inject constructor(
 
             getHomeTeacherUseCase.invoke(rv)
                 .onStart {
-                    _homeState.loading()
+                    if (!reload) {
+                        _homeState.loading()
+                    }
                 }
                 .onException {
                     _homeState.failure(it)
@@ -68,12 +71,15 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun getHomeStudent() {
+    fun getHomeStudent(reload: Boolean = false) {
         viewModelScope.launch {
+            homeDataList = DataPage.newInstance(_homeState.value.data, reload)
             val rv = GetHomeStudentUseCase.GetHomeTeacherRV("vq3", 1696402317, 1696788000, 1697392800)
             getHomeStudentUseCase.invoke(rv)
                 .onStart {
-                    _homeState.loading()
+                    if (!reload) {
+                        _homeState.loading()
+                    }
                 }
                 .onException {
                     _homeState.failure(it)

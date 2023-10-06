@@ -5,7 +5,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/back2">
+        android:background="@color/text4">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clHomeRoot"
@@ -52,12 +52,19 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <vn.tutorme.mobile.presenter.widget.collection.CollectionView
-            android:id="@+id/cvHomeRoot"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/srlHomeRoot"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/clHomeRoot"
-            android:overScrollMode="never" />
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/clHomeRoot">
+
+            <vn.tutorme.mobile.presenter.widget.collection.CollectionView
+                android:id="@+id/cvHomeRoot"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </RelativeLayout>
 

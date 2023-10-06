@@ -22,6 +22,10 @@ data class MissionInfo(
         return numberSessionsEvaluate == totalSessionsEvaluate
     }
 
+    fun getMissionEmptyState(): Boolean {
+        return totalCases == 0 && totalSessionsEvaluate == 0
+    }
+
     fun getCasesState(): Boolean {
         return numberCasesTaught == totalCases
     }

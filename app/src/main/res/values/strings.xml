@@ -57,6 +57,12 @@
     <string name="accept_class">Nhận lớp</string>
     <string name="mission_home_complete">Bạn đã hoàn thành xuất sắc nhiệm vụ tuần này!</string>
     <string name="mission_home_no_complete">Bạn ơi, hoàn thành các nhiệm vụ tuần này đi!</string>
+    <string name="mission_home_empty">Tuần này bạn không có ca dạy nào!</string>
+    <string name="lesson_home_teacher_empty">Bạn không có ca dạy nào!</string>
+    <string name="lesson_home_teacher_rate_empty">Bạn chưa có buổi nào cần đánh giá!</string>
+    <string name="class_home_teacher_empty">Hiện tại chưa có lớp đăng ký dạy!</string>
+    <string name="lesson_home_student_empty">Tuần này bạn không có ca học nào!</string>
+    <string name="class_home_student_empty">Bạn chưa đăng ký lớp học nào!</string>
 
     <string name="view_all">Xem tất cả</string>
     <string name="view_detail">Xem chi tiết</string>

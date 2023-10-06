@@ -10,11 +10,14 @@ import vn.tutorme.mobile.databinding.LessonHomeItemBinding
 import vn.tutorme.mobile.domain.model.lesson.LessonInfo
 
 class LessonUnderratedAdapter : TutorMeAdapter() {
+
     override fun getLayoutResource(viewType: Int): Int = R.layout.lesson_home_item
 
     override fun onCreateViewHolder(viewType: Int, binding: ViewDataBinding): BaseVH<*>? {
         return LessonUnderratedVH(binding as LessonHomeItemBinding)
     }
+
+    override fun getLayoutEmpty(): Empty = Empty(layoutResource = R.layout.lesson_empty_teacher_rate_item)
 
     inner class LessonUnderratedVH(private val binding: LessonHomeItemBinding) : BaseVH<LessonInfo>(binding) {
 

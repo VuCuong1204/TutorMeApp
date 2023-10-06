@@ -12,7 +12,7 @@ data class ClassInfo(
     var classId: String? = null,
     var timeBeginLearn: String? = null,
     var level: String? = null,
-    var classStatus: CLASS_STATUS,
+    var classStatus: CLASS_STATUS? = null,
     var titleClass: String? = null,
     var totalNumber: Int? = null,
     var timeBegin: Long? = null,

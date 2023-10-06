@@ -5,6 +5,7 @@ import vn.tutorme.mobile.base.extension.Extension.INT_DEFAULT
 import vn.tutorme.mobile.base.extension.Extension.LIMIT_SIZE
 import vn.tutorme.mobile.domain.model.banner.BANNER_TYPE
 import vn.tutorme.mobile.domain.model.banner.Banner
+import vn.tutorme.mobile.domain.model.clazz.ClassInfo
 import vn.tutorme.mobile.domain.model.lesson.LessonInfo
 import vn.tutorme.mobile.domain.repo.IBannerRepo
 import vn.tutorme.mobile.domain.repo.ILessonRepo
@@ -44,15 +45,28 @@ class GetHomeStudentUseCase @Inject constructor(
 
         dataList.add(bannerList)
         dataList.add(TITLE_HOME_TYPE.LEARN_TODAY_TYPE)
-        val lessonInfoList = lessonRepo.getLessonStudentInDay(rv.studentId, rv.beginTime, rv.endTime, rv.page, rv.size)
+        val lessonInfoList = lessonRepo.getLessonStudentInDay(
+            rv.studentId,
+            rv.beginTime,
+            rv.endTime,
+            rv.page,
+            rv.size
+        )
         val lessonInfoNew = mutableListOf<LessonInfo>()
         lessonInfoList.forEach {
             lessonInfoNew.add(it.copy(type = null))
         }
+        if (lessonInfoNew.isEmpty()) lessonInfoNew.add(LessonInfo())
         dataList.add(lessonInfoNew)
 
-        val classInfoList = lessonRepo.getClassStudentRegistered(rv.studentId, rv.page, rv.size)
+        val classInfoList = lessonRepo.getClassStudentRegistered(
+            rv.studentId,
+            rv.page,
+            rv.size
+        ).toMutableList()
+
         dataList.add(TITLE_HOME_TYPE.CLASS_REGISTER_CONFIRM_TYPE)
+        if (classInfoList.isEmpty()) classInfoList.add(ClassInfo())
         dataList.add(classInfoList)
 
         val courseInfoList = lessonRepo.getCourseList(rv.currentTime, rv.page, rv.size)

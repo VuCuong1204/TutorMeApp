@@ -14,6 +14,7 @@ import vn.tutorme.mobile.base.extension.getAppColor
 import vn.tutorme.mobile.base.extension.getAppDimension
 import vn.tutorme.mobile.base.extension.getAppDrawable
 import vn.tutorme.mobile.base.extension.getAppString
+import vn.tutorme.mobile.base.extension.hide
 import vn.tutorme.mobile.base.extension.loadImage
 import vn.tutorme.mobile.base.extension.setImageTextView
 import vn.tutorme.mobile.base.extension.setOnTouchClick
@@ -84,6 +85,14 @@ class HomeAdapter : TutorMeAdapter() {
                 is TITLE_HOME_TYPE -> TITLE_TYPE
                 else -> super.getItemViewType(position)
             }
+        }
+    }
+
+    override fun getLayoutLoading(): Int {
+        return if (AppPreferences.userInfo?.role == ROLE_TYPE.STUDENT_TYPE) {
+            R.layout.home_student_loading_item
+        } else {
+            R.layout.home_teacher_loading_item
         }
     }
 
@@ -175,6 +184,13 @@ class HomeAdapter : TutorMeAdapter() {
                     tvMissionHomeNotify.setTextColor(getAppColor(R.color.status_success))
                     tvMissionHomeNotify.setImageTextView(left = getAppDrawable(R.drawable.ic_mission_cup_complete))
                     ivMissionHomeState.setImageResource(R.drawable.ic_mission_complete)
+                } else if (data.getMissionEmptyState()) {
+                    tvMissionHomeNotify.text = getAppString(R.string.mission_home_empty)
+                    tvMissionHomeNotify.setTextColor(getAppColor(R.color.text1))
+                    tvMissionHomeNotify.setImageTextView(left = getAppDrawable(R.drawable.ic_mission_loudspeaker_unfinished))
+                    ivMissionHomeState.setImageResource(R.drawable.ic_mission_empty)
+                    ivMissionHomeTickLesson.hide()
+                    ivMissionHomeTick.hide()
                 } else {
                     tvMissionHomeNotify.text = getAppString(R.string.mission_home_no_complete)
                     tvMissionHomeNotify.setTextColor(getAppColor(R.color.status_warring))
@@ -216,8 +232,11 @@ class HomeAdapter : TutorMeAdapter() {
 
         override fun onBind(data: List<LessonInfo>) {
             super.onBind(data)
-
-            binding.cvLessonRoot.submitList(data)
+            val listDataNew = data.toMutableList()
+            if (listDataNew.first().lessonId == null) {
+                listDataNew.removeAt(0)
+            }
+            binding.cvLessonRoot.submitList(listDataNew)
         }
     }
 
@@ -234,8 +253,11 @@ class HomeAdapter : TutorMeAdapter() {
 
         override fun onBind(data: List<LessonInfo>) {
             super.onBind(data)
-
-            binding.cvLessonRoot.submitList(data)
+            val listDataNew = data.toMutableList()
+            if (listDataNew.first().lessonId == null) {
+                listDataNew.removeAt(0)
+            }
+            binding.cvLessonRoot.submitList(listDataNew)
         }
     }
 
@@ -252,8 +274,11 @@ class HomeAdapter : TutorMeAdapter() {
 
         override fun onBind(data: List<LessonInfo>) {
             super.onBind(data)
-
-            binding.cvLessonRoot.submitList(data)
+            val listDataNew = data.toMutableList()
+            if (listDataNew.first().lessonId == null) {
+                listDataNew.removeAt(0)
+            }
+            binding.cvLessonRoot.submitList(listDataNew)
         }
     }
 
@@ -275,7 +300,11 @@ class HomeAdapter : TutorMeAdapter() {
             params.setMargins(0, 0, 0, getAppDimension(R.dimen.fbase_dimen_96).toInt())
             binding.cvLessonRoot.layoutParams = params
 
-            binding.cvLessonRoot.submitList(data)
+            val listDataNew = data.toMutableList()
+            if (listDataNew.first().classId == null) {
+                listDataNew.removeAt(0)
+            }
+            binding.cvLessonRoot.submitList(listDataNew)
         }
     }
 
@@ -293,7 +322,11 @@ class HomeAdapter : TutorMeAdapter() {
         override fun onBind(data: List<ClassInfo>) {
             super.onBind(data)
 
-            binding.cvLessonRoot.submitList(data)
+            val listDataNew = data.toMutableList()
+            if (listDataNew.first().classId == null) {
+                listDataNew.removeAt(0)
+            }
+            binding.cvLessonRoot.submitList(listDataNew)
         }
     }
 

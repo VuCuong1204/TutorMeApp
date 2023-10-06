@@ -17,6 +17,8 @@ class ClassTeacherAdapter : TutorMeAdapter() {
         return ClassTeacherVH(binding as LessonHomeItemBinding)
     }
 
+    override fun getLayoutEmpty(): Empty = Empty(layoutResource = R.layout.class_empty_teacher_item)
+
     inner class ClassTeacherVH(private val binding: LessonHomeItemBinding) : BaseVH<ClassInfo>(binding) {
 
         init {

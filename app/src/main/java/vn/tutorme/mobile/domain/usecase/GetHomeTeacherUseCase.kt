@@ -6,11 +6,11 @@ import vn.tutorme.mobile.base.extension.Extension.LIMIT_SIZE
 import vn.tutorme.mobile.domain.model.banner.BANNER_TYPE
 import vn.tutorme.mobile.domain.model.banner.Banner
 import vn.tutorme.mobile.domain.model.clazz.CLASS_STATUS
+import vn.tutorme.mobile.domain.model.clazz.ClassInfo
 import vn.tutorme.mobile.domain.model.lesson.LESSON_STATUS
 import vn.tutorme.mobile.domain.model.lesson.LESSON_TYPE
 import vn.tutorme.mobile.domain.model.lesson.LessonInfo
 import vn.tutorme.mobile.domain.model.mission.MissionInfo
-import vn.tutorme.mobile.domain.repo.IAuthRepo
 import vn.tutorme.mobile.domain.repo.IBannerRepo
 import vn.tutorme.mobile.domain.repo.ILessonRepo
 import vn.tutorme.mobile.presenter.home.TITLE_HOME_TYPE
@@ -67,20 +67,43 @@ class GetHomeTeacherUseCase @Inject constructor(
 
         dataList.add(missionInfo)
 
-        val lessonScheduleList = lessonRepo.getLessonInfoTeacher(rv.teacherId, rv.beginTimeSchedule, rv.endTimeSchedule, null, rv.page, rv.sizeSchedule)
+        val lessonScheduleList = lessonRepo.getLessonInfoTeacher(
+            rv.teacherId,
+            rv.beginTimeSchedule,
+            rv.endTimeSchedule,
+            null,
+            rv.page,
+            rv.sizeSchedule
+        )
         val lessonScheduleNew = mutableListOf<LessonInfo>()
         lessonScheduleList.forEach {
             lessonScheduleNew.add(it.copy(type = null))
         }
+
+        if (lessonScheduleNew.isEmpty()) lessonScheduleNew.add(LessonInfo())
         dataList.add(TITLE_HOME_TYPE.SCHEDULE_TYPE)
         dataList.add(lessonScheduleNew)
 
         dataList.add(TITLE_HOME_TYPE.LESSON_EVALUATE_TYPE)
-        val lessonEvaluated = lessonRepo.getLessonInfoTeacher(rv.teacherId, rv.beginTimeEvaluated, rv.endTimeEvaluated, rv.stateRate.value, rv.page, rv.sizeEvaluator)
+        val lessonEvaluated = lessonRepo.getLessonInfoTeacher(
+            rv.teacherId,
+            rv.beginTimeEvaluated,
+            rv.endTimeEvaluated,
+            rv.stateRate.value,
+            rv.page,
+            rv.sizeEvaluator
+        ).toMutableList()
+
+        if (lessonEvaluated.isEmpty()) lessonEvaluated.add(LessonInfo().copy(type = LESSON_TYPE.NOT_YET_RATE_TYPE))
         dataList.add(lessonEvaluated)
 
         dataList.add(TITLE_HOME_TYPE.CLASS_WAITING_CONFIRM)
-        val classInfoList = lessonRepo.getClassInfoRegisterTeach(rv.currentTime, rv.stateClass.value)
+        val classInfoList = lessonRepo.getClassInfoRegisterTeach(
+            rv.currentTime,
+            rv.stateClass.value
+        ).toMutableList()
+
+        if (classInfoList.isEmpty()) classInfoList.add(ClassInfo())
         dataList.add(classInfoList)
 
         return dataList
