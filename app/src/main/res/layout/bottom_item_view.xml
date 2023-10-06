@@ -20,10 +20,10 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivBottomItemAvatarActive"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/fbase_dimen_18"
-        android:layout_marginBottom="@dimen/fbase_dimen_10"
+        android:layout_width="@dimen/fbase_dimen_26"
+        android:layout_height="@dimen/fbase_dimen_26"
+        android:layout_marginTop="@dimen/fbase_dimen_20"
+        android:layout_marginBottom="@dimen/fbase_dimen_20"
         android:src="@drawable/ic_profile_active"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@id/ivBottomItemBackground"
@@ -54,7 +54,7 @@
             android:id="@+id/tvBottomItemTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/fbase_dimen_22"
+            android:layout_marginBottom="@dimen/fbase_dimen_26"
             android:fontFamily="@font/font_raleway_medium"
             android:gravity="center"
             android:text="@string/profile"
@@ -66,9 +66,9 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivBottomItemAvatarInactive"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/fbase_dimen_18"
+            android:layout_width="@dimen/fbase_dimen_22"
+            android:layout_height="@dimen/fbase_dimen_22"
+            android:layout_marginTop="@dimen/fbase_dimen_16"
             android:background="?selectableItemBackgroundBorderless"
             android:src="@drawable/ic_profile_inactive"
             app:layout_constraintEnd_toEndOf="parent"

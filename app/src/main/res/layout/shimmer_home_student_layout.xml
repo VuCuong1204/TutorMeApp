@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/fbase_dimen_16">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivShimmerHomeStudentFirst"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fbase_dimen_180"
+            android:layout_marginTop="@dimen/fbase_dimen_12"
+            android:layout_marginEnd="@dimen/fbase_dimen_16"
+            android:background="@drawable/shape_rectangle_shimmer_bg_corner_8" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivShimmerHomeStudentFourth"
+            android:layout_width="@dimen/fbase_dimen_120"
+            android:layout_height="@dimen/fbase_dimen_16"
+            android:layout_below="@id/ivShimmerHomeStudentFirst"
+            android:layout_marginTop="@dimen/fbase_dimen_12"
+            android:background="@drawable/shape_rectangle_shimmer_bg_corner_8" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivShimmerHomeStudentFifth"
+            android:layout_width="@dimen/fbase_dimen_120"
+            android:layout_height="@dimen/fbase_dimen_16"
+            android:layout_below="@id/ivShimmerHomeStudentFirst"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/fbase_dimen_12"
+            android:layout_marginEnd="@dimen/fbase_dimen_16"
+            android:background="@drawable/shape_rectangle_shimmer_bg_corner_8" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivShimmerHomeStudentSixth"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fbase_dimen_130"
+            android:layout_below="@id/ivShimmerHomeStudentFifth"
+            android:layout_marginTop="@dimen/fbase_dimen_12"
+            android:layout_marginEnd="@dimen/fbase_dimen_60"
+            android:background="@drawable/shape_rectangle_shimmer_bg_corner_8" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivShimmerHomeStudentThirteen"
+            android:layout_width="@dimen/fbase_dimen_40"
+            android:layout_height="@dimen/fbase_dimen_130"
+            android:layout_below="@id/ivShimmerHomeStudentFifth"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/fbase_dimen_12"
+            android:background="@drawable/shape_rectangle_shimmer_bg_corner_8" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivShimmerHomeStudentSeventh"
+            android:layout_width="@dimen/fbase_dimen_120"
+            android:layout_height="@dimen/fbase_dimen_16"
+            android:layout_below="@id/ivShimmerHomeStudentSixth"
+            android:layout_marginTop="@dimen/fbase_dimen_12"
+            android:background="@drawable/shape_rectangle_shimmer_bg_corner_8" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivShimmerHomeStudentEighth"
+            android:layout_width="@dimen/fbase_dimen_120"
+            android:layout_height="@dimen/fbase_dimen_16"
+            android:layout_below="@id/ivShimmerHomeStudentSixth"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/fbase_dimen_12"
+            android:layout_marginEnd="@dimen/fbase_dimen_16"
+            android:background="@drawable/shape_rectangle_shimmer_bg_corner_8" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivShimmerHomeStudentEleventh"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fbase_dimen_130"
+            android:layout_below="@id/ivShimmerHomeStudentEighth"
+            android:layout_marginTop="@dimen/fbase_dimen_12"
+            android:layout_marginEnd="@dimen/fbase_dimen_60"
+            android:background="@drawable/shape_rectangle_shimmer_bg_corner_8" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivShimmerHomeStudentFourteen"
+            android:layout_width="@dimen/fbase_dimen_40"
+            android:layout_height="@dimen/fbase_dimen_130"
+            android:layout_below="@id/ivShimmerHomeStudentEighth"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/fbase_dimen_12"
+            android:background="@drawable/shape_rectangle_shimmer_bg_corner_8" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivShimmerHomeStudentNinth"
+            android:layout_width="@dimen/fbase_dimen_120"
+            android:layout_height="@dimen/fbase_dimen_16"
+            android:layout_below="@id/ivShimmerHomeStudentEleventh"
+            android:layout_marginTop="@dimen/fbase_dimen_12"
+            android:background="@drawable/shape_rectangle_shimmer_bg_corner_8" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivShimmerHomeStudentTenth"
+            android:layout_width="@dimen/fbase_dimen_120"
+            android:layout_height="@dimen/fbase_dimen_16"
+            android:layout_below="@id/ivShimmerHomeStudentEleventh"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/fbase_dimen_12"
+            android:layout_marginEnd="@dimen/fbase_dimen_16"
+            android:background="@drawable/shape_rectangle_shimmer_bg_corner_8" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivShimmerHomeStudentSixteen"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fbase_dimen_180"
+            android:layout_below="@+id/ivShimmerHomeStudentTenth"
+            android:layout_marginTop="@dimen/fbase_dimen_12"
+            android:layout_marginEnd="@dimen/fbase_dimen_16"
+            android:background="@drawable/shape_rectangle_shimmer_bg_corner_8" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivShimmerHomeStudentSeventeen"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fbase_dimen_160"
+            android:layout_below="@+id/ivShimmerHomeStudentSixteen"
+            android:layout_marginTop="@dimen/fbase_dimen_12"
+            android:layout_marginEnd="@dimen/fbase_dimen_16"
+            android:background="@drawable/shape_rectangle_shimmer_bg_corner_8" />
+
+    </RelativeLayout>
+
+</layout>

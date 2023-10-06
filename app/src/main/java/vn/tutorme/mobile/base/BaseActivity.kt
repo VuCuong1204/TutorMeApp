@@ -200,10 +200,28 @@ abstract class BaseActivity(protected val layoutId: Int) : AppCompatActivity(), 
             replaceFragment(
                 fragment = fragmentFind,
                 bundle = null,
-                keepToBackStack = false
+                keepToBackStack = true
             )
         }
 
+    }
+
+    fun replaceFragmentInitialState(fragmentInitial: Fragment) {
+        val tag = fragmentInitial::class.java.simpleName
+        val fragmentFind = supportFragmentManager.findFragmentByTag(tag)
+        if (fragmentFind == null) {
+            replaceFragment(
+                fragment = fragmentInitial,
+                bundle = null,
+                keepToBackStack = true
+            )
+        } else {
+            replaceFragment(
+                fragment = fragmentFind,
+                bundle = null,
+                keepToBackStack = true
+            )
+        }
     }
 
     // loại bỏ tất cả các Fragment cùng tag

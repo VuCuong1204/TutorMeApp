@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/fbase_dimen_16"
+        android:layout_marginEnd="@dimen/fbase_dimen_8">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/fbase_dimen_188"
+            android:layout_marginStart="@dimen/fbase_dimen_30"
+            android:background="@drawable/shape_bg_comp_70_corner_16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/fbase_dimen_192"
+            android:layout_marginStart="@dimen/fbase_dimen_14"
+            android:layout_marginEnd="@dimen/fbase_dimen_10"
+            android:layout_marginBottom="@dimen/fbase_dimen_8"
+            android:background="@drawable/shape_bg_comp_corner_16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivMissionHomeMain"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/fbase_dimen_198"
+            android:layout_marginEnd="@dimen/fbase_dimen_20"
+            android:layout_marginBottom="@dimen/fbase_dimen_18"
+            android:background="@drawable/shape_bg_white_corner_16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvMissionHomeWeek"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fbase_dimen_14"
+            android:layout_marginEnd="@dimen/fbase_dimen_22"
+            android:background="@drawable/ripple_bg_back1_corner_8"
+            android:drawableEnd="@drawable/ic_arrow_black1_bottom"
+            android:drawablePadding="@dimen/fbase_dimen_20"
+            android:fontFamily="@font/font_worksans_regular"
+            android:gravity="center"
+            android:paddingVertical="@dimen/fbase_dimen_12"
+            android:paddingStart="@dimen/fbase_dimen_30"
+            android:paddingEnd="@dimen/fbase_dimen_10"
+            android:textColor="@color/gray1"
+            android:textSize="@dimen/fbase_text_size_14"
+            app:layout_constraintBottom_toBottomOf="@+id/ivMissionHomeState"
+            app:layout_constraintEnd_toStartOf="@+id/ivMissionHomeState"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ivMissionHomeState"
+            tools:text="25.09.2023 - 01.10.2023" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivMissionHomeState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fbase_dimen_4"
+            android:layout_marginEnd="@dimen/fbase_dimen_28"
+            android:src="@drawable/ic_mission_complete"
+            app:layout_constraintEnd_toEndOf="@+id/ivMissionHomeMain"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvMissionHomeNotify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fbase_dimen_14"
+            android:layout_marginTop="@dimen/fbase_dimen_16"
+            android:drawableStart="@drawable/ic_mission_cup_complete"
+            android:drawablePadding="@dimen/fbase_dimen_8"
+            android:ellipsize="end"
+            android:fontFamily="@font/font_raleway_regular"
+            android:maxWidth="@dimen/fbase_dimen_500"
+            android:maxLines="1"
+            android:textColor="@color/status_success"
+            android:textSize="@dimen/fbase_text_size_14"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvMissionHomeWeek"
+            tools:text="Bạn đã hoàn thành xuất sắc nhiệm vụ tuần này!" />
+
+        <RelativeLayout
+            android:id="@+id/rlMissionHomeCases"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/fbase_dimen_14"
+            android:layout_marginTop="@dimen/fbase_dimen_16"
+            android:layout_marginBottom="@dimen/fbase_dimen_18"
+            android:background="@drawable/shape_bg_light_purple_corner_8"
+            android:paddingTop="@dimen/fbase_dimen_12"
+            android:paddingBottom="@dimen/fbase_dimen_6"
+            app:layout_constraintBottom_toBottomOf="@+id/ivMissionHomeMain"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvMissionHomeNotify"
+            app:layout_constraintWidth_default="spread"
+            app:layout_constraintWidth_percent="0.42">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvMissionHomeTitleFirst"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fbase_dimen_6"
+                android:fontFamily="@font/font_raleway_medium"
+                android:text="@string/title_count_case"
+                android:textColor="@color/text1"
+                android:textSize="@dimen/fbase_text_size_14" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvMissionHomeCase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvMissionHomeTitleFirst"
+                android:layout_marginStart="@dimen/fbase_dimen_6"
+                android:fontFamily="@font/font_worksans_bold"
+                android:textColor="@color/text1"
+                android:textSize="@dimen/fbase_text_size_16"
+                tools:text="20/20" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivMissionHomeTick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="@dimen/fbase_dimen_6"
+                android:src="@drawable/ic_tick_show" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlMissonHomeLesson"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/fbase_dimen_20"
+            android:layout_marginTop="@dimen/fbase_dimen_16"
+            android:layout_marginEnd="@dimen/fbase_dimen_14"
+            android:layout_marginBottom="@dimen/fbase_dimen_18"
+            android:background="@drawable/shape_bg_light_yellow_corner_8"
+            android:paddingTop="@dimen/fbase_dimen_12"
+            android:paddingBottom="@dimen/fbase_dimen_6"
+            app:layout_constraintBottom_toBottomOf="@+id/ivMissionHomeMain"
+            app:layout_constraintEnd_toEndOf="@+id/ivMissionHomeMain"
+            app:layout_constraintStart_toEndOf="@id/rlMissionHomeCases"
+            app:layout_constraintTop_toBottomOf="@+id/tvMissionHomeNotify"
+            app:layout_constraintWidth_default="spread"
+            app:layout_constraintWidth_percent="0.42">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvMissionHomeTitleSecond"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fbase_dimen_6"
+
+                android:fontFamily="@font/font_raleway_medium"
+                android:text="@string/title_count_lesson"
+                android:textColor="@color/text1"
+                android:textSize="@dimen/fbase_text_size_14" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvMissionHomeCountLesson"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvMissionHomeTitleSecond"
+                android:layout_marginStart="@dimen/fbase_dimen_6"
+                android:fontFamily="@font/font_worksans_bold"
+                android:textColor="@color/text1"
+                android:textSize="@dimen/fbase_text_size_16"
+                tools:text="20/20" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivMissionHomeTickLesson"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="@dimen/fbase_dimen_6"
+                android:src="@drawable/ic_tick_show" />
+
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <vn.tutorme.mobile.presenter.widget.collection.CollectionView
+            android:id="@+id/cvLessonRoot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fbase_dimen_16"
+            android:overScrollMode="never" />
+
+    </FrameLayout>
+
+</layout>

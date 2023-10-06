@@ -5,6 +5,7 @@ import android.os.Parcelable
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
+import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.extension.gone
 import vn.tutorme.mobile.base.extension.scaleAnimation
@@ -43,7 +44,6 @@ class BottomMainView(
         btvProfile = findViewById(R.id.btvBottomMainProfile)
 
         addEventOnClick()
-        setBottomBarType(ROLE_TYPE.TEACHER_TYPE)
     }
 
     override fun onSaveInstanceState(): Parcelable? {

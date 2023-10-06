@@ -30,7 +30,7 @@ data class CourseInfoDTO(
 
     @SerializedName("classCode")
     @Expose
-    var extraClassId: Int? = null,
+    var classCode: Int? = null,
 
     @SerializedName("timeLesson")
     @Expose
