@@ -52,6 +52,8 @@ class HomeAdapter : TutorMeAdapter() {
         const val FIRST_POSITION = 0
     }
 
+    var listener: IHomeListener? = null
+
     override fun getItemViewType(position: Int): Int {
         val item = getDataListAtPosition(position)
         return if (item is List<*>) {
@@ -146,7 +148,15 @@ class HomeAdapter : TutorMeAdapter() {
     inner class TitleVH(private val binding: TitleHomeItemBinding) : BaseVH<TITLE_HOME_TYPE>(binding) {
 
         init {
-            binding.tvTitleHomeViewMore.setOnTouchClick(colorResUp = R.color.primary) {}
+            binding.tvTitleHomeViewMore.setOnTouchClick(colorResUp = R.color.primary) {
+                getItem {
+                    if (it == TITLE_HOME_TYPE.SCHEDULE_TYPE) {
+                        listener?.onClickTeachViewMore()
+                    } else if (it == TITLE_HOME_TYPE.LESSON_EVALUATE_TYPE) {
+                        listener?.onClickEvaluateViewMore()
+                    }
+                }
+            }
         }
 
         override fun onBind(data: TITLE_HOME_TYPE) {

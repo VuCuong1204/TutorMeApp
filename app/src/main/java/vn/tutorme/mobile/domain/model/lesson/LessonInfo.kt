@@ -30,6 +30,10 @@ data class LessonInfo(
         return "${getHourBegin()} - ${getHourEnd()}"
     }
 
+    fun getTimeLearnDay(): String {
+        return "${getDayBegin()} - ${getDayEnd()}"
+    }
+
     fun getNumberMember(): String {
         return String.format(getAppString(R.string.number_member), totalNumber)
     }

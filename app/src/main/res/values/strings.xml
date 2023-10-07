@@ -73,4 +73,8 @@
     <string name="opening">Khai giảng %s</string>
     <string name="log_out">Logout</string>
 
+    <string name="calender_teach">Lịch dạy học</string>
+    <string name="lesson_no_evaluate">Buổi học chưa đánh giá</string>
+    <string name="evaluate_now">Đánh giá ngay</string>
+
 </resources>
