@@ -12,4 +12,5 @@ interface ILessonRepo {
     fun getClassStudentRegistered(studentId: String, page: Int?, size: Int?): List<ClassInfo>
 
     fun getCourseList(currentTime: Long, page: Int?, size: Int?): List<CourseInfo>
+    fun getLessonListInClass(classId: String, page: Int?, size: Int?): List<LessonInfo>
 }

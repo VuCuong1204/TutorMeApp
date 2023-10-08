@@ -43,6 +43,7 @@ import vn.tutorme.mobile.base.common.view.SingleOnClickListener
 import vn.tutorme.mobile.base.common.view.SingleOnTouchClickListener
 import vn.tutorme.mobile.base.screen.TutorMeActivity
 import vn.tutorme.mobile.base.screen.TutorMeFragment
+import vn.tutorme.mobile.domain.model.authen.ROLE_TYPE
 
 typealias UI_STATE = UiState.UI_STATE
 
@@ -391,4 +392,12 @@ fun View.scaleAnimation() {
                 .scaleY(1.0f)
                 .setDuration(50).interpolator = AccelerateInterpolator()
         }
+}
+
+fun setActionRoleState(actionTeacher: () -> Unit, actionStudent: () -> Unit) {
+    if (AppPreferences.userInfo?.role == ROLE_TYPE.TEACHER_TYPE) {
+        actionTeacher.invoke()
+    } else {
+        actionStudent.invoke()
+    }
 }

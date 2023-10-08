@@ -27,6 +27,7 @@ class GetLessonEvaluateUseCase @Inject constructor(
         lessonInfoList.forEach {
             if (!hashmap.containsKey(it.getDayBegin())) {
                 list.add(TitleLessonInfo(it.getDayBegin(), TITLE_TYPE.TITLE_DAY_TYPE))
+                hashmap[it.getDayBegin()] = true
             }
             list.add(TitleLessonInfo(it.getTimeLearnHour(), TITLE_TYPE.TITLE_HOUR_TYPE))
             list.add(it)
@@ -35,5 +36,5 @@ class GetLessonEvaluateUseCase @Inject constructor(
         return list
     }
 
-    class GetLessonEvaluateVH(val id: String, var beginTime: Long, val endTime: Long) : BaseUseCase.RequestValue
+    class GetLessonEvaluateVH(val id: String, var beginTime: Long, val endTime: Long) : RequestValue
 }

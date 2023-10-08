@@ -1,4 +1,4 @@
-package vn.tutorme.mobile.presenter.lessonall
+package vn.tutorme.mobile.presenter.classall
 
 import androidx.fragment.app.viewModels
 import com.example.syntheticapp.presenter.widget.collection.LAYOUT_MANAGER
@@ -6,35 +6,36 @@ import dagger.hilt.android.AndroidEntryPoint
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.common.IViewListener
 import vn.tutorme.mobile.base.extension.coroutinesLaunch
-import vn.tutorme.mobile.base.extension.getAppString
 import vn.tutorme.mobile.base.extension.handleUiState
-import vn.tutorme.mobile.base.extension.setActionRoleState
 import vn.tutorme.mobile.base.extension.setOnSafeClick
 import vn.tutorme.mobile.base.screen.TutorMeFragment
-import vn.tutorme.mobile.databinding.LessonAllFragmentBinding
+import vn.tutorme.mobile.databinding.ClassAllFragmentBinding
 
 @AndroidEntryPoint
-class LessonAllFragment : TutorMeFragment<LessonAllFragmentBinding>(R.layout.lesson_all_fragment) {
+class ClassAllFragment : TutorMeFragment<ClassAllFragmentBinding>(R.layout.class_all_fragment) {
 
-    private val viewModel by viewModels<LessonAllViewModel>()
-
-    private val lessonAllAdapter by lazy {
-        LessonAllAdapter()
-    }
+    private val viewModel by viewModels<ClassAllViewModel>()
+    private val classAllAdapter by lazy { ClassAllAdapter() }
 
     override fun onInitView() {
         super.onInitView()
-
         addHeader()
         addAdapter()
     }
 
     override fun onObserverViewModel() {
         super.onObserverViewModel()
-        coroutinesLaunch(viewModel.lessonInfoState) {
+        coroutinesLaunch(viewModel.classInfoState) {
             handleUiState(it, object : IViewListener {
+
+                override fun onFailure() {
+                    super.onFailure()
+                    binding.srlLessonAllReload.isRefreshing = false
+                }
+
                 override fun onSuccess() {
-                    binding.cvLessonRoot.submitList(it.data)
+                    binding.cvLessonAllRoot.submitList(it.data?.dataList)
+                    binding.srlLessonAllReload.isRefreshing = false
                     viewModel.reset()
                 }
             }, canShowLoading = true)
@@ -42,20 +43,20 @@ class LessonAllFragment : TutorMeFragment<LessonAllFragmentBinding>(R.layout.les
     }
 
     private fun addAdapter() {
-        binding.cvLessonRoot.apply {
+        binding.cvLessonAllRoot.apply {
             setBaseLayoutManager(LAYOUT_MANAGER.LINEARLAYOUT_VERTICAL)
-            setBaseAdapter(lessonAllAdapter)
+            setBaseAdapter(classAllAdapter)
+        }
+
+        binding.srlLessonAllReload.setOnRefreshListener {
+            viewModel.getClassInfo(true)
         }
     }
 
     private fun addHeader() {
-        binding.ivLessonAllBack.setOnSafeClick {
+        binding.srlLessonAllReload.setColorSchemeResources(R.color.primary)
+        binding.ivClassAllBack.setOnSafeClick {
             onBackPressByFragment()
         }
-
-        setActionRoleState(
-            { binding.tvLessonAllContent.text = getAppString(R.string.calender_teach) },
-            { binding.tvLessonAllContent.text = getAppString(R.string.calender_learn) }
-        )
     }
 }

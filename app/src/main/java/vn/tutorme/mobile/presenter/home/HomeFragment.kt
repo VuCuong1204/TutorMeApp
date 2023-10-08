@@ -12,6 +12,8 @@ import vn.tutorme.mobile.base.extension.handleUiState
 import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.HomeFragmentBinding
 import vn.tutorme.mobile.domain.model.authen.ROLE_TYPE
+import vn.tutorme.mobile.presenter.classall.ClassAllFragment
+import vn.tutorme.mobile.presenter.classinfo.ClassInfoFragment
 import vn.tutorme.mobile.presenter.lessonall.LessonAllFragment
 import vn.tutorme.mobile.presenter.lessonevaluate.LessonEvaluateFragment
 import vn.tutorme.mobile.presenter.lessonevaluate.LessonEvaluateViewModel
@@ -90,6 +92,14 @@ class HomeFragment : TutorMeFragment<HomeFragmentBinding>(R.layout.home_fragment
 
             override fun onClickEvaluateViewMore() {
                 replaceFragment(fragment = LessonEvaluateFragment(), screenAnim = SlideAnimation())
+            }
+
+            override fun onClickClassRegisterViewMore() {
+                replaceFragment(fragment = ClassAllFragment(), screenAnim = SlideAnimation())
+            }
+
+            override fun onClickClassWaitingConfirm() {
+                replaceFragment(fragment = ClassInfoFragment(), screenAnim = SlideAnimation())
             }
         }
     }

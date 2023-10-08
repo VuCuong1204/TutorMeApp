@@ -20,7 +20,10 @@ data class LessonInfo(
     var totalNumber: Int? = null,
     var lessonSession: Int? = null,
     var type: LESSON_TYPE? = null,
-    var countAssessment: Int? = null
+    var countAssessment: Int? = null,
+    var nameTeacher: String? = null,
+    var emailTeacher: String? = null,
+    var phoneNumberTeacher: Long? = null,
 ) : IParcelable {
     fun getAssessmentState(): Boolean {
         return type == LESSON_TYPE.NOT_YET_RATE_TYPE

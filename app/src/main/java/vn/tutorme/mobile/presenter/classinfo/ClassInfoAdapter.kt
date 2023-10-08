@@ -1,8 +1,7 @@
-package vn.tutorme.mobile.presenter.lessonall
+package vn.tutorme.mobile.presenter.classinfo
 
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
-import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.adapter.BaseVH
 import vn.tutorme.mobile.base.adapter.TutorMeAdapter
@@ -11,96 +10,68 @@ import vn.tutorme.mobile.base.extension.getAppDrawable
 import vn.tutorme.mobile.base.extension.getAppString
 import vn.tutorme.mobile.base.extension.gone
 import vn.tutorme.mobile.base.extension.hide
-import vn.tutorme.mobile.base.extension.setActionRoleState
+import vn.tutorme.mobile.base.extension.setImageTextView
 import vn.tutorme.mobile.databinding.InfoItemBinding
 import vn.tutorme.mobile.databinding.TitleTimeItemBinding
-import vn.tutorme.mobile.domain.model.authen.ROLE_TYPE
 import vn.tutorme.mobile.domain.model.lesson.LESSON_STATUS
 import vn.tutorme.mobile.domain.model.lesson.LessonInfo
+import vn.tutorme.mobile.domain.model.lesson.TitleLessonInfo
 
-class LessonAllAdapter : TutorMeAdapter() {
+class ClassInfoAdapter : TutorMeAdapter() {
 
     companion object {
-        const val TITLE_VIEW_TYPE = 10
-        const val CONTENT_VIEW_TYPE = 11
+        const val DAY_VIEW_TYPE = 10
+        const val LESSON_VIEW_TYPE = 11
     }
 
     override fun getItemViewType(position: Int): Int {
         return when (getDataListAtPosition(position)) {
-            is String -> {
-                TITLE_VIEW_TYPE
-            }
-
-            is LessonInfo -> {
-                CONTENT_VIEW_TYPE
-            }
-
-            else -> {
-                super.getItemViewType(position)
-            }
+            is TitleLessonInfo -> DAY_VIEW_TYPE
+            is LessonInfo -> LESSON_VIEW_TYPE
+            else -> super.getItemViewType(position)
         }
     }
 
     override fun getLayoutResource(viewType: Int): Int {
         return when (viewType) {
-            TITLE_VIEW_TYPE -> {
-                R.layout.title_time_item
-            }
-
-            CONTENT_VIEW_TYPE -> {
-                R.layout.info_item
-            }
-
-            else -> {
-                LAYOUT_INVALID
-            }
-        }
-    }
-
-    override fun getLayoutEmpty(): Empty {
-        return if (AppPreferences.userInfo?.role == ROLE_TYPE.TEACHER_TYPE) {
-            Empty(layoutResource = R.layout.lesson_all_empty)
-        } else {
-            Empty(layoutResource = R.layout.lesson_all_student_empty)
+            DAY_VIEW_TYPE -> R.layout.title_time_item
+            LESSON_VIEW_TYPE -> R.layout.info_item
+            else -> LAYOUT_INVALID
         }
     }
 
     override fun onCreateViewHolder(viewType: Int, binding: ViewDataBinding): BaseVH<*>? {
         return when (viewType) {
-            TITLE_VIEW_TYPE -> {
-                TitleVH(binding as TitleTimeItemBinding)
-            }
-
-            CONTENT_VIEW_TYPE -> {
-                ContentVH(binding as InfoItemBinding)
-            }
-
-            else -> {
-                null
-            }
+            DAY_VIEW_TYPE -> TitleVH(binding as TitleTimeItemBinding)
+            LESSON_VIEW_TYPE -> LessonInfoVH(binding as InfoItemBinding)
+            else -> null
         }
     }
 
-    inner class TitleVH(private val binding: TitleTimeItemBinding) : BaseVH<String>(binding) {
-        override fun onBind(data: String) {
+    inner class TitleVH(private val binding: TitleTimeItemBinding) : BaseVH<TitleLessonInfo>(binding) {
+        override fun onBind(data: TitleLessonInfo) {
             super.onBind(data)
-            binding.tvTitleTimeName.text = data
+            binding.tvTitleTimeName.text = data.name
             if (absoluteAdapterPosition == 0) {
                 binding.vTitleTimeV1.hide()
             }
         }
     }
 
-    inner class ContentVH(private val binding: InfoItemBinding) : BaseVH<LessonInfo>(binding) {
+    inner class LessonInfoVH(private val binding: InfoItemBinding) : BaseVH<LessonInfo>(binding) {
 
         init {
-            binding.tvInfoTimeSlot.gone()
-            binding.tvInfoPencil.hide()
+            with(binding) {
+                tvInfoPencil.hide()
+                tvInfoLesson.hide()
+                tvInfoTimeSlot.gone()
+            }
         }
 
         override fun onBind(data: LessonInfo) {
             super.onBind(data)
             with(binding) {
+                tvInfoId.text = data.getSession()
                 tvInfoAvatar.setImageDrawable(
                     when (data.status) {
                         LESSON_STATUS.UPCOMING_STATUS -> getAppDrawable(R.drawable.ic_upcoming)
@@ -110,7 +81,7 @@ class LessonAllAdapter : TutorMeAdapter() {
                         else -> getAppDrawable(R.drawable.ic_upcoming)
                     }
                 )
-                tvInfoId.text = data.classId
+
                 tvInfoState.text = when (data.status) {
                     LESSON_STATUS.UPCOMING_STATUS -> getAppString(R.string.upcoming)
                     LESSON_STATUS.HAPPENING_STATUS -> getAppString(R.string.happening)
@@ -128,12 +99,17 @@ class LessonAllAdapter : TutorMeAdapter() {
                 }
 
                 tvInfoClass.text = data.getClassTitle()
-                tvInfoAdvanced.text = data.level
-                tvInfoNumber.text = data.getNumberMember()
-                tvInfoLesson.text = data.getSession()
+                tvInfoNumber.text = if (data.status == LESSON_STATUS.TOOK_PLACE_STATUS) {
+                    data.getNumberMemberRatio()
+                } else {
+                    data.getNumberMember()
+                }
+
+                tvInfoAdvanced.setImageTextView(getAppDrawable(R.drawable.ic_clock))
+                tvInfoAdvanced.text = data.getHourBegin()
 
                 if (absoluteAdapterPosition == dataList.lastIndex) {
-                    val params = binding.clInfoRoot.layoutParams as ViewGroup.MarginLayoutParams
+                    val params = clInfoRoot.layoutParams as ViewGroup.MarginLayoutParams
                     params.setMargins(
                         getAppDimension(R.dimen.fbase_dimen_18).toInt(),
                         0,
@@ -141,7 +117,7 @@ class LessonAllAdapter : TutorMeAdapter() {
                         getAppDimension(R.dimen.fbase_dimen_20).toInt()
                     )
 
-                    binding.clInfoRoot.layoutParams = params
+                    clInfoRoot.layoutParams = params
                 }
             }
         }

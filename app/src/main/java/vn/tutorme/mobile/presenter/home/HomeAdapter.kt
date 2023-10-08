@@ -150,10 +150,26 @@ class HomeAdapter : TutorMeAdapter() {
         init {
             binding.tvTitleHomeViewMore.setOnTouchClick(colorResUp = R.color.primary) {
                 getItem {
-                    if (it == TITLE_HOME_TYPE.SCHEDULE_TYPE) {
-                        listener?.onClickTeachViewMore()
-                    } else if (it == TITLE_HOME_TYPE.LESSON_EVALUATE_TYPE) {
-                        listener?.onClickEvaluateViewMore()
+                    when (it) {
+                        TITLE_HOME_TYPE.SCHEDULE_TYPE, TITLE_HOME_TYPE.LEARN_TODAY_TYPE -> {
+                            listener?.onClickTeachViewMore()
+                        }
+
+                        TITLE_HOME_TYPE.LESSON_EVALUATE_TYPE -> {
+                            listener?.onClickEvaluateViewMore()
+                        }
+
+                        TITLE_HOME_TYPE.CLASS_REGISTER_CONFIRM_TYPE -> {
+                            listener?.onClickClassRegisterViewMore()
+                        }
+
+                        TITLE_HOME_TYPE.CLASS_WAITING_CONFIRM -> {
+                            listener?.onClickClassWaitingConfirm()
+                        }
+
+                        else -> {
+
+                        }
                     }
                 }
             }

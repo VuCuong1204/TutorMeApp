@@ -13,19 +13,25 @@ import vn.tutorme.mobile.base.extension.failure
 import vn.tutorme.mobile.base.extension.loading
 import vn.tutorme.mobile.base.extension.onException
 import vn.tutorme.mobile.base.extension.reset
+import vn.tutorme.mobile.base.extension.setActionRoleState
 import vn.tutorme.mobile.base.extension.success
+import vn.tutorme.mobile.domain.usecase.GetLessonAllStudentUseCase
 import vn.tutorme.mobile.domain.usecase.GetLessonAllUserCase
 import javax.inject.Inject
 
 @HiltViewModel
 class LessonAllViewModel @Inject constructor(
-    private val getLessonAllUserCase: GetLessonAllUserCase
+    private val getLessonAllUserCase: GetLessonAllUserCase,
+    private val getLessonAllStudentUseCase: GetLessonAllStudentUseCase
 ) : BaseViewModel() {
     private val _lessonInfoState = MutableStateFlow(FlowResult.newInstance<List<Any>>())
     val lessonInfoState = _lessonInfoState.asStateFlow()
 
     init {
-        getLessonAll()
+        setActionRoleState(
+            { getLessonAll() },
+            { getLessonAllStudent() }
+        )
     }
 
     private fun getLessonAll() {
@@ -33,6 +39,23 @@ class LessonAllViewModel @Inject constructor(
             delay(100)
             val rv = GetLessonAllUserCase.GetLessonAllRV("vucuonghihi", 1696788000, 16973928000)
             getLessonAllUserCase.invoke(rv)
+                .onStart {
+                    _lessonInfoState.loading()
+                }
+                .onException {
+                    _lessonInfoState.failure(it)
+                }
+                .collect {
+                    _lessonInfoState.success(it)
+                }
+        }
+    }
+
+    private fun getLessonAllStudent() {
+        viewModelScope.launch {
+            delay(100)
+            val rv = GetLessonAllStudentUseCase.GetLessonAllStudentVH("vq3", 1696788000, 1697392800)
+            getLessonAllStudentUseCase.invoke(rv)
                 .onStart {
                     _lessonInfoState.loading()
                 }

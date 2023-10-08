@@ -61,4 +61,12 @@ class LessonRepoImpl @Inject constructor() : ILessonRepo, IRepo {
             CourseInfoDTOConvertCourseInfo().convert(body.data!!)
         }
     }
+
+    override fun getLessonListInClass(classId: String, page: Int?, size: Int?): List<LessonInfo> {
+        val service = invokeAuthService(ILessonService::class.java)
+
+        return service.getLessonStudentInClass(classId, page, size).invokeApi { _, body ->
+            LessonMainDTOConvertLessonInfo().convert(body.data!!)
+        }
+    }
 }

@@ -63,4 +63,11 @@ interface ILessonService : IApiService {
         @Query("page") page: Int?,
         @Query("size") size: Int?
     ): Call<ClassInfoResponse>
+
+    @GET("lesson/list/class/detail")
+    fun getLessonStudentInClass(
+        @Query("classId") classId: String,
+        @Query("page") page: Int?,
+        @Query("size") size: Int?
+    ): Call<LessonInfoResponse>
 }
