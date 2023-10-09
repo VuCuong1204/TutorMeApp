@@ -30,10 +30,10 @@ class LessonRepoImpl @Inject constructor() : ILessonRepo, IRepo {
         }
     }
 
-    override fun getClassInfoRegisterTeach(currentTime: Long?, state: Int): List<ClassInfo> {
+    override fun getClassInfoRegisterTeach(currentTime: Long?, state: Int, teacherId: String?): List<ClassInfo> {
         val service = invokeAuthService(ILessonService::class.java)
 
-        return service.getClassTeacherRegistered(currentTime, state).invokeApi { _, body ->
+        return service.getClassTeacherRegistered(currentTime, state, teacherId).invokeApi { _, body ->
             ClassMainDTOConvertToClassInfo().convert(body.data!!)
         }
     }
@@ -67,6 +67,14 @@ class LessonRepoImpl @Inject constructor() : ILessonRepo, IRepo {
 
         return service.getLessonStudentInClass(classId, page, size).invokeApi { _, body ->
             LessonMainDTOConvertLessonInfo().convert(body.data!!)
+        }
+    }
+
+    override fun updateStateClassRegister(classId: String, state: Int, teacherId: String): List<ClassInfo> {
+        val service = invokeAuthService(ILessonService::class.java)
+
+        return service.updateStateClassRegister(classId, state, teacherId).invokeApi { _, body ->
+            ClassMainDTOConvertToClassInfo().convert(body.data!!)
         }
     }
 }

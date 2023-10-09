@@ -38,7 +38,8 @@ interface ILessonService : IApiService {
     @GET("register/class")
     fun getClassTeacherRegistered(
         @Query("currentTime") currentTime: Long?,
-        @Query("state") state: Int
+        @Query("state") state: Int,
+        @Query("teacherId") teacherId: String?,
     ): Call<ClassInfoResponse>
 
     @GET("course")
@@ -70,4 +71,11 @@ interface ILessonService : IApiService {
         @Query("page") page: Int?,
         @Query("size") size: Int?
     ): Call<LessonInfoResponse>
+
+    @GET("update/register/class")
+    fun updateStateClassRegister(
+        @Query("classId") classId: String,
+        @Query("state") state: Int,
+        @Query("teacherId") teacherId: String?,
+    ): Call<ClassInfoResponse>
 }

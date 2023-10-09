@@ -13,10 +13,9 @@ import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.HomeFragmentBinding
 import vn.tutorme.mobile.domain.model.authen.ROLE_TYPE
 import vn.tutorme.mobile.presenter.classall.ClassAllFragment
-import vn.tutorme.mobile.presenter.classinfo.ClassInfoFragment
 import vn.tutorme.mobile.presenter.lessonall.LessonAllFragment
 import vn.tutorme.mobile.presenter.lessonevaluate.LessonEvaluateFragment
-import vn.tutorme.mobile.presenter.lessonevaluate.LessonEvaluateViewModel
+import vn.tutorme.mobile.presenter.registerclass.ClassWaitingConfirmFragment
 
 @AndroidEntryPoint
 class HomeFragment : TutorMeFragment<HomeFragmentBinding>(R.layout.home_fragment) {
@@ -99,7 +98,7 @@ class HomeFragment : TutorMeFragment<HomeFragmentBinding>(R.layout.home_fragment
             }
 
             override fun onClickClassWaitingConfirm() {
-                replaceFragment(fragment = ClassInfoFragment(), screenAnim = SlideAnimation())
+                replaceFragment(fragment = ClassWaitingConfirmFragment(), screenAnim = SlideAnimation())
             }
         }
     }

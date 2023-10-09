@@ -64,6 +64,7 @@
     <string name="lesson_home_student_empty">Tuần này bạn không có ca học nào!</string>
     <string name="lesson_student_empty">Bạn không có ca học nào!</string>
     <string name="class_home_student_empty">Bạn chưa đăng ký lớp học nào!</string>
+    <string name="class_register_empty">Hiện tại chưa có lớp nào</string>
 
     <string name="view_all">Xem tất cả</string>
     <string name="view_detail">Xem chi tiết</string>
@@ -84,5 +85,11 @@
     <string name="count_lesson">Số buổi %s</string>
     <string name="number_phone_teacher">Số điện thoại %s</string>
     <string name="name_teacher">Gia sư:</string>
+    <string name="class_waiting_confirm">Lớp chờ xác nhận</string>
+
+    <string name="waiting_confirm">Chờ xác nhận</string>
+    <string name="confirmed">Đã xác nhận</string>
+    <string name="out_of_date">Quá hạn</string>
+    <string name="reject">Từ chối</string>
 
 </resources>
