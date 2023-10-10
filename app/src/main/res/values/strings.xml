@@ -55,6 +55,8 @@
     <string name="number_evaluate_lesson">Đánh giá %s/%s</string>
     <string name="lesson_session">Buổi %s</string>
     <string name="accept_class">Nhận lớp</string>
+    <string name="accept_class_question">Bạn chắc chắn muốn nhận lớp?</string>
+    <string name="reject_class_question">Bạn chắc chắn muốn từ chối lớp?</string>
     <string name="mission_home_complete">Bạn đã hoàn thành xuất sắc nhiệm vụ tuần này!</string>
     <string name="mission_home_no_complete">Bạn ơi, hoàn thành các nhiệm vụ tuần này đi!</string>
     <string name="mission_home_empty">Tuần này bạn không có ca dạy nào!</string>
@@ -91,5 +93,6 @@
     <string name="confirmed">Đã xác nhận</string>
     <string name="out_of_date">Quá hạn</string>
     <string name="reject">Từ chối</string>
+    <string name="confirm">Đồng ý</string>
 
 </resources>

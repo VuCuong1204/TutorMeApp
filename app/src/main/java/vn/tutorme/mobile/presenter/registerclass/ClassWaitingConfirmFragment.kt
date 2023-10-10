@@ -6,12 +6,16 @@ import dagger.hilt.android.AndroidEntryPoint
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.common.IViewListener
 import vn.tutorme.mobile.base.extension.coroutinesLaunch
+import vn.tutorme.mobile.base.extension.getAppColor
+import vn.tutorme.mobile.base.extension.getAppDrawable
+import vn.tutorme.mobile.base.extension.getAppString
 import vn.tutorme.mobile.base.extension.handleUiState
 import vn.tutorme.mobile.base.extension.setOnSafeClick
 import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.ClassWaitingConfirmFragmentBinding
 import vn.tutorme.mobile.domain.model.category.getDataCategoryClass
 import vn.tutorme.mobile.domain.model.clazz.CLASS_STATUS
+import vn.tutorme.mobile.presenter.dialog.BottomSheetConfirmDialog
 
 @AndroidEntryPoint
 class ClassWaitingConfirmFragment : TutorMeFragment<ClassWaitingConfirmFragmentBinding>(R.layout.class_waiting_confirm_fragment) {
@@ -29,6 +33,7 @@ class ClassWaitingConfirmFragment : TutorMeFragment<ClassWaitingConfirmFragmentB
         super.onInitView()
         addHeader()
         addAdapter()
+        addListener()
     }
 
     override fun onObserverViewModel() {
@@ -36,7 +41,6 @@ class ClassWaitingConfirmFragment : TutorMeFragment<ClassWaitingConfirmFragmentB
         coroutinesLaunch(viewModel.classInfoState) {
             handleUiState(it, object : IViewListener {
                 override fun onSuccess() {
-
                     binding.cvClassWaitingConfirmRoot.apply {
                         setBaseAdapter(waitingConfirmAdapter)
                         submitList(it.data?.dataList)
@@ -44,6 +48,42 @@ class ClassWaitingConfirmFragment : TutorMeFragment<ClassWaitingConfirmFragmentB
                 }
             }, canShowLoading = true)
         }
+    }
+
+    override fun onDestroyView() {
+        removeListener()
+        super.onDestroyView()
+    }
+
+    private fun addListener() {
+        waitingConfirmAdapter.listener = object : IListener {
+            override fun onConfirmClick(classId: String) {
+                showDialogConfirm(classId)
+            }
+        }
+    }
+
+    private fun removeListener() {
+        waitingConfirmAdapter.listener = null
+    }
+
+    private fun showDialogConfirm(classId: String) {
+        BottomSheetConfirmDialog().apply {
+            avatar = getAppDrawable(R.drawable.ic_class_empty)
+            title = getAppString(R.string.accept_class)
+            content = if (waitingConfirmAdapter.type != CLASS_STATUS.RECEIVED_STATUS)
+                getAppString(R.string.accept_class_question) else getAppString(R.string.reject_class_question)
+            textLeft = getAppString(R.string.confirm)
+            textRight = getAppString(R.string.cancel)
+            bgTextLeft = getAppDrawable(R.drawable.ripple_bg_primary_corner_14)
+            bgTextRight = getAppDrawable(R.drawable.ripple_bg_gray_corner_14_stroke_1)
+            clTextLeft = getAppColor(R.color.white)
+            clTextRight = getAppColor(R.color.neutral_13)
+
+            eventLeftClick {
+                viewModel.updateClassRegister(true, waitingConfirmAdapter.type.value, classId)
+            }
+        }.show(childFragmentManager, BottomSheetConfirmDialog::class.java.simpleName)
     }
 
     private fun addAdapter() {
@@ -55,20 +95,19 @@ class ClassWaitingConfirmFragment : TutorMeFragment<ClassWaitingConfirmFragmentB
         binding.ccvClassWaitingConfirmHeader.setOnclickTabCategory {
             when (it.id) {
                 INDEX_FIRST_POSITION -> {
-                    viewModel.getClassInfoList(true, 0)
                     waitingConfirmAdapter.type = CLASS_STATUS.EMPTY_CLASS_STATUS
                 }
 
                 INDEX_SECOND_POSITION -> {
                     waitingConfirmAdapter.type = CLASS_STATUS.RECEIVED_STATUS
-                    viewModel.getClassInfoList(true, 1)
                 }
 
                 INDEX_THIRD_POSITION -> {
                     waitingConfirmAdapter.type = CLASS_STATUS.OUT_OF_DATE_STATUS
-                    viewModel.getClassInfoList(true, 3)
                 }
             }
+
+            viewModel.getClassInfoList(true, waitingConfirmAdapter.type.value)
         }
     }
 

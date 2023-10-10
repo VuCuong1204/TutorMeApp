@@ -5,4 +5,5 @@ interface IHomeListener {
     fun onClickEvaluateViewMore()
     fun onClickClassRegisterViewMore()
     fun onClickClassWaitingConfirm()
+    fun onClickConfirmRegisterClass(classId: String)
 }

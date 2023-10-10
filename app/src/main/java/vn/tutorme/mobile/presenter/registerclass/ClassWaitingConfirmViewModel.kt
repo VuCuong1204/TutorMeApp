@@ -63,14 +63,12 @@ class ClassWaitingConfirmViewModel @Inject constructor(
             val rv = UpdateStateClassRegisterUseCase.UpdateStateClassRegisterRV(
                 classId,
                 state,
-                AppPreferences.userInfo?.userId ?: ""
+                "Vucuonghihi"
             )
 
             updateStateClassRegisterUseCase.invoke(rv)
                 .onStart {
-                    if (!isReload) {
-                        _classInfoState.loading()
-                    }
+                    _classInfoState.loading()
                 }
                 .onException {
                     _classInfoState.failure(it)

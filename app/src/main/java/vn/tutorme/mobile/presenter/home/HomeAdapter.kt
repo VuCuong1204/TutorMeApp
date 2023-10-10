@@ -3,6 +3,7 @@ package vn.tutorme.mobile.presenter.home
 import android.text.style.ForegroundColorSpan
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.DiffUtil
 import androidx.viewpager2.widget.ViewPager2
 import com.example.syntheticapp.presenter.widget.collection.LAYOUT_MANAGER
 import vn.tutorme.mobile.AppPreferences
@@ -33,6 +34,7 @@ import vn.tutorme.mobile.domain.model.mission.MissionInfo
 import vn.tutorme.mobile.presenter.home.banner.BannerHomeAdapter
 import vn.tutorme.mobile.presenter.home.clazz.ClassStudentAdapter
 import vn.tutorme.mobile.presenter.home.clazz.ClassTeacherAdapter
+import vn.tutorme.mobile.presenter.home.clazz.IListener
 import vn.tutorme.mobile.presenter.home.lesson.LessonStudentAdapter
 import vn.tutorme.mobile.presenter.home.lesson.LessonUnderratedAdapter
 import vn.tutorme.mobile.presenter.home.schedule.ScheduleAdapter
@@ -52,7 +54,7 @@ class HomeAdapter : TutorMeAdapter() {
         const val FIRST_POSITION = 0
     }
 
-    var listener: IHomeListener? = null
+    var listenerHome: IHomeListener? = null
 
     override fun getItemViewType(position: Int): Int {
         val item = getDataListAtPosition(position)
@@ -110,6 +112,10 @@ class HomeAdapter : TutorMeAdapter() {
         }
     }
 
+    override fun getDiffUtil(oldList: List<Any>, newList: List<Any>): DiffUtil.Callback {
+        return HomeDiffCallback(oldList, newList)
+    }
+
     override fun onCreateViewHolder(viewType: Int, binding: ViewDataBinding): BaseVH<*>? {
         return when (viewType) {
             BANNER_TYPE -> BannerVH(binding as BannerHomeItemBinding)
@@ -152,19 +158,19 @@ class HomeAdapter : TutorMeAdapter() {
                 getItem {
                     when (it) {
                         TITLE_HOME_TYPE.SCHEDULE_TYPE, TITLE_HOME_TYPE.LEARN_TODAY_TYPE -> {
-                            listener?.onClickTeachViewMore()
+                            listenerHome?.onClickTeachViewMore()
                         }
 
                         TITLE_HOME_TYPE.LESSON_EVALUATE_TYPE -> {
-                            listener?.onClickEvaluateViewMore()
+                            listenerHome?.onClickEvaluateViewMore()
                         }
 
                         TITLE_HOME_TYPE.CLASS_REGISTER_CONFIRM_TYPE -> {
-                            listener?.onClickClassRegisterViewMore()
+                            listenerHome?.onClickClassRegisterViewMore()
                         }
 
                         TITLE_HOME_TYPE.CLASS_WAITING_CONFIRM -> {
-                            listener?.onClickClassWaitingConfirm()
+                            listenerHome?.onClickClassWaitingConfirm()
                         }
 
                         else -> {
@@ -311,7 +317,15 @@ class HomeAdapter : TutorMeAdapter() {
 
     inner class ClassTeacherVH(private val binding: LessonItemBinding) : BaseVH<List<ClassInfo>>(binding) {
 
-        private val classAdapter by lazy { ClassTeacherAdapter() }
+        private val classAdapter by lazy {
+            ClassTeacherAdapter().apply {
+                teacherListener = object : IListener {
+                    override fun onClick(classId: String) {
+                        listenerHome?.onClickConfirmRegisterClass(classId)
+                    }
+                }
+            }
+        }
 
         init {
             binding.cvLessonRoot.apply {
@@ -332,6 +346,24 @@ class HomeAdapter : TutorMeAdapter() {
                 listDataNew.removeAt(0)
             }
             binding.cvLessonRoot.submitList(listDataNew)
+        }
+
+        override fun onBind(data: List<ClassInfo>, payloads: List<Any>) {
+            super.onBind(data, payloads)
+
+            (payloads.firstOrNull() as? List<*>)?.forEach {
+                if (it == CLASS_TEACHER_PAYLOAD) {
+                    val params = binding.cvLessonRoot.layoutParams as ViewGroup.MarginLayoutParams
+                    params.setMargins(0, 0, 0, getAppDimension(R.dimen.fbase_dimen_96).toInt())
+                    binding.cvLessonRoot.layoutParams = params
+
+                    val listDataNew = data.toMutableList()
+                    if (listDataNew.first().classId == null) {
+                        listDataNew.removeAt(0)
+                    }
+                    binding.cvLessonRoot.submitList(listDataNew)
+                }
+            }
         }
     }
 

@@ -5,16 +5,20 @@ import androidx.databinding.ViewDataBinding
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.adapter.BaseVH
 import vn.tutorme.mobile.base.adapter.TutorMeAdapter
+import vn.tutorme.mobile.base.extension.Extension.STRING_DEFAULT
+import vn.tutorme.mobile.base.extension.getAppColor
 import vn.tutorme.mobile.base.extension.getAppDimension
 import vn.tutorme.mobile.base.extension.getAppDrawable
 import vn.tutorme.mobile.base.extension.getAppString
 import vn.tutorme.mobile.base.extension.gone
+import vn.tutorme.mobile.base.extension.setOnSafeClick
 import vn.tutorme.mobile.databinding.LessonHomeItemBinding
 import vn.tutorme.mobile.domain.model.clazz.CLASS_STATUS
 import vn.tutorme.mobile.domain.model.clazz.ClassInfo
 
 class ClassWaitingConfirmAdapter : TutorMeAdapter() {
 
+    var listener: IListener? = null
     var type = CLASS_STATUS.EMPTY_CLASS_STATUS
 
     override fun getLayoutResource(viewType: Int): Int = R.layout.lesson_home_item
@@ -32,6 +36,11 @@ class ClassWaitingConfirmAdapter : TutorMeAdapter() {
                 tvLessonHomeType.gone()
                 tvLessonHomeTimeSlot.gone()
                 tvLessonHomePencil.gone()
+                tvLessonHomeConfirm.setOnSafeClick {
+                    getItem {
+                        listener?.onConfirmClick(it.classId ?: STRING_DEFAULT)
+                    }
+                }
             }
         }
 
@@ -79,7 +88,8 @@ class ClassWaitingConfirmAdapter : TutorMeAdapter() {
 
                 if (type == CLASS_STATUS.RECEIVED_STATUS) {
                     tvLessonHomeConfirm.text = getAppString(R.string.reject)
-                    tvLessonHomeConfirm.background = getAppDrawable(R.drawable.ripple_bg_comp_corner_12)
+                    tvLessonHomeConfirm.background = getAppDrawable(R.drawable.ripple_bg_gray_corner_14)
+                    tvLessonHomeConfirm.setTextColor(getAppColor(R.color.white))
                 } else {
                     tvLessonHomeConfirm.text = getAppString(R.string.accept_class)
                     tvLessonHomeConfirm.background = getAppDrawable(R.drawable.ripple_bg_primary_corner_14)

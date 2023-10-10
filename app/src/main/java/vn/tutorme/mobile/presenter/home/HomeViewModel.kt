@@ -18,15 +18,18 @@ import vn.tutorme.mobile.base.extension.success
 import vn.tutorme.mobile.base.model.DataPage
 import vn.tutorme.mobile.domain.model.authen.ROLE_TYPE
 import vn.tutorme.mobile.domain.model.clazz.CLASS_STATUS
+import vn.tutorme.mobile.domain.model.clazz.ClassInfo
 import vn.tutorme.mobile.domain.model.lesson.LESSON_TYPE
 import vn.tutorme.mobile.domain.usecase.GetHomeStudentUseCase
 import vn.tutorme.mobile.domain.usecase.GetHomeTeacherUseCase
+import vn.tutorme.mobile.domain.usecase.UpdateStateClassRegisterUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getHomeTeacherUseCase: GetHomeTeacherUseCase,
-    private val getHomeStudentUseCase: GetHomeStudentUseCase
+    private val getHomeStudentUseCase: GetHomeStudentUseCase,
+    private val updateStateClassRegisterUseCase: UpdateStateClassRegisterUseCase
 ) : BaseViewModel() {
     private val _homeState = MutableStateFlow(FlowResult.newInstance<DataPage<Any>>())
     val homeState = _homeState.asStateFlow()
@@ -86,6 +89,33 @@ class HomeViewModel @Inject constructor(
                 }
                 .collect {
                     homeDataList.replaceDataList(it)
+                    _homeState.success(homeDataList)
+                }
+        }
+    }
+
+    fun updateClassRegister(classId: String) {
+        viewModelScope.launch {
+            val list = homeDataList.dataList.toMutableList()
+            val rv = UpdateStateClassRegisterUseCase.UpdateStateClassRegisterRV(
+                classId,
+                0,
+                "Vucuonghihi"
+            )
+
+            updateStateClassRegisterUseCase.invoke(rv)
+                .onStart {
+                    _homeState.loading()
+                }
+                .onException {
+                    _homeState.failure(it)
+                }
+                .collect {
+                    val dataNew = it.toMutableList()
+                    if (it.isEmpty()) dataNew.add(ClassInfo())
+                    list.removeLast()
+                    list.add(list.size, dataNew)
+                    homeDataList.replaceDataList(list)
                     _homeState.success(homeDataList)
                 }
         }

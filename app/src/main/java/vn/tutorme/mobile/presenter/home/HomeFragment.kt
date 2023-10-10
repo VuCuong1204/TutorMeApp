@@ -8,11 +8,15 @@ import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.common.IViewListener
 import vn.tutorme.mobile.base.common.anim.SlideAnimation
 import vn.tutorme.mobile.base.extension.coroutinesLaunch
+import vn.tutorme.mobile.base.extension.getAppColor
+import vn.tutorme.mobile.base.extension.getAppDrawable
+import vn.tutorme.mobile.base.extension.getAppString
 import vn.tutorme.mobile.base.extension.handleUiState
 import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.HomeFragmentBinding
 import vn.tutorme.mobile.domain.model.authen.ROLE_TYPE
 import vn.tutorme.mobile.presenter.classall.ClassAllFragment
+import vn.tutorme.mobile.presenter.dialog.BottomSheetConfirmDialog
 import vn.tutorme.mobile.presenter.lessonall.LessonAllFragment
 import vn.tutorme.mobile.presenter.lessonevaluate.LessonEvaluateFragment
 import vn.tutorme.mobile.presenter.registerclass.ClassWaitingConfirmFragment
@@ -84,7 +88,7 @@ class HomeFragment : TutorMeFragment<HomeFragmentBinding>(R.layout.home_fragment
     }
 
     private fun addListener() {
-        homeAdapter.listener = object : IHomeListener {
+        homeAdapter.listenerHome = object : IHomeListener {
             override fun onClickTeachViewMore() {
                 replaceFragment(fragment = LessonAllFragment(), screenAnim = SlideAnimation())
             }
@@ -100,10 +104,32 @@ class HomeFragment : TutorMeFragment<HomeFragmentBinding>(R.layout.home_fragment
             override fun onClickClassWaitingConfirm() {
                 replaceFragment(fragment = ClassWaitingConfirmFragment(), screenAnim = SlideAnimation())
             }
+
+            override fun onClickConfirmRegisterClass(classId: String) {
+                showDialogConfirm(classId)
+            }
         }
     }
 
+    private fun showDialogConfirm(classId: String) {
+        BottomSheetConfirmDialog().apply {
+            avatar = getAppDrawable(R.drawable.ic_class_empty)
+            title = getAppString(R.string.accept_class)
+            content = getAppString(R.string.accept_class_question)
+            textLeft = getAppString(R.string.confirm)
+            textRight = getAppString(R.string.cancel)
+            bgTextLeft = getAppDrawable(R.drawable.ripple_bg_primary_corner_14)
+            bgTextRight = getAppDrawable(R.drawable.ripple_bg_gray_corner_14_stroke_1)
+            clTextLeft = getAppColor(R.color.white)
+            clTextRight = getAppColor(R.color.neutral_13)
+
+            eventLeftClick {
+                viewModel.updateClassRegister(classId)
+            }
+        }.show(childFragmentManager, BottomSheetConfirmDialog::class.java.simpleName)
+    }
+
     private fun removeListener() {
-        homeAdapter.listener = null
+        homeAdapter.listenerHome = null
     }
 }

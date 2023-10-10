@@ -72,7 +72,7 @@ interface ILessonService : IApiService {
         @Query("size") size: Int?
     ): Call<LessonInfoResponse>
 
-    @GET("update/register/class")
+    @POST("update/register/class")
     fun updateStateClassRegister(
         @Query("classId") classId: String,
         @Query("state") state: Int,
