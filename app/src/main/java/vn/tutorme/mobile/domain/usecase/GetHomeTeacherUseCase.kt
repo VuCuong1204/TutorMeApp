@@ -100,7 +100,8 @@ class GetHomeTeacherUseCase @Inject constructor(
         dataList.add(TITLE_HOME_TYPE.CLASS_WAITING_CONFIRM)
         val classInfoList = lessonRepo.getClassInfoRegisterTeach(
             rv.currentTime,
-            rv.stateClass.value
+            rv.stateClass.value,
+            rv.teacherId
         ).toMutableList()
 
         if (classInfoList.isEmpty()) classInfoList.add(ClassInfo())

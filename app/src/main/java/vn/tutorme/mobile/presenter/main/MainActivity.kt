@@ -30,6 +30,7 @@ class MainActivity : TutorMeActivity<MainActivityBinding>(R.layout.main_activity
         setFragmentDefault()
         setBottomMainState()
         setOnMainClick()
+        setBottomBarType()
     }
 
     override fun getContainerId(): Int = R.id.flMainRoot

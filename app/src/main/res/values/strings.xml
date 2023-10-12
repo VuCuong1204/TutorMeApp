@@ -55,6 +55,8 @@
     <string name="number_evaluate_lesson">Đánh giá %s/%s</string>
     <string name="lesson_session">Buổi %s</string>
     <string name="accept_class">Nhận lớp</string>
+    <string name="accept_class_question">Bạn chắc chắn muốn nhận lớp?</string>
+    <string name="reject_class_question">Bạn chắc chắn muốn từ chối lớp?</string>
     <string name="mission_home_complete">Bạn đã hoàn thành xuất sắc nhiệm vụ tuần này!</string>
     <string name="mission_home_no_complete">Bạn ơi, hoàn thành các nhiệm vụ tuần này đi!</string>
     <string name="mission_home_empty">Tuần này bạn không có ca dạy nào!</string>
@@ -62,7 +64,9 @@
     <string name="lesson_home_teacher_rate_empty">Bạn chưa có buổi nào cần đánh giá!</string>
     <string name="class_home_teacher_empty">Hiện tại chưa có lớp đăng ký dạy!</string>
     <string name="lesson_home_student_empty">Tuần này bạn không có ca học nào!</string>
+    <string name="lesson_student_empty">Bạn không có ca học nào!</string>
     <string name="class_home_student_empty">Bạn chưa đăng ký lớp học nào!</string>
+    <string name="class_register_empty">Hiện tại chưa có lớp nào</string>
 
     <string name="view_all">Xem tất cả</string>
     <string name="view_detail">Xem chi tiết</string>
@@ -72,5 +76,23 @@
     <string name="class_title">Lớp %s</string>
     <string name="opening">Khai giảng %s</string>
     <string name="log_out">Logout</string>
+
+    <string name="calender_teach">Lịch dạy học</string>
+    <string name="class_register_student">Lớp học đăng ký</string>
+    <string name="calender_learn">Lịch học</string>
+    <string name="lesson_no_evaluate">Buổi học chưa đánh giá</string>
+    <string name="evaluate_now">Đánh giá ngay</string>
+    <string name="class_detail">Chi tiết lớp học</string>
+    <string name="opening_second">Khai giảng</string>
+    <string name="count_lesson">Số buổi %s</string>
+    <string name="number_phone_teacher">Số điện thoại %s</string>
+    <string name="name_teacher">Gia sư:</string>
+    <string name="class_waiting_confirm">Lớp chờ xác nhận</string>
+
+    <string name="waiting_confirm">Chờ xác nhận</string>
+    <string name="confirmed">Đã xác nhận</string>
+    <string name="out_of_date">Quá hạn</string>
+    <string name="reject">Từ chối</string>
+    <string name="confirm">Đồng ý</string>
 
 </resources>

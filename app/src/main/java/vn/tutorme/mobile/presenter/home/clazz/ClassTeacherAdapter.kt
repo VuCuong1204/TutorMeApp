@@ -6,10 +6,13 @@ import vn.tutorme.mobile.base.adapter.BaseVH
 import vn.tutorme.mobile.base.adapter.TutorMeAdapter
 import vn.tutorme.mobile.base.extension.getAppDrawable
 import vn.tutorme.mobile.base.extension.gone
+import vn.tutorme.mobile.base.extension.setOnSafeClick
 import vn.tutorme.mobile.databinding.LessonHomeItemBinding
 import vn.tutorme.mobile.domain.model.clazz.ClassInfo
 
 class ClassTeacherAdapter : TutorMeAdapter() {
+
+    var teacherListener: IListener? = null
 
     override fun getLayoutResource(viewType: Int): Int = R.layout.lesson_home_item
 
@@ -28,6 +31,11 @@ class ClassTeacherAdapter : TutorMeAdapter() {
                 tvLessonHomeLesson.gone()
                 tvLessonHomePencil.gone()
                 tvLessonHomeTimeSlot.gone()
+                tvLessonHomeConfirm.setOnSafeClick {
+                    getItem {
+                        it.classId?.let { classId -> teacherListener?.onClick(classId) }
+                    }
+                }
             }
         }
 

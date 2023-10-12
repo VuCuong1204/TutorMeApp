@@ -24,7 +24,9 @@ class LessonMainDTOConvertLessonInfo : IConverter<List<LessonInfoMainDTO>, List<
                 lessonSession = it.classInfo?.countLesson,
                 type = LESSON_TYPE.valueOfName(it.lessonInfo?.updateAssessment),
                 memberNumber = it.lessonInfo?.countAttendance,
-                countAssessment = it.lessonInfo?.countReview
+                countAssessment = it.lessonInfo?.countReview,
+                nameTeacher = it.userInfo?.fullName,
+                phoneNumberTeacher = it.userInfo?.phoneNumber
             ))
         }
 
