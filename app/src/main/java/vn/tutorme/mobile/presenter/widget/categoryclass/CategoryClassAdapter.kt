@@ -15,6 +15,10 @@ import vn.tutorme.mobile.domain.model.category.Category
 
 class CategoryClassAdapter : TutorMeAdapter() {
 
+    companion object {
+        const val ROW_CLASS_VIEW_TYPE = 11
+    }
+
     var listener: IListenerCategory? = null
 
     var builder: Builder? = null
@@ -25,7 +29,21 @@ class CategoryClassAdapter : TutorMeAdapter() {
         return CategoryClassVH(binding as CategoryClassItemBinding)
     }
 
-    override fun getColumnInRow(viewType: Int): Int = 3
+    override fun getColumnInRow(viewType: Int): Int {
+        return if (viewType == ROW_CLASS_VIEW_TYPE) {
+            3
+        } else {
+            2
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        val item = getDataListAtPosition(position) as? Category
+        when (item.) {
+
+        }
+        return super.getItemViewType(position)
+    }
 
     override fun getDiffUtil(oldList: List<Any>, newList: List<Any>): DiffUtil.Callback {
         return CategoryClassDiffCallback(oldList, newList)

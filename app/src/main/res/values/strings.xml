@@ -94,5 +94,9 @@
     <string name="out_of_date">Quá hạn</string>
     <string name="reject">Từ chối</string>
     <string name="confirm">Đồng ý</string>
+    <string name="class_regular">Lớp Regular</string>
+    <string name="class_demo">Lớp Demo</string>
+    <string name="class_happen">Đang và sắp diễn ra</string>
+    <string name="class_learn">Lịch sử lớp học</string>
 
 </resources>

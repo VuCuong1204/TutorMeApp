@@ -76,8 +76,10 @@ class CategoryClassView(
     fun addDataList(list: List<Category>) {
         dataList = list.toList()
         rvCategory.apply {
-            setBaseLayoutManager(LAYOUT_MANAGER.GRIDLAYOUT_VERTICAL, 3)
-            setBaseAdapter(categoryClassAdapter)
+            setBaseLayoutManager(LAYOUT_MANAGER.GRIDLAYOUT_VERTICAL, list.size)
+            setBaseAdapter(categoryClassAdapter.apply {
+                getColumnInRow(CategoryClassAdapter.ROW_CLASS_VIEW_TYPE)
+            })
             submitList(list)
         }
     }
