@@ -38,11 +38,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <vn.tutorme.mobile.presenter.widget.collection.CollectionView
+        <vn.tutorme.mobile.presenter.widget.categoryclass.CategoryClassView
             android:id="@+id/ccvClassManagerTabChild"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/fbase_dimen_16"
+            android:layout_marginHorizontal="@dimen/fbase_dimen_10"
             android:layout_marginTop="@dimen/fbase_dimen_16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

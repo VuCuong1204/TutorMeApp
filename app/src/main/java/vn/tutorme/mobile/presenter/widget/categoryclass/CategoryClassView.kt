@@ -77,9 +77,7 @@ class CategoryClassView(
         dataList = list.toList()
         rvCategory.apply {
             setBaseLayoutManager(LAYOUT_MANAGER.GRIDLAYOUT_VERTICAL, list.size)
-            setBaseAdapter(categoryClassAdapter.apply {
-                getColumnInRow(CategoryClassAdapter.ROW_CLASS_VIEW_TYPE)
-            })
+            setBaseAdapter(categoryClassAdapter)
             submitList(list)
         }
     }

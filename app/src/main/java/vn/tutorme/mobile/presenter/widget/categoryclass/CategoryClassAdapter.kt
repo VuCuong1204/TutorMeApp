@@ -1,11 +1,14 @@
 package vn.tutorme.mobile.presenter.widget.categoryclass
 
+import android.graphics.drawable.Drawable
+import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.adapter.BaseVH
 import vn.tutorme.mobile.base.adapter.TutorMeAdapter
 import vn.tutorme.mobile.base.extension.getAppColor
+import vn.tutorme.mobile.base.extension.getAppDimensionPixel
 import vn.tutorme.mobile.base.extension.gone
 import vn.tutorme.mobile.base.extension.setCustomFont
 import vn.tutorme.mobile.base.extension.setOnSafeClick
@@ -29,21 +32,7 @@ class CategoryClassAdapter : TutorMeAdapter() {
         return CategoryClassVH(binding as CategoryClassItemBinding)
     }
 
-    override fun getColumnInRow(viewType: Int): Int {
-        return if (viewType == ROW_CLASS_VIEW_TYPE) {
-            3
-        } else {
-            2
-        }
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        val item = getDataListAtPosition(position) as? Category
-        when (item.) {
-
-        }
-        return super.getItemViewType(position)
-    }
+    override fun getColumnInRow(viewType: Int): Int = dataList.size
 
     override fun getDiffUtil(oldList: List<Any>, newList: List<Any>): DiffUtil.Callback {
         return CategoryClassDiffCallback(oldList, newList)
@@ -62,7 +51,26 @@ class CategoryClassAdapter : TutorMeAdapter() {
         override fun onBind(data: Category) {
             super.onBind(data)
 
+            binding.clCategoryClassRoot.setPadding(
+                0,
+                getAppDimensionPixel(R.dimen.fbase_corner_12),
+                0,
+                getAppDimensionPixel(R.dimen.fbase_corner_12
+                )
+            )
+
             binding.tvCategoryClassTitle.text = data.name
+
+            val params = binding.clCategoryClassRoot.layoutParams as ViewGroup.MarginLayoutParams
+            params.setMargins(
+                builder?.marginStart ?: 0,
+                0,
+                builder?.marginEnd ?: 0,
+                0
+            )
+
+            binding.clCategoryClassRoot.layoutParams = params
+
             if (data.checked == true) {
 
                 if (builder?.fontSelected != null) {
@@ -71,9 +79,20 @@ class CategoryClassAdapter : TutorMeAdapter() {
                     binding.tvCategoryClassTitle.setCustomFont(fontPath = R.font.font_raleway_bold)
                 }
 
-                binding.vCategoryClass.show()
-                binding.tvCategoryClassTitle.setTextColor(getAppColor(R.color.primary))
+                if (builder?.bgSelected != null) {
+                    binding.clCategoryClassRoot.background = builder?.bgSelected
+                    binding.vCategoryClass.gone()
+                } else {
+                    binding.vCategoryClass.show()
+                }
 
+                binding.tvCategoryClassTitle.setTextColor(
+                    if (builder?.textColorSelected != null) {
+                        builder?.textColorSelected!!
+                    } else {
+                        getAppColor(R.color.primary)
+                    }
+                )
             } else {
                 if (builder?.fontHide != null) {
                     binding.tvCategoryClassTitle.setCustomFont(fontPath = builder?.fontHide!!)
@@ -82,7 +101,12 @@ class CategoryClassAdapter : TutorMeAdapter() {
                 }
 
                 builder?.textColorHide?.let { color ->
-                    binding.tvCategoryClassTitle.setTextColor(getAppColor(color))
+                    binding.tvCategoryClassTitle.setTextColor(color)
+                }
+
+                builder?.bgHide?.let {
+                    binding.clCategoryClassRoot.background = it
+                    binding.vCategoryClass.gone()
                 }
 
                 binding.vCategoryClass.gone()
@@ -95,6 +119,7 @@ class CategoryClassAdapter : TutorMeAdapter() {
             (payloads.firstOrNull() as? List<*>)?.forEach {
                 when (it) {
                     CHECKED_PAYLOAD -> {
+
                         if (data.checked == true) {
 
                             if (builder?.fontSelected != null) {
@@ -103,9 +128,25 @@ class CategoryClassAdapter : TutorMeAdapter() {
                                 binding.tvCategoryClassTitle.setCustomFont(fontPath = R.font.font_raleway_bold)
                             }
 
-                            binding.vCategoryClass.show()
-                            binding.tvCategoryClassTitle.setTextColor(getAppColor(R.color.primary))
+                            if (builder?.bgSelected != null) {
+                                binding.clCategoryClassRoot.background = builder?.bgSelected
+                                binding.vCategoryClass.gone()
+                            } else {
+                                binding.vCategoryClass.show()
+                            }
 
+                            builder?.textColorSelected?.let { color ->
+                                binding.tvCategoryClassTitle.setTextColor(color)
+                            }
+
+
+                            binding.tvCategoryClassTitle.setTextColor(
+                                if (builder?.textColorSelected != null) {
+                                    builder?.textColorSelected!!
+                                } else {
+                                    getAppColor(R.color.primary)
+                                }
+                            )
                         } else {
                             if (builder?.fontHide != null) {
                                 binding.tvCategoryClassTitle.setCustomFont(fontPath = builder?.fontHide!!)
@@ -114,7 +155,11 @@ class CategoryClassAdapter : TutorMeAdapter() {
                             }
 
                             builder?.textColorHide?.let { color ->
-                                binding.tvCategoryClassTitle.setTextColor(getAppColor(color))
+                                binding.tvCategoryClassTitle.setTextColor(color)
+                            }
+
+                            builder?.bgHide?.let {
+                                binding.clCategoryClassRoot.background = it
                             }
 
                             binding.vCategoryClass.gone()
@@ -128,8 +173,13 @@ class CategoryClassAdapter : TutorMeAdapter() {
 
     data class Builder(
         var textColorHide: Int? = null,
+        var textColorSelected: Int? = null,
         var fontHide: Int? = null,
         var fontSelected: Int? = null,
-        var widthView: Int? = null
+        var widthView: Int? = null,
+        var bgHide: Drawable? = null,
+        var bgSelected: Drawable? = null,
+        var marginStart: Int? = null,
+        var marginEnd: Int? = null
     )
 }
