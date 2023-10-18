@@ -49,6 +49,16 @@
     <string name="happening">Đang diễn ra</string>
     <string name="cancel">Hủy</string>
     <string name="took_place">Đã diễn ra</string>
+    <string name="read">Đã đọc</string>
+
+    <string name="second_ago">%s giây trước</string>
+    <string name="minute_ago">%s phút trước</string>
+    <string name="hour_ago">%s giờ trước</string>
+    <string name="day_ago">%s ngày trước</string>
+    <string name="week_ago">%s tuần trước</string>
+    <string name="month_ago">%s tháng trước</string>
+    <string name="year_ago">%s năm trước</string>
+    <string name="now_ago">vừa xong</string>
 
     <string name="number_member">Sĩ số %s</string>
     <string name="number_member_lesson">Sĩ số %s/%s</string>
@@ -67,6 +77,7 @@
     <string name="lesson_student_empty">Bạn không có ca học nào!</string>
     <string name="class_home_student_empty">Bạn chưa đăng ký lớp học nào!</string>
     <string name="class_register_empty">Hiện tại chưa có lớp nào</string>
+    <string name="notification_empty">Bạn chưa có thông báo nào!</string>
 
     <string name="view_all">Xem tất cả</string>
     <string name="view_detail">Xem chi tiết</string>

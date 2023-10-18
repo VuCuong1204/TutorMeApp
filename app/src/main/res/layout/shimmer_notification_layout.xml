@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/fbase_dimen_16"
+        android:paddingVertical="@dimen/fbase_dimen_14">
+
+        <View
+            android:id="@+id/vShimmerNotificationV1"
+            android:layout_width="@dimen/fbase_dimen_40"
+            android:layout_height="@dimen/fbase_dimen_40"
+            android:layout_centerVertical="true"
+            android:background="@drawable/shape_rectangle_shimmer_bg_corner_8" />
+
+        <View
+            android:id="@+id/vShimmerNotificationV2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fbase_dimen_20"
+            android:layout_marginStart="@dimen/fbase_dimen_20"
+            android:layout_toEndOf="@id/vShimmerNotificationV1"
+            android:background="@drawable/shape_rectangle_shimmer_bg_corner_8" />
+
+        <View
+            android:id="@+id/vShimmerNotificationV3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fbase_dimen_40"
+            android:layout_below="@id/vShimmerNotificationV2"
+            android:layout_marginStart="@dimen/fbase_dimen_20"
+            android:layout_marginTop="@dimen/fbase_dimen_10"
+            android:layout_toEndOf="@id/vShimmerNotificationV1"
+            android:background="@drawable/shape_rectangle_shimmer_bg_corner_8" />
+
+        <View
+            android:id="@+id/vShimmerNotificationV4"
+            android:layout_width="@dimen/fbase_dimen_100"
+            android:layout_height="@dimen/fbase_dimen_20"
+            android:layout_below="@id/vShimmerNotificationV3"
+            android:layout_marginStart="@dimen/fbase_dimen_20"
+            android:layout_marginTop="@dimen/fbase_dimen_10"
+            android:layout_toEndOf="@id/vShimmerNotificationV1"
+            android:background="@drawable/shape_rectangle_shimmer_bg_corner_8" />
+
+    </RelativeLayout>
+
+</layout>

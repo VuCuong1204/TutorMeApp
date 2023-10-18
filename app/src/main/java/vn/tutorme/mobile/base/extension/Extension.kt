@@ -212,6 +212,14 @@ fun getAppString(
     return context?.getString(stringId) ?: ""
 }
 
+fun getAppString(
+    @StringRes resId: Int,
+    vararg formatArgs: Any?,
+    context: Context? = getApplication()
+): String {
+    return context?.getString(resId, *formatArgs) ?: ""
+}
+
 fun <DATA> MutableStateFlow<FlowResult<DATA>>.data(): DATA? {
     return this.value.data
 }
