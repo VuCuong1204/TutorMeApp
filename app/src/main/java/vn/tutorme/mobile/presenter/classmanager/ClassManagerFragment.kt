@@ -1,21 +1,23 @@
 package vn.tutorme.mobile.presenter.classmanager
 
 import androidx.fragment.app.viewModels
+import com.example.syntheticapp.presenter.widget.collection.LAYOUT_MANAGER
 import dagger.hilt.android.AndroidEntryPoint
 import vn.tutorme.mobile.R
-import vn.tutorme.mobile.base.extension.getAppColor
-import vn.tutorme.mobile.base.extension.getAppDimensionPixel
-import vn.tutorme.mobile.base.extension.getAppDrawable
+import vn.tutorme.mobile.base.common.IViewListener
+import vn.tutorme.mobile.base.extension.coroutinesLaunch
+import vn.tutorme.mobile.base.extension.handleUiState
 import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.ClassManagerFragmentBinding
-import vn.tutorme.mobile.domain.model.category.getDataCategoryClassState
 import vn.tutorme.mobile.domain.model.category.getDataCategoryClassType
-import vn.tutorme.mobile.presenter.widget.categoryclass.CategoryClassAdapter
 
 @AndroidEntryPoint
 class ClassManagerFragment : TutorMeFragment<ClassManagerFragmentBinding>(R.layout.class_manager_fragment) {
 
     private val viewModel by viewModels<ClassManagerViewModel>()
+    private val classManagerAdapter by lazy {
+        ClassManagerAdapter()
+    }
 
     override fun onInitView() {
         super.onInitView()
@@ -23,11 +25,42 @@ class ClassManagerFragment : TutorMeFragment<ClassManagerFragmentBinding>(R.layo
         addAdapter()
     }
 
+    override fun onObserverViewModel() {
+        super.onObserverViewModel()
+        coroutinesLaunch(viewModel.classInfoState) {
+            handleUiState(it, object : IViewListener {
+
+                override fun onLoading() {
+                    binding.cvClassManagerContent.clearData()
+                    binding.cvClassManagerContent.showLoading()
+                }
+
+                override fun onFailure() {
+                    binding.cvClassManagerContent.hideLoading()
+                    binding.srlClassManagerReload.isRefreshing = false
+                }
+
+                override fun onSuccess() {
+                    binding.cvClassManagerContent.hideLoading()
+                    binding.cvClassManagerContent.submitList(it.data?.dataList)
+                    binding.srlClassManagerReload.isRefreshing = false
+                    viewModel.resetState()
+                }
+            }, canShowLoadMore = binding.cvClassManagerContent.getLoadMoreState())
+        }
+    }
+
     private fun addAdapter() {
         binding.ccvClassManagerTabParent.setOnclickTabCategory {
-            when (it.type) {
-                CLASS_TYPE.REGULAR_TYPE -> {}
-                CLASS_TYPE.DEMO_TYPE -> {}
+            viewModel.classType = if (it.id == 1) CLASS_TYPE.REGULAR_TYPE else CLASS_TYPE.DEMO_TYPE
+            viewModel.getClassList(true)
+        }
+
+        binding.cvClassManagerContent.apply {
+            setBaseLayoutManager(LAYOUT_MANAGER.LINEARLAYOUT_VERTICAL)
+            setBaseAdapter(classManagerAdapter)
+            setLoadMoreListener {
+                viewModel.getClassList(isLoadMore = true)
             }
         }
     }
@@ -35,17 +68,10 @@ class ClassManagerFragment : TutorMeFragment<ClassManagerFragmentBinding>(R.layo
     private fun addHeader() {
         binding.srlClassManagerReload.setColorSchemeResources(R.color.primary)
         binding.ccvClassManagerTabParent.addDataList(getDataCategoryClassType())
-        binding.ccvClassManagerTabChild.apply {
-            addDataList(getDataCategoryClassState())
-            setBuilderItem(
-                CategoryClassAdapter.Builder(
-                    textColorSelected = getAppColor(R.color.white),
-                    bgSelected = getAppDrawable(R.drawable.ripple_bg_primary_corner_10),
-                    bgHide = getAppDrawable(R.drawable.ripple_bg_back2_corner_10),
-                    marginStart = getAppDimensionPixel(R.dimen.fbase_corner_6),
-                    marginEnd = getAppDimensionPixel(R.dimen.fbase_corner_6)
-                )
-            )
+
+        binding.srlClassManagerReload.setOnRefreshListener {
+            binding.cvClassManagerContent.removeEmpty()
+            viewModel.getClassList(isReload = true, isLoadMore = true)
         }
     }
 }

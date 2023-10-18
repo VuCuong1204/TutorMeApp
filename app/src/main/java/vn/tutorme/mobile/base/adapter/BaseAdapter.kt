@@ -105,7 +105,7 @@ abstract class BaseAdapter : RecyclerView.Adapter<BaseVH<Any>>() {
 
             LOAD_MORE_VIEW_TYPE -> {
                 layoutId = if (getLayoutLoadMore().layoutResource != null) {
-                    getLayoutEmpty().layoutResource!!
+                    getLayoutLoadMore().layoutResource!!
                 } else {
                     getLayoutLoadMoreDefault()
                 }
@@ -164,6 +164,21 @@ abstract class BaseAdapter : RecyclerView.Adapter<BaseVH<Any>>() {
         notifyItemInserted(dataList.size)
     }
 
+    fun removeEmpty() {
+        if (dataList.isNotEmpty()) {
+            val lastIndex = dataList.lastIndex
+            if (lastIndex >= 0) {
+                if (dataList[lastIndex] is Empty) {
+                    dataList.removeLast()
+                    notifyItemRemoved(lastIndex)
+                }
+            }
+        }
+    }
+
+    fun clearData() {
+        dataList.clear()
+    }
 
     fun removeLoadMore() {
         if (dataList.isNotEmpty()) {

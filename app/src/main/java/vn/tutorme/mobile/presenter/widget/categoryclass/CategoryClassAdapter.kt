@@ -41,7 +41,7 @@ class CategoryClassAdapter : TutorMeAdapter() {
     inner class CategoryClassVH(val binding: CategoryClassItemBinding) : BaseVH<Category>(binding) {
 
         init {
-            binding.root.setOnSafeClick {
+            binding.clCategoryClassRoot.setOnSafeClick {
                 getItem { item ->
                     listener?.onItemClick(absoluteAdapterPosition, item)
                 }

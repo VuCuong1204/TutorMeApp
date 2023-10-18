@@ -14,4 +14,5 @@ interface ILessonRepo {
     fun getCourseList(currentTime: Long, page: Int?, size: Int?): List<CourseInfo>
     fun getLessonListInClass(classId: String, page: Int?, size: Int?): List<LessonInfo>
     fun updateStateClassRegister(classId: String, state: Int, teacherId: String): List<ClassInfo>
+    fun getClassTeacherList(id: String, type: Int, page: Int?, size: Int?): List<ClassInfo>
 }

@@ -2,7 +2,7 @@ package vn.tutorme.mobile.base.model
 
 class DataPage<DATA> {
     var page = 0
-    var limitPage = 20
+    var limitPage = 10
     var dataList: MutableList<DATA> = mutableListOf()
 
     companion object {
@@ -39,5 +39,9 @@ class DataPage<DATA> {
     fun clearDataPage() {
         dataList.clear()
         page = 0
+    }
+
+    fun hasLoadMore(): Boolean {
+        return dataList.size - limitPage * (page + 1) >= 0
     }
 }

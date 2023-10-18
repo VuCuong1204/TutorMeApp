@@ -1,4 +1,4 @@
-package vn.tutorme.mobile.presenter.classall
+package vn.tutorme.mobile.presenter.classmanager
 
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
@@ -11,17 +11,21 @@ import vn.tutorme.mobile.base.extension.gone
 import vn.tutorme.mobile.databinding.LessonHomeItemBinding
 import vn.tutorme.mobile.domain.model.clazz.ClassInfo
 
-class ClassAllAdapter : TutorMeAdapter() {
+class ClassManagerAdapter : TutorMeAdapter() {
 
     override fun getLayoutResource(viewType: Int): Int = R.layout.lesson_home_item
 
     override fun onCreateViewHolder(viewType: Int, binding: ViewDataBinding): BaseVH<*>? {
-        return ClassAllVH(binding as LessonHomeItemBinding)
+        return ClassManagerVH(binding as LessonHomeItemBinding)
     }
+
+    override fun getLayoutLoading(): Int = R.layout.class_manager_loading_item
 
     override fun getLayoutEmpty(): Empty = Empty(layoutResource = R.layout.class_all_empy)
 
-    inner class ClassAllVH(private val binding: LessonHomeItemBinding) : BaseVH<ClassInfo>(binding) {
+    override fun getLayoutLoadMore(): LoadMore = LoadMore(layoutResource = R.layout.load_more_item)
+
+    inner class ClassManagerVH(private val binding: LessonHomeItemBinding) : BaseVH<ClassInfo>(binding) {
 
         init {
             with(binding) {
@@ -54,9 +58,9 @@ class ClassAllAdapter : TutorMeAdapter() {
                     dataList.lastIndex -> {
                         params.setMargins(
                             0,
-                            getAppDimension(R.dimen.fbase_dimen_10).toInt(),
+                            getAppDimension(R.dimen.fbase_dimen_4).toInt(),
                             0,
-                            getAppDimension(R.dimen.fbase_dimen_10).toInt()
+                            getAppDimension(R.dimen.fbase_dimen_96).toInt()
                         )
                     }
 
@@ -72,7 +76,7 @@ class ClassAllAdapter : TutorMeAdapter() {
                     else -> {
                         params.setMargins(
                             0,
-                            getAppDimension(R.dimen.fbase_dimen_10).toInt(),
+                            getAppDimension(R.dimen.fbase_dimen_4).toInt(),
                             0,
                             0
                         )

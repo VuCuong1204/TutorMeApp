@@ -38,16 +38,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <vn.tutorme.mobile.presenter.widget.categoryclass.CategoryClassView
-            android:id="@+id/ccvClassManagerTabChild"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/fbase_dimen_10"
-            android:layout_marginTop="@dimen/fbase_dimen_16"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ccvClassManagerTabParent" />
-
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/srlClassManagerReload"
             android:layout_width="0dp"
@@ -57,10 +47,10 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ccvClassManagerTabChild">
+            app:layout_constraintTop_toBottomOf="@id/ccvClassManagerTabParent">
 
             <vn.tutorme.mobile.presenter.widget.collection.CollectionView
-                android:id="@+id/ccvClassManagerContent"
+                android:id="@+id/cvClassManagerContent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
