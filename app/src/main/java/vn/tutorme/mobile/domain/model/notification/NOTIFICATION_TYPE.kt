@@ -6,7 +6,7 @@ enum class NOTIFICATION_TYPE(val value: Int) {
     SYSTEM_TYPE(2);
 
     companion object {
-        fun valueOfName(type: Int): NOTIFICATION_TYPE {
+        fun valueOfName(type: Int?): NOTIFICATION_TYPE {
             val item = NOTIFICATION_TYPE.values().find {
                 it.value == type
             }

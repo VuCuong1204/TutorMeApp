@@ -6,7 +6,7 @@ import vn.tutorme.mobile.utils.TimeUtils
 
 @Parcelize
 data class NotificationInfo(
-    var id: String? = null,
+    var id: Int? = null,
     var title: String? = null,
     var content: String? = null,
     var notifyState: NOTIFICATION_STATE? = null,
@@ -28,7 +28,7 @@ fun mockNotificationList(size: Int = 20): List<NotificationInfo> {
     val list = mutableListOf<NotificationInfo>()
     repeat(size) {
         list.add(NotificationInfo(
-            id = "$it",
+            id = it,
             title = "Lớp học sẽ diễn ra trong 20 phút!",
             content = "Con chuẩn bị có một lớp học vào lúc 18h, bố mẹ nhắc nhở con bật mic, bật lap để tránh vấn đề về...",
             notifyState = stateList.random(),

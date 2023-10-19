@@ -5,7 +5,9 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import vn.tutorme.mobile.R
+import vn.tutorme.mobile.base.common.CountNotifyEvent
 import vn.tutorme.mobile.base.common.anim.SlideAnimation
+import vn.tutorme.mobile.base.common.eventbus.EventBusManager
 import vn.tutorme.mobile.base.common.view.SpannableBuilder
 import vn.tutorme.mobile.base.extension.getAppColor
 import vn.tutorme.mobile.base.extension.getAppString
@@ -37,6 +39,7 @@ class SplashFragment : TutorMeFragment<SplashFragmentBinding>(R.layout.splash_fr
 
     private fun checkLogin() {
         if (isLogin()) {
+            EventBusManager.instance?.postPending(CountNotifyEvent())
             replaceFragment(
                 fragment = HomeFragment(),
                 screenAnim = SlideAnimation()

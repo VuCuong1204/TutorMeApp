@@ -34,7 +34,7 @@ class ClassManagerViewModel @Inject constructor(
         getClassList()
     }
 
-    fun getClassList(isReload: Boolean = false, isLoadMore: Boolean = false) {
+    fun getClassList(isReload: Boolean = false, isShowLoading: Boolean = true) {
         viewModelScope.launch {
             classInfoDataPage = DataPage.newInstance(_classInfoState.value.data, isReload)
             val rv = GetClassTeacherListUseCase.GetClassTeacherListRV("vucuonghihi").apply {
@@ -45,7 +45,7 @@ class ClassManagerViewModel @Inject constructor(
 
             getClassTeacherListUseCase.invoke(rv)
                 .onStart {
-                    if (!isLoadMore) {
+                    if (isShowLoading) {
                         _classInfoState.loading()
                     }
                 }

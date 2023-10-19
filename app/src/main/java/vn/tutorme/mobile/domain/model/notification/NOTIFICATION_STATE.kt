@@ -5,7 +5,7 @@ enum class NOTIFICATION_STATE(val value: Int) {
     READ_STATE(1);
 
     companion object {
-        fun valueOfName(type: Int): NOTIFICATION_STATE {
+        fun valueOfName(type: Int?): NOTIFICATION_STATE {
             val item = NOTIFICATION_STATE.values().find {
                 it.value == type
             }

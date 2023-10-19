@@ -28,7 +28,7 @@ class BottomSheetConfirmDialog : TutorMeDialog<BottomSheetConfirmDialogBinding>(
         isFullWidth = true
         isFullHeight = true
         isDismissByTouchOutSide = false
-        isDismissByOnBackPressed = false
+        isDismissByOnBackPressed = true
     }
 
     override fun onInitView() {

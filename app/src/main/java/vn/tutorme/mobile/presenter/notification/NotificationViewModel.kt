@@ -16,6 +16,7 @@ import vn.tutorme.mobile.base.extension.onException
 import vn.tutorme.mobile.base.extension.reset
 import vn.tutorme.mobile.base.extension.success
 import vn.tutorme.mobile.base.model.DataPage
+import vn.tutorme.mobile.domain.model.notification.NOTIFICATION_STATE
 import vn.tutorme.mobile.domain.model.notification.NotificationInfo
 import vn.tutorme.mobile.domain.usecase.GetNotificationInfoList
 import javax.inject.Inject
@@ -61,6 +62,59 @@ class NotificationViewModel @Inject constructor(
                     notificationDataPage.addAllDataList(newList)
                     _notificationState.success(notificationDataPage)
                 }
+        }
+    }
+
+    fun addNotification() {
+        viewModelScope.launch {}
+    }
+
+    fun removeNotification(id: Int) {
+        viewModelScope.launch {
+            val list = notificationDataPage.dataList.toMutableList()
+            val oldIndex = list.indexOfFirst {
+                it.id == id
+            }
+
+            if (oldIndex in 0..list.lastIndex) {
+                list.removeAt(oldIndex)
+            }
+
+            notificationDataPage.replaceDataList(list)
+            _notificationState.success(notificationDataPage)
+        }
+    }
+
+    fun changeReadState(id: Int) {
+        viewModelScope.launch {
+            val list = notificationDataPage.dataList.toMutableList()
+            val oldIndex = list.indexOfFirst {
+                it.id == id
+            }
+
+            if (oldIndex in 0..list.lastIndex) {
+                val newItem = list[oldIndex].copy(
+                    notifyState = NOTIFICATION_STATE.READ_STATE
+                )
+
+                list[oldIndex] = newItem
+            }
+
+            notificationDataPage.replaceDataList(list)
+            _notificationState.success(notificationDataPage)
+        }
+    }
+
+    fun readAllNotification() {
+        viewModelScope.launch {
+            val list = notificationDataPage.dataList.toMutableList()
+
+            list.map {
+                it.notifyState = NOTIFICATION_STATE.READ_STATE
+            }
+
+            notificationDataPage.replaceDataList(list)
+            _notificationState.success(notificationDataPage)
         }
     }
 

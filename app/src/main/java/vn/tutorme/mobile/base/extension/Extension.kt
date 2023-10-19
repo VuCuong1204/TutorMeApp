@@ -1,5 +1,6 @@
 package vn.tutorme.mobile.base.extension
 
+import android.app.Activity
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.Drawable
@@ -17,6 +18,7 @@ import androidx.annotation.ColorRes
 import androidx.annotation.DimenRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.ViewCompat
@@ -339,6 +341,20 @@ fun <T> TutorMeFragment<*>.handleUiState(
 }
 
 fun <DATA> Fragment.coroutinesLaunch(
+    flow: Flow<FlowResult<DATA>>,
+    state: Lifecycle.State = Lifecycle.State.STARTED,
+    launch: suspend (flowResult: FlowResult<DATA>) -> Unit
+) {
+    lifecycleScope.launch {
+        repeatOnLifecycle(state = state) {
+            flow.collect {
+                launch.invoke(it)
+            }
+        }
+    }
+}
+
+fun <DATA> AppCompatActivity.coroutinesLaunch(
     flow: Flow<FlowResult<DATA>>,
     state: Lifecycle.State = Lifecycle.State.STARTED,
     launch: suspend (flowResult: FlowResult<DATA>) -> Unit

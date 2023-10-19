@@ -5,10 +5,8 @@ import android.os.Parcelable
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
-import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.extension.gone
-import vn.tutorme.mobile.base.extension.scaleAnimation
 import vn.tutorme.mobile.base.extension.setOnSafeClick
 import vn.tutorme.mobile.base.extension.show
 import vn.tutorme.mobile.domain.model.authen.ROLE_TYPE
@@ -62,6 +60,7 @@ class BottomMainView(
         btvHome.setOnSafeClick {
             if (currentState != SELECTED_STATE.HOME) {
                 changeSelectedState(SELECTED_STATE.HOME)
+                btvNotify.showNotifyCountState(false)
                 onClick?.invoke(SELECTED_STATE.HOME)
             }
         }
@@ -69,6 +68,7 @@ class BottomMainView(
         btvClass.setOnSafeClick {
             if (currentState != SELECTED_STATE.CLASS) {
                 changeSelectedState(SELECTED_STATE.CLASS)
+                btvNotify.showNotifyCountState(false)
                 onClick?.invoke(SELECTED_STATE.CLASS)
             }
         }
@@ -76,6 +76,7 @@ class BottomMainView(
         btvNotify.setOnSafeClick {
             if (currentState != SELECTED_STATE.NOTIFICATION) {
                 changeSelectedState(SELECTED_STATE.NOTIFICATION)
+                btvNotify.showNotifyCountState(true)
                 onClick?.invoke(SELECTED_STATE.NOTIFICATION)
             }
         }
@@ -83,6 +84,7 @@ class BottomMainView(
         btvProfile.setOnSafeClick {
             if (currentState != SELECTED_STATE.PROFILE) {
                 changeSelectedState(SELECTED_STATE.PROFILE)
+                btvNotify.showNotifyCountState(false)
                 onClick?.invoke(SELECTED_STATE.PROFILE)
             }
         }
@@ -116,6 +118,15 @@ class BottomMainView(
 
         this@BottomMainView.currentState = state
         setDefaultState(state)
+    }
+
+    fun setCountNotification(count: Int) {
+        btvNotify.setCountNotification(count)
+        if (currentState == SELECTED_STATE.NOTIFICATION) {
+            btvNotify.showNotifyCountState(true)
+        } else {
+            btvNotify.showNotifyCountState(false)
+        }
     }
 
     fun setBottomBarType(roleType: ROLE_TYPE) {

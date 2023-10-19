@@ -14,8 +14,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.common.IViewListener
+import vn.tutorme.mobile.base.common.CountNotifyEvent
 import vn.tutorme.mobile.base.common.anim.SLIDE_TYPE
 import vn.tutorme.mobile.base.common.anim.SlideAnimation
+import vn.tutorme.mobile.base.common.eventbus.EventBusManager
 import vn.tutorme.mobile.base.common.sociallogin.FacebookLogin
 import vn.tutorme.mobile.base.common.sociallogin.GoogleLogin
 import vn.tutorme.mobile.base.common.sociallogin.ISocialTokenListener
@@ -62,6 +64,7 @@ class LoginFragment : TutorMeFragment<LoginFragmentBinding>(R.layout.login_fragm
                             fragment = HomeFragment(),
                             screenAnim = SlideAnimation()
                         )
+                        EventBusManager.instance?.postPending(CountNotifyEvent())
                         mainActivity.setBottomBarType()
                         viewModel.resetState()
                     }

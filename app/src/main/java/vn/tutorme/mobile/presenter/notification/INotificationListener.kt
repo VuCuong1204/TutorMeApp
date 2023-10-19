@@ -4,5 +4,5 @@ import vn.tutorme.mobile.domain.model.notification.NotificationInfo
 
 interface INotificationListener {
     fun onReadClick(item: NotificationInfo)
-    fun onDeleteClick(id: String)
+    fun onDeleteClick(id: Int)
 }

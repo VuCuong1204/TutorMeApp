@@ -53,14 +53,14 @@ class ClassManagerFragment : TutorMeFragment<ClassManagerFragmentBinding>(R.layo
     private fun addAdapter() {
         binding.ccvClassManagerTabParent.setOnclickTabCategory {
             viewModel.classType = if (it.id == 1) CLASS_TYPE.REGULAR_TYPE else CLASS_TYPE.DEMO_TYPE
-            viewModel.getClassList(true)
+            viewModel.getClassList(isReload = true, isShowLoading = true)
         }
 
         binding.cvClassManagerContent.apply {
             setBaseLayoutManager(LAYOUT_MANAGER.LINEARLAYOUT_VERTICAL)
             setBaseAdapter(classManagerAdapter)
             setLoadMoreListener {
-                viewModel.getClassList(isLoadMore = true)
+                viewModel.getClassList(isReload = false, isShowLoading = false)
             }
         }
     }
@@ -71,7 +71,7 @@ class ClassManagerFragment : TutorMeFragment<ClassManagerFragmentBinding>(R.layo
 
         binding.srlClassManagerReload.setOnRefreshListener {
             binding.cvClassManagerContent.removeEmpty()
-            viewModel.getClassList(isReload = true, isLoadMore = true)
+            viewModel.getClassList(isReload = true, isShowLoading = false)
         }
     }
 }

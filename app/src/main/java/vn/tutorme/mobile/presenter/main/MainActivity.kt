@@ -6,9 +6,17 @@ import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.R
+import vn.tutorme.mobile.base.common.CountNotifyEvent
+import vn.tutorme.mobile.base.common.IViewListener
+import vn.tutorme.mobile.base.common.eventbus.EventBusManager
+import vn.tutorme.mobile.base.common.eventbus.IEvent
+import vn.tutorme.mobile.base.extension.coroutinesLaunch
 import vn.tutorme.mobile.base.extension.gone
+import vn.tutorme.mobile.base.extension.handleUiState
 import vn.tutorme.mobile.base.extension.show
 import vn.tutorme.mobile.base.screen.TutorMeActivity
 import vn.tutorme.mobile.databinding.MainActivityBinding
@@ -37,6 +45,38 @@ class MainActivity : TutorMeActivity<MainActivityBinding>(R.layout.main_activity
 
     override fun showLoading() {
         binding.icMainLoading.show()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        EventBusManager.instance?.register(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        EventBusManager.instance?.unregister(this)
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    override fun onEvent(event: IEvent) {
+        super.onEvent(event)
+        when (event) {
+            is CountNotifyEvent -> {
+                viewModel.getNotificationInfoList()
+                EventBusManager.instance?.removeSticky(event)
+            }
+        }
+    }
+
+    override fun onObserverViewModel() {
+        super.onObserverViewModel()
+        coroutinesLaunch(viewModel.notificationState) {
+            handleUiState(it, object : IViewListener {
+                override fun onSuccess() {
+                    it.data?.let { count -> binding.bmvMainTab.setCountNotification(count) }
+                }
+            })
+        }
     }
 
     override fun hideLoading() {

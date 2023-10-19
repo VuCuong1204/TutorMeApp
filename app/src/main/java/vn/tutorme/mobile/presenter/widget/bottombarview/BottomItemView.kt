@@ -27,6 +27,8 @@ class BottomItemView(
     private lateinit var ivBackground: ImageView
     private lateinit var ivAvatarInactive: ImageView
     private lateinit var ivAvatarActive: ImageView
+    private lateinit var tvNotificationActive: TextView
+    private lateinit var tvNotificationInactive: TextView
 
     private var textContent: String? = null
     private var textColorContent: Int? = null
@@ -40,6 +42,8 @@ class BottomItemView(
     private var iconInactiveShow: Boolean? = null
     private var iconInactive: Drawable? = null
 
+    private var countNotification = 0
+
     init {
         LayoutInflater.from(context).inflate(R.layout.bottom_item_view, this, true)
         initView(attrs)
@@ -52,6 +56,8 @@ class BottomItemView(
         ivBackground = findViewById(R.id.ivBottomItemBackground)
         ivAvatarInactive = findViewById(R.id.ivBottomItemAvatarInactive)
         ivAvatarActive = findViewById(R.id.ivBottomItemAvatarActive)
+        tvNotificationActive = findViewById(R.id.tvBottomItemCountActive)
+        tvNotificationInactive = findViewById(R.id.tvBottomItemCountInactive)
 
         textContent?.let { tvTitle.text = it }
         textColorContent?.let { tvTitle.setTextColor(it) }
@@ -104,6 +110,41 @@ class BottomItemView(
 
     fun setImageBackgroundActive(value: Int) {
         ivBackground.setImageResource(value)
+    }
+
+    fun setCountNotification(count: Int) {
+        if (count in 1..99) {
+            tvNotificationActive.text = "$count"
+            tvNotificationInactive.text = "$count"
+        } else if (count > 99) {
+            tvNotificationActive.text = "$count +"
+            tvNotificationInactive.text = "$count +"
+        } else {
+            tvNotificationActive.hide()
+            tvNotificationInactive.hide()
+        }
+
+        this.countNotification = count
+    }
+
+    fun showNotifyCountState(state: Boolean) {
+        if (countNotification <= 0) {
+            tvNotificationActive.gone()
+            tvNotificationInactive.gone()
+            ivAvatarInactive.setImageResource(R.drawable.ic_notify_inactive)
+            ivAvatarActive.setImageResource(R.drawable.ic_notify_active)
+        } else {
+            if (state) {
+                tvNotificationActive.show()
+                ivAvatarActive.setImageResource(R.drawable.ic_notification_active_count)
+                ivAvatarInactive.gone()
+                tvNotificationInactive.gone()
+            } else {
+                tvNotificationActive.gone()
+                tvNotificationInactive.show()
+                ivAvatarInactive.setImageResource(R.drawable.ic_notification_inactive_count)
+            }
+        }
     }
 
     fun setOnClickState(state: Boolean) {
