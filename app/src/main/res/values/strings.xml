@@ -15,6 +15,8 @@
     <string name="fill_in_here">Điền vào đây</string>
     <string name="login">Đăng nhập</string>
     <string name="login_failed">Đăng nhập thất bại</string>
+    <string name="read_all">Bạn có muốn đọc tất cả không?</string>
+    <string name="delete_notify">Bạn có chắc chắn muốn xóa thông báo?</string>
     <string name="login_failed_content">Tên đăng nhập hoặc mật khẩu không hợp lệ.\nVui lòng thử lại hoặc ấn Quên mật khẩu!</string>
     <string name="welcome">Chào mừng bạn đến với Tutor Me</string>
     <string name="remember_password">Nhớ mật khẩu</string>
@@ -49,6 +51,16 @@
     <string name="happening">Đang diễn ra</string>
     <string name="cancel">Hủy</string>
     <string name="took_place">Đã diễn ra</string>
+    <string name="read">Đã đọc</string>
+
+    <string name="second_ago">%s giây trước</string>
+    <string name="minute_ago">%s phút trước</string>
+    <string name="hour_ago">%s giờ trước</string>
+    <string name="day_ago">%s ngày trước</string>
+    <string name="week_ago">%s tuần trước</string>
+    <string name="month_ago">%s tháng trước</string>
+    <string name="year_ago">%s năm trước</string>
+    <string name="now_ago">vừa xong</string>
 
     <string name="number_member">Sĩ số %s</string>
     <string name="number_member_lesson">Sĩ số %s/%s</string>
@@ -67,6 +79,7 @@
     <string name="lesson_student_empty">Bạn không có ca học nào!</string>
     <string name="class_home_student_empty">Bạn chưa đăng ký lớp học nào!</string>
     <string name="class_register_empty">Hiện tại chưa có lớp nào</string>
+    <string name="notification_empty">Bạn chưa có thông báo nào!</string>
 
     <string name="view_all">Xem tất cả</string>
     <string name="view_detail">Xem chi tiết</string>
@@ -83,6 +96,7 @@
     <string name="lesson_no_evaluate">Buổi học chưa đánh giá</string>
     <string name="evaluate_now">Đánh giá ngay</string>
     <string name="class_detail">Chi tiết lớp học</string>
+    <string name="notify_detail">Chi tiết thông báo</string>
     <string name="opening_second">Khai giảng</string>
     <string name="count_lesson">Số buổi %s</string>
     <string name="number_phone_teacher">Số điện thoại %s</string>
@@ -91,8 +105,13 @@
 
     <string name="waiting_confirm">Chờ xác nhận</string>
     <string name="confirmed">Đã xác nhận</string>
+    <string name="confirm_second">xác nhận</string>
     <string name="out_of_date">Quá hạn</string>
     <string name="reject">Từ chối</string>
     <string name="confirm">Đồng ý</string>
+    <string name="class_regular">Lớp Regular</string>
+    <string name="class_demo">Lớp Demo</string>
+    <string name="class_happen">Đang và sắp diễn ra</string>
+    <string name="class_learn">Lịch sử lớp học</string>
 
 </resources>

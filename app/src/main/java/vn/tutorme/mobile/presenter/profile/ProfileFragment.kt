@@ -18,8 +18,6 @@ import vn.tutorme.mobile.presenter.main.MainViewModel
 
 class ProfileFragment : TutorMeFragment<ProfileFragmentBinding>(R.layout.profile_fragment) {
 
-    private val mainViewModel by activityViewModels<MainViewModel>()
-
     override fun onInitView() {
         super.onInitView()
 

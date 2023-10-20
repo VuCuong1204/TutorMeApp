@@ -48,7 +48,7 @@
         android:layout_weight="1"
         app:background_parent="@color/white"
         app:icon_active="@drawable/ic_notify_active"
-        app:icon_inactive="@drawable/ic_notify_inactive"
+        app:icon_inactive="@drawable/ic_notification_inactive_count"
         app:layout_constraintEnd_toStartOf="@id/btvBottomMainProfile"
         app:layout_constraintStart_toEndOf="@id/btvBottomMainClass"
         app:layout_constraintTop_toTopOf="parent"

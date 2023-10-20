@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/neutral_16">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/fbase_dimen_160"
+            android:background="@drawable/bg_home_blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivNotificationDetailBack"
+            android:layout_width="@dimen/fbase_dimen_36"
+            android:layout_height="@dimen/fbase_dimen_36"
+            android:layout_marginVertical="@dimen/fbase_dimen_20"
+            android:layout_marginStart="@dimen/fbase_dimen_16"
+            android:background="@drawable/ripple_bg_comp_corner_12"
+            android:padding="@dimen/fbase_dimen_10"
+            android:src="@drawable/ic_arrow_long_left"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvNotificationDetailHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/font_raleway_bold"
+            android:text="@string/notify_detail"
+            android:textColor="@color/back2"
+            android:textSize="@dimen/fbase_text_size_18"
+            app:layout_constraintBottom_toBottomOf="@id/ivNotificationDetailBack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ivNotificationDetailBack"
+            app:layout_constraintVertical_bias="0.6" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="@dimen/fbase_dimen_16"
+            android:layout_marginTop="@dimen/fbase_dimen_26"
+            android:background="@drawable/shape_bg_white_corner_top_16"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/fbase_dimen_16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvNotificationDetailHeader">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivNotificationDetailAvatar"
+                android:layout_width="@dimen/fbase_dimen_60"
+                android:layout_height="@dimen/fbase_dimen_60"
+                android:layout_marginTop="@dimen/fbase_dimen_20"
+                android:background="@drawable/shape_bg_comp2_circle"
+                android:padding="@dimen/fbase_dimen_10"
+                android:src="@drawable/ic_clock" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNotificationDetailTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fbase_dimen_10"
+                android:fontFamily="@font/font_raleway_semibold"
+                android:gravity="center_horizontal"
+                android:textColor="@color/neutral_14"
+                android:textSize="@dimen/fbase_text_size_12"
+                tools:text="2 giờ trước" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNotificationDetailTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fbase_dimen_14"
+                android:fontFamily="@font/font_raleway_bold"
+                android:gravity="center_horizontal"
+                android:text="@string/read_all"
+                android:textColor="@color/primary"
+                android:textSize="@dimen/fbase_text_size_22"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/civConfirmRoot" />
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/fbase_dimen_10"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvNotificationDetailContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font_raleway_medium"
+                    android:gravity="start"
+                    android:lineSpacingExtra="@dimen/fbase_dimen_4"
+                    android:textColor="@color/text1"
+                    android:textSize="@dimen/fbase_text_size_14"
+                    tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae fermentum velit mauris, venenatis risus ultrices vel habitant. Urna et tempus odio purus adipiscing habitasse. Porttitor nisl sit at faucibus morbi enim sem id sed. Dignissim porttitor tristique amet morbi. Consectetur ornare cum consectetur tortor rutrum feugiat non nibh. Consectetur odio amet quis maecenas ullamcorper. Est quis semper ornare risus, est cursus.
+
+Ornare malesuada risus velit dui sed in quisque. Elementum varius et vel fames nisi. Placerat proin elit urna sed sit imperdiet convallis nulla enim. Cras nec bibendum pellentesque nisi, dui. Laoreet in sit phasellus pulvinar scelerisque. Sem nisi, viverra suscipit imperdiet ornare mauris sit. Lorem volutpat, fermentum sollicitudin cras. Quam dui ut egestas aliquam. Neque, posuere arcu dolor ipsum vivamus eleifend urna.
+
+Tellus sed euismod dignissim felis bibendum. Ornare diam dolor, bibendum sagittis ullamcorper hendrerit eget. Volutpat habitasse mattis non semper amet amet proin id a. Cursus magna cursus fusce lorem integer habitasse leo nisl, nunc. Sed orci lacus non mauris, duis eu aliquam fermentum eleifend. Dignissim amet non neque, tincidunt ac dignissim massa in. Risus, aliquet eget pharetra ullamcorper. Velit elit rutrum mauris, bibendum odio. Tortor morbi nulla est duis et ipsum. Scelerisque risus cursus consequat suscipit mauris. Leo sit varius lobortis vitae vulputate libero interdum dui.
+Tellus sed euismod dignissim felis bibendum. Ornare diam dolor, bibendum sagittis ullamcorper hendrerit eget. Volutpat habitasse mattis non semper amet amet proin id a. Cursus magna cursus fusce lorem integer habitasse leo nisl, nunc. Sed orci lacus non mauris, duis eu aliquam fermentum eleifend. Dignissim amet non neque, tincidunt ac dignissim massa in. Risus, aliquet eget pharetra ullamcorper. Velit elit rutrum mauris, bibendum odio. Tortor morbi nulla est duis et ipsum. Scelerisque risus cursus consequat suscipit mauris. Leo sit varius lobortis vitae vulputate libero interdum du" />
+
+            </androidx.core.widget.NestedScrollView>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

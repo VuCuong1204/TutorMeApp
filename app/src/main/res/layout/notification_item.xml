@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clNotificationRoot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/fbase_dimen_12"
+        android:background="@drawable/shape_bg_white_corner_14"
+        android:paddingVertical="@dimen/fbase_dimen_14">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivNotificationType"
+            android:layout_width="@dimen/fbase_dimen_40"
+            android:layout_height="@dimen/fbase_dimen_40"
+            android:layout_marginStart="@dimen/fbase_dimen_14"
+            android:src="@drawable/ic_send"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvNotificationTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fbase_dimen_16"
+            android:ellipsize="end"
+            android:fontFamily="@font/font_raleway_bold"
+            android:maxLines="2"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/fbase_text_size_16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivNotificationType"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Lớp học sẽ diễn ra trong 20 phút!!" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvNotificationContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fbase_dimen_4"
+            android:ellipsize="end"
+            android:fontFamily="@font/font_raleway_medium"
+            android:maxLines="3"
+            android:paddingBottom="@dimen/fbase_dimen_12"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/fbase_text_size_14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvNotificationTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvNotificationTitle"
+            tools:text="Yêu cầu #12244442 của bạn đã được phê duyệt, bạn vui lòng vào xem kết quả phản hồi từ phía..." />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvNotificationTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_raleway_semibold"
+            android:textColor="@color/neutral_14"
+            android:textSize="@dimen/fbase_text_size_12"
+            app:layout_constraintStart_toStartOf="@id/tvNotificationContent"
+            app:layout_constraintTop_toBottomOf="@id/tvNotificationContent"
+            tools:text="2 giờ trước" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

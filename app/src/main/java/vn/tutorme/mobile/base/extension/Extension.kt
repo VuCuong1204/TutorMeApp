@@ -17,6 +17,7 @@ import androidx.annotation.ColorRes
 import androidx.annotation.DimenRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.ViewCompat
@@ -41,6 +42,7 @@ import vn.tutorme.mobile.base.common.utils.ToastUtils
 import vn.tutorme.mobile.base.common.view.DELAY_BETWEEN_TIME_DEFAULT
 import vn.tutorme.mobile.base.common.view.SingleOnClickListener
 import vn.tutorme.mobile.base.common.view.SingleOnTouchClickListener
+import vn.tutorme.mobile.base.model.DataPage
 import vn.tutorme.mobile.base.screen.TutorMeActivity
 import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.domain.model.authen.ROLE_TYPE
@@ -212,6 +214,14 @@ fun getAppString(
     return context?.getString(stringId) ?: ""
 }
 
+fun getAppString(
+    @StringRes resId: Int,
+    vararg formatArgs: Any?,
+    context: Context? = getApplication()
+): String {
+    return context?.getString(resId, *formatArgs) ?: ""
+}
+
 fun <DATA> MutableStateFlow<FlowResult<DATA>>.data(): DATA? {
     return this.value.data
 }
@@ -314,10 +324,9 @@ fun <T> TutorMeFragment<*>.handleUiState(
 
         UI_STATE.FAILURE -> {
             if (canShowLoading) {
-                showError(flowResult.getMessage())
                 this.hideLoading()
             }
-
+            showError(flowResult.getMessage())
             listener?.onFailure()
         }
 
@@ -331,6 +340,20 @@ fun <T> TutorMeFragment<*>.handleUiState(
 }
 
 fun <DATA> Fragment.coroutinesLaunch(
+    flow: Flow<FlowResult<DATA>>,
+    state: Lifecycle.State = Lifecycle.State.STARTED,
+    launch: suspend (flowResult: FlowResult<DATA>) -> Unit
+) {
+    lifecycleScope.launch {
+        repeatOnLifecycle(state = state) {
+            flow.collect {
+                launch.invoke(it)
+            }
+        }
+    }
+}
+
+fun <DATA> AppCompatActivity.coroutinesLaunch(
     flow: Flow<FlowResult<DATA>>,
     state: Lifecycle.State = Lifecycle.State.STARTED,
     launch: suspend (flowResult: FlowResult<DATA>) -> Unit

@@ -15,6 +15,7 @@ data class Category(
     var image: Int? = null,
 
     var checked: Boolean? = null
+
 ) : IParcelable
 
 fun getDataCategoryClass(): List<Category> {
@@ -27,6 +28,17 @@ fun getDataCategoryClass(): List<Category> {
         ),
         Category(
             id = 3, name = getAppString(R.string.out_of_date), checked = false
+        )
+    )
+}
+
+fun getDataCategoryClassType(): List<Category> {
+    return listOf(
+        Category(
+            id = 1, name = getAppString(R.string.class_regular), checked = true
+        ),
+        Category(
+            id = 2, name = getAppString(R.string.class_demo), checked = false
         )
     )
 }

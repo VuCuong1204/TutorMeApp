@@ -78,4 +78,12 @@ interface ILessonService : IApiService {
         @Query("state") state: Int,
         @Query("teacherId") teacherId: String?,
     ): Call<ClassInfoResponse>
+
+    @GET("/class/register/list")
+    fun getClassTeacherList(
+        @Query("id") id: String,
+        @Query("type") type: Int,
+        @Query("page") page: Int?,
+        @Query("size") size: Int?
+    ): Call<ClassInfoResponse>
 }

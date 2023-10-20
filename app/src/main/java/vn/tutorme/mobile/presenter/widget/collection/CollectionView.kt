@@ -147,6 +147,14 @@ class CollectionView(
         baseAdapter?.removeLoading()
     }
 
+    fun removeEmpty() {
+        baseAdapter?.removeEmpty()
+    }
+
+    fun clearData() {
+        baseAdapter?.clearData()
+    }
+
     private fun getSpanSizeLookup() {
         if (layoutManager is GridLayoutManager) {
             (layoutManager as GridLayoutManager).spanSizeLookup = object : SpanSizeLookup() {

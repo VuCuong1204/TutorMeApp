@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/fbase_dimen_180">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivShimmerClassInfoFirst"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/fbase_dimen_160"
+        android:layout_marginVertical="@dimen/fbase_dimen_12"
+        android:background="@drawable/shape_rectangle_shimmer_bg_corner_8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/v11"
+        android:layout_width="@dimen/fbase_dimen_120"
+        android:layout_height="0dp"
+        android:layout_marginVertical="@dimen/fbase_dimen_14"
+        android:layout_marginStart="@dimen/fbase_dimen_16"
+        android:background="@drawable/shape_bg_white_corner_14"
+        app:layout_constraintBottom_toBottomOf="@id/ivShimmerClassInfoFirst"
+        app:layout_constraintStart_toStartOf="@id/ivShimmerClassInfoFirst"
+        app:layout_constraintTop_toTopOf="@id/ivShimmerClassInfoFirst" />
+
+    <View
+        android:id="@+id/ivShimmerClassInfoSecond"
+        android:layout_width="@dimen/fbase_dimen_100"
+        android:layout_height="@dimen/fbase_dimen_16"
+        android:layout_marginStart="@dimen/fbase_dimen_16"
+        android:layout_marginTop="@dimen/fbase_dimen_10"
+        android:background="@drawable/shape_bg_white_corner_14"
+        app:layout_constraintStart_toEndOf="@id/v11"
+        app:layout_constraintTop_toTopOf="@id/v11" />
+
+    <View
+        android:id="@+id/v12"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/fbase_dimen_1"
+        android:layout_marginHorizontal="@dimen/fbase_dimen_16"
+        android:layout_marginTop="@dimen/fbase_dimen_10"
+        android:background="@color/neutral_9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/v11"
+        app:layout_constraintTop_toBottomOf="@id/ivShimmerClassInfoSecond" />
+
+    <View
+        android:id="@+id/v13"
+        android:layout_width="@dimen/fbase_dimen_80"
+        android:layout_height="@dimen/fbase_dimen_30"
+        android:layout_marginStart="@dimen/fbase_dimen_16"
+        android:layout_marginTop="@dimen/fbase_dimen_10"
+        android:background="@drawable/shape_bg_white_corner_14"
+        app:layout_constraintStart_toEndOf="@id/v11"
+        app:layout_constraintTop_toBottomOf="@id/v12" />
+
+    <View
+        android:id="@+id/v14"
+        android:layout_width="@dimen/fbase_dimen_80"
+        android:layout_height="@dimen/fbase_dimen_30"
+        android:layout_marginStart="@dimen/fbase_dimen_16"
+        android:layout_marginTop="@dimen/fbase_dimen_10"
+        android:background="@drawable/shape_bg_white_corner_14"
+        app:layout_constraintStart_toEndOf="@id/v11"
+        app:layout_constraintTop_toBottomOf="@id/v13" />
+
+    <View
+        android:id="@+id/v15"
+        android:layout_width="@dimen/fbase_dimen_80"
+        android:layout_height="@dimen/fbase_dimen_30"
+        android:layout_marginStart="@dimen/fbase_dimen_16"
+        android:layout_marginTop="@dimen/fbase_dimen_10"
+        android:background="@drawable/shape_bg_white_corner_14"
+        app:layout_constraintStart_toEndOf="@id/v14"
+        app:layout_constraintTop_toBottomOf="@id/v12" />
+
+    <View
+        android:id="@+id/v16"
+        android:layout_width="@dimen/fbase_dimen_80"
+        android:layout_height="@dimen/fbase_dimen_30"
+        android:layout_marginStart="@dimen/fbase_dimen_16"
+        android:layout_marginTop="@dimen/fbase_dimen_10"
+        android:background="@drawable/shape_bg_white_corner_14"
+        app:layout_constraintStart_toEndOf="@id/v14"
+        app:layout_constraintTop_toBottomOf="@id/v15" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

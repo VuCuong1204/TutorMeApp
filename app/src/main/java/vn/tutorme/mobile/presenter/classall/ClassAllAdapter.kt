@@ -20,6 +20,7 @@ class ClassAllAdapter : TutorMeAdapter() {
     }
 
     override fun getLayoutEmpty(): Empty = Empty(layoutResource = R.layout.class_all_empy)
+
     inner class ClassAllVH(private val binding: LessonHomeItemBinding) : BaseVH<ClassInfo>(binding) {
 
         init {
