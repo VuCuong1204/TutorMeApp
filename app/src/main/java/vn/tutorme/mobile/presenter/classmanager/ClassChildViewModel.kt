@@ -20,19 +20,15 @@ import vn.tutorme.mobile.domain.usecase.GetClassTeacherListUseCase
 import javax.inject.Inject
 
 @HiltViewModel
-class ClassManagerViewModel @Inject constructor(
+class ClassChildViewModel @Inject constructor(
     private val getClassTeacherListUseCase: GetClassTeacherListUseCase
 ) : BaseViewModel() {
 
     private val _classInfoState = MutableStateFlow(FlowResult.newInstance<DataPage<ClassInfo>>())
     val classInfoState = _classInfoState.asStateFlow()
-    var classInfoDataPage = DataPage.newInstance(_classInfoState.value.data, true)
+    private var classInfoDataPage = DataPage.newInstance(_classInfoState.value.data, true)
 
     var classType = CLASS_TYPE.DEMO_TYPE
-
-    init {
-        getClassList()
-    }
 
     fun getClassList(isReload: Boolean = false, isShowLoading: Boolean = true) {
         viewModelScope.launch {
@@ -57,7 +53,7 @@ class ClassManagerViewModel @Inject constructor(
                     if (isReload) {
                         classInfoDataPage.clearDataPage()
                     }
-                    classInfoDataPage.addAllDataList(it)
+                    classInfoDataPage.replaceDataList(it)
                     _classInfoState.success(classInfoDataPage)
                 }
         }

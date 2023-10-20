@@ -11,12 +11,12 @@ import vn.tutorme.mobile.base.extension.gone
 import vn.tutorme.mobile.databinding.LessonHomeItemBinding
 import vn.tutorme.mobile.domain.model.clazz.ClassInfo
 
-class ClassManagerAdapter : TutorMeAdapter() {
+class ClassChildAdapter : TutorMeAdapter() {
 
     override fun getLayoutResource(viewType: Int): Int = R.layout.lesson_home_item
 
     override fun onCreateViewHolder(viewType: Int, binding: ViewDataBinding): BaseVH<*>? {
-        return ClassManagerVH(binding as LessonHomeItemBinding)
+        return ClassChildVH(binding as LessonHomeItemBinding)
     }
 
     override fun getLayoutLoading(): Int = R.layout.class_manager_loading_item
@@ -25,7 +25,7 @@ class ClassManagerAdapter : TutorMeAdapter() {
 
     override fun getLayoutLoadMore(): LoadMore = LoadMore(layoutResource = R.layout.load_more_item)
 
-    inner class ClassManagerVH(private val binding: LessonHomeItemBinding) : BaseVH<ClassInfo>(binding) {
+    inner class ClassChildVH(private val binding: LessonHomeItemBinding) : BaseVH<ClassInfo>(binding) {
 
         init {
             with(binding) {

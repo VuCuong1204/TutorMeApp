@@ -38,23 +38,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/srlClassManagerReload"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vpClassManagerTab"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginHorizontal="@dimen/fbase_dimen_16"
             android:layout_marginTop="@dimen/fbase_dimen_6"
+            android:paddingHorizontal="@dimen/fbase_dimen_16"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ccvClassManagerTabParent">
-
-            <vn.tutorme.mobile.presenter.widget.collection.CollectionView
-                android:id="@+id/cvClassManagerContent"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            app:layout_constraintTop_toBottomOf="@id/ccvClassManagerTabParent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
