@@ -41,4 +41,14 @@ class NotificationRepoImpl @Inject constructor() : INotificationRepo, IRepo {
             true
         }
     }
+
+    override fun getCountNotificationUnRead(userId: String): Int {
+        val service = invokeAuthService(INotificationService::class.java)
+
+        return service.getCountNotificationUnRead(userId).invokeApi { _, body ->
+            if (body.data != null) {
+                body.data!!
+            } else 0
+        }
+    }
 }

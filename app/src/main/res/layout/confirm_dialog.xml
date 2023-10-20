@@ -37,9 +37,9 @@
 
             <View
                 android:layout_width="0dp"
-                android:layout_height="@dimen/fbase_dimen_2"
+                android:layout_height="@dimen/fbase_dimen_10"
                 android:background="@color/white"
-                android:layout_marginTop="@dimen/fbase_dimen_36"
+                android:layout_marginTop="@dimen/fbase_dimen_38"
                 app:layout_constraintEnd_toEndOf="@id/civConfirmRoot"
                 app:layout_constraintStart_toStartOf="@id/civConfirmRoot"
                 app:layout_constraintTop_toBottomOf="@id/ivConfirmAvatar" />

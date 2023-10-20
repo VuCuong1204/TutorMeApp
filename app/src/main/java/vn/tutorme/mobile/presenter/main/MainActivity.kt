@@ -134,6 +134,9 @@ class MainActivity : TutorMeActivity<MainActivityBinding>(R.layout.main_activity
 
                 if (currentState != null) {
                     binding.bmvMainTab.changeSelectedState(currentState)
+                    if (currentState != SELECTED_STATE.NOTIFICATION) {
+                        binding.bmvMainTab.showNotifyCountState(false)
+                    }
                     binding.bmvMainTab.show()
                     binding.vMain.show()
                 } else {

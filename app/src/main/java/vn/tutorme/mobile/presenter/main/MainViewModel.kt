@@ -5,17 +5,15 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import vn.tutorme.mobile.base.common.BaseUseCase
 import vn.tutorme.mobile.base.common.BaseViewModel
 import vn.tutorme.mobile.base.common.FlowResult
 import vn.tutorme.mobile.base.extension.success
-import vn.tutorme.mobile.domain.model.notification.NotificationInfo
-import vn.tutorme.mobile.domain.usecase.GetNotificationCountUnread
+import vn.tutorme.mobile.domain.usecase.notification.GetNotificationCountUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val getNotificationCountUnread: GetNotificationCountUnread
+    private val getNotificationCountUseCase: GetNotificationCountUseCase
 ) : BaseViewModel() {
 
     private val _notificationState = MutableStateFlow(FlowResult.newInstance<Int>())
@@ -25,7 +23,8 @@ class MainViewModel @Inject constructor(
 
     fun getNotificationInfoList() {
         viewModelScope.launch {
-            getNotificationCountUnread.invoke(BaseUseCase.VoidRequest())
+            val rv = GetNotificationCountUseCase.GetNotificationCountRV("vucuonghihi")
+            getNotificationCountUseCase.invoke(rv)
                 .collect {
                     _notificationState.success(it)
                 }

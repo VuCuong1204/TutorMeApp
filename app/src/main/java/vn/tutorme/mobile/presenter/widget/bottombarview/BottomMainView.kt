@@ -110,6 +110,10 @@ class BottomMainView(
         }
     }
 
+    fun showNotifyCountState(state: Boolean) {
+        btvNotify.showNotifyCountState(state)
+    }
+
     fun changeSelectedState(state: SELECTED_STATE) {
         btvHome.setOnClickState(false)
         btvClass.setOnClickState(false)

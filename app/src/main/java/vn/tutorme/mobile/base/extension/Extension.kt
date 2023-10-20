@@ -1,6 +1,5 @@
 package vn.tutorme.mobile.base.extension
 
-import android.app.Activity
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.Drawable
@@ -43,6 +42,7 @@ import vn.tutorme.mobile.base.common.utils.ToastUtils
 import vn.tutorme.mobile.base.common.view.DELAY_BETWEEN_TIME_DEFAULT
 import vn.tutorme.mobile.base.common.view.SingleOnClickListener
 import vn.tutorme.mobile.base.common.view.SingleOnTouchClickListener
+import vn.tutorme.mobile.base.model.DataPage
 import vn.tutorme.mobile.base.screen.TutorMeActivity
 import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.domain.model.authen.ROLE_TYPE
@@ -324,10 +324,9 @@ fun <T> TutorMeFragment<*>.handleUiState(
 
         UI_STATE.FAILURE -> {
             if (canShowLoading) {
-                showError(flowResult.getMessage())
                 this.hideLoading()
             }
-
+            showError(flowResult.getMessage())
             listener?.onFailure()
         }
 

@@ -1,11 +1,13 @@
 package vn.tutorme.mobile.presenter.notification
 
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import com.example.syntheticapp.presenter.widget.collection.LAYOUT_MANAGER
 import dagger.hilt.android.AndroidEntryPoint
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import vn.tutorme.mobile.R
+import vn.tutorme.mobile.base.common.CountNotifyEvent
 import vn.tutorme.mobile.base.common.IViewListener
 import vn.tutorme.mobile.base.common.NotifyDetailResultEvent
 import vn.tutorme.mobile.base.common.eventbus.EventBusManager
@@ -22,6 +24,7 @@ import vn.tutorme.mobile.domain.model.notification.NotificationInfo
 import vn.tutorme.mobile.presenter.dialog.BottomSheetConfirmDialog
 import vn.tutorme.mobile.presenter.dialog.ConfirmDialog
 import vn.tutorme.mobile.presenter.home.HomeFragment
+import vn.tutorme.mobile.presenter.notification.detail.NotificationDetailFragment
 
 @AndroidEntryPoint
 class NotificationFragment : TutorMeFragment<NotificationFragmentBinding>(R.layout.notification_fragment) {
@@ -29,6 +32,7 @@ class NotificationFragment : TutorMeFragment<NotificationFragmentBinding>(R.layo
     private val notificationViewModel by viewModels<NotificationViewModel>()
     private val notificationAdapter by lazy { NotificationAdapter() }
     private var bottomSheetConfirmDialog: BottomSheetConfirmDialog? = null
+    private var isReadNotiy = false
 
     override fun onInitView() {
         super.onInitView()
@@ -58,6 +62,7 @@ class NotificationFragment : TutorMeFragment<NotificationFragmentBinding>(R.layo
         when (event) {
             is NotifyDetailResultEvent -> {
                 notificationViewModel.changeReadState(event.notifyId)
+                isReadNotiy = true
                 EventBusManager.instance?.removeSticky(event)
             }
         }
@@ -81,7 +86,10 @@ class NotificationFragment : TutorMeFragment<NotificationFragmentBinding>(R.layo
                     binding.cvNotificationRoot.hideLoading()
                     binding.srlNotificationReload.isRefreshing = false
                     binding.cvNotificationRoot.submitList(it.data?.dataList)
-                    notificationViewModel.resetNotificationState()
+                    if (isReadNotiy) {
+                        EventBusManager.instance?.postPending(CountNotifyEvent())
+                        isReadNotiy = false
+                    }
                 }
             }, canShowLoadMore = binding.cvNotificationRoot.getLoadMoreState())
         }
@@ -90,11 +98,14 @@ class NotificationFragment : TutorMeFragment<NotificationFragmentBinding>(R.layo
     private fun addListener() {
         notificationAdapter.listener = object : INotificationListener {
             override fun onReadClick(item: NotificationInfo) {
-                //     TODO("Not yet implemented")
+                replaceFragment(NotificationDetailFragment(), bundleOf(
+                    NotificationDetailFragment.OBJECT_NOTIFY_KEY to item
+                ))
             }
 
             override fun onDeleteClick(id: Int) {
                 showDeleteNotifyDialog(id)
+                isReadNotiy = true
             }
         }
     }
@@ -103,12 +114,10 @@ class NotificationFragment : TutorMeFragment<NotificationFragmentBinding>(R.layo
         binding.cvNotificationRoot.apply {
             setBaseLayoutManager(LAYOUT_MANAGER.LINEARLAYOUT_VERTICAL)
             setBaseAdapter(notificationAdapter)
-            setLoadMoreListener {
-                notificationViewModel.getNotificationInfoList(isReload = false, isShowLoading = false)
-            }
         }
 
         binding.srlNotificationReload.setOnRefreshListener {
+            binding.cvNotificationRoot.removeEmpty()
             notificationViewModel.getNotificationInfoList(isReload = true, isShowLoading = false)
         }
     }
@@ -124,6 +133,7 @@ class NotificationFragment : TutorMeFragment<NotificationFragmentBinding>(R.layo
         ConfirmDialog().apply {
             eventLeftClick {
                 notificationViewModel.readAllNotification()
+                isReadNotiy = true
             }
         }.show(childFragmentManager, ConfirmDialog::class.java.simpleName)
     }

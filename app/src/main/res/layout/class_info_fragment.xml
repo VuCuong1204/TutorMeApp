@@ -20,7 +20,7 @@
             android:id="@+id/ivClassInfoBack"
             android:layout_width="@dimen/fbase_dimen_36"
             android:layout_height="@dimen/fbase_dimen_36"
-            android:layout_marginVertical="@dimen/fbase_dimen_10"
+            android:layout_marginVertical="@dimen/fbase_dimen_20"
             android:layout_marginStart="@dimen/fbase_dimen_16"
             android:background="@drawable/ripple_bg_comp_corner_12"
             android:padding="@dimen/fbase_dimen_10"

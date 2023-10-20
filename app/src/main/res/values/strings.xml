@@ -96,6 +96,7 @@
     <string name="lesson_no_evaluate">Buổi học chưa đánh giá</string>
     <string name="evaluate_now">Đánh giá ngay</string>
     <string name="class_detail">Chi tiết lớp học</string>
+    <string name="notify_detail">Chi tiết thông báo</string>
     <string name="opening_second">Khai giảng</string>
     <string name="count_lesson">Số buổi %s</string>
     <string name="number_phone_teacher">Số điện thoại %s</string>

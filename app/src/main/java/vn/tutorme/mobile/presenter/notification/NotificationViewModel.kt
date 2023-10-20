@@ -7,9 +7,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
-import vn.tutorme.mobile.base.common.BaseUseCase
 import vn.tutorme.mobile.base.common.BaseViewModel
 import vn.tutorme.mobile.base.common.FlowResult
+import vn.tutorme.mobile.base.extension.data
 import vn.tutorme.mobile.base.extension.failure
 import vn.tutorme.mobile.base.extension.loading
 import vn.tutorme.mobile.base.extension.onException
@@ -18,16 +18,22 @@ import vn.tutorme.mobile.base.extension.success
 import vn.tutorme.mobile.base.model.DataPage
 import vn.tutorme.mobile.domain.model.notification.NOTIFICATION_STATE
 import vn.tutorme.mobile.domain.model.notification.NotificationInfo
-import vn.tutorme.mobile.domain.usecase.GetNotificationInfoList
+import vn.tutorme.mobile.domain.usecase.notification.DeleteNotificationUseCase
+import vn.tutorme.mobile.domain.usecase.notification.GetNotificationListUseCase
+import vn.tutorme.mobile.domain.usecase.notification.UpdateNotificationAllUseCase
+import vn.tutorme.mobile.domain.usecase.notification.UpdateNotificationUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class NotificationViewModel @Inject constructor(
-    private val getNotificationInfoList: GetNotificationInfoList
+    private val getNotificationListUseCase: GetNotificationListUseCase,
+    private val deleteNotificationUseCase: DeleteNotificationUseCase,
+    private val updateNotificationUseCase: UpdateNotificationUseCase,
+    private val updateNotificationAllUseCase: UpdateNotificationAllUseCase
 ) : BaseViewModel() {
     private val _notificationState = MutableStateFlow(FlowResult.newInstance<DataPage<NotificationInfo>>())
     val notificationState = _notificationState.asStateFlow()
-    var notificationDataPage = DataPage.newInstance(_notificationState.value.data, true)
+    var notificationDataPage = DataPage.newInstance(_notificationState.data(), true)
 
     init {
         getNotificationInfoList(true)
@@ -35,8 +41,12 @@ class NotificationViewModel @Inject constructor(
 
     fun getNotificationInfoList(isReload: Boolean = true, isShowLoading: Boolean = true) {
         viewModelScope.launch {
-            notificationDataPage = DataPage.newInstance(_notificationState.value.data, isReload)
-            getNotificationInfoList.invoke(BaseUseCase.VoidRequest())
+            notificationDataPage = DataPage.newInstance(_notificationState.data(), isReload)
+            val rv = GetNotificationListUseCase.GetNotificationListRV("vucuonghihi").apply {
+                page = notificationDataPage.page * notificationDataPage.limitPage
+                size = notificationDataPage.limitPage
+            }
+            getNotificationListUseCase.invoke(rv)
                 .onStart {
                     if (isShowLoading) {
                         _notificationState.loading()
@@ -47,19 +57,11 @@ class NotificationViewModel @Inject constructor(
                 }
                 .collect {
                     delay(1000)
-                    val newList = it.toMutableList()
                     if (isReload) {
                         notificationDataPage.clearDataPage()
-                    } else {
-                        if (notificationDataPage.dataList.isNotEmpty()) {
-                            val list = notificationDataPage.dataList.toMutableList()
-                            val newItem = list[list.lastIndex]
-                            list[list.lastIndex] = newItem.copy(isLastIndex = true)
-                            notificationDataPage.replaceDataList(list)
-                        }
                     }
 
-                    notificationDataPage.addAllDataList(newList)
+                    notificationDataPage.replaceDataList(it)
                     _notificationState.success(notificationDataPage)
                 }
         }
@@ -71,50 +73,80 @@ class NotificationViewModel @Inject constructor(
 
     fun removeNotification(id: Int) {
         viewModelScope.launch {
-            val list = notificationDataPage.dataList.toMutableList()
-            val oldIndex = list.indexOfFirst {
-                it.id == id
-            }
 
-            if (oldIndex in 0..list.lastIndex) {
-                list.removeAt(oldIndex)
-            }
+            val rv = DeleteNotificationUseCase.DeleteNotificationRV(id)
+            deleteNotificationUseCase.invoke(rv)
+                .onException {
+                    _notificationState.failure(it)
+                }
+                .collect {
+                    val list = notificationDataPage.dataList.toMutableList()
 
-            notificationDataPage.replaceDataList(list)
-            _notificationState.success(notificationDataPage)
+                    val oldIndex = list.indexOfFirst {
+                        it.id == id
+                    }
+
+                    if (oldIndex in 0..list.lastIndex) {
+                        list.removeAt(oldIndex)
+                    }
+
+                    notificationDataPage.replaceDataList(list)
+                    _notificationState.success(notificationDataPage)
+                }
+
         }
     }
 
     fun changeReadState(id: Int) {
         viewModelScope.launch {
-            val list = notificationDataPage.dataList.toMutableList()
-            val oldIndex = list.indexOfFirst {
-                it.id == id
-            }
 
-            if (oldIndex in 0..list.lastIndex) {
-                val newItem = list[oldIndex].copy(
-                    notifyState = NOTIFICATION_STATE.READ_STATE
-                )
+            val rv = UpdateNotificationUseCase.UpdateNotificationRV(id)
+            updateNotificationUseCase.invoke(rv)
+                .onException {
+                    _notificationState.failure(it)
+                }
+                .collect {
+                    val list = notificationDataPage.dataList.toMutableList()
+                    val oldIndex = list.indexOfFirst {
+                        it.id == id
+                    }
 
-                list[oldIndex] = newItem
-            }
+                    if (oldIndex in 0..list.lastIndex) {
+                        val newItem = list[oldIndex].copy(
+                            notifyState = NOTIFICATION_STATE.READ_STATE
+                        )
 
-            notificationDataPage.replaceDataList(list)
-            _notificationState.success(notificationDataPage)
+                        list[oldIndex] = newItem
+                    }
+
+                    notificationDataPage.replaceDataList(list)
+                    _notificationState.success(notificationDataPage)
+                }
         }
     }
 
     fun readAllNotification() {
         viewModelScope.launch {
-            val list = notificationDataPage.dataList.toMutableList()
 
-            list.map {
-                it.notifyState = NOTIFICATION_STATE.READ_STATE
-            }
+            val rv = UpdateNotificationAllUseCase.UpdateNotificationAllRV("vucuonghihi")
+            updateNotificationAllUseCase.invoke(rv)
+                .onException {
+                    _notificationState.failure(it)
+                }
+                .collect {
 
-            notificationDataPage.replaceDataList(list)
-            _notificationState.success(notificationDataPage)
+                    val list = notificationDataPage.dataList.toMutableList()
+
+                    val newList = mutableListOf<NotificationInfo>()
+                    list.map {
+                        newList.add(it.copy(
+                            notifyState = NOTIFICATION_STATE.READ_STATE
+                        ))
+                    }
+
+                    notificationDataPage.replaceDataList(newList)
+                    _notificationState.success(notificationDataPage)
+                }
         }
     }
 

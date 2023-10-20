@@ -10,6 +10,7 @@ import vn.tutorme.mobile.base.extension.handleUiState
 import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.ClassManagerFragmentBinding
 import vn.tutorme.mobile.domain.model.category.getDataCategoryClassType
+import vn.tutorme.mobile.presenter.home.HomeFragment
 
 @AndroidEntryPoint
 class ClassManagerFragment : TutorMeFragment<ClassManagerFragmentBinding>(R.layout.class_manager_fragment) {
@@ -48,6 +49,10 @@ class ClassManagerFragment : TutorMeFragment<ClassManagerFragmentBinding>(R.layo
                 }
             }, canShowLoadMore = binding.cvClassManagerContent.getLoadMoreState())
         }
+    }
+
+    override fun onBackPressByFragment() {
+        replaceFragmentInitialState(HomeFragment(), mainViewModel.indexFragmentInBackStack)
     }
 
     private fun addAdapter() {
