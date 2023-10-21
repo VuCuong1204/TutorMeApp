@@ -17,6 +17,7 @@
     <string name="login_failed">Đăng nhập thất bại</string>
     <string name="read_all">Bạn có muốn đọc tất cả không?</string>
     <string name="delete_notify">Bạn có chắc chắn muốn xóa thông báo?</string>
+    <string name="logout_notify">Bạn chắc chắn muốn đăng xuất?</string>
     <string name="login_failed_content">Tên đăng nhập hoặc mật khẩu không hợp lệ.\nVui lòng thử lại hoặc ấn Quên mật khẩu!</string>
     <string name="welcome">Chào mừng bạn đến với Tutor Me</string>
     <string name="remember_password">Nhớ mật khẩu</string>
@@ -26,6 +27,7 @@
     <string name="register">đăng ký</string>
     <string name="register_bold">Đăng ký</string>
     <string name="register_fail">Đăng ký thất bại vui lòng thử lại</string>
+    <string name="change_password">Đổi mật khẩu</string>
 
     <string name="account_wrong">Email đăng nhập chưa đúng định dạng</string>
     <string name="password_wrong">Mật khẩu sai</string>
@@ -34,6 +36,23 @@
     <string name="password_wrong_limit">Mật khẩu phải từ 6-20 kí tự</string>
     <string name="password_wrong_not_equal">Mật khẩu xác nhận phải trùng mật khẩu mới</string>
     <string name="field_has_not_filled">Chưa điền trường thông tin này</string>
+    <string name="information_account">Thông tin tài khoản</string>
+    <string name="information_individual">Thông tin cá nhân</string>
+    <string name="version">Phiên bản 1.2.4</string>
+    <string name="first_and_lastname">Họ và tên</string>
+    <string name="date_of_birth">Ngày sinh</string>
+    <string name="number">Số điện thoại</string>
+    <string name="address">Địa chỉ</string>
+    <string name="school">Trường học</string>
+    <string name="contact">Liên hệ</string>
+    <string name="hotline">Hotline</string>
+    <string name="email">Email</string>
+    <string name="website">Website</string>
+    <string name="skype">Skype</string>
+    <string name="phone_value">0941587396</string>
+    <string name="email_value">vucuongtnnd@gmail.com</string>
+    <string name="website_value">tutorme.vn</string>
+    <string name="skype_value">Admin Support TutorMe</string>
 
     <string name="register_success">Đăng kí tài khoản thành công</string>
     <string name="retry">Thử lại</string>
@@ -89,6 +108,7 @@
     <string name="class_title">Lớp %s</string>
     <string name="opening">Khai giảng %s</string>
     <string name="log_out">Logout</string>
+    <string name="log_out_second">Đăng xuất</string>
 
     <string name="calender_teach">Lịch dạy học</string>
     <string name="class_register_student">Lớp học đăng ký</string>

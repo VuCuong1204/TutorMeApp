@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fbase_dimen_8"
+        android:layout_marginEnd="@dimen/fbase_dimen_8"
+        android:minHeight="@dimen/fbase_dimen_120"
+        android:background="@drawable/ripple_bg_white_corner_10"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/fbase_dimen_24"
+        android:paddingTop="@dimen/fbase_dimen_22"
+        android:paddingBottom="@dimen/fbase_dimen_18">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivProfileAvatar"
+            android:layout_width="@dimen/fbase_dimen_40"
+            android:layout_height="@dimen/fbase_dimen_40"
+            android:src="@drawable/ic_info_person" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvProfileName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fbase_dimen_6"
+            android:fontFamily="@font/font_raleway_medium"
+            android:gravity="center_horizontal"
+            android:textColor="@color/text6"
+            android:textSize="@dimen/fbase_text_size_14"
+            tools:text="Thông tin\nliên hệ" />
+
+    </LinearLayout>
+
+</layout>

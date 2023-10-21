@@ -5,6 +5,7 @@
         <attr name="text_title" format="string" />
         <attr name="right_icon" format="reference" />
         <attr name="text_hint" format="string" />
+        <attr name="background_tf" format="reference" />
         <attr name="padding_right_icon" format="dimension" />
     </declare-styleable>
 
