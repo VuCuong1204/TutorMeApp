@@ -68,7 +68,7 @@ class TextFieldView(
             } else {
                 setEditTextFocusState(false)
                 edtContent.hint = textHint
-                clRoot.background = getAppDrawable(R.drawable.shape_bg_white_corner_14)
+                clRoot.background = if (bgRoot == null) getAppDrawable(R.drawable.shape_bg_white_corner_14) else bgRoot
             }
         }
 

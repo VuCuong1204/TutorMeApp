@@ -31,11 +31,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:layout_width="@dimen/fbase_dimen_60"
             android:layout_height="@dimen/fbase_dimen_60"
+            app:shapeAppearanceOverlay="@style/CircleImageView"
             android:layout_marginStart="@dimen/fbase_dimen_8"
-            android:layout_marginBottom="@dimen/fbase_dimen_40"
+            android:layout_marginBottom="@dimen/fbase_dimen_28"
             android:src="@drawable/ic_gender_male"
             app:layout_constraintBottom_toBottomOf="@+id/ivProfileTitle"
             app:layout_constraintEnd_toEndOf="parent"

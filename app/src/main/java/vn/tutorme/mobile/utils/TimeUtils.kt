@@ -11,6 +11,7 @@ object TimeUtils {
     const val HOUR_MINUTE_FORMAT = "HH:mm"
     const val DAY_MONTH_YEAR_FORMAT = "dd.MM.yyyy"
     const val DATE_FORMAT = "dd/MM/yyyy"
+    const val DATE_FORMAT_V2 = "dd-MM-yyyy"
 
     fun convertTimeToHour(value: Long): String {
         val date = Date(value * 1000) // Convert seconds to milliseconds
@@ -47,7 +48,7 @@ object TimeUtils {
         } else ""
     }
 
-    private fun convertLongToString(input: Long, output: String): String {
+    fun convertLongToString(input: Long, output: String): String {
         val date = Date(input)
         val df2 = SimpleDateFormat(output, Locale.getDefault())
         return df2.format(date)

@@ -32,18 +32,29 @@
     <string name="account_wrong">Email đăng nhập chưa đúng định dạng</string>
     <string name="password_wrong">Mật khẩu sai</string>
     <string name="password_new">Mật khẩu mới</string>
+    <string name="import_password_new">Nhập lại mật khẩu mới</string>
+    <string name="password_old">Mật khẩu cũ</string>
     <string name="password_confirm">Mật khẩu xác nhận</string>
     <string name="password_wrong_limit">Mật khẩu phải từ 6-20 kí tự</string>
+    <string name="password_confirm_wrong_limit">Mật khẩu xác nhận phải từ 6-20 kí tự</string>
     <string name="password_wrong_not_equal">Mật khẩu xác nhận phải trùng mật khẩu mới</string>
+    <string name="change_password_3rd">Vui lòng liên hệ với bên Google, Facebook mà bạn đã đăng ký</string>
+    <string name="password_old_error">Mật khẩu cũ không chính xác. Vui lòng thử lại!</string>
+    <string name="change_password_error">Đổi mật khẩu không thành công. Vui lòng thử lại!</string>
+    <string name="change_password_success">Đổi mật khẩu thành công</string>
     <string name="field_has_not_filled">Chưa điền trường thông tin này</string>
     <string name="information_account">Thông tin tài khoản</string>
+    <string name="edit_information_account">chỉnh sửa thông tin</string>
     <string name="information_individual">Thông tin cá nhân</string>
+    <string name="input_username">Nhập tên người dùng</string>
     <string name="version">Phiên bản 1.2.4</string>
     <string name="first_and_lastname">Họ và tên</string>
     <string name="date_of_birth">Ngày sinh</string>
+    <string name="input_date_of_birth">Nhập ngày sinh</string>
     <string name="number">Số điện thoại</string>
     <string name="address">Địa chỉ</string>
     <string name="school">Trường học</string>
+    <string name="input_school">Nhập trường học</string>
     <string name="contact">Liên hệ</string>
     <string name="hotline">Hotline</string>
     <string name="email">Email</string>
@@ -53,6 +64,22 @@
     <string name="email_value">vucuongtnnd@gmail.com</string>
     <string name="website_value">tutorme.vn</string>
     <string name="skype_value">Admin Support TutorMe</string>
+    <string name="gender">Giới tính</string>
+    <string name="input_gender">Nhập giới tính</string>
+    <string name="select_gender">Chọn giới tính</string>
+    <string name="edit_profile_save">Lưu</string>
+    <string name="male">Nam</string>
+    <string name="female">Nữ</string>
+    <string name="other">Khác</string>
+    <string name="province">Tỉnh thành</string>
+    <string name="select_province">Chọn tỉnh thành</string>
+    <string name="input_province">Nhập tỉnh thành</string>
+    <string name="input_province_error">Vui lòng nhập tỉnh thành</string>
+    <string name="district">Quận/Huyện</string>
+    <string name="input_district">Nhập Quận/Huyện</string>
+    <string name="input_district_error">Vui lòng nhập Quận/Huyện</string>
+    <string name="select_district">Chọn Quận/Huyện</string>
+    <string name="error_msg">Lỗi vui lòng thử lại</string>
 
     <string name="register_success">Đăng kí tài khoản thành công</string>
     <string name="retry">Thử lại</string>
@@ -120,6 +147,7 @@
     <string name="opening_second">Khai giảng</string>
     <string name="count_lesson">Số buổi %s</string>
     <string name="number_phone_teacher">Số điện thoại %s</string>
+    <string name="input_number_phone">Nhập số điện thoại</string>
     <string name="name_teacher">Gia sư:</string>
     <string name="class_waiting_confirm">Lớp chờ xác nhận</string>
 
@@ -133,5 +161,6 @@
     <string name="class_demo">Lớp Demo</string>
     <string name="class_happen">Đang và sắp diễn ra</string>
     <string name="class_learn">Lịch sử lớp học</string>
+    <string name="access_token">eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzNDAxOTQyIiwiYXBwX3R5cGUiOm51bGwsInV0bV9jYW1wYWlnbiI6bnVsbCwidXRtX21lZGl1bSI6bnVsbCwic291cmNlIjoiRlFBIiwiY2xpZW50X2lkIjoiZnFhLndlYi5hcHAiLCJwaWN0dXJlIjoiIiwiYWNjb3VudF9pZCI6IjM0MDE5NDIiLCJvc190eXBlIjpudWxsLCJzY29wZSI6WyJmcWE6ZnVsbCIsImZxYTpjbGllbnQ6cG9zdCIsImZxYTpjbGllbnQ6Z2V0Il0sIm5hbWUiOiJ2dXZ1MTIiLCJleHAiOjE2OTgwMDA2MTIsInV0bV9zb3VyY2UiOm51bGwsInVzZXJuYW1lIjoidnV2dTEyIn0.iGXRVZuVD2NVXd64zO2EySpe4ALpM0yYeN4F0CHG8WM</string>
 
 </resources>

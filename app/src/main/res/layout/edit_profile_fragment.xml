@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clEditProfileRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivEditProfileTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg_person"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivEditEditProfileBack"
+            android:layout_width="@dimen/fbase_dimen_36"
+            android:layout_height="@dimen/fbase_dimen_36"
+            android:layout_marginVertical="@dimen/fbase_dimen_20"
+            android:layout_marginStart="@dimen/fbase_dimen_16"
+            android:background="@drawable/ripple_bg_comp_corner_12"
+            android:padding="@dimen/fbase_dimen_10"
+            android:src="@drawable/ic_arrow_white_left"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvEditProfileTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_raleway_bold"
+            android:text="@string/edit_information_account"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fbase_text_size_18"
+            app:layout_constraintBottom_toBottomOf="@id/ivEditEditProfileBack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ivEditEditProfileBack" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="@dimen/fbase_dimen_70"
+            android:layout_height="@dimen/fbase_dimen_70"
+            android:layout_marginStart="@dimen/fbase_dimen_8"
+            android:layout_marginBottom="@dimen/fbase_dimen_24"
+            android:padding="@dimen/fbase_dimen_6"
+            android:src="@drawable/ic_gender_male"
+            app:layout_constraintBottom_toBottomOf="@+id/ivEditProfileTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:shapeAppearanceOverlay="@style/CircleImageView" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/fbase_dimen_26"
+            android:layout_height="@dimen/fbase_dimen_26"
+            android:layout_marginStart="@dimen/fbase_dimen_84"
+            android:layout_marginBottom="@dimen/fbase_dimen_16"
+            android:background="@drawable/shape_circle_bg_white_stroke_primary"
+            android:padding="@dimen/fbase_dimen_6"
+            android:src="@drawable/ic_camera"
+            app:layout_constraintBottom_toBottomOf="@id/ivEditProfileTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/fbase_dimen_20"
+            android:padding="@dimen/fbase_dimen_16"
+            app:layout_constraintBottom_toTopOf="@id/tvEditProfileConfirm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivEditProfileTitle">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font_raleway_medium"
+                    android:text="@string/first_and_lastname"
+                    android:textColor="@color/text1"
+                    android:textSize="@dimen/fbase_text_size_14" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtEditProfileUserName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fbase_dimen_4"
+                    android:background="@drawable/shape_bg_white_corner_8_stroke_1"
+                    android:fontFamily="@font/font_raleway_medium"
+                    android:gravity="start"
+                    android:hint="@string/input_username"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:maxLength="100"
+                    android:maxLines="1"
+                    android:paddingHorizontal="@dimen/fbase_dimen_10"
+                    android:paddingVertical="@dimen/fbase_dimen_14"
+                    android:textColor="@color/neutral_13"
+                    android:textColorHint="@color/neutral_14"
+                    android:textCursorDrawable="@drawable/shape_primary_bg_cursor_edit_text"
+                    android:textSize="@dimen/fbase_text_size_14" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fbase_dimen_16"
+                    android:fontFamily="@font/font_raleway_medium"
+                    android:text="@string/number"
+                    android:textColor="@color/text1"
+                    android:textSize="@dimen/fbase_text_size_14" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtEditProfilePhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fbase_dimen_4"
+                    android:background="@drawable/shape_bg_white_corner_8_stroke_1"
+                    android:fontFamily="@font/font_worksans_medium"
+                    android:gravity="start"
+                    android:hint="@string/input_number_phone"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:paddingHorizontal="@dimen/fbase_dimen_10"
+                    android:paddingVertical="@dimen/fbase_dimen_14"
+                    android:textColor="@color/neutral_13"
+                    android:textColorHint="@color/neutral_14"
+                    android:textCursorDrawable="@drawable/shape_primary_bg_cursor_edit_text"
+                    android:textSize="@dimen/fbase_text_size_14" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fbase_dimen_16"
+                    android:fontFamily="@font/font_raleway_medium"
+                    android:text="@string/gender"
+                    android:textColor="@color/text1"
+                    android:textSize="@dimen/fbase_text_size_14" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/edtEditProfileGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fbase_dimen_4"
+                    android:background="@drawable/shape_bg_white_corner_8_stroke_1"
+                    android:drawableEnd="@drawable/ic_arrow_black1_bottom"
+                    android:fontFamily="@font/font_raleway_medium"
+                    android:gravity="start"
+                    android:hint="@string/input_gender"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:paddingHorizontal="@dimen/fbase_dimen_10"
+                    android:paddingVertical="@dimen/fbase_dimen_14"
+                    android:textColor="@color/neutral_13"
+                    android:textSize="@dimen/fbase_text_size_14" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fbase_dimen_16"
+                    android:fontFamily="@font/font_raleway_medium"
+                    android:text="@string/date_of_birth"
+                    android:textColor="@color/text1"
+                    android:textSize="@dimen/fbase_text_size_14" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/edtEditProfileDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fbase_dimen_4"
+                    android:background="@drawable/shape_bg_white_corner_8_stroke_1"
+                    android:drawableEnd="@drawable/ic_arrow_black1_bottom"
+                    android:fontFamily="@font/font_worksans_regular"
+                    android:gravity="start"
+                    android:hint="@string/input_date_of_birth"
+                    android:maxLines="1"
+                    android:paddingHorizontal="@dimen/fbase_dimen_10"
+                    android:paddingVertical="@dimen/fbase_dimen_14"
+                    android:textColor="@color/neutral_13"
+                    android:textSize="@dimen/fbase_text_size_14" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fbase_dimen_16"
+                    android:fontFamily="@font/font_raleway_medium"
+                    android:text="@string/province"
+                    android:textColor="@color/text1"
+                    android:textSize="@dimen/fbase_text_size_14" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/edtEditProfileProvince"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fbase_dimen_4"
+                    android:background="@drawable/shape_bg_white_corner_8_stroke_1"
+                    android:drawableEnd="@drawable/ic_arrow_black1_bottom"
+                    android:fontFamily="@font/font_raleway_medium"
+                    android:gravity="start"
+                    android:hint="@string/input_province"
+                    android:maxLines="1"
+                    android:paddingHorizontal="@dimen/fbase_dimen_10"
+                    android:paddingVertical="@dimen/fbase_dimen_14"
+                    android:textColor="@color/neutral_13"
+                    android:textSize="@dimen/fbase_text_size_14" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fbase_dimen_16"
+                    android:fontFamily="@font/font_raleway_medium"
+                    android:text="@string/district"
+                    android:textColor="@color/text1"
+                    android:textSize="@dimen/fbase_text_size_14" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/edtEditProfileDistrict"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fbase_dimen_4"
+                    android:background="@drawable/shape_bg_white_corner_8_stroke_1"
+                    android:drawableEnd="@drawable/ic_arrow_black1_bottom"
+                    android:fontFamily="@font/font_raleway_medium"
+                    android:gravity="start"
+                    android:hint="@string/input_district"
+                    android:maxLines="1"
+                    android:paddingHorizontal="@dimen/fbase_dimen_10"
+                    android:paddingVertical="@dimen/fbase_dimen_14"
+                    android:textColor="@color/neutral_13"
+                    android:textSize="@dimen/fbase_text_size_14" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvEditProfileSchool"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fbase_dimen_16"
+                    android:fontFamily="@font/font_raleway_medium"
+                    android:text="@string/school"
+                    android:textColor="@color/text1"
+                    android:textSize="@dimen/fbase_text_size_14" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/edtEditProfileSchool"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fbase_dimen_4"
+                    android:background="@drawable/shape_bg_white_corner_8_stroke_1"
+                    android:drawableEnd="@drawable/ic_arrow_black1_bottom"
+                    android:fontFamily="@font/font_raleway_medium"
+                    android:gravity="start"
+                    android:hint="@string/input_school"
+                    android:maxLines="1"
+                    android:paddingHorizontal="@dimen/fbase_dimen_10"
+                    android:paddingVertical="@dimen/fbase_dimen_14"
+                    android:textColor="@color/neutral_13"
+                    android:textSize="@dimen/fbase_text_size_14" />
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvEditProfileConfirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/fbase_dimen_16"
+            android:layout_marginTop="@dimen/fbase_dimen_20"
+            android:layout_marginBottom="@dimen/fbase_dimen_10"
+            android:background="@drawable/ripple_bg_primary_corner_16"
+            android:fontFamily="@font/font_raleway_bold"
+            android:gravity="center"
+            android:paddingVertical="@dimen/fbase_dimen_16"
+            android:text="@string/change_password"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fbase_text_size_14"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

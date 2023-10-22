@@ -2,6 +2,7 @@ package vn.tutorme.mobile.data.source.remote.network
 
 object ApiConfig {
     val BASE_URL = BuildConfig.BASE_DOMAIN
+    val LOCATION_URL = BuildConfig.LOCATION_DOMAIN
 
     object HeaderName {
         const val CONTENT_TYPE = "Content-Type"

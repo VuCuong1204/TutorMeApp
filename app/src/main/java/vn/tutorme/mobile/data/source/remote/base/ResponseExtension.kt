@@ -35,3 +35,7 @@ fun <RESPONSE : IApiResponse, RETURN_VALUE> Call<RESPONSE>.invokeApi(
 fun <T : IApiService> IRepo.invokeAuthService(service: Class<T>): T {
     return RetrofitFactory.createAuthService(service)
 }
+
+fun <T : IApiService> IRepo.invokeLocationService(service: Class<T>): T {
+    return RetrofitFactory.createLocationService(service)
+}

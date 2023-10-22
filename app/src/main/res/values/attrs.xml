@@ -37,4 +37,28 @@
 
     </declare-styleable>
 
+    <declare-styleable name="DatePickerAdvance">
+
+        <attr name="dp_mode" format="enum">
+            <enum name="day_month_year" value="1" />
+            <enum name="month_year" value="2" />
+        </attr>
+
+        <attr name="dp_column_width" format="dimension" />
+        <attr name="dp_column_space" format="dimension" />
+
+        <attr name="dp_locale" format="enum">
+            <enum name="en" value="0" />
+            <enum name="vi" value="1" />
+        </attr>
+
+    </declare-styleable>
+
+    <declare-styleable name="LeafCardView">
+        <attr name="corner_top_left" format="dimension" />
+        <attr name="corner_top_right" format="dimension" />
+        <attr name="corner_bottom_left" format="dimension" />
+        <attr name="corner_bottom_right" format="dimension" />
+    </declare-styleable>
+
 </resources>

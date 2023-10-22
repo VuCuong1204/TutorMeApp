@@ -23,9 +23,12 @@ class RegisterViewModel @Inject constructor(
     private val _userInfoState = MutableStateFlow(FlowResult.newInstance<UserInfo>())
     val userInfoState = _userInfoState.asStateFlow()
 
-    fun register(id: String) {
+    fun register(id: String, email: String, password: String) {
         viewModelScope.launch {
-            val rv = GetUserInfoRegisterUseCase.GetUserInfoRegisterRV(id)
+            val rv = GetUserInfoRegisterUseCase.GetUserInfoRegisterRV(id).apply {
+                this.email = email
+                this.password = password
+            }
             getUserInfoRegisterUseCase.invoke(rv)
                 .onStart {
                     _userInfoState.loading()
