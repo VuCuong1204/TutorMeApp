@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:background="#9CF6A0">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <NumberPicker
+            android:id="@+id/npDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/NumberPicker"
+            tools:background="#F3C5C5" />
+
+        <NumberPicker
+            android:id="@+id/npMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/NumberPicker"
+            tools:background="#81CCED" />
+
+        <NumberPicker
+            android:id="@+id/npYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/NumberPicker"
+            tools:background="#F8DA7E" />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideLineV33"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fbase_dimen_10"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.33" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fbase_dimen_2"
+        android:background="@color/gray_5"
+        app:layout_constraintBottom_toBottomOf="@id/guideLineV33"
+        app:layout_constraintTop_toTopOf="@id/guideLineV33" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideLineV66"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fbase_dimen_10"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.66" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fbase_dimen_2"
+        android:background="@color/gray_5"
+        app:layout_constraintBottom_toBottomOf="@id/guideLineV66"
+        app:layout_constraintTop_toTopOf="@id/guideLineV66" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

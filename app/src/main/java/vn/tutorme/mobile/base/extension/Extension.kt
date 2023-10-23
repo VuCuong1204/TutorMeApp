@@ -103,7 +103,7 @@ fun ImageView.loadUser(
 }
 
 private fun getPlaceHolderUser(): Drawable? {
-    return getAppDrawable(R.drawable.bg_avatar_mock)
+    return getAppDrawable(R.drawable.ic_gender_male)
 }
 
 fun ImageView.loadImage(

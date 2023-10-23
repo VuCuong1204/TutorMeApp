@@ -13,8 +13,8 @@ import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
 import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.R
-import vn.tutorme.mobile.base.common.IViewListener
 import vn.tutorme.mobile.base.common.CountNotifyEvent
+import vn.tutorme.mobile.base.common.IViewListener
 import vn.tutorme.mobile.base.common.anim.SLIDE_TYPE
 import vn.tutorme.mobile.base.common.anim.SlideAnimation
 import vn.tutorme.mobile.base.common.eventbus.EventBusManager
@@ -93,10 +93,10 @@ class LoginFragment : TutorMeFragment<LoginFragmentBinding>(R.layout.login_fragm
         }
 
         AppPreferences.userNameAccount?.let { binding.tfvLoginAccount.setTextContent(it) }
-        AppPreferences.passwordAccount?.let { binding.tfvLoginPassword.setTextContent(it) }
-        if (AppPreferences.checkSaveInfo == true)
+        if (AppPreferences.checkSaveInfo == true) {
             binding.ivLoginCheck.setImageDrawable(getAppDrawable(R.drawable.ic_tick_show))
-        else binding.ivLoginCheck.setImageDrawable(getAppDrawable(R.drawable.ic_tick_gone))
+            AppPreferences.passwordAccount?.let { binding.tfvLoginPassword.setTextContent(it) }
+        } else binding.ivLoginCheck.setImageDrawable(getAppDrawable(R.drawable.ic_tick_gone))
     }
 
     private fun addEventOnClick() {
@@ -157,14 +157,8 @@ class LoginFragment : TutorMeFragment<LoginFragmentBinding>(R.layout.login_fragm
             if (task.isSuccessful) {
                 val id = auth.currentUser?.uid
                 id?.let {
-                    if (AppPreferences.checkSaveInfo!!) {
-                        AppPreferences.userNameAccount = email
-                        AppPreferences.passwordAccount = password
-                        AppPreferences.checkSaveInfo = true
-                    } else {
-                        AppPreferences.passwordAccount = STRING_DEFAULT
-                        AppPreferences.checkSaveInfo = false
-                    }
+                    AppPreferences.userNameAccount = email
+                    AppPreferences.passwordAccount = password
                     viewModel.login(it)
                 }
             } else {

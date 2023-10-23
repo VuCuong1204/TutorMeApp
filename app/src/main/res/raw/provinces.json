@@ -1,0 +1,256 @@
+{
+  "data": [
+    {
+      "locationId": "19887946199019520",
+      "name": "An Giang"
+    },
+    {
+      "locationId": "19887946199019521",
+      "name": "Bà Rịa - Vũng Tàu"
+    },
+    {
+      "locationId": "19887946199019522",
+      "name": "Bắc Giang"
+    },
+    {
+      "locationId": "19887946199019523",
+      "name": "Bắc Kạn"
+    },
+    {
+      "locationId": "19887946199019524",
+      "name": "Bạc Liêu"
+    },
+    {
+      "locationId": "19887946199019525",
+      "name": "Bắc Ninh"
+    },
+    {
+      "locationId": "19887946199019526",
+      "name": "Bến Tre"
+    },
+    {
+      "locationId": "19887946199019527",
+      "name": "Bình Định"
+    },
+    {
+      "locationId": "19887946199019528",
+      "name": "Bình Dương"
+    },
+    {
+      "locationId": "19887946199019529",
+      "name": "Bình Phước"
+    },
+    {
+      "locationId": "19887946199019530",
+      "name": "Bình Thuận"
+    },
+    {
+      "locationId": "19887946199019531",
+      "name": "Cà Mau"
+    },
+    {
+      "locationId": "19887946199019532",
+      "name": "Cần Thơ"
+    },
+    {
+      "locationId": "19887946199019533",
+      "name": "Cao Bằng"
+    },
+    {
+      "locationId": "19887946199019534",
+      "name": "Đà Nẵng"
+    },
+    {
+      "locationId": "19887946199019535",
+      "name": "Đắk Lắk"
+    },
+    {
+      "locationId": "19887946199019536",
+      "name": "Đắk Nông"
+    },
+    {
+      "locationId": "19887946199019537",
+      "name": "Điện Biên"
+    },
+    {
+      "locationId": "19887946199019538",
+      "name": "Đồng Nai"
+    },
+    {
+      "locationId": "19887946199019539",
+      "name": "Đồng Tháp"
+    },
+    {
+      "locationId": "19887946199019540",
+      "name": "Gia Lai"
+    },
+    {
+      "locationId": "19887946199019541",
+      "name": "Hà Giang"
+    },
+    {
+      "locationId": "19887946199019542",
+      "name": "Hà Nam"
+    },
+    {
+      "locationId": "19887946199019543",
+      "name": "Hà Nội"
+    },
+    {
+      "locationId": "19887946199019544",
+      "name": "Hà Tĩnh"
+    },
+    {
+      "locationId": "19887946199019545",
+      "name": "Hải Dương"
+    },
+    {
+      "locationId": "19887946199019546",
+      "name": "Hải Phòng"
+    },
+    {
+      "locationId": "19887946199019547",
+      "name": "Hậu Giang"
+    },
+    {
+      "locationId": "19887946199019548",
+      "name": "Hòa Bình"
+    },
+    {
+      "locationId": "19887946199019549",
+      "name": "Hưng Yên"
+    },
+    {
+      "locationId": "19887946199019550",
+      "name": "Khánh Hòa"
+    },
+    {
+      "locationId": "19887946199019551",
+      "name": "Kiên Giang"
+    },
+    {
+      "locationId": "19887946199019552",
+      "name": "Kon Tum"
+    },
+    {
+      "locationId": "19887946199019553",
+      "name": "Lai Châu"
+    },
+    {
+      "locationId": "19887946199019554",
+      "name": "Lâm Đồng"
+    },
+    {
+      "locationId": "19887946199019555",
+      "name": "Lạng Sơn"
+    },
+    {
+      "locationId": "19887946199019556",
+      "name": "Lào Cai"
+    },
+    {
+      "locationId": "19887946199019557",
+      "name": "Long An"
+    },
+    {
+      "locationId": "19887946199019558",
+      "name": "Nam Định"
+    },
+    {
+      "locationId": "19887946199019559",
+      "name": "Nghệ An"
+    },
+    {
+      "locationId": "19887946199019560",
+      "name": "Ninh Bình"
+    },
+    {
+      "locationId": "19887946199019561",
+      "name": "Ninh Thuận"
+    },
+    {
+      "locationId": "19887946199019562",
+      "name": "Phú Thọ"
+    },
+    {
+      "locationId": "19887946199019563",
+      "name": "Phú Yên"
+    },
+    {
+      "locationId": "19887946199019564",
+      "name": "Quảng Bình"
+    },
+    {
+      "locationId": "19887946199019565",
+      "name": "Quảng Nam"
+    },
+    {
+      "locationId": "19887946199019566",
+      "name": "Quảng Ngãi"
+    },
+    {
+      "locationId": "19887946199019567",
+      "name": "Quảng Ninh"
+    },
+    {
+      "locationId": "19887946199019568",
+      "name": "Quảng Trị"
+    },
+    {
+      "locationId": "19887946199019569",
+      "name": "Sóc Trăng"
+    },
+    {
+      "locationId": "19887946199019570",
+      "name": "Sơn La"
+    },
+    {
+      "locationId": "19887946199019571",
+      "name": "Tây Ninh"
+    },
+    {
+      "locationId": "19887946199019572",
+      "name": "Thái Bình"
+    },
+    {
+      "locationId": "19887946199019573",
+      "name": "Thái Nguyên"
+    },
+    {
+      "locationId": "19887946199019574",
+      "name": "Thanh Hóa"
+    },
+    {
+      "locationId": "19887946199019575",
+      "name": "Thừa Thiên Huế"
+    },
+    {
+      "locationId": "19887946199019576",
+      "name": "Tiền Giang"
+    },
+    {
+      "locationId": "19887946199019577",
+      "name": "TP.Hồ Chí Minh"
+    },
+    {
+      "locationId": "19887946199019578",
+      "name": "Trà Vinh"
+    },
+    {
+      "locationId": "19887946199019579",
+      "name": "Tuyên Quang"
+    },
+    {
+      "locationId": "19887946199019580",
+      "name": "Vĩnh Long"
+    },
+    {
+      "locationId": "19887946199019581",
+      "name": "Vĩnh Phúc"
+    },
+    {
+      "locationId": "19887946199019582",
+      "name": "Yên Bái"
+    }
+  ]
+}

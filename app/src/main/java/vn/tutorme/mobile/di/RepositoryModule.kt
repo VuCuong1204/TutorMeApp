@@ -7,10 +7,12 @@ import dagger.hilt.components.SingletonComponent
 import vn.tutorme.mobile.data.repo.authen.AuthRepoImpl
 import vn.tutorme.mobile.data.repo.banner.BannerRepoImpl
 import vn.tutorme.mobile.data.repo.lesson.LessonRepoImpl
+import vn.tutorme.mobile.data.repo.location.LocationRepoImpl
 import vn.tutorme.mobile.data.repo.notification.NotificationRepoImpl
 import vn.tutorme.mobile.domain.repo.IAuthRepo
 import vn.tutorme.mobile.domain.repo.IBannerRepo
 import vn.tutorme.mobile.domain.repo.ILessonRepo
+import vn.tutorme.mobile.domain.repo.ILocationRepo
 import vn.tutorme.mobile.domain.repo.INotificationRepo
 
 @Module
@@ -28,4 +30,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun provideNotificationRepository(notificationImpl: NotificationRepoImpl): INotificationRepo
+
+    @Binds
+    abstract fun provideLocationRepository(locationRepoImpl: LocationRepoImpl): ILocationRepo
 }

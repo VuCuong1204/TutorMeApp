@@ -5,4 +5,8 @@
         <item name="cornerSize">50%</item>
     </style>
 
+    <style name="NumberPicker">
+        <item name="android:colorControlNormal">@color/transparent</item>
+    </style>
+
 </resources>

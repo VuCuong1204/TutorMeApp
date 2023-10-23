@@ -62,7 +62,7 @@ class MainActivity : TutorMeActivity<MainActivityBinding>(R.layout.main_activity
         super.onEvent(event)
         when (event) {
             is CountNotifyEvent -> {
-                viewModel.getNotificationInfoList()
+//                viewModel.getNotificationInfoList()
                 EventBusManager.instance?.removeSticky(event)
             }
         }
