@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+        android:id="@+id/flConfirmRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/popup_background">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/civConfirmRoot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_title_center"
+                app:layout_constraintBottom_toTopOf="@id/llConfirmRoot"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivConfirmAvatar"
+                android:layout_width="@dimen/fbase_dimen_40"
+                android:layout_height="@dimen/fbase_dimen_40"
+                android:src="@drawable/ic_bell_read_all"
+                app:layout_constraintBottom_toBottomOf="@id/civConfirmRoot"
+                app:layout_constraintEnd_toEndOf="@id/civConfirmRoot"
+                app:layout_constraintStart_toStartOf="@id/civConfirmRoot"
+                app:layout_constraintTop_toTopOf="@id/civConfirmRoot" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/fbase_dimen_10"
+                android:background="@color/white"
+                android:layout_marginTop="@dimen/fbase_dimen_38"
+                app:layout_constraintEnd_toEndOf="@id/civConfirmRoot"
+                app:layout_constraintStart_toStartOf="@id/civConfirmRoot"
+                app:layout_constraintTop_toBottomOf="@id/ivConfirmAvatar" />
+
+            <LinearLayout
+                android:id="@+id/llConfirmRoot"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fbase_dimen_40"
+                android:background="@drawable/shape_bg_white_bottom_corner_14"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/fbase_dimen_16"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/civConfirmRoot"
+                app:layout_constraintStart_toStartOf="@id/civConfirmRoot"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvConfirmTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fbase_dimen_20"
+                    android:fontFamily="@font/font_raleway_bold"
+                    android:text="@string/read_all"
+                    android:textColor="@color/primary"
+                    android:textSize="@dimen/fbase_text_size_18"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/civConfirmRoot" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvConfirmContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fbase_dimen_10"
+                    android:fontFamily="@font/font_raleway_medium"
+                    android:gravity="center"
+                    android:lineSpacingExtra="@dimen/fbase_dimen_4"
+                    android:text="@string/login_failed_content"
+                    android:textColor="@color/text1"
+                    android:textSize="@dimen/fbase_text_size_14"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/fbase_dimen_20"
+                    android:layout_marginTop="@dimen/fbase_dimen_18"
+                    android:layout_marginBottom="@dimen/fbase_dimen_30"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvConfirmLeft"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/fbase_dimen_46"
+                        android:layout_marginEnd="@dimen/fbase_dimen_6"
+                        android:layout_weight="1"
+                        android:background="@drawable/ripple_bg_primary_corner_16"
+                        android:fontFamily="@font/font_raleway_semibold"
+                        android:gravity="center"
+                        android:text="@string/confirm"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fbase_text_size_14" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvConfirmRight"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/fbase_dimen_46"
+                        android:layout_marginStart="@dimen/fbase_dimen_6"
+                        android:layout_weight="1"
+                        android:background="@drawable/ripple_bg_white_corner_16_stroke_1"
+                        android:fontFamily="@font/font_raleway_semibold"
+                        android:gravity="center"
+                        android:text="@string/cancel"
+                        android:textColor="@color/text1"
+                        android:textSize="@dimen/fbase_text_size_14" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+
+</layout>

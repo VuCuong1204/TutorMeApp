@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/back2">
+
+        <FrameLayout
+            android:id="@+id/flLessonEvaluateAllRoot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivLessonEvaluateAllBack"
+                android:layout_width="@dimen/fbase_dimen_36"
+                android:layout_height="@dimen/fbase_dimen_36"
+                android:layout_marginVertical="@dimen/fbase_dimen_10"
+                android:layout_marginStart="@dimen/fbase_dimen_16"
+                android:background="@drawable/ripple_bg_white_corner_12"
+                android:padding="@dimen/fbase_dimen_10"
+                android:src="@drawable/ic_arrow_long_left" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ivLessonEvaluateAllContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/font_raleway_bold"
+                android:text="@string/lesson_no_evaluate"
+                android:textColor="@color/text6"
+                android:textSize="@dimen/fbase_text_size_18" />
+
+        </FrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlLessonEvaluateInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/flLessonEvaluateAllRoot"
+            android:layout_marginHorizontal="@dimen/fbase_dimen_16"
+            android:layout_marginTop="@dimen/fbase_dimen_16"
+            android:background="@drawable/shape_bg_purple_corner_12"
+            android:paddingHorizontal="@dimen/fbase_dimen_14"
+            android:paddingVertical="@dimen/fbase_dimen_12">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivLessonEvaluateLeft"
+                android:layout_width="@dimen/fbase_dimen_20"
+                android:layout_height="@dimen/fbase_dimen_20"
+                android:src="@drawable/ic_lesson_empty" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fbase_dimen_8"
+                android:layout_toEndOf="@+id/ivLessonEvaluateLeft"
+                android:fontFamily="@font/font_raleway_medium"
+                android:text="@string/lesson_no_evaluate"
+                android:textColor="@color/text1"
+                android:textSize="@dimen/fbase_text_size_14" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLessonEvaluateCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/fbase_dimen_8"
+                android:fontFamily="@font/font_worksans_semibold"
+                android:text="20"
+                android:textColor="@color/status_warring"
+                android:textSize="@dimen/fbase_text_size_14" />
+
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLessonEvaluateTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rlLessonEvaluateInfo"
+            android:layout_marginStart="@dimen/fbase_dimen_16"
+            android:layout_marginTop="@dimen/fbase_dimen_10"
+            android:background="@drawable/ripple_bg_white_corner_14"
+            android:drawableEnd="@drawable/ic_arrow_black1_bottom"
+            android:drawablePadding="@dimen/fbase_dimen_16"
+            android:fontFamily="@font/font_worksans_semibold"
+            android:paddingHorizontal="@dimen/fbase_dimen_16"
+            android:paddingVertical="@dimen/fbase_dimen_12"
+            android:text="09/10/2023 - 16/10/2023"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/fbase_text_size_14" />
+
+        <vn.tutorme.mobile.presenter.widget.collection.CollectionView
+            android:id="@+id/cvLessonEvaluateRoot"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tvLessonEvaluateTime"
+            android:layout_marginHorizontal="@dimen/fbase_dimen_16"
+            android:layout_marginTop="@dimen/fbase_dimen_10"
+            android:overScrollMode="never" />
+
+    </RelativeLayout>
+
+</layout>

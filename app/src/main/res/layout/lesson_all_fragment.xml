@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/back2">
+
+        <FrameLayout
+            android:id="@+id/flLessonAllRoot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivLessonAllBack"
+                android:layout_width="@dimen/fbase_dimen_36"
+                android:layout_height="@dimen/fbase_dimen_36"
+                android:layout_marginVertical="@dimen/fbase_dimen_10"
+                android:layout_marginStart="@dimen/fbase_dimen_16"
+                android:background="@drawable/ripple_bg_white_corner_12"
+                android:padding="@dimen/fbase_dimen_10"
+                android:src="@drawable/ic_arrow_long_left" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLessonAllContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/font_raleway_bold"
+                android:text="@string/calender_teach"
+                android:textColor="@color/text6"
+                android:textSize="@dimen/fbase_text_size_18" />
+
+        </FrameLayout>
+
+        <vn.tutorme.mobile.presenter.widget.collection.CollectionView
+            android:id="@+id/cvLessonRoot"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/flLessonAllRoot"
+            android:layout_marginHorizontal="@dimen/fbase_dimen_16"
+            android:overScrollMode="never" />
+
+    </RelativeLayout>
+
+</layout>

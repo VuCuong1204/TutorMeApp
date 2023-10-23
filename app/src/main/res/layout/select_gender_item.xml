@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/llSelectGender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/transparent"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rbSelectGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/gray"
+            android:drawablePadding="@dimen/fbase_dimen_16"
+            android:paddingStart="@dimen/fbase_dimen_16"
+            android:text="@string/male"
+            android:textColor="@color/primary" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</layout>

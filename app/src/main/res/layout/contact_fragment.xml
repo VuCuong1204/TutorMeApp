@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/back2">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/fbase_dimen_140"
+            android:background="@drawable/bg_home_blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivContactBack"
+            android:layout_width="@dimen/fbase_dimen_36"
+            android:layout_height="@dimen/fbase_dimen_36"
+            android:layout_marginVertical="@dimen/fbase_dimen_20"
+            android:layout_marginStart="@dimen/fbase_dimen_16"
+            android:background="@drawable/ripple_bg_comp_corner_12"
+            android:padding="@dimen/fbase_dimen_10"
+            android:src="@drawable/ic_arrow_white_left"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvContactContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/font_raleway_bold"
+            android:text="@string/contact"
+            android:textColor="@color/back2"
+            android:textSize="@dimen/fbase_text_size_18"
+            app:layout_constraintBottom_toBottomOf="@id/ivContactBack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ivContactBack" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvContactBanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/fbase_dimen_16"
+            android:layout_marginTop="@dimen/fbase_dimen_20"
+            app:cardCornerRadius="@dimen/fbase_dimen_14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvContactContent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivContactBanner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg_contact_banner" />
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:id="@+id/clContactRoot"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/fbase_dimen_16"
+            android:layout_marginTop="@dimen/fbase_dimen_6"
+            android:background="@drawable/shape_bg_white_corner_14"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/fbase_dimen_16"
+            android:paddingVertical="@dimen/fbase_dimen_16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cvContactBanner">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fbase_dimen_12"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:drawableStart="@drawable/ic_phone_call"
+                    android:drawablePadding="@dimen/fbase_dimen_8"
+                    android:fontFamily="@font/font_raleway_bold"
+                    android:gravity="center_vertical"
+                    android:text="@string/hotline"
+                    android:textColor="@color/gray_8"
+                    android:textSize="@dimen/fbase_text_size_14" />
+
+                <TextView
+                    android:id="@+id/tvContactHotline"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:fontFamily="@font/font_worksans_regular"
+                    android:gravity="center_vertical"
+                    android:text="@string/phone_value"
+                    android:textColor="@color/status_manual"
+                    android:textSize="@dimen/fbase_text_size_14" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fbase_dimen_1"
+                android:layout_marginTop="@dimen/fbase_dimen_12"
+                android:background="@color/back1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fbase_dimen_26"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:drawableStart="@drawable/ic_email"
+                    android:drawablePadding="@dimen/fbase_dimen_8"
+                    android:fontFamily="@font/font_raleway_bold"
+                    android:gravity="center_vertical"
+                    android:text="@string/email"
+                    android:textColor="@color/gray_8"
+                    android:textSize="@dimen/fbase_text_size_14" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:fontFamily="@font/font_worksans_regular"
+                    android:gravity="center_vertical"
+                    android:text="@string/email_value"
+                    android:textColor="@color/status_manual"
+                    android:textSize="@dimen/fbase_text_size_14" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fbase_dimen_1"
+                android:layout_marginTop="@dimen/fbase_dimen_12"
+                android:background="@color/back1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fbase_dimen_26"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:drawableStart="@drawable/ic_website"
+                    android:drawablePadding="@dimen/fbase_dimen_8"
+                    android:fontFamily="@font/font_raleway_bold"
+                    android:gravity="center_vertical"
+                    android:text="@string/website"
+                    android:textColor="@color/gray_8"
+                    android:textSize="@dimen/fbase_text_size_14" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:fontFamily="@font/font_worksans_regular"
+                    android:gravity="center_vertical"
+                    android:text="@string/website_value"
+                    android:textColor="@color/status_manual"
+                    android:textSize="@dimen/fbase_text_size_14" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fbase_dimen_1"
+                android:layout_marginTop="@dimen/fbase_dimen_12"
+                android:background="@color/back1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fbase_dimen_26"
+                android:layout_marginBottom="@dimen/fbase_dimen_12"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:drawableStart="@drawable/ic_skype"
+                    android:drawablePadding="@dimen/fbase_dimen_8"
+                    android:fontFamily="@font/font_raleway_bold"
+                    android:gravity="center_vertical"
+                    android:text="@string/skype"
+                    android:textColor="@color/gray_8"
+                    android:textSize="@dimen/fbase_text_size_14" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:fontFamily="@font/font_worksans_regular"
+                    android:gravity="center_vertical"
+                    android:text="@string/skype_value"
+                    android:textColor="@color/status_manual"
+                    android:textSize="@dimen/fbase_text_size_14" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

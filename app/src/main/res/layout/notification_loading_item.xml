@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/fbase_dimen_14"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/fbase_dimen_16">
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/fbase_dimen_12"
+            app:shimmer_auto_start="true"
+            app:shimmer_repeat_mode="reverse">
+
+            <include layout="@layout/shimmer_notification_layout" />
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/fbase_dimen_12"
+            app:shimmer_auto_start="true"
+            app:shimmer_repeat_mode="reverse">
+
+            <include layout="@layout/shimmer_notification_layout" />
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/fbase_dimen_12"
+            app:shimmer_auto_start="true"
+            app:shimmer_repeat_mode="reverse">
+
+            <include layout="@layout/shimmer_notification_layout" />
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/fbase_dimen_12"
+            app:shimmer_auto_start="true"
+            app:shimmer_repeat_mode="reverse">
+
+            <include layout="@layout/shimmer_notification_layout" />
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/fbase_dimen_12"
+            app:shimmer_auto_start="true"
+            app:shimmer_repeat_mode="reverse">
+
+            <include layout="@layout/shimmer_notification_layout" />
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/fbase_dimen_12"
+            app:shimmer_auto_start="true"
+            app:shimmer_repeat_mode="reverse">
+
+            <include layout="@layout/shimmer_notification_layout" />
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</layout>

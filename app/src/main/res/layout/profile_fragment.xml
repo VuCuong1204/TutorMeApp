@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clProfileRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/neutral_40">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivProfileTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg_person"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvProfileTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fbase_dimen_12"
+            android:fontFamily="@font/font_raleway_bold"
+            android:text="@string/information_account"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fbase_text_size_18"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="@dimen/fbase_dimen_60"
+            android:layout_height="@dimen/fbase_dimen_60"
+            app:shapeAppearanceOverlay="@style/CircleImageView"
+            android:layout_marginStart="@dimen/fbase_dimen_8"
+            android:layout_marginBottom="@dimen/fbase_dimen_28"
+            android:src="@drawable/ic_gender_male"
+            app:layout_constraintBottom_toBottomOf="@+id/ivProfileTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvProfileName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fbase_dimen_10"
+            android:fontFamily="@font/font_raleway_bold"
+            android:gravity="center_horizontal"
+            android:text="Vũ Quốc Cường"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/fbase_text_size_22"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivProfileTitle" />
+
+        <vn.tutorme.mobile.presenter.widget.collection.CollectionView
+            android:id="@+id/cvProfileContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fbase_dimen_16"
+            android:layout_marginTop="@dimen/fbase_dimen_26"
+            android:layout_marginEnd="@dimen/fbase_dimen_8"
+            android:overScrollMode="never"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvProfileName" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/fbase_dimen_80"
+            android:fontFamily="@font/font_worksans_regular"
+            android:text="@string/version"
+            android:textColor="@color/gray_scale_60"
+            android:textSize="@dimen/fbase_text_size_12"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

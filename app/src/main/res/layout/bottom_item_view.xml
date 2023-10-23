@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@color/transparent">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivBottomItemBackground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_bottom_view"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivBottomItemAvatarActive"
+        android:layout_width="@dimen/fbase_dimen_26"
+        android:layout_height="@dimen/fbase_dimen_26"
+        android:layout_marginTop="@dimen/fbase_dimen_20"
+        android:layout_marginBottom="@dimen/fbase_dimen_20"
+        android:src="@drawable/ic_profile_active"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@id/ivBottomItemBackground"
+        app:layout_constraintStart_toStartOf="@id/ivBottomItemBackground"
+        app:layout_constraintTop_toTopOf="@id/ivBottomItemBackground" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvBottomItemCountActive"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/fbase_dimen_16"
+        android:layout_marginStart="@dimen/fbase_dimen_14"
+        android:layout_marginBottom="@dimen/fbase_dimen_12"
+        android:background="@drawable/shape_circle_bg_red_30"
+        android:fontFamily="@font/font_worksans_semibold"
+        android:gravity="center"
+        android:minWidth="@dimen/fbase_dimen_16"
+        android:paddingHorizontal="@dimen/fbase_dimen_2"
+        android:textColor="@color/white"
+        android:textSize="@dimen/fbase_text_size_6"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/ivBottomItemAvatarActive"
+        app:layout_constraintEnd_toEndOf="@id/ivBottomItemAvatarActive"
+        app:layout_constraintStart_toStartOf="@id/ivBottomItemAvatarActive"
+        app:layout_constraintTop_toTopOf="@id/ivBottomItemAvatarActive"
+        tools:text="9" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clBottomItemChild"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_bottom_view_hide"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvBottomItemTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/fbase_dimen_26"
+            android:fontFamily="@font/font_raleway_medium"
+            android:gravity="center"
+            android:text="@string/profile"
+            android:textColor="@color/neutral_13"
+            android:textSize="@dimen/fbase_text_size_12"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivBottomItemAvatarInactive"
+            android:layout_width="@dimen/fbase_dimen_22"
+            android:layout_height="@dimen/fbase_dimen_22"
+            android:layout_marginTop="@dimen/fbase_dimen_16"
+            android:background="?selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_profile_inactive"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvBottomItemCountInactive"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/fbase_dimen_16"
+            android:layout_marginStart="@dimen/fbase_dimen_16"
+            android:layout_marginBottom="@dimen/fbase_dimen_14"
+            android:background="@drawable/shape_circle_bg_red_30"
+            android:fontFamily="@font/font_worksans_semibold"
+            android:gravity="center"
+            android:minWidth="@dimen/fbase_dimen_16"
+            android:paddingHorizontal="@dimen/fbase_dimen_2"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fbase_text_size_8"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/ivBottomItemAvatarInactive"
+            app:layout_constraintEnd_toEndOf="@id/ivBottomItemAvatarInactive"
+            app:layout_constraintStart_toStartOf="@id/ivBottomItemAvatarInactive"
+            app:layout_constraintTop_toTopOf="@id/ivBottomItemAvatarInactive"
+            tools:text="9" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent"
+    android:gravity="center_horizontal">
+
+    <vn.tutorme.mobile.presenter.widget.bottombarview.BottomItemView
+        android:id="@+id/btvBottomMainHome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:background_child_show="true"
+        app:background_parent="@color/transparent"
+        app:icon_active="@drawable/ic_home_active"
+        app:icon_active_show="true"
+        app:icon_inactive="@drawable/ic_home_inactive"
+        app:icon_inactive_show="false"
+        app:layout_constraintEnd_toStartOf="@id/btvBottomMainClass"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_default="spread"
+        app:layout_constraintWidth_percent="0.25"
+        app:text_color_content="@color/primary"
+        app:text_content="@string/home"
+        app:text_font_content="@font/font_raleway_bold" />
+
+    <vn.tutorme.mobile.presenter.widget.bottombarview.BottomItemView
+        android:id="@+id/btvBottomMainClass"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:background_parent="@color/white"
+        app:icon_active="@drawable/ic_class_active"
+        app:icon_inactive="@drawable/ic_class_inactive"
+        app:layout_constraintEnd_toStartOf="@id/btvBottomMainNotify"
+        app:layout_constraintStart_toEndOf="@id/btvBottomMainHome"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_default="spread"
+        app:layout_constraintWidth_percent="0.25"
+        app:text_content="@string/class_manager" />
+
+    <vn.tutorme.mobile.presenter.widget.bottombarview.BottomItemView
+        android:id="@+id/btvBottomMainNotify"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:background_parent="@color/white"
+        app:icon_active="@drawable/ic_notify_active"
+        app:icon_inactive="@drawable/ic_notification_inactive_count"
+        app:layout_constraintEnd_toStartOf="@id/btvBottomMainProfile"
+        app:layout_constraintStart_toEndOf="@id/btvBottomMainClass"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_default="spread"
+        app:layout_constraintWidth_percent="0.25"
+        app:text_content="@string/notify" />
+
+    <vn.tutorme.mobile.presenter.widget.bottombarview.BottomItemView
+        android:id="@+id/btvBottomMainProfile"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:background_parent="@color/white"
+        app:icon_active="@drawable/ic_profile_active"
+        app:icon_inactive="@drawable/ic_profile_inactive"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btvBottomMainNotify"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_default="spread"
+        app:layout_constraintWidth_percent="0.25"
+        app:text_content="@string/profile" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

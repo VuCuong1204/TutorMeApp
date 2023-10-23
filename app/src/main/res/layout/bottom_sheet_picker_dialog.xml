@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:id="@+id/flBottomSheetPickerDlgRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:background="@color/popup_background">
+
+        <vn.tutorme.mobile.presenter.widget.leafcardview.LeafCardView
+            android:id="@+id/cvBottomSheetPickerRoot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:corner_top_left="@dimen/fbase_corner_20"
+            app:corner_top_right="@dimen/fbase_corner_20">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/llBottomSheetPickerRoot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvBottomSheetPickerTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/font_raleway_semibold"
+                        android:padding="@dimen/fbase_dimen_20"
+                        android:text="@string/select_gender"
+                        android:textColor="@color/black" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvBottomSheetPickerSave"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:background="?selectableItemBackgroundBorderless"
+                        android:fontFamily="@font/font_raleway_semibold"
+                        android:padding="@dimen/fbase_dimen_20"
+                        android:text="@string/edit_profile_save"
+                        android:textColor="@color/primary" />
+
+                </FrameLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvBottomSheetPicker"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </vn.tutorme.mobile.presenter.widget.leafcardview.LeafCardView>
+
+    </FrameLayout>
+
+</layout>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/fbase_dimen_10">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitleDayName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_worksans_semibold"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/fbase_text_size_18"
+            tools:text="18/10/2023" />
+
+    </FrameLayout>
+
+</layout>

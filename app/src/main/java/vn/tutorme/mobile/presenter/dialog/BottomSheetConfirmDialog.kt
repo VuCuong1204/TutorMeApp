@@ -14,6 +14,10 @@ class BottomSheetConfirmDialog : TutorMeDialog<BottomSheetConfirmDialogBinding>(
     var content: String? = null
     var textLeft: String? = null
     var textRight: String? = null
+    var bgTextLeft: Drawable? = null
+    var bgTextRight: Drawable? = null
+    var clTextLeft: Int? = null
+    var clTextRight: Int? = null
 
     var onLeftClick: (() -> Unit)? = null
     var onRightClick: (() -> Unit)? = null
@@ -24,7 +28,7 @@ class BottomSheetConfirmDialog : TutorMeDialog<BottomSheetConfirmDialogBinding>(
         isFullWidth = true
         isFullHeight = true
         isDismissByTouchOutSide = false
-        isDismissByOnBackPressed = false
+        isDismissByOnBackPressed = true
     }
 
     override fun onInitView() {
@@ -35,6 +39,10 @@ class BottomSheetConfirmDialog : TutorMeDialog<BottomSheetConfirmDialogBinding>(
         content?.let { binding.tvBottomSheetConfirmContent.text = it }
         textLeft?.let { binding.tvBottomSheetConfirmLeft.text = it }
         textRight?.let { binding.tvBottomSheetConfirmRight.text = it }
+        bgTextLeft?.let { binding.tvBottomSheetConfirmLeft.background = bgTextLeft }
+        bgTextRight?.let { binding.tvBottomSheetConfirmRight.background = bgTextRight }
+        clTextLeft?.let { binding.tvBottomSheetConfirmLeft.setTextColor(it) }
+        clTextRight?.let { binding.tvBottomSheetConfirmRight.setTextColor(it) }
 
         binding.tvBottomSheetConfirmLeft.setOnSafeClick {
             dismiss()

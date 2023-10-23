@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:id="@+id/llBottomSheetPicker"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fbase_dimen_50"
+        android:background="?selectableItemBackground"
+        android:paddingHorizontal="@dimen/fbase_dimen_16">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivBottomSheetPickerTick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_select_check"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvBottomSheetPickerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:ellipsize="end"
+            android:fontFamily="@font/font_raleway_regular"
+            android:singleLine="true"
+            android:textColor="@color/neutral_1"
+            android:textSize="@dimen/fbase_text_size_16"
+            app:fontFamily="@font/font_raleway_regular"
+            tools:text="item1" />
+
+        <View
+            android:id="@+id/ivBottomSheetPickerBottom"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fbase_dimen_1"
+            android:layout_alignParentBottom="true"
+            android:background="@color/ink_8" />
+
+    </RelativeLayout>
+
+</layout>

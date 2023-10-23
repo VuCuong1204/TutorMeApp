@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_bg_white_corner_16"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingVertical="@dimen/fbase_dimen_40">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/fbase_dimen_50"
+            android:layout_height="@dimen/fbase_dimen_50"
+            android:src="@drawable/ic_lesson_empty" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fbase_dimen_16"
+            android:fontFamily="@font/font_raleway_medium"
+            android:text="@string/lesson_home_teacher_rate_empty"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/fbase_text_size_14" />
+
+    </LinearLayout>
+
+</layout>

@@ -2,21 +2,22 @@ package vn.tutorme.mobile.base.model
 
 class DataPage<DATA> {
     var page = 0
-    var limitPage = 20
+        private set
+    var limitPage = 10
+        private set
     var dataList: MutableList<DATA> = mutableListOf()
 
     companion object {
         fun <DATA> newInstance(dataPage: DataPage<DATA>?, isReload: Boolean = true): DataPage<DATA> {
-            var newDataPage = DataPage<DATA>()
-            if (isReload) {
-                return newDataPage
+            var _dataPage = dataPage
+            if (_dataPage == null) {
+                _dataPage = DataPage()
+            } else {
+                if (isReload) {
+                    _dataPage.clearDataPage()
+                }
             }
-
-            if (dataPage != null) {
-                newDataPage = dataPage
-            }
-
-            return newDataPage
+            return _dataPage
         }
     }
 
@@ -27,8 +28,21 @@ class DataPage<DATA> {
         }
     }
 
+    fun addData(data: DATA) {
+        this.dataList.add(data)
+    }
+
+    fun replaceDataList(list: List<DATA>) {
+        this.dataList.clear()
+        this.dataList.addAll(list)
+    }
+
     fun clearDataPage() {
         dataList.clear()
         page = 0
+    }
+
+    fun hasLoadMore(): Boolean {
+        return dataList.size - limitPage * (page + 1) >= 0
     }
 }

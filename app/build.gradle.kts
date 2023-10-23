@@ -80,10 +80,23 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.android.gms:play-services-auth:20.7.0")
+    implementation ("com.google.firebase:firebase-storage:19.1.0")
 
     //facebook
     implementation("com.facebook.android:facebook-login:latest.release")
 
+    //dotsindicator
+    implementation("me.relex:circleindicator:2.1.6")
+    implementation("com.tbuonomo:dotsindicator:4.2")
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+
+    //glide
+    implementation("com.github.bumptech.glide:glide:4.12.0")
+    implementation("jp.wasabeef:glide-transformations:4.3.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
+
+    //shimmer
+    implementation("com.facebook.shimmer:shimmer:0.5.0")
 }
 
 kapt {

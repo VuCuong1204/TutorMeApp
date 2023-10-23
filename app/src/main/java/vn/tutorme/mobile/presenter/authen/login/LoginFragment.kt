@@ -2,7 +2,6 @@ package vn.tutorme.mobile.presenter.authen.login
 
 import android.util.Log
 import android.view.inputmethod.EditorInfo
-import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.firebase.auth.AuthCredential
@@ -14,10 +13,11 @@ import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
 import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.R
+import vn.tutorme.mobile.base.common.CountNotifyEvent
 import vn.tutorme.mobile.base.common.IViewListener
-import vn.tutorme.mobile.base.common.anim.FadeAnim
 import vn.tutorme.mobile.base.common.anim.SLIDE_TYPE
 import vn.tutorme.mobile.base.common.anim.SlideAnimation
+import vn.tutorme.mobile.base.common.eventbus.EventBusManager
 import vn.tutorme.mobile.base.common.sociallogin.FacebookLogin
 import vn.tutorme.mobile.base.common.sociallogin.GoogleLogin
 import vn.tutorme.mobile.base.common.sociallogin.ISocialTokenListener
@@ -30,8 +30,8 @@ import vn.tutorme.mobile.base.extension.setOnSafeClick
 import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.LoginFragmentBinding
 import vn.tutorme.mobile.presenter.authen.register.RegisterFragment
-import vn.tutorme.mobile.presenter.home.HomeFragment
 import vn.tutorme.mobile.presenter.dialog.BottomSheetConfirmDialog
+import vn.tutorme.mobile.presenter.home.HomeFragment
 import vn.tutorme.mobile.presenter.widget.textfield.INPUT_TYPE
 
 @AndroidEntryPoint
@@ -44,7 +44,6 @@ class LoginFragment : TutorMeFragment<LoginFragmentBinding>(R.layout.login_fragm
 
     private lateinit var auth: FirebaseAuth
 
-    private var isCheckSavePassWord = false
     override fun onInitView() {
         super.onInitView()
 
@@ -63,11 +62,11 @@ class LoginFragment : TutorMeFragment<LoginFragmentBinding>(R.layout.login_fragm
                         clearBackStackFragment()
                         replaceFragment(
                             fragment = HomeFragment(),
-                            bundle = bundleOf(
-                                HomeFragment.USER_ID_KEY to it.data?.userId
-                            ),
-                            screenAnim = FadeAnim()
+                            screenAnim = SlideAnimation()
                         )
+                        EventBusManager.instance?.postPending(CountNotifyEvent())
+                        mainActivity.setBottomBarType()
+                        viewModel.resetState()
                     }
                 }, canShowLoading = true)
             }
@@ -94,21 +93,21 @@ class LoginFragment : TutorMeFragment<LoginFragmentBinding>(R.layout.login_fragm
         }
 
         AppPreferences.userNameAccount?.let { binding.tfvLoginAccount.setTextContent(it) }
-        AppPreferences.passwordAccount?.let { binding.tfvLoginPassword.setTextContent(it) }
-        if (AppPreferences.checkSaveInfo == true)
+        if (AppPreferences.checkSaveInfo == true) {
             binding.ivLoginCheck.setImageDrawable(getAppDrawable(R.drawable.ic_tick_show))
-        else binding.ivLoginCheck.setImageDrawable(getAppDrawable(R.drawable.ic_tick_gone))
+            AppPreferences.passwordAccount?.let { binding.tfvLoginPassword.setTextContent(it) }
+        } else binding.ivLoginCheck.setImageDrawable(getAppDrawable(R.drawable.ic_tick_gone))
     }
 
     private fun addEventOnClick() {
 
         binding.ivLoginCheck.setOnSafeClick {
             binding.ivLoginCheck.setImageDrawable(
-                if (!isCheckSavePassWord) getAppDrawable(R.drawable.ic_tick_show)
+                if (!AppPreferences.checkSaveInfo!!) getAppDrawable(R.drawable.ic_tick_show)
                 else getAppDrawable(R.drawable.ic_tick_gone)
             )
 
-            isCheckSavePassWord = !isCheckSavePassWord
+            AppPreferences.checkSaveInfo = !AppPreferences.checkSaveInfo!!
         }
 
         binding.tvLoginConfirm.setOnSafeClick {
@@ -158,14 +157,8 @@ class LoginFragment : TutorMeFragment<LoginFragmentBinding>(R.layout.login_fragm
             if (task.isSuccessful) {
                 val id = auth.currentUser?.uid
                 id?.let {
-                    if (isCheckSavePassWord) {
-                        AppPreferences.userNameAccount = email
-                        AppPreferences.passwordAccount = password
-                        AppPreferences.checkSaveInfo = true
-                    } else {
-                        AppPreferences.passwordAccount = STRING_DEFAULT
-                        AppPreferences.checkSaveInfo = false
-                    }
+                    AppPreferences.userNameAccount = email
+                    AppPreferences.passwordAccount = password
                     viewModel.login(it)
                 }
             } else {

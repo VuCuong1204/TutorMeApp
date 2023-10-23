@@ -36,6 +36,7 @@ class TextFieldView(
     private var textHint: String? = null
     private var rightIcon: Drawable? = null
     private var paddingRightIcon: Int? = null
+    private var bgRoot: Drawable? = null
 
     private var inputType: INPUT_TYPE = INPUT_TYPE.TEXT_TYPE
     private var isPasswordVisible: Boolean = false
@@ -54,6 +55,7 @@ class TextFieldView(
         tvDescription = findViewById(R.id.tvTextFieldDescription)
 
         rightIcon?.let { ivRight.setImageDrawable(it) }
+        bgRoot?.let { clRoot.background = it }
         textHint?.let { edtContent.hint = it }
         textTitle?.let { tvTitle.text = it }
         paddingRightIcon?.let { ivRight.setPadding(it, it, it, it) }
@@ -66,7 +68,7 @@ class TextFieldView(
             } else {
                 setEditTextFocusState(false)
                 edtContent.hint = textHint
-                clRoot.background = getAppDrawable(R.drawable.shape_bg_white_corner_14)
+                clRoot.background = if (bgRoot == null) getAppDrawable(R.drawable.shape_bg_white_corner_14) else bgRoot
             }
         }
 
@@ -197,6 +199,10 @@ class TextFieldView(
 
         if (ta.hasValue(R.styleable.TextFieldView_right_icon)) {
             rightIcon = ta.getDrawable(R.styleable.TextFieldView_right_icon)
+        }
+
+        if (ta.hasValue(R.styleable.TextFieldView_background_tf)) {
+            bgRoot = ta.getDrawable(R.styleable.TextFieldView_background_tf)
         }
 
         if (ta.hasValue(R.styleable.TextFieldView_text_title)) {

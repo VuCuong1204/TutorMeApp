@@ -5,12 +5,60 @@
         <attr name="text_title" format="string" />
         <attr name="right_icon" format="reference" />
         <attr name="text_hint" format="string" />
+        <attr name="background_tf" format="reference" />
         <attr name="padding_right_icon" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="CircleInSideView">
         <attr name="center_icon" format="reference" />
+        <attr name="title_bg" format="reference" />
         <attr name="center_icon_padding" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="BottomItemView">
+        <attr name="text_content" format="string" />
+        <attr name="text_color_content" format="color" />
+        <attr name="text_font_content" format="reference" />
+        <attr name="background_parent" format="color" />
+        <attr name="background_parent_show" format="boolean" />
+        <attr name="background_child" format="reference" />
+        <attr name="background_child_show" format="boolean" />
+        <attr name="icon_active_show" format="boolean" />
+        <attr name="icon_active" format="reference" />
+        <attr name="icon_inactive_show" format="boolean" />
+        <attr name="icon_inactive" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="BottomMainView">
+
+    </declare-styleable>
+
+    <declare-styleable name="CategoryClassView">
+
+    </declare-styleable>
+
+    <declare-styleable name="DatePickerAdvance">
+
+        <attr name="dp_mode" format="enum">
+            <enum name="day_month_year" value="1" />
+            <enum name="month_year" value="2" />
+        </attr>
+
+        <attr name="dp_column_width" format="dimension" />
+        <attr name="dp_column_space" format="dimension" />
+
+        <attr name="dp_locale" format="enum">
+            <enum name="en" value="0" />
+            <enum name="vi" value="1" />
+        </attr>
+
+    </declare-styleable>
+
+    <declare-styleable name="LeafCardView">
+        <attr name="corner_top_left" format="dimension" />
+        <attr name="corner_top_right" format="dimension" />
+        <attr name="corner_bottom_left" format="dimension" />
+        <attr name="corner_bottom_right" format="dimension" />
     </declare-styleable>
 
 </resources>
