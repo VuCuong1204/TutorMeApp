@@ -29,6 +29,7 @@
     <string name="register_bold">Đăng ký</string>
     <string name="register_fail">Đăng ký thất bại vui lòng thử lại</string>
     <string name="change_password">Đổi mật khẩu</string>
+    <string name="join_course">Tham gia ngay</string>
 
     <string name="account_wrong">Email đăng nhập chưa đúng định dạng</string>
     <string name="password_wrong">Mật khẩu sai</string>
@@ -58,6 +59,15 @@
     <string name="input_school">Nhập trường học</string>
     <string name="contact">Liên hệ</string>
     <string name="hotline">Hotline</string>
+    <string name="duration">Duration</string>
+    <string name="students">Students</string>
+    <string name="text_lessons">Text lessons</string>
+    <string name="subject">Subject</string>
+    <string name="files">Files</string>
+    <string name="created_date">Created date</string>
+    <string name="end_date">End date</string>
+    <string name="text_course_includes">This Text course includes</string>
+    <string name="text_course_specifications">Text course specifications</string>
     <string name="email">Email</string>
     <string name="website">Website</string>
     <string name="skype">Skype</string>
@@ -165,6 +175,10 @@
     <string name="class_demo">Lớp Demo</string>
     <string name="class_happen">Đang và sắp diễn ra</string>
     <string name="class_learn">Lịch sử lớp học</string>
+    <string name="info_course">Thông tin khóa học</string>
+    <string name="info_event">Thông tin sự kiện</string>
+    <string name="info_event_description">Mô tả chương trình</string>
+    <string name="how_to_join">Cách tham gia</string>
     <string name="access_token">eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzNDAxOTQyIiwiYXBwX3R5cGUiOm51bGwsInV0bV9jYW1wYWlnbiI6bnVsbCwidXRtX21lZGl1bSI6bnVsbCwic291cmNlIjoiRlFBIiwiY2xpZW50X2lkIjoiZnFhLndlYi5hcHAiLCJwaWN0dXJlIjoiIiwiYWNjb3VudF9pZCI6IjM0MDE5NDIiLCJvc190eXBlIjpudWxsLCJzY29wZSI6WyJmcWE6ZnVsbCIsImZxYTpjbGllbnQ6cG9zdCIsImZxYTpjbGllbnQ6Z2V0Il0sIm5hbWUiOiJ2dXZ1MTIiLCJleHAiOjE2OTgwNTU1NzIsInV0bV9zb3VyY2UiOm51bGwsInVzZXJuYW1lIjoidnV2dTEyIn0.ntOleqL0JstBMn1SN7ZwDvOGg6xfUI8KUUC9rtFFmD4</string>
 
 </resources>

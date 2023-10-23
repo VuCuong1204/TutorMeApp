@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/back2">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/fbase_dimen_140"
+            android:background="@drawable/bg_home_blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivCourseBack"
+            android:layout_width="@dimen/fbase_dimen_36"
+            android:layout_height="@dimen/fbase_dimen_36"
+            android:layout_marginVertical="@dimen/fbase_dimen_20"
+            android:layout_marginStart="@dimen/fbase_dimen_16"
+            android:background="@drawable/ripple_bg_comp_corner_12"
+            android:padding="@dimen/fbase_dimen_10"
+            android:src="@drawable/ic_arrow_white_left"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCourseContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/font_raleway_bold"
+            android:text="@string/info_event"
+            android:textColor="@color/back2"
+            android:textSize="@dimen/fbase_text_size_18"
+            app:layout_constraintBottom_toBottomOf="@id/ivCourseBack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ivCourseBack" />
+
+        <LinearLayout
+            android:id="@+id/clContactRoot"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="@dimen/fbase_dimen_16"
+            android:layout_marginTop="@dimen/fbase_dimen_20"
+            android:background="@drawable/shape_bg_white_corner_14"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/fbase_dimen_16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvCourseContent">
+
+            <vn.tutorme.mobile.presenter.widget.leafcardview.LeafCardView
+                android:id="@+id/cvCourseBanner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:corner_top_left="@dimen/fbase_dimen_14"
+                app:corner_top_right="@dimen/fbase_dimen_14"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvCourseContent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivCourseBanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/fbase_dimen_220"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/bg_contact_banner" />
+
+            </vn.tutorme.mobile.presenter.widget.leafcardview.LeafCardView>
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fbase_dimen_20">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/fbase_dimen_16"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvCourseTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font_raleway_bold"
+                        android:gravity="center_vertical"
+                        android:text="Giải thưởng Gia sư chăm chỉ"
+                        android:textColor="@color/primary"
+                        android:textSize="@dimen/fbase_text_size_22" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/fbase_dimen_12"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/fbase_dimen_2"
+                        android:weightSum="10">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="5"
+                            android:drawableStart="@drawable/ic_clock_big"
+                            android:drawablePadding="@dimen/fbase_dimen_8"
+                            android:fontFamily="@font/font_worksans_regular"
+                            android:gravity="center_vertical"
+                            android:text="18/10/2022"
+                            android:textColor="@color/text1"
+                            android:textSize="@dimen/fbase_text_size_14" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvContactDuration"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="5"
+                            android:drawableStart="@drawable/ic_student"
+                            android:drawablePadding="@dimen/fbase_dimen_8"
+                            android:fontFamily="@font/font_raleway_regular"
+                            android:gravity="center_vertical"
+                            android:text="100 lượt đăng ký"
+                            android:textColor="@color/text1"
+                            android:textSize="@dimen/fbase_text_size_14" />
+
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/fbase_dimen_20"
+                        android:fontFamily="@font/font_raleway_bold"
+                        android:gravity="center_vertical"
+                        android:text="@string/info_event_description"
+                        android:textColor="@color/text1"
+                        android:textSize="@dimen/fbase_text_size_16" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvCourseDescription"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/fbase_dimen_10"
+                        android:fontFamily="@font/font_raleway_medium"
+                        android:gravity="center_vertical"
+                        android:lineSpacingExtra="@dimen/fbase_dimen_2"
+                        android:text="Giảng dạy cho học sinh độ tuổi từ 5-14 về phát âm, ngữ pháp, từ vựng theo học liệu được biên soạn sẵn từ Edupia (bám sát chương trình của Bộ Giáo Dục)
+Mô hình lớp: 2 học sinh, giảng dạy online qua phần mềm classin
+Tham gia các hoạt động phong trào, lễ tết cùng hơn 1000 gia sư năng động, trẻ trung đang làm việc tại hệ thống.
+Tham gia các buổi đào tạo trực tuyến, nâng cao kỹ năng sư phạm."
+                        android:textColor="@color/text1"
+                        android:textSize="@dimen/fbase_text_size_14" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/fbase_dimen_20"
+                        android:fontFamily="@font/font_raleway_bold"
+                        android:gravity="center_vertical"
+                        android:text="@string/how_to_join"
+                        android:textColor="@color/text1"
+                        android:textSize="@dimen/fbase_text_size_16" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvCourseJoin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/fbase_dimen_10"
+                        android:fontFamily="@font/font_raleway_medium"
+                        android:gravity="center_vertical"
+                        android:lineSpacingExtra="@dimen/fbase_dimen_2"
+                        android:text="Giảng dạy cho học sinh độ tuổi từ 5-14 về phát âm, ngữ pháp, từ vựng theo học liệu được biên soạn sẵn từ Edupia (bám sát chương trình của Bộ Giáo Dục)
+Mô hình lớp: 2 học sinh, giảng dạy online qua phần mềm classin
+Tham gia các hoạt động phong trào, lễ tết cùng hơn 1000 gia sư năng động, trẻ trung đang làm việc tại hệ thống.
+Tham gia các buổi đào tạo trực tuyến, nâng cao kỹ năng sư phạm."
+                        android:textColor="@color/text1"
+                        android:textSize="@dimen/fbase_text_size_14" />
+
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

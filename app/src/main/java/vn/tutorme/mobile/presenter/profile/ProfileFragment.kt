@@ -16,6 +16,8 @@ import vn.tutorme.mobile.domain.model.profile.PROFILE_TYPE
 import vn.tutorme.mobile.domain.model.profile.ProfileInfo
 import vn.tutorme.mobile.domain.model.profile.mockDataProfileInfo
 import vn.tutorme.mobile.presenter.authen.login.LoginFragment
+import vn.tutorme.mobile.presenter.bannerinfo.CourseFragment
+import vn.tutorme.mobile.presenter.bannerinfo.EventDetailFragment
 import vn.tutorme.mobile.presenter.dialog.BottomSheetConfirmDialog
 import vn.tutorme.mobile.presenter.home.HomeFragment
 import vn.tutorme.mobile.presenter.profile.changepassword.ChangePasswordFragment
@@ -51,11 +53,11 @@ class ProfileFragment : TutorMeFragment<ProfileFragmentBinding>(R.layout.profile
                     }
 
                     PROFILE_TYPE.INFO_CONTACT_TYPE -> {
-                        replaceFragment(ContactFragment())
+                        replaceFragment(EventDetailFragment())
                     }
 
                     PROFILE_TYPE.CHANGE_PASSWORD_TYPE -> {
-                        replaceFragment(ChangePasswordFragment())
+                        replaceFragment(CourseFragment())
                     }
 
                     PROFILE_TYPE.LOGOUT_TYPE -> {
