@@ -43,11 +43,10 @@
             app:layout_constraintTop_toTopOf="@id/ivEditEditProfileBack" />
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:layout_width="@dimen/fbase_dimen_70"
-            android:layout_height="@dimen/fbase_dimen_70"
-            android:layout_marginStart="@dimen/fbase_dimen_8"
-            android:layout_marginBottom="@dimen/fbase_dimen_24"
-            android:padding="@dimen/fbase_dimen_6"
+            android:id="@+id/sivEditProfileAvatar"
+            android:layout_width="@dimen/fbase_dimen_110"
+            android:layout_height="@dimen/fbase_dimen_110"
+            android:scaleType="centerCrop"
             android:src="@drawable/ic_gender_male"
             app:layout_constraintBottom_toBottomOf="@+id/ivEditProfileTitle"
             app:layout_constraintEnd_toEndOf="parent"
@@ -128,7 +127,7 @@
                     android:gravity="start"
                     android:hint="@string/input_number_phone"
                     android:imeOptions="actionDone"
-                    android:inputType="text"
+                    android:inputType="phone"
                     android:maxLines="1"
                     android:paddingHorizontal="@dimen/fbase_dimen_10"
                     android:paddingVertical="@dimen/fbase_dimen_14"

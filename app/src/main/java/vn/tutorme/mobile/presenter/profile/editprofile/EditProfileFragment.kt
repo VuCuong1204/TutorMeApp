@@ -1,16 +1,25 @@
 package vn.tutorme.mobile.presenter.profile.editprofile
 
+import android.Manifest
+import android.net.Uri
 import androidx.fragment.app.viewModels
+import com.google.firebase.storage.FirebaseStorage
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.R
+import vn.tutorme.mobile.base.BaseActivity
 import vn.tutorme.mobile.base.common.IViewListener
+import vn.tutorme.mobile.base.common.activityresultlauncher.OpenAppSettingResult
+import vn.tutorme.mobile.base.common.activityresultlauncher.PickImageResult
+import vn.tutorme.mobile.base.common.activityresultlauncher.TakePictureResult
+import vn.tutorme.mobile.base.extension.Extension.LONG_DEFAULT
 import vn.tutorme.mobile.base.extension.Extension.STRING_DEFAULT
 import vn.tutorme.mobile.base.extension.coroutinesLaunch
 import vn.tutorme.mobile.base.extension.getAppString
 import vn.tutorme.mobile.base.extension.gone
 import vn.tutorme.mobile.base.extension.handleUiState
+import vn.tutorme.mobile.base.extension.loadUser
 import vn.tutorme.mobile.base.extension.setOnSafeClick
 import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.EditProfileFragmentBinding
@@ -18,17 +27,31 @@ import vn.tutorme.mobile.domain.model.authen.ROLE_TYPE
 import vn.tutorme.mobile.domain.model.profile.provinces.LocationInfo
 import vn.tutorme.mobile.domain.model.profile.provinces.ProvincesMain
 import vn.tutorme.mobile.domain.model.profile.provinces.SchoolInfo
+import vn.tutorme.mobile.presenter.dialog.SelectImageDialog
 import vn.tutorme.mobile.presenter.dialog.bottomsheetpicker.BottomSheetPickerDialog
 import vn.tutorme.mobile.presenter.dialog.bottomsheetpicker.TYPE_PICKER
 import vn.tutorme.mobile.presenter.dialog.datepicker.DATE_TYPE
 import vn.tutorme.mobile.presenter.dialog.datepicker.DatePickerDialog
 import vn.tutorme.mobile.presenter.profile.model.BottomSheetPicker
 import vn.tutorme.mobile.utils.TimeUtils
+import java.util.UUID
 
 @AndroidEntryPoint
 class EditProfileFragment : TutorMeFragment<EditProfileFragmentBinding>(R.layout.edit_profile_fragment) {
 
     private val viewModel by viewModels<EditProfileViewModel>()
+    private val pickImageResult by lazy { PickImageResult() }
+    private val takePhotoResult by lazy { TakePictureResult() }
+    private val openAppSettingResult by lazy { OpenAppSettingResult() }
+    private val storage = FirebaseStorage.getInstance();
+    private val storageReference = storage.reference
+
+    override fun onPrepareInitView() {
+        super.onPrepareInitView()
+        pickImageResult.register(this)
+        takePhotoResult.register(this)
+        openAppSettingResult.register(this)
+    }
 
     override fun onInitView() {
         super.onInitView()
@@ -70,6 +93,22 @@ class EditProfileFragment : TutorMeFragment<EditProfileFragmentBinding>(R.layout
                 }
             })
         }
+
+        coroutinesLaunch(viewModel.profileState) {
+            handleUiState(it, object : IViewListener {
+                override fun onSuccess() {
+                    showSuccess(getAppString(R.string.update_profile_success))
+                    onBackPressByFragment()
+                }
+            }, canShowLoading = true)
+        }
+    }
+
+    override fun onDestroy() {
+        pickImageResult.unregister()
+        takePhotoResult.unregister()
+        openAppSettingResult.unregister()
+        super.onDestroy()
     }
 
     private fun addHeader() {
@@ -78,9 +117,14 @@ class EditProfileFragment : TutorMeFragment<EditProfileFragmentBinding>(R.layout
         }
 
         binding.edtEditProfileUserName.setText(AppPreferences.userInfo?.fullName ?: STRING_DEFAULT)
-        binding.edtEditProfilePhone.setText("${AppPreferences.userInfo?.phoneNumber}")
+        if (AppPreferences.userInfo?.phoneNumber != null &&
+            AppPreferences.userInfo?.phoneNumber != LONG_DEFAULT
+        ) {
+            binding.edtEditProfilePhone.setText("0${AppPreferences.userInfo?.phoneNumber}")
+        }
         binding.edtEditProfileGender.text = AppPreferences.userInfo?.getGenderUser()
         binding.edtEditProfileDate.text = AppPreferences.userInfo?.date
+        binding.sivEditProfileAvatar.loadUser(AppPreferences.userInfo?.avatar)
         if (AppPreferences.userInfo?.role == ROLE_TYPE.STUDENT_TYPE) {
             binding.edtEditProfileSchool.text = AppPreferences.userInfo?.nameSchool
         } else {
@@ -108,6 +152,95 @@ class EditProfileFragment : TutorMeFragment<EditProfileFragmentBinding>(R.layout
                 viewModel.getSchoolList(viewModel.provincesId!!, viewModel.districtId!!)
             }
         }
+        binding.sivEditProfileAvatar.setOnSafeClick {
+            showChangeAvatarDialog()
+        }
+
+        binding.tvEditProfileConfirm.setOnSafeClick {
+            val fullName = binding.edtEditProfileUserName.text.toString()
+            val phone = binding.edtEditProfilePhone.text.toString().toLong()
+            val address = "${binding.edtEditProfileDistrict.text} - ${binding.edtEditProfileProvince.text}"
+            val date = binding.edtEditProfileDate.text.toString()
+            val schoolName = binding.edtEditProfileSchool.text.toString()
+            viewModel.updateProfile(
+                fullName = fullName,
+                date = date,
+                nameSchool = schoolName,
+                phoneNumber = phone,
+                address = address
+            )
+        }
+    }
+
+    private fun showChangeAvatarDialog() {
+        val dialogChangeImage = SelectImageDialog(object : SelectImageDialog.ISelectImage {
+            override fun fromGallery() {
+                selectImageFromGallery()
+            }
+
+            override fun takePhoto() {
+                fromCamera()
+            }
+        })
+        dialogChangeImage.show(childFragmentManager, SelectImageDialog::class.java.simpleName)
+    }
+
+    private fun selectImageFromGallery() {
+        mainActivity.doRequestPermission(arrayOf(
+            Manifest.permission.READ_EXTERNAL_STORAGE
+        ), object : BaseActivity.PermissionListener {
+            override fun onAllow() {
+                pickImageResult.launch {
+                    if (it != null) {
+                        uploadImageToFirebaseStorage(it)
+                        showLoading()
+                    }
+                }
+            }
+
+            override fun onDenied(neverAskAgainPermissionList: List<String>) {
+                if (neverAskAgainPermissionList.isNotEmpty()) {
+                    openAppSettingResult.launch(mainActivity)
+                }
+            }
+        })
+    }
+
+    private fun fromCamera() {
+        mainActivity.doRequestPermission(arrayOf(Manifest.permission.CAMERA), object : BaseActivity.PermissionListener {
+            override fun onAllow() {
+                takePhotoResult.launch {
+                    if (it != null) {
+                        uploadImageToFirebaseStorage(it)
+                        showLoading()
+                    }
+                }
+            }
+
+            override fun onDenied(neverAskAgainPermissionList: List<String>) {
+                if (neverAskAgainPermissionList.isNotEmpty()) {
+                    openAppSettingResult.launch(mainActivity)
+                }
+            }
+        })
+    }
+
+    fun uploadImageToFirebaseStorage(imageUri: Uri) {
+        val imageFileName = "images/" + UUID.randomUUID().toString()
+        val storageRef = storageReference.child(imageFileName)
+        storageRef.putFile(imageUri)
+            .addOnSuccessListener {
+                storageRef.downloadUrl.addOnSuccessListener { downloadUri ->
+                    val imageUrl = downloadUri.toString()
+                    binding.sivEditProfileAvatar.loadUser(imageUrl)
+                    viewModel.avatarLink = imageUrl
+                    hideLoading()
+                }
+            }
+            .addOnFailureListener {
+                hideLoading()
+                showError(getAppString(R.string.update_image_error))
+            }
     }
 
     private fun showDateDialog() {

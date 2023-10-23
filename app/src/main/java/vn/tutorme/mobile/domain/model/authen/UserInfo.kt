@@ -22,7 +22,9 @@ data class UserInfo(
 
     var phoneNumber: Long? = null,
 
-    var role: ROLE_TYPE? = null
+    var role: ROLE_TYPE? = null,
+
+    var avatar: String? = null
 
 ) : IParcelable {
     fun getGenderUser(): String {
@@ -31,15 +33,6 @@ data class UserInfo(
             GENDER_TYPE.FEMALE_TYPE -> getAppString(R.string.female)
             GENDER_TYPE.OTHER -> getAppString(R.string.other)
             else -> getAppString(R.string.other)
-        }
-    }
-
-    fun getGenderType(gender: String): GENDER_TYPE {
-        return when (gender) {
-            getAppString(R.string.male) -> GENDER_TYPE.MALE_TYPE
-            getAppString(R.string.female) -> GENDER_TYPE.FEMALE_TYPE
-            getAppString(R.string.other) -> GENDER_TYPE.OTHER
-            else -> GENDER_TYPE.OTHER
         }
     }
 }

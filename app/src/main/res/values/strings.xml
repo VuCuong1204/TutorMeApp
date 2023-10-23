@@ -22,6 +22,7 @@
     <string name="welcome">Chào mừng bạn đến với Tutor Me</string>
     <string name="remember_password">Nhớ mật khẩu</string>
     <string name="forgot_password">Quên mật khẩu?</string>
+    <string name="update_profile_success">Cập nhật thành công</string>
     <string name="forgot_password_v2">Quên mật khẩu</string>
     <string name="no_member">Chưa là thành viên</string>
     <string name="register">đăng ký</string>
@@ -152,6 +153,9 @@
     <string name="class_waiting_confirm">Lớp chờ xác nhận</string>
 
     <string name="waiting_confirm">Chờ xác nhận</string>
+    <string name="edit_profile_change_avatar_take_photo">Chụp ảnh</string>
+    <string name="edit_profile_select_gallery">Chọn từ  thư viện</string>
+    <string name="update_image_error">Lỗi update ảnh, vui lòng thử lại</string>
     <string name="confirmed">Đã xác nhận</string>
     <string name="confirm_second">xác nhận</string>
     <string name="out_of_date">Quá hạn</string>
@@ -161,6 +165,6 @@
     <string name="class_demo">Lớp Demo</string>
     <string name="class_happen">Đang và sắp diễn ra</string>
     <string name="class_learn">Lịch sử lớp học</string>
-    <string name="access_token">eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzNDAxOTQyIiwiYXBwX3R5cGUiOm51bGwsInV0bV9jYW1wYWlnbiI6bnVsbCwidXRtX21lZGl1bSI6bnVsbCwic291cmNlIjoiRlFBIiwiY2xpZW50X2lkIjoiZnFhLndlYi5hcHAiLCJwaWN0dXJlIjoiIiwiYWNjb3VudF9pZCI6IjM0MDE5NDIiLCJvc190eXBlIjpudWxsLCJzY29wZSI6WyJmcWE6ZnVsbCIsImZxYTpjbGllbnQ6cG9zdCIsImZxYTpjbGllbnQ6Z2V0Il0sIm5hbWUiOiJ2dXZ1MTIiLCJleHAiOjE2OTgwMDA2MTIsInV0bV9zb3VyY2UiOm51bGwsInVzZXJuYW1lIjoidnV2dTEyIn0.iGXRVZuVD2NVXd64zO2EySpe4ALpM0yYeN4F0CHG8WM</string>
+    <string name="access_token">eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzNDAxOTQyIiwiYXBwX3R5cGUiOm51bGwsInV0bV9jYW1wYWlnbiI6bnVsbCwidXRtX21lZGl1bSI6bnVsbCwic291cmNlIjoiRlFBIiwiY2xpZW50X2lkIjoiZnFhLndlYi5hcHAiLCJwaWN0dXJlIjoiIiwiYWNjb3VudF9pZCI6IjM0MDE5NDIiLCJvc190eXBlIjpudWxsLCJzY29wZSI6WyJmcWE6ZnVsbCIsImZxYTpjbGllbnQ6cG9zdCIsImZxYTpjbGllbnQ6Z2V0Il0sIm5hbWUiOiJ2dXZ1MTIiLCJleHAiOjE2OTgwNTU1NzIsInV0bV9zb3VyY2UiOm51bGwsInVzZXJuYW1lIjoidnV2dTEyIn0.ntOleqL0JstBMn1SN7ZwDvOGg6xfUI8KUUC9rtFFmD4</string>
 
 </resources>

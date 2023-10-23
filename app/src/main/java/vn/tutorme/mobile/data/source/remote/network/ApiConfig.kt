@@ -1,7 +1,7 @@
 package vn.tutorme.mobile.data.source.remote.network
 
 object ApiConfig {
-    val BASE_URL = BuildConfig.BASE_DOMAIN
+    val BASE_URL = BuildConfig.BASE_DOMAIN_COMPANY
     val LOCATION_URL = BuildConfig.LOCATION_DOMAIN
 
     object HeaderName {

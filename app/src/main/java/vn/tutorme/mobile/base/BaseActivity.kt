@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.InflateException
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
@@ -22,6 +23,27 @@ import vn.tutorme.mobile.base.extension.getAppColor
 abstract class BaseActivity(protected val layoutId: Int) : AppCompatActivity(), BaseView {
 
     protected var TAG = this::class.java.simpleName
+    private var permissionListener: PermissionListener? = null
+    private val launcher = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            val listDenied = mutableListOf<String>()
+            val listNeverAskAgain = mutableListOf<String>()
+            it.forEach { (k, v) ->
+                if (!v) {
+                    if (shouldShowRequestPermissionRationale(k)) {
+                        listDenied.add(k)
+                    } else {
+                        listNeverAskAgain.add(k)
+                    }
+                }
+            }
+            if (listDenied.isEmpty() && listNeverAskAgain.isEmpty()) {
+                permissionListener?.onAllow()
+            } else {
+                permissionListener?.onDenied(listNeverAskAgain)
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -46,6 +68,14 @@ abstract class BaseActivity(protected val layoutId: Int) : AppCompatActivity(), 
             e.printStackTrace()
             Log.d(TAG, "${e.message}")
         }
+    }
+
+    fun doRequestPermission(
+        permissions: Array<String>,
+        listener: PermissionListener
+    ) {
+        permissionListener = listener
+        launcher.launch(permissions)
     }
 
     open fun attachView() {
@@ -267,5 +297,10 @@ abstract class BaseActivity(protected val layoutId: Int) : AppCompatActivity(), 
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    interface PermissionListener {
+        fun onAllow()
+        fun onDenied(neverAskAgainPermissionList: List<String>)
     }
 }
