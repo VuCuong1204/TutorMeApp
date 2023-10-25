@@ -42,5 +42,13 @@ data class ClassInfoDTO(
 
     @SerializedName("teacherId")
     @Expose
-    var teacherId: String? = null
+    var teacherId: String? = null,
+
+    @SerializedName("lessonFirst")
+    @Expose
+    var lessonFirst: Int? = null,
+
+    @SerializedName("lessonSecond")
+    @Expose
+    var lessonSecond: Int? = null
 )

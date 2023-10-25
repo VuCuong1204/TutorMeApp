@@ -17,6 +17,7 @@
     <string name="login_failed">Đăng nhập thất bại</string>
     <string name="read_all">Bạn có muốn đọc tất cả không?</string>
     <string name="delete_notify">Bạn có chắc chắn muốn xóa thông báo?</string>
+    <string name="delete_register_course">Bạn có chắc chắn muốn đăng ký lớp học chứ?</string>
     <string name="logout_notify">Bạn chắc chắn muốn đăng xuất?</string>
     <string name="login_failed_content">Tên đăng nhập hoặc mật khẩu không hợp lệ.\nVui lòng thử lại hoặc ấn Quên mật khẩu!</string>
     <string name="welcome">Chào mừng bạn đến với Tutor Me</string>
@@ -30,6 +31,7 @@
     <string name="register_fail">Đăng ký thất bại vui lòng thử lại</string>
     <string name="change_password">Đổi mật khẩu</string>
     <string name="join_course">Tham gia ngay</string>
+    <string name="joined">%s Joined</string>
 
     <string name="account_wrong">Email đăng nhập chưa đúng định dạng</string>
     <string name="password_wrong">Mật khẩu sai</string>
@@ -142,9 +144,15 @@
     <string name="view_detail">Xem chi tiết</string>
     <string name="rating_count">%s rating</string>
     <string name="people_register">%s người đăng ký</string>
+    <string name="time_banner">%s minutes</string>
+    <string name="class_count_demo">%s lesson demo</string>
+    <string name="hour_minutes_format">%s giờ %s phút</string>
     <string name="price_value">%s đ</string>
+    <string name="select_class">Chọn lớp đăng ký</string>
     <string name="class_title">Lớp %s</string>
+    <string name="class_course">Class %s</string>
     <string name="opening">Khai giảng %s</string>
+    <string name="time_begin">(Thứ %s - thứ %s)</string>
     <string name="log_out">Logout</string>
     <string name="log_out_second">Đăng xuất</string>
 
@@ -157,10 +165,12 @@
     <string name="notify_detail">Chi tiết thông báo</string>
     <string name="opening_second">Khai giảng</string>
     <string name="count_lesson">Số buổi %s</string>
+    <string name="register_course_success">Đăng ký lớp học thành công</string>
     <string name="number_phone_teacher">Số điện thoại %s</string>
     <string name="input_number_phone">Nhập số điện thoại</string>
     <string name="name_teacher">Gia sư:</string>
     <string name="class_waiting_confirm">Lớp chờ xác nhận</string>
+    <string name="count_rating_course">%s ratings</string>
 
     <string name="waiting_confirm">Chờ xác nhận</string>
     <string name="edit_profile_change_avatar_take_photo">Chụp ảnh</string>

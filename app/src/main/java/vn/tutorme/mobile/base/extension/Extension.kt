@@ -326,7 +326,9 @@ fun <T> TutorMeFragment<*>.handleUiState(
             if (canShowLoading) {
                 this.hideLoading()
             }
-            showError(flowResult.getMessage())
+            if (canShowError) {
+                showError(flowResult.getMessage())
+            }
             listener?.onFailure()
         }
 

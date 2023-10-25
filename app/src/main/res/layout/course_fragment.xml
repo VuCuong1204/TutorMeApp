@@ -48,9 +48,9 @@
             android:layout_height="0dp"
             android:layout_marginHorizontal="@dimen/fbase_dimen_16"
             android:layout_marginTop="@dimen/fbase_dimen_20"
+            android:layout_marginBottom="@dimen/fbase_dimen_12"
             android:background="@drawable/shape_bg_white_corner_14"
             android:orientation="vertical"
-            android:layout_marginBottom="@dimen/fbase_dimen_12"
             android:paddingBottom="@dimen/fbase_dimen_16"
             app:layout_constraintBottom_toTopOf="@id/tvCourseRegister"
             app:layout_constraintEnd_toEndOf="parent"
@@ -95,7 +95,7 @@
                         android:gravity="center_vertical"
                         android:textColor="@color/primary"
                         android:textSize="@dimen/fbase_text_size_22"
-                        android:text="Giọng nói chuẩn Tiếng Anh trong sư phạm" />
+                        tools:text="Giọng nói chuẩn Tiếng Anh trong sư phạm" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvCourseRate"
@@ -108,7 +108,7 @@
                         android:gravity="center_vertical"
                         android:textColor="@color/text1"
                         android:textSize="@dimen/fbase_text_size_14"
-                        android:text="30 ratings" />
+                        tools:text="30 ratings" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvCourseDescription"
@@ -120,7 +120,7 @@
                         android:lineSpacingExtra="@dimen/fbase_dimen_2"
                         android:textColor="@color/text1"
                         android:textSize="@dimen/fbase_text_size_14"
-                        android:text="Giảng dạy cho học sinh độ tuổi từ 5-14 về phát âm, ngữ pháp, từ vựng theo học liệu được biên soạn sẵn từ Edupia (bám sát chương trình của Bộ Giáo Dục)
+                        tools:text="Giảng dạy cho học sinh độ tuổi từ 5-14 về phát âm, ngữ pháp, từ vựng theo học liệu được biên soạn sẵn từ Edupia (bám sát chương trình của Bộ Giáo Dục)
 Mô hình lớp: 2 học sinh, giảng dạy online qua phần mềm classin
 " />
 
@@ -168,7 +168,7 @@ Mô hình lớp: 2 học sinh, giảng dạy online qua phần mềm classin
                                 android:gravity="center_vertical|end"
                                 android:textColor="@color/text1"
                                 android:textSize="@dimen/fbase_text_size_14"
-                                android:text="30:00 minutes" />
+                                tools:text="30:00 minutes" />
 
                         </LinearLayout>
 
@@ -200,39 +200,7 @@ Mô hình lớp: 2 học sinh, giảng dạy online qua phần mềm classin
                                 android:gravity="center_vertical|end"
                                 android:textColor="@color/text1"
                                 android:textSize="@dimen/fbase_text_size_14"
-                                android:text="1645" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/fbase_dimen_12"
-                            android:orientation="horizontal"
-                            android:weightSum="10">
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="4"
-                                android:drawableStart="@drawable/ic_text_lessons"
-                                android:drawablePadding="@dimen/fbase_dimen_8"
-                                android:fontFamily="@font/font_raleway_medium"
-                                android:gravity="center_vertical"
-                                android:text="@string/text_lessons"
-                                android:textColor="@color/text1"
-                                android:textSize="@dimen/fbase_text_size_14" />
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvContactTextlessons"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="6"
-                                android:fontFamily="@font/font_worksans_semibold"
-                                android:gravity="center_vertical|end"
-                                android:textColor="@color/text1"
-                                android:textSize="@dimen/fbase_text_size_14"
-                                android:text="0" />
+                                tools:text="1645" />
 
                         </LinearLayout>
 
@@ -264,7 +232,7 @@ Mô hình lớp: 2 học sinh, giảng dạy online qua phần mềm classin
                                 android:gravity="center_vertical|end"
                                 android:textColor="@color/text1"
                                 android:textSize="@dimen/fbase_text_size_14"
-                                android:text="English" />
+                                tools:text="English" />
 
                         </LinearLayout>
 
@@ -279,7 +247,7 @@ Mô hình lớp: 2 học sinh, giảng dạy online qua phần mềm classin
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
-                                android:drawableStart="@drawable/ic_create_date"
+                                android:drawableStart="@drawable/ic_text_lessons"
                                 android:drawablePadding="@dimen/fbase_dimen_8"
                                 android:fontFamily="@font/font_raleway_medium"
                                 android:gravity="center_vertical"
@@ -296,7 +264,7 @@ Mô hình lớp: 2 học sinh, giảng dạy online qua phần mềm classin
                                 android:gravity="center_vertical|end"
                                 android:textColor="@color/text1"
                                 android:textSize="@dimen/fbase_text_size_14"
-                                android:text="23/10/2023" />
+                                tools:text="23/10/2023" />
 
                         </LinearLayout>
 
@@ -328,7 +296,7 @@ Mô hình lớp: 2 học sinh, giảng dạy online qua phần mềm classin
                                 android:gravity="center_vertical|end"
                                 android:textColor="@color/text1"
                                 android:textSize="@dimen/fbase_text_size_14"
-                                android:text="30/10/2023" />
+                                tools:text="30/10/2023" />
 
                         </LinearLayout>
 
@@ -361,7 +329,7 @@ Mô hình lớp: 2 học sinh, giảng dạy online qua phần mềm classin
                             android:gravity="center_vertical"
                             android:textColor="@color/text1"
                             android:textSize="@dimen/fbase_text_size_14"
-                            android:text="Class 10" />
+                            tools:text="Class 10" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/tvCoursePrice"
@@ -374,7 +342,7 @@ Mô hình lớp: 2 học sinh, giảng dạy online qua phần mềm classin
                             android:gravity="center_vertical"
                             android:textColor="@color/text1"
                             android:textSize="@dimen/fbase_text_size_14"
-                            android:text="1240000đ" />
+                            tools:text="1240000đ" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/tvCourseDemo"
@@ -387,7 +355,7 @@ Mô hình lớp: 2 học sinh, giảng dạy online qua phần mềm classin
                             android:gravity="center_vertical"
                             android:textColor="@color/text1"
                             android:textSize="@dimen/fbase_text_size_14"
-                            android:text="1 lesson demo" />
+                            tools:text="1 lesson demo" />
 
                     </LinearLayout>
 
@@ -404,6 +372,7 @@ Mô hình lớp: 2 học sinh, giảng dạy online qua phần mềm classin
             android:layout_marginHorizontal="@dimen/fbase_dimen_16"
             android:layout_marginBottom="@dimen/fbase_dimen_20"
             android:background="@drawable/ripple_bg_primary_corner_16"
+            android:enabled="false"
             android:fontFamily="@font/font_raleway_bold"
             android:gravity="center"
             android:paddingVertical="@dimen/fbase_dimen_16"

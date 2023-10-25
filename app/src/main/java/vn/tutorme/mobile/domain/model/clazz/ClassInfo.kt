@@ -14,17 +14,29 @@ data class ClassInfo(
     var level: String? = null,
     var classStatus: CLASS_STATUS? = null,
     var titleClass: String? = null,
-    var totalNumber: Int? = null,
+    var totalStudent: Int? = null,
+    var totalLesson: Int? = null,
+    var courseId: String? = null,
     var timeBegin: Long? = null,
-    var teacherId: String? = null
+    var teacherId: String? = null,
+    var lessonFirst: Int? = null,
+    var lessonSecond: Int? = null,
 ) : IParcelable {
     fun getTimeDayBegin(): String {
         val time = TimeUtils.convertTimeToDay(timeBegin ?: LONG_DEFAULT)
         return String.format(getAppString(R.string.opening), time)
     }
 
+    fun getDayBegin(): String {
+        return String.format(getAppString(R.string.time_begin), lessonFirst, lessonSecond)
+    }
+
+    fun getCountLesson(): String {
+        return String.format(getAppString(R.string.count_lesson), totalLesson)
+    }
+
     fun getNumberMember(): String {
-        return String.format(getAppString(R.string.number_member), totalNumber)
+        return String.format(getAppString(R.string.number_member), totalStudent)
     }
 }
 
@@ -36,7 +48,7 @@ fun mockDataClassInfo(size: Int = 6): List<ClassInfo> {
         list.add(ClassInfo(
             classId = "Mã lớp D5C.045137",
             level = "Nâng cao",
-            totalNumber = 20,
+            totalStudent = 20,
             classStatus = CLASS_STATUS.EMPTY_CLASS_STATUS,
             titleClass = "Lớp 2"
         ))

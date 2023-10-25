@@ -8,7 +8,7 @@ import java.util.Locale
 import java.util.concurrent.TimeUnit
 
 object TimeUtils {
-    const val HOUR_MINUTE_FORMAT = "HH:mm"
+    const val HOUR_MINUTE_FORMAT = "HH:mm:ss"
     const val DAY_MONTH_YEAR_FORMAT = "dd.MM.yyyy"
     const val DATE_FORMAT = "dd/MM/yyyy"
     const val DATE_FORMAT_V2 = "dd-MM-yyyy"
@@ -21,10 +21,10 @@ object TimeUtils {
         return timeFormat.format(date)
     }
 
-    fun convertTimeToDay(value: Long): String {
+    fun convertTimeToDay(value: Long, type: String = DAY_MONTH_YEAR_FORMAT): String {
         val date = Date(value * 1000) // Convert seconds to milliseconds
 
-        val timeFormat = SimpleDateFormat(DAY_MONTH_YEAR_FORMAT, Locale.getDefault())
+        val timeFormat = SimpleDateFormat(type, Locale.getDefault())
 
         return timeFormat.format(date)
     }
@@ -46,6 +46,14 @@ object TimeUtils {
                 else -> getAppString(R.string.now_ago)
             }
         } else ""
+    }
+
+    fun convertTimeToHourMinutes(value: Long): String {
+        val hour = value / 3600
+        val minutes = (value % 3600) / 60
+        val second = (value % 3600) % 60
+
+        return String.format(getAppString(R.string.hour_minutes_format), hour, minutes)
     }
 
     fun convertLongToString(input: Long, output: String): String {

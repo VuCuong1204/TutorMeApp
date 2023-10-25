@@ -1,4 +1,4 @@
-package vn.tutorme.mobile.presenter.bannerinfo
+package vn.tutorme.mobile.presenter.bannerinfo.event
 
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.screen.TutorMeFragment

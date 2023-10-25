@@ -15,8 +15,7 @@ class BannerEventDTOConvertToBannerEvent : IConverter<List<BannerInfoEventDTO>, 
                 createTime = it.createTime,
                 content = it.content,
                 countRegister = it.countRegister,
-                describe = it.describe,
-                joinInstructions = it.joinInstructions
+                describe = it.describe
             ))
         }
 

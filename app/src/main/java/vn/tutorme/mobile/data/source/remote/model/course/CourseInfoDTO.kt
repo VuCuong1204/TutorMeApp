@@ -54,5 +54,5 @@ data class CourseInfoDTO(
 
     @SerializedName("price")
     @Expose
-    var price: Long? = null,
+    var price: Long? = null
 )

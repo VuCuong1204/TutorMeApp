@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:id="@+id/flSelectClass"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:background="#80182537">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="@dimen/fbase_dimen_20"
+            android:background="@color/red"
+            android:gravity="center_vertical"
+            app:cardCornerRadius="@dimen/fbase_corner_8"
+            app:cardElevation="@dimen/fbase_dimen_10">
+
+            <LinearLayout
+                android:id="@+id/llSelectClassDialog"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/fbase_dimen_30"
+                android:paddingVertical="@dimen/fbase_dimen_16">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:id="@+id/tvSelectClassTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/font_raleway_semibold"
+                        android:gravity="start"
+                        android:text="@string/select_class"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/fbase_text_size_20" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivSelectClassClose"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:src="@drawable/ic_close_circle_gray_bg" />
+
+                </FrameLayout>
+
+
+                <vn.tutorme.mobile.presenter.widget.collection.CollectionView
+                    android:id="@+id/cvSelectClassSelect"
+                    android:layout_width="@dimen/fbase_dimen_300"
+                    android:layout_height="@dimen/fbase_dimen_200"
+                    android:layout_marginTop="@dimen/fbase_dimen_16"
+                    android:background="@drawable/shape_rectange_bg_gray_stroke_corner_8"
+                    android:overScrollMode="never"
+                    android:paddingVertical="@dimen/fbase_dimen_6"
+                    android:paddingStart="@dimen/fbase_dimen_16"
+                    android:paddingEnd="@dimen/fbase_dimen_6"
+                    android:scrollbarStyle="insideOverlay"
+                    android:scrollbars="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                <LinearLayout
+                    android:id="@+id/llSelectClassConfirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fbase_dimen_16"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvSelectClassCancel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/fbase_dimen_6"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_rectange_white_bg_gray_stroke_corner_8px"
+                        android:fontFamily="@font/font_raleway_semibold"
+                        android:gravity="center"
+                        android:minHeight="@dimen/fbase_dimen_48"
+                        android:text="@string/cancel"
+                        android:textColor="@color/neutral_5"
+                        android:textSize="@dimen/fbase_text_size_14" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvSelectClassConfirm"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fbase_dimen_6"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_rectangle_orange_bg_corner_8"
+                        android:fontFamily="@font/font_raleway_semibold"
+                        android:gravity="center"
+                        android:minHeight="@dimen/fbase_dimen_48"
+                        android:text="@string/register_bold"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fbase_text_size_14" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </FrameLayout>
+
+</layout>
