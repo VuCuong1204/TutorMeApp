@@ -6,6 +6,7 @@ import vn.tutorme.mobile.base.extension.Extension
 import vn.tutorme.mobile.base.extension.getAppString
 import vn.tutorme.mobile.base.model.IParcelable
 import vn.tutorme.mobile.utils.TimeUtils
+import vn.tutorme.mobile.utils.TimeUtils.DATE_FORMAT
 
 @Parcelize
 data class CourseInfo(
@@ -13,14 +14,31 @@ data class CourseInfo(
     var banner: String? = null,
     var title: String? = null,
     var ratingTotal: Float? = null,
+    var content: String? = null,
+    var subject: String? = null,
+    var classCode: Int? = null,
     var ratingNumber: Int? = null,
     var memberRegister: Int? = null,
     var timeLesson: Long? = null,
+    var createTime: Long? = null,
     var dateEnd: Long? = null,
-    var price: Long? = null
+    var price: Long? = null,
+    var demoClass: Int? = null
 ) : IParcelable {
     fun getTimeLesson(): String {
-        return TimeUtils.convertTimeToHour(timeLesson ?: Extension.LONG_DEFAULT)
+        return TimeUtils.convertTimeToHourMinutes(timeLesson ?: Extension.LONG_DEFAULT)
+    }
+
+    fun getCountDemo(): String {
+        return String.format(getAppString(R.string.class_count_demo), demoClass)
+    }
+
+    fun getMemberRegister(): String {
+        return String.format(getAppString(R.string.joined), memberRegister)
+    }
+
+    fun getClassCodeInfo(): String {
+        return String.format(getAppString(R.string.class_course), classCode)
     }
 
     fun getTimeExpired(): String {
@@ -33,6 +51,18 @@ data class CourseInfo(
 
     fun getPriceValue(): String {
         return String.format(getAppString(R.string.price_value), price)
+    }
+
+    fun getCountRating(): String {
+        return String.format(getAppString(R.string.count_rating_course), ratingNumber)
+    }
+
+    fun getTimeCreate(): String {
+        return TimeUtils.convertTimeToDay(createTime ?: Extension.LONG_DEFAULT, DATE_FORMAT)
+    }
+
+    fun getTimeEnd(): String {
+        return TimeUtils.convertTimeToDay(dateEnd ?: Extension.LONG_DEFAULT, DATE_FORMAT)
     }
 }
 

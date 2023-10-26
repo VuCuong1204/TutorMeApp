@@ -15,8 +15,12 @@ class ClassMainDTOConvertToClassInfo : IConverter<List<ClassInfoMainDTO>, List<C
                 classStatus = CLASS_STATUS.EMPTY_CLASS_STATUS,
                 teacherId = it.classInfo?.teacherId,
                 level = it.classInfo?.describeClass,
+                courseId = it.classInfo?.courseId,
                 titleClass = it.classInfo?.nameClass,
-                totalNumber = it.classInfo?.countLesson
+                totalStudent = it.classInfo?.countStudent,
+                totalLesson = it.classInfo?.countLesson,
+                lessonFirst = it.classInfo?.lessonFirst,
+                lessonSecond = it.classInfo?.lessonSecond
             ))
         }
 

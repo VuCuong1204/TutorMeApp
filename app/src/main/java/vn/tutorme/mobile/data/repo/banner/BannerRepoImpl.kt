@@ -1,6 +1,6 @@
 package vn.tutorme.mobile.data.repo.banner
 
-import vn.tutorme.mobile.data.repo.convert.BannerEventDTOConvertToBannerEvent
+import vn.tutorme.mobile.data.repo.convert.BannerEventListDTOConvertToBannerListEvent
 import vn.tutorme.mobile.data.repo.convert.BannerJobDTOConvertToBannerJob
 import vn.tutorme.mobile.data.source.remote.base.IRepo
 import vn.tutorme.mobile.data.source.remote.base.invokeApi
@@ -16,7 +16,7 @@ class BannerRepoImpl @Inject constructor() : IBannerRepo, IRepo {
         val service = invokeAuthService(ILessonService::class.java)
 
         return service.getBannerEvent(page, size).invokeApi { _, body ->
-            BannerEventDTOConvertToBannerEvent().convert(body.data!!)
+            BannerEventListDTOConvertToBannerListEvent().convert(body.data!!)
         }
     }
 

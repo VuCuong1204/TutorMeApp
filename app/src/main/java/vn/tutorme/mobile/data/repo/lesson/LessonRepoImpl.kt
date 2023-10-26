@@ -1,7 +1,7 @@
 package vn.tutorme.mobile.data.repo.lesson
 
 import vn.tutorme.mobile.data.repo.convert.ClassMainDTOConvertToClassInfo
-import vn.tutorme.mobile.data.repo.convert.CourseInfoDTOConvertCourseInfo
+import vn.tutorme.mobile.data.repo.convert.CourseInfoListDTOConvertCourseInfoList
 import vn.tutorme.mobile.data.repo.convert.LessonMainDTOConvertLessonInfo
 import vn.tutorme.mobile.data.source.remote.base.IRepo
 import vn.tutorme.mobile.data.source.remote.base.invokeApi
@@ -58,7 +58,7 @@ class LessonRepoImpl @Inject constructor() : ILessonRepo, IRepo {
         val service = invokeAuthService(ILessonService::class.java)
 
         return service.getCourseList(currentTime, page, size).invokeApi { _, body ->
-            CourseInfoDTOConvertCourseInfo().convert(body.data!!)
+            CourseInfoListDTOConvertCourseInfoList().convert(body.data!!)
         }
     }
 
