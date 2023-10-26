@@ -6,6 +6,8 @@ import retrofit2.http.POST
 import retrofit2.http.Query
 import vn.tutorme.mobile.data.source.remote.base.BaseApiResponse
 import vn.tutorme.mobile.data.source.remote.base.IApiService
+import vn.tutorme.mobile.data.source.remote.model.banner.bannerevent.BannerInfoEventResponse
+import vn.tutorme.mobile.data.source.remote.model.banner.bannerevent.EventInfoResponse
 import vn.tutorme.mobile.data.source.remote.model.classinfo.ClassInfoMainResponse
 import vn.tutorme.mobile.data.source.remote.model.course.CourseStateResponse
 import vn.tutorme.mobile.data.source.remote.model.course.courseinfo.CourseMainResponse
@@ -33,4 +35,9 @@ interface ICourseService : IApiService {
         @Query("lessonFirst") lessonFirst: Int,
         @Query("lessonSecond") lessonSecond: Int,
     ): Call<BaseApiResponse>
+
+    @GET("banner/event/info")
+    fun getBannerInfoEvent(
+        @Query("eventId") eventId: Int
+    ): Call<EventInfoResponse>
 }

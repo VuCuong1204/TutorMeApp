@@ -1,6 +1,6 @@
 package vn.tutorme.mobile.presenter.bannerinfo.course
 
-import android.util.Log
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,6 +19,7 @@ import vn.tutorme.mobile.domain.usecase.course.CheckCourseRegisteredUseCase
 import vn.tutorme.mobile.domain.usecase.course.GetClassListFromCourseUseCase
 import vn.tutorme.mobile.domain.usecase.course.GetCourseInfoUseCase
 import vn.tutorme.mobile.domain.usecase.course.RegisterCourseUseCase
+import vn.tutorme.mobile.presenter.bannerinfo.course.CourseFragment.Companion.COURSE_ID_KEY
 import javax.inject.Inject
 
 @HiltViewModel
@@ -26,15 +27,9 @@ class CourseViewModel @Inject constructor(
     private val getCourseInfoUseCase: GetCourseInfoUseCase,
     private val getClassListFromCourseUseCase: GetClassListFromCourseUseCase,
     private val checkCourseRegisteredUseCase: CheckCourseRegisteredUseCase,
-    private val registerCourseUseCase: RegisterCourseUseCase
+    private val registerCourseUseCase: RegisterCourseUseCase,
+    private val savedStateHandle: SavedStateHandle
 ) : BaseViewModel() {
-
-    var courseId = "K00002"
-
-    init {
-        getCourseInfo("K00002")
-        checkCourseRegister(courseId, "Vucuonghihi1234")
-    }
 
     private val _courseInfoState = MutableStateFlow(FlowResult.newInstance<CourseInfo>())
     val courseInfoState = _courseInfoState.asStateFlow()
@@ -48,16 +43,22 @@ class CourseViewModel @Inject constructor(
     private val _registerCourseState = MutableStateFlow(FlowResult.newInstance<Boolean>())
     val registerCourseState = _registerCourseState.asStateFlow()
 
+    var courseId = savedStateHandle.get<String>(COURSE_ID_KEY) ?: "K00002"
+
+    init {
+        getCourseInfo(courseId)
+        checkCourseRegister(courseId, "Vucuonghihi1234")
+    }
+
     private fun getCourseInfo(courseId: String) {
         viewModelScope.launch {
             val rv = GetCourseInfoUseCase.GetCourseInfoRV(courseId)
             getCourseInfoUseCase.invoke(rv)
                 .onStart {
-               //     _courseInfoState.loading()
+                    _courseInfoState.loading()
                 }
                 .onException {
-                    Log.d("TAG", "getCourseInfo: ${it}")
-//                    _courseInfoState.failure(it)
+                    _courseInfoState.failure(it)
                 }
                 .collect {
                     _courseInfoState.success(it)
