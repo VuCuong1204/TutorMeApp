@@ -18,6 +18,7 @@ import vn.tutorme.mobile.domain.model.profile.mockDataProfileInfo
 import vn.tutorme.mobile.presenter.authen.login.LoginFragment
 import vn.tutorme.mobile.presenter.dialog.BottomSheetConfirmDialog
 import vn.tutorme.mobile.presenter.home.HomeFragment
+import vn.tutorme.mobile.presenter.lessondetail.LessonDetailFragment
 import vn.tutorme.mobile.presenter.profile.changepassword.ChangePasswordFragment
 import vn.tutorme.mobile.presenter.profile.contact.ContactFragment
 import vn.tutorme.mobile.presenter.profile.infomation.InformationPersonFragment
@@ -47,7 +48,7 @@ class ProfileFragment : TutorMeFragment<ProfileFragmentBinding>(R.layout.profile
             override fun onItemClick(item: ProfileInfo) {
                 when (item.type) {
                     PROFILE_TYPE.INFO_TYPE -> {
-                        replaceFragment(InformationPersonFragment())
+                        replaceFragment(LessonDetailFragment())
                     }
 
                     PROFILE_TYPE.INFO_CONTACT_TYPE -> {

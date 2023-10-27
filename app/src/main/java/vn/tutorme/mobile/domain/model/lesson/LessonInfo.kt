@@ -103,12 +103,12 @@ fun mockDataLessonInfoEvaluate(size: Int = 9): List<LessonInfo> {
     repeat(size) {
         list.add(LessonInfo(
             classId = "Mã lớp D5C.045137",
-            status = LESSON_STATUS.UPCOMING_STATUS,
+            status = LESSON_STATUS.HAPPENING_STATUS,
             nameClass = "Lớp 3",
             level = "Nâng cao",
             memberNumber = 20,
             totalNumber = 20,
-            lessonSession = 12,
+            lessonSession = 20,
             countAssessment = 10
         ))
     }

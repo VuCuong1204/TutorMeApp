@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_bg_white_corner_8"
+        android:paddingVertical="@dimen/fbase_dimen_16">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTookPlaceLessonRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fbase_dimen_16"
+            android:fontFamily="@font/font_raleway_regular"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/fbase_text_size_14"
+            android:textStyle="italic"
+            tools:text="Đã đánh giá: 1/2 học sinh" />
+
+        <View
+            android:id="@+id/vTookPlaceV11"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fbase_dimen_1"
+            android:layout_below="@id/tvTookPlaceLessonRate"
+            android:layout_marginTop="@dimen/fbase_dimen_12"
+            android:background="@color/text5" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTookPlaceLessonTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/vTookPlaceV11"
+            android:layout_marginStart="@dimen/fbase_dimen_16"
+            android:layout_marginTop="@dimen/fbase_dimen_12"
+            android:fontFamily="@font/font_raleway_medium"
+            android:text="@string/time_study"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/fbase_text_size_14" />
+
+        <View
+            android:id="@+id/vTookPlaceV12"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fbase_dimen_4"
+            android:layout_below="@id/tvTookPlaceLessonTime"
+            android:layout_marginHorizontal="@dimen/fbase_dimen_16"
+            android:layout_marginTop="@dimen/fbase_dimen_4"
+            android:background="@color/primary" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTookPlaceLessonStartTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/vTookPlaceV12"
+            android:layout_marginStart="@dimen/fbase_dimen_16"
+            android:layout_marginTop="@dimen/fbase_dimen_6"
+            android:fontFamily="@font/font_worksans_regular"
+            android:textColor="@color/text3"
+            android:textSize="@dimen/fbase_text_size_14"
+            tools:text="19:00" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTookPlaceLessonEndTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/vTookPlaceV12"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/fbase_dimen_6"
+            android:layout_marginEnd="@dimen/fbase_dimen_16"
+            android:fontFamily="@font/font_worksans_regular"
+            android:textColor="@color/text3"
+            android:textSize="@dimen/fbase_text_size_14"
+            tools:text="21:00" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTookPlaceLessonAttendanceState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvTookPlaceLessonStartTime"
+            android:layout_marginStart="@dimen/fbase_dimen_16"
+            android:layout_marginTop="@dimen/fbase_dimen_14"
+            android:drawableStart="@drawable/ic_tick_primary"
+            android:drawablePadding="@dimen/fbase_dimen_6"
+            android:fontFamily="@font/font_raleway_medium"
+            android:gravity="center"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/fbase_text_size_14"
+            tools:text="Đã điểm danh" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTookPlaceLessonType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvTookPlaceLessonStartTime"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/fbase_dimen_14"
+            android:layout_marginEnd="@dimen/fbase_dimen_16"
+            android:background="@drawable/shape_bg_green_corner_8_stroke_green"
+            android:drawableStart="@drawable/ic_prize_success"
+            android:drawablePadding="@dimen/fbase_dimen_4"
+            android:fontFamily="@font/font_raleway_regular"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/fbase_dimen_10"
+            android:paddingVertical="@dimen/fbase_dimen_6"
+            android:textColor="@color/status_success"
+            android:textSize="@dimen/fbase_text_size_12"
+            tools:text="Đạt" />
+
+    </RelativeLayout>
+
+</layout>
