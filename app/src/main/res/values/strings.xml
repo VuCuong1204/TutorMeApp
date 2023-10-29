@@ -29,6 +29,8 @@
     <string name="register_bold">Đăng ký</string>
     <string name="register_fail">Đăng ký thất bại vui lòng thử lại</string>
     <string name="change_password">Đổi mật khẩu</string>
+    <string name="send_info_room">Gửi thông tin</string>
+    <string name="edit_info_room">Sửa thông tin</string>
 
     <string name="account_wrong">Email đăng nhập chưa đúng định dạng</string>
     <string name="password_wrong">Mật khẩu sai</string>
@@ -48,6 +50,12 @@
     <string name="edit_information_account">chỉnh sửa thông tin</string>
     <string name="information_individual">Thông tin cá nhân</string>
     <string name="input_username">Nhập tên người dùng</string>
+    <string name="input_room_id">Nhập id phòng</string>
+    <string name="input_room_id_no">Hiện chưa có thông tin id</string>
+    <string name="input_password">Nhập mật khẩu</string>
+    <string name="input_commenter">Nhập bình luận ở đây</string>
+    <string name="count_commenter">%s bình luận</string>
+    <string name="input_password_no">Hiện chưa có thông tin mật khẩu</string>
     <string name="version">Phiên bản 1.2.4</string>
     <string name="first_and_lastname">Họ và tên</string>
     <string name="date_of_birth">Ngày sinh</string>
@@ -124,6 +132,7 @@
     <string name="number_member">Sĩ số %s</string>
     <string name="number_member_lesson">Sĩ số %s/%s</string>
     <string name="number_evaluate_lesson">Đánh giá %s/%s</string>
+    <string name="evaluate_lesson">%s/%s</string>
     <string name="lesson_session">Buổi %s</string>
     <string name="accept_class">Nhận lớp</string>
     <string name="accept_class_question">Bạn chắc chắn muốn nhận lớp?</string>

@@ -42,6 +42,10 @@ data class LessonInfo(
     }
 
     fun getNumberMemberRatio(): String {
+        return String.format(getAppString(R.string.evaluate_lesson), memberNumber, totalNumber)
+    }
+
+    fun getNumberRatio() : String{
         return String.format(getAppString(R.string.number_member_lesson), memberNumber, totalNumber)
     }
 

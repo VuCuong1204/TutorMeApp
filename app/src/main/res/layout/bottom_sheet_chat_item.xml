@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/fbase_dimen_16"
+        android:paddingVertical="@dimen/fbase_dimen_8">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivBottomSheetChatAvatar"
+            android:layout_width="@dimen/fbase_dimen_40"
+            android:layout_height="@dimen/fbase_dimen_40"
+            android:src="@drawable/bg_gender_male" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvBottomSheetChatTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fbase_dimen_10"
+            android:layout_toEndOf="@id/ivBottomSheetChatAvatar"
+            android:ellipsize="end"
+            android:fontFamily="@font/font_raleway_medium"
+            android:maxLength="150"
+            android:maxLines="1"
+            android:textColor="@color/gray_30"
+            android:textSize="@dimen/fbase_text_size_12"
+            android:textStyle="bold"
+            tools:text="Vũ Cường" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvBottomSheetChatContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvBottomSheetChatTitle"
+            android:layout_marginStart="@dimen/fbase_dimen_10"
+            android:layout_toEndOf="@id/ivBottomSheetChatAvatar"
+            android:fontFamily="@font/font_raleway_medium"
+            android:paddingEnd="@dimen/fbase_dimen_10"
+            android:textColor="@color/gray_8"
+            android:textSize="@dimen/fbase_text_size_14"
+            tools:text="Quá hay và tuyệt vời" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvBottomSheetChatTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvBottomSheetChatContent"
+            android:layout_marginStart="@dimen/fbase_dimen_10"
+            android:layout_marginTop="@dimen/fbase_dimen_4"
+            android:layout_toEndOf="@id/ivBottomSheetChatAvatar"
+            android:fontFamily="@font/font_raleway_medium"
+            android:paddingEnd="@dimen/fbase_dimen_10"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/fbase_text_size_12"
+            tools:text="10 phút trước" />
+
+    </RelativeLayout>
+
+</layout>

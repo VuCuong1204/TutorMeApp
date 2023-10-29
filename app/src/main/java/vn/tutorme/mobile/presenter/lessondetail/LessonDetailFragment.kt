@@ -3,7 +3,6 @@ package vn.tutorme.mobile.presenter.lessondetail
 import androidx.fragment.app.viewModels
 import com.example.syntheticapp.presenter.widget.collection.LAYOUT_MANAGER
 import dagger.hilt.android.AndroidEntryPoint
-import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.common.IViewListener
 import vn.tutorme.mobile.base.extension.coroutinesLaunch
@@ -16,10 +15,11 @@ import vn.tutorme.mobile.base.extension.show
 import vn.tutorme.mobile.base.extension.toast
 import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.LessonDetailFragmentBinding
-import vn.tutorme.mobile.domain.model.authen.ROLE_TYPE
 import vn.tutorme.mobile.domain.model.authen.UserInfo
 import vn.tutorme.mobile.domain.model.lesson.LESSON_STATUS
 import vn.tutorme.mobile.domain.model.lesson.LessonInfo
+import vn.tutorme.mobile.presenter.dialog.InputRoomInfoDialog
+import vn.tutorme.mobile.presenter.dialog.bottomsheetchat.BottomSheetChatDialog
 
 @AndroidEntryPoint
 class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layout.lesson_detail_fragment) {
@@ -30,10 +30,6 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
 
     override fun onInitView() {
         super.onInitView()
-
-        val userInfo = AppPreferences.userInfo?.copy(role = ROLE_TYPE.TEACHER_TYPE)
-        AppPreferences.userInfo = userInfo
-
         addHeader()
         addAdapter()
     }
@@ -101,12 +97,39 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
             binding.rlLessonDetailSupport.gone()
         }
 
-        binding.tvLessonDetailInfoRoom.setOnSafeClick { }
-        binding.tvLessonDetailChatRoom.setOnSafeClick { }
+        binding.tvLessonDetailInfoRoom.setOnSafeClick {
+            isShowViewMore = false
+            binding.rlLessonDetailSupport.gone()
+            showRoomInfoDialog()
+        }
+
+        binding.tvLessonDetailChatRoom.setOnSafeClick {
+            isShowViewMore = false
+            binding.rlLessonDetailSupport.gone()
+            showRoomChatDialog()
+        }
         binding.tvLessonDetailSupport.setOnSafeClick { }
 
         setLessonInfo(viewModel.lessonInfo ?: LessonInfo())
         binding.srlLessonDetailReload.setColorSchemeResources(R.color.primary)
+    }
+
+    private fun showRoomInfoDialog() {
+        InputRoomInfoDialog().apply {
+            roomId = "room 123"
+            roomPassword = "password123"
+            listener = object : InputRoomInfoDialog.IInputRoomInfoListener {
+                override fun onSendClick(id: String, password: String) {
+                    toast(id + password)
+                }
+            }
+        }.show(childFragmentManager, InputRoomInfoDialog::class.simpleName)
+    }
+
+    private fun showRoomChatDialog() {
+        BottomSheetChatDialog().apply {
+            lessonId = viewModel.lessonInfo?.lessonId
+        }.show(childFragmentManager, BottomSheetChatDialog::class.simpleName)
     }
 
     private fun setLessonInfo(value: LessonInfo) {

@@ -97,6 +97,7 @@ class StudentLessonAdapter : TutorMeAdapter() {
                         tvHappenedLessonAttendance.show()
                         if (data.userInfo?.evaluateState == EVALUATE_STATE.NO_EVALUATE_STATE) {
                             tvHappenedLessonAttendance.apply {
+                                text = getAppString(R.string.attendance)
                                 setTextColor(getAppColor(R.color.primary))
                                 background = getAppDrawable(R.drawable.ripple_bg_white_corner_14_stroke_1)
                                 setImageTextView(getAppDrawable(R.drawable.ic_badge_inactive))
@@ -104,6 +105,7 @@ class StudentLessonAdapter : TutorMeAdapter() {
                             }
                         } else {
                             tvHappenedLessonAttendance.apply {
+                                text = getAppString(R.string.took_attendance)
                                 setTextColor(getAppColor(R.color.white))
                                 background = getAppDrawable(R.drawable.ripple_bg_primary_corner_14)
                                 setImageTextView(getAppDrawable(R.drawable.ic_badge_active))
@@ -171,7 +173,7 @@ class StudentLessonAdapter : TutorMeAdapter() {
                 val text = SpannableBuilder()
                     .appendText(getAppString(R.string.have_evaluated))
                     .withSpan(ForegroundColorSpan(getAppColor(R.color.primary)))
-                    .appendText(" ${data.lessonInfo?.getNumberEvaluate()} ")
+                    .appendText(" ${data.lessonInfo?.getNumberMemberRatio()} ")
                     .withSpan(ForegroundColorSpan(getAppColor(R.color.status_warring)))
                     .appendText(getAppString(R.string.student))
                     .withSpan(ForegroundColorSpan(getAppColor(R.color.primary)))

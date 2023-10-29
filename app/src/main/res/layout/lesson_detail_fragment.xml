@@ -213,6 +213,7 @@
                 android:id="@+id/cvLessonDetailRoot"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:overScrollMode="never"
                 android:paddingTop="@dimen/fbase_dimen_12" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
