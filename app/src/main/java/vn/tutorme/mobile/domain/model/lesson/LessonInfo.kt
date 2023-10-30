@@ -106,6 +106,7 @@ fun mockDataLessonInfoEvaluate(size: Int = 9): List<LessonInfo> {
 
     repeat(size) {
         list.add(LessonInfo(
+            lessonId = it,
             classId = "Mã lớp D5C.045137",
             status = LESSON_STATUS.HAPPENING_STATUS,
             nameClass = "Lớp 3",

@@ -54,7 +54,9 @@
     <string name="input_room_id_no">Hiện chưa có thông tin id</string>
     <string name="input_password">Nhập mật khẩu</string>
     <string name="input_commenter">Nhập bình luận ở đây</string>
+    <string name="input_feedback">Đóng góp ý kiến ở đây</string>
     <string name="count_commenter">%s bình luận</string>
+    <string name="close">Đóng</string>
     <string name="input_password_no">Hiện chưa có thông tin mật khẩu</string>
     <string name="version">Phiên bản 1.2.4</string>
     <string name="first_and_lastname">Họ và tên</string>
@@ -82,7 +84,9 @@
     <string name="other">Khác</string>
     <string name="province">Tỉnh thành</string>
     <string name="room_info">Thông tin phòng</string>
+    <string name="feedback">Ý kiến phản hồi</string>
     <string name="support_other">Hỗ trợ khác</string>
+    <string name="mail_feedback">Hòm thư góp ý</string>
     <string name="message_room">Nhắn tin lớp</string>
     <string name="please_rate">Vui lòng đánh giá học sinh sau khi kết thúc buổi học!</string>
     <string name="student_list">Danh sách học sinh</string>
@@ -95,6 +99,7 @@
     <string name="input_district_error">Vui lòng nhập Quận/Huyện</string>
     <string name="select_district">Chọn Quận/Huyện</string>
     <string name="error_msg">Lỗi vui lòng thử lại</string>
+    <string name="error_join_room">Đã có lỗi xảy ra, vui lòng thử lại</string>
 
     <string name="register_success">Đăng kí tài khoản thành công</string>
     <string name="retry">Thử lại</string>
@@ -111,6 +116,7 @@
     <string name="upcoming">Sắp diễn ra</string>
     <string name="happening">Đang diễn ra</string>
     <string name="cancel">Hủy</string>
+    <string name="update_feature">Tính năng đang phát triển</string>
     <string name="took_place">Đã diễn ra</string>
     <string name="read">Đã đọc</string>
     <string name="took_attendance">Đã điểm danh</string>
@@ -145,6 +151,8 @@
     <string name="class_home_teacher_empty">Hiện tại chưa có lớp đăng ký dạy!</string>
     <string name="lesson_home_student_empty">Tuần này bạn không có ca học nào!</string>
     <string name="lesson_student_empty">Bạn không có ca học nào!</string>
+    <string name="chat_lesson_empty">Hiện không có bình luận nào!</string>
+    <string name="chat_feed_back">Hiện chưa có ý kiến nào!</string>
     <string name="class_home_student_empty">Bạn chưa đăng ký lớp học nào!</string>
     <string name="class_register_empty">Hiện tại chưa có lớp nào</string>
     <string name="notification_empty">Bạn chưa có thông báo nào!</string>
@@ -180,6 +188,8 @@
     <string name="edit_profile_change_avatar_take_photo">Chụp ảnh</string>
     <string name="edit_profile_select_gallery">Chọn từ  thư viện</string>
     <string name="update_image_error">Lỗi update ảnh, vui lòng thử lại</string>
+    <string name="send_message_error">Lỗi gửi bình luận, vui lòng thử lại</string>
+    <string name="send_zoom_info_error">Lỗi gửi thông tin phòng, vui lòng thử lại</string>
     <string name="confirmed">Đã xác nhận</string>
     <string name="confirm_second">xác nhận</string>
     <string name="out_of_date">Quá hạn</string>

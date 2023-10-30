@@ -15,6 +15,7 @@ import vn.tutorme.mobile.domain.model.lesson.LessonInfo
 import vn.tutorme.mobile.domain.model.lesson.mockDataLessonInfoEvaluate
 import vn.tutorme.mobile.presenter.lessondetail.model.LESSON_DETAIL_TYPE
 import vn.tutorme.mobile.presenter.lessondetail.model.LessonTypeDisplay
+import vn.tutorme.mobile.presenter.lessondetail.model.ZoomRoomInfo
 import javax.inject.Inject
 
 @HiltViewModel
@@ -25,6 +26,7 @@ class LessonDetailViewModel @Inject constructor() : BaseViewModel() {
 
     var lessonInfo: LessonInfo? = mockDataLessonInfoEvaluate()[0]
     val studentInfoLesson = mockDataUserInfo()
+    var zoomRoomInfo: ZoomRoomInfo? = null
 
     init {
         getStudentInfoLesson(true)

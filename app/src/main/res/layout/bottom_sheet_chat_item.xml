@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <RelativeLayout
@@ -12,7 +13,9 @@
             android:id="@+id/ivBottomSheetChatAvatar"
             android:layout_width="@dimen/fbase_dimen_40"
             android:layout_height="@dimen/fbase_dimen_40"
-            android:src="@drawable/bg_gender_male" />
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg_gender_male"
+            app:shapeAppearanceOverlay="@style/CircleImageView" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvBottomSheetChatTitle"
@@ -50,7 +53,7 @@
             android:layout_marginStart="@dimen/fbase_dimen_10"
             android:layout_marginTop="@dimen/fbase_dimen_4"
             android:layout_toEndOf="@id/ivBottomSheetChatAvatar"
-            android:fontFamily="@font/font_raleway_medium"
+            android:fontFamily="@font/font_worksans_regular"
             android:paddingEnd="@dimen/fbase_dimen_10"
             android:textColor="@color/gray"
             android:textSize="@dimen/fbase_text_size_12"

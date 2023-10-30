@@ -3,6 +3,7 @@ package vn.tutorme.mobile.presenter.dialog
 import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.common.DialogScreen
+import vn.tutorme.mobile.base.extension.Extension.STRING_DEFAULT
 import vn.tutorme.mobile.base.extension.getAppDrawable
 import vn.tutorme.mobile.base.extension.gone
 import vn.tutorme.mobile.base.extension.setOnSafeClick
@@ -13,8 +14,8 @@ import vn.tutorme.mobile.domain.model.authen.ROLE_TYPE
 
 class InputRoomInfoDialog : TutorMeDialog<InputRoomInfoDialogBinding>(R.layout.input_room_info_dialog) {
 
-    var roomId: String = "abc"
-    var roomPassword: String = "123"
+    var roomId: String = STRING_DEFAULT
+    var roomPassword: String = STRING_DEFAULT
     var listener: IInputRoomInfoListener? = null
 
     override fun getBackgroundId(): Int = R.id.flInputRoomInfoRoot
@@ -57,7 +58,8 @@ class InputRoomInfoDialog : TutorMeDialog<InputRoomInfoDialogBinding>(R.layout.i
 
         binding.tvInputRoomInfoSend.setOnSafeClick {
 
-            if (roomId != binding.edtInputRoomInfoId.text.toString().trim() ||
+            if (
+                roomId != binding.edtInputRoomInfoId.text.toString().trim() ||
                 roomPassword != binding.edtInputRoomInfoPassword.text.toString().trim()
             ) {
                 dismiss()
