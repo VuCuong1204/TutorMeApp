@@ -41,7 +41,7 @@ class StudentLessonAdapter : TutorMeAdapter() {
 
     var listener: IStudentLessonListener? = null
 
-    var lessonType: LESSON_STATUS = LESSON_STATUS.UPCOMING_STATUS
+    var lessonType: LESSON_STATUS? = LESSON_STATUS.UPCOMING_STATUS
 
     override fun getItemViewType(position: Int): Int {
         return when (val item = getDataListAtPosition(position)) {

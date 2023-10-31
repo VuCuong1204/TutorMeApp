@@ -24,6 +24,7 @@ import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.LessonDetailFragmentBinding
 import vn.tutorme.mobile.domain.model.authen.ROLE_TYPE
 import vn.tutorme.mobile.domain.model.authen.UserInfo
+import vn.tutorme.mobile.domain.model.feedback.FeedBackInfo
 import vn.tutorme.mobile.domain.model.lesson.LESSON_STATUS
 import vn.tutorme.mobile.domain.model.lesson.LessonInfo
 import vn.tutorme.mobile.presenter.dialog.InputFeedBackDialog
@@ -36,6 +37,8 @@ import vn.tutorme.mobile.presenter.lessondetail.model.ZoomRoomInfo
 class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layout.lesson_detail_fragment) {
 
     companion object {
+        const val LESSON_ID_KEY = "LESSON_ID_KEY"
+        const val CLASS_ID_KEY = "CLASS_ID_KEY"
         const val ZOOM_INFO_CHILD_KEY = "ZoomRoomInfo"
     }
 
@@ -49,6 +52,11 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
 
     override fun onInitView() {
         super.onInitView()
+
+        val userInfo = AppPreferences.userInfo?.copy(
+            role = ROLE_TYPE.STUDENT_TYPE
+        )
+        AppPreferences.userInfo = userInfo
         addHeader()
         addAdapter()
         addRoomStateListenerEvent()
@@ -70,21 +78,58 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
 
     override fun onObserverViewModel() {
         super.onObserverViewModel()
+        coroutinesLaunch(viewModel.lessonDetailState) {
+            handleUiState(it, object : IViewListener {
+                override fun onSuccess() {
+                    it.data?.let { value -> setLessonInfo(value) }
+                }
+            }, canShowLoading = true)
+        }
+
         coroutinesLaunch(viewModel.studentInfoLessonState) {
             handleUiState(it, object : IViewListener {
                 override fun onSuccess() {
-                    binding.cvLessonDetailRoot.submitList(it.data)
+
+                    binding.cvLessonDetailRoot.apply {
+                        setBaseAdapter(studentLessonAdapter.apply { lessonType = viewModel.lessonInfo?.status })
+                        submitList(it.data)
+                    }
                 }
-            })
+            }, canShowLoading = true)
+        }
+
+        coroutinesLaunch(viewModel.feedbackListState) {
+            handleUiState(it, object : IViewListener {
+                override fun onSuccess() {
+                    if (it.data is List<*>) {
+                        val newList = mutableListOf<String>()
+                        (it.data as? List<FeedBackInfo>)?.forEach { feedbackInfo ->
+                            feedbackInfo.comment?.let { comment -> newList.add(comment) }
+                        }
+                        if (AppPreferences.userInfo?.role == ROLE_TYPE.TEACHER_TYPE) {
+                            showFeedBackListDialog(newList)
+                        } else {
+                            showFeedbackDialog()
+                        }
+                    } else {
+                        showSuccess(getAppString(R.string.feedback_success))
+                    }
+                }
+            }, canShowLoading = true)
+        }
+
+        coroutinesLaunch(viewModel.attendanceStudentState) {
+            handleUiState(it, object : IViewListener {
+                override fun onSuccess() {
+                    viewModel.getStudentInfoLesson()
+                }
+            }, canShowLoading = true)
         }
     }
 
     private fun addAdapter() {
         binding.cvLessonDetailRoot.apply {
             setBaseLayoutManager(LAYOUT_MANAGER.LINEARLAYOUT_VERTICAL)
-            setBaseAdapter(studentLessonAdapter.apply {
-                lessonType = viewModel.lessonInfo?.status ?: LESSON_STATUS.UPCOMING_STATUS
-            })
         }
 
         addListener()
@@ -133,15 +178,8 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
 
         binding.tvLessonDetailFeedback.setOnSafeClick {
             showFeatureDialog(false)
-            if (AppPreferences.userInfo?.role == ROLE_TYPE.TEACHER_TYPE) {
-                showFeedBackListDialog(listOf())
-            } else {
-                showFeedbackDialog()
-            }
+            viewModel.getFeedbackList()
         }
-
-        setLessonInfo(viewModel.lessonInfo ?: LessonInfo())
-        binding.srlLessonDetailReload.setColorSchemeResources(R.color.primary)
     }
 
     private fun showFeatureDialog(state: Boolean) {
@@ -181,8 +219,8 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
     private fun showFeedbackDialog() {
         inputFeedBackDialog = InputFeedBackDialog().apply {
             listener = object : InputFeedBackDialog.IInputFeedBackListener {
-                override fun onConfirmClick() {
-                    toast("success")
+                override fun onConfirmClick(text: String) {
+                    viewModel.feedBackLessonUseCase(content = text)
                 }
             }
         }
@@ -233,6 +271,17 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 dataSnapshot.children.forEach {
                     viewModel.zoomRoomInfo = it.child(viewModel.lessonInfo?.lessonId.toString()).getValue(ZoomRoomInfo::class.java)
+                }
+                if (System.currentTimeMillis() in (viewModel.lessonInfo?.timeBegin?.times(1000)
+                        ?: 1)..(viewModel.lessonInfo?.timeEnd?.times(1000) ?: 1)
+                ) {
+                    viewModel.updateStateLesson(state = LESSON_STATUS.HAPPENING_STATUS)
+                } else if (System.currentTimeMillis() <= (viewModel.lessonInfo?.timeBegin?.times(1000)
+                        ?: 1)
+                ) {
+                    viewModel.updateStateLesson(state = LESSON_STATUS.UPCOMING_STATUS)
+                } else {
+                    viewModel.updateStateLesson(state = LESSON_STATUS.TOOK_PLACE_STATUS)
                 }
             }
 

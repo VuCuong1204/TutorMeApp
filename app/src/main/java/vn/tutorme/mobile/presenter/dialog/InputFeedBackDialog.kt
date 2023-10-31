@@ -29,7 +29,8 @@ class InputFeedBackDialog : TutorMeDialog<InputFeedbackDialogBinding>(R.layout.i
         binding.tvInputFeedBackConfirm.setOnSafeClick {
             val text = binding.edtInputFeedBackContent.text.toString().trim()
             if (text.isNotEmpty()) {
-                listener?.onConfirmClick()
+                dismiss()
+                listener?.onConfirmClick(text)
             }
         }
 
@@ -49,6 +50,6 @@ class InputFeedBackDialog : TutorMeDialog<InputFeedbackDialogBinding>(R.layout.i
     }
 
     interface IInputFeedBackListener {
-        fun onConfirmClick()
+        fun onConfirmClick(text: String)
     }
 }
