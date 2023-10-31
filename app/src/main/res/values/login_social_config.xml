@@ -4,4 +4,7 @@
     <string name="facebook_app_id">973215243970893</string>
     <string name="fb_login_protocol_scheme">fb973215243970893</string>
     <string name="facebook_client_token">67e9d1934add0fb76c66ccb01072c2ae</string>
+
+    <string name="sdk_key">r80UJNuRgCDOKEv_13fQ</string>
+    <string name="sdk_secret">fSArB7UZxirO6g832RoUDqsHaV8zs0WC</string>
 </resources>
