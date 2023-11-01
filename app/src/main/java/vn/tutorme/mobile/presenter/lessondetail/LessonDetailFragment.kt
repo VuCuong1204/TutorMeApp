@@ -153,8 +153,7 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
         }
 
         binding.ivLessonDetailViewMore.setOnSafeClick {
-//            showFeatureDialog(true)
-            zoomSdkConfig.joinRoom("Vu Cuong","78290466643","JAgR2P")
+            showFeatureDialog(true)
         }
 
         binding.rlLessonDetailSupport.setOnSafeClick {
@@ -275,7 +274,6 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
                 if (System.currentTimeMillis() in (viewModel.lessonInfo?.timeBegin?.times(1000)
                         ?: 1)..(viewModel.lessonInfo?.timeEnd?.times(1000) ?: 1)
                 ) {
-                    zoomSdkConfig.register()
                     viewModel.updateStateLesson(state = LESSON_STATUS.HAPPENING_STATUS)
                 } else if (System.currentTimeMillis() <= (viewModel.lessonInfo?.timeBegin?.times(1000)
                         ?: 1)

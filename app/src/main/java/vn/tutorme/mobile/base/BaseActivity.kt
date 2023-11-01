@@ -254,7 +254,6 @@ abstract class BaseActivity(protected val layoutId: Int) : AppCompatActivity(), 
         }
     }
 
-    // loại bỏ tất cả các Fragment cùng tag
     fun backFragment(tag: String) {
         supportFragmentManager.popBackStack(tag, FragmentManager.POP_BACK_STACK_INCLUSIVE)
     }

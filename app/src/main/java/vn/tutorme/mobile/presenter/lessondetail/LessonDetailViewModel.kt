@@ -61,7 +61,7 @@ class LessonDetailViewModel @Inject constructor(
     var zoomRoomInfo: ZoomRoomInfo? = null
 
     init {
-        getLessonDetail(true)
+//        getLessonDetail(true)
     }
 
     fun getLessonDetail(isReload: Boolean = false) {
