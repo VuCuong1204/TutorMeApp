@@ -152,7 +152,7 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
 
     private fun addHeader() {
         binding.ivLessonDetailBack.setOnSafeClick {
-            onBackPressByFragment()
+            showFeatureDialog(true)
         }
 
         binding.ivLessonDetailViewMore.setOnSafeClick {
