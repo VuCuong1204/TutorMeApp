@@ -203,5 +203,7 @@
     <string name="class_happen">Đang và sắp diễn ra</string>
     <string name="class_learn">Lịch sử lớp học</string>
     <string name="access_token">eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzNDAxOTQyIiwiYXBwX3R5cGUiOm51bGwsInV0bV9jYW1wYWlnbiI6bnVsbCwidXRtX21lZGl1bSI6bnVsbCwic291cmNlIjoiRlFBIiwiY2xpZW50X2lkIjoiZnFhLndlYi5hcHAiLCJwaWN0dXJlIjoiIiwiYWNjb3VudF9pZCI6IjM0MDE5NDIiLCJvc190eXBlIjpudWxsLCJzY29wZSI6WyJmcWE6ZnVsbCIsImZxYTpjbGllbnQ6cG9zdCIsImZxYTpjbGllbnQ6Z2V0Il0sIm5hbWUiOiJ2dXZ1MTIiLCJleHAiOjE2OTgwNTU1NzIsInV0bV9zb3VyY2UiOm51bGwsInVzZXJuYW1lIjoidnV2dTEyIn0.ntOleqL0JstBMn1SN7ZwDvOGg6xfUI8KUUC9rtFFmD4</string>
-
+    <string name="take_picture">Take picture</string>
+    <string name="detach_success">Nhận diện thành công</string>
+    <string name="detach_fail">Vui lòng thử lại</string>
 </resources>

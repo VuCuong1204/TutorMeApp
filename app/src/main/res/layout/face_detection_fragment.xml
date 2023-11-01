@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:id="@+id/rlFaceDetectionRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.camera.view.PreviewView
+            android:id="@+id/pvFaceDetectionPreview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivFaceDetectionAvatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <vn.tutorme.mobile.presenter.widget.detectview.DetectView
+            android:id="@+id/dvFaceDetectionAvatar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+
+        <vn.tutorme.mobile.presenter.widget.detectview.CustomCircleView
+            android:id="@+id/ccvFaceDetectionCircle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvFaceDetectionName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/fbase_dimen_40"
+            android:textColor="#E11010"
+            android:textSize="30sp"
+            tools:text="Vui lòng thử lại " />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivFaceDetectionClose"
+            android:layout_width="@dimen/fbase_dimen_40"
+            android:layout_height="@dimen/fbase_dimen_40"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/fbase_dimen_16"
+            android:background="?selectableItemBackgroundBorderless"
+            android:padding="@dimen/fbase_dimen_6"
+            android:src="@drawable/ic_close_white" />
+
+    </RelativeLayout>
+
+</layout>

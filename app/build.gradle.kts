@@ -98,6 +98,21 @@ dependencies {
 
     //shimmer
     implementation("com.facebook.shimmer:shimmer:0.5.0")
+
+    //cameraX
+    implementation("androidx.camera:camera-lifecycle:1.2.3")
+    val camerax_version = "1.3.0-alpha04"
+    implementation("androidx.camera:camera-core:${camerax_version}")
+    implementation("androidx.camera:camera-camera2:${camerax_version}")
+    implementation("androidx.camera:camera-lifecycle:${camerax_version}")
+    implementation("androidx.camera:camera-video:${camerax_version}")
+    implementation("androidx.camera:camera-view:${camerax_version}")
+    implementation("androidx.camera:camera-mlkit-vision:${camerax_version}")
+    implementation("androidx.camera:camera-extensions:${camerax_version}")
+
+    //mlkit
+    implementation("com.google.mlkit:face-detection:16.1.5")
+    implementation("com.google.android.gms:play-services-mlkit-face-detection:17.1.0")
 }
 
 kapt {

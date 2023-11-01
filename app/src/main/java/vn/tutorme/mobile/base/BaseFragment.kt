@@ -121,10 +121,14 @@ abstract class BaseFragment(@LayoutRes protected val layoutId: Int) : Fragment()
         baseActivity.backFragment()
     }
 
+    fun backFragment(tag: String) {
+        baseActivity.backFragment(tag)
+    }
+
     fun addFragment(
         fragment: BaseFragment,
-        bundle: Bundle?,
-        keepToBackStack: Boolean,
+        bundle: Bundle? = null,
+        keepToBackStack: Boolean = true,
         screenAnim: IScreenAnim = FadeAnim()
     ) {
         baseActivity.addFragment(

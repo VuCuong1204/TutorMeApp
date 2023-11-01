@@ -11,6 +11,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.common.IViewListener
+import vn.tutorme.mobile.base.common.anim.SlideAnimation
 import vn.tutorme.mobile.base.extension.Extension.STRING_DEFAULT
 import vn.tutorme.mobile.base.extension.coroutinesLaunch
 import vn.tutorme.mobile.base.extension.getAppDrawable
@@ -31,6 +32,7 @@ import vn.tutorme.mobile.presenter.dialog.InputFeedBackDialog
 import vn.tutorme.mobile.presenter.dialog.InputRoomInfoDialog
 import vn.tutorme.mobile.presenter.dialog.bottomsheetchat.BottomSheetChatDialog
 import vn.tutorme.mobile.presenter.dialog.feedbacklist.FeedBackListDialog
+import vn.tutorme.mobile.presenter.lessondetail.camera.FaceDetectionFragment
 import vn.tutorme.mobile.presenter.lessondetail.model.ZoomRoomInfo
 
 @AndroidEntryPoint
@@ -154,7 +156,7 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
         }
 
         binding.ivLessonDetailViewMore.setOnSafeClick {
-            showFeatureDialog(true)
+            addFragment(fragment = FaceDetectionFragment(), screenAnim = SlideAnimation())
         }
 
         binding.rlLessonDetailSupport.setOnSafeClick {
