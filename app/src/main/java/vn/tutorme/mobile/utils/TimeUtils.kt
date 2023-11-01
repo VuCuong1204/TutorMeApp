@@ -29,7 +29,8 @@ object TimeUtils {
         return timeFormat.format(date)
     }
 
-    fun calculatorTimeAgo(value: Long?, format: String? = null): String {
+    fun calculatorTimeAgo(time: Long?, format: String? = null): String {
+        val value = time?.times(1000)
         return if (value != null) {
             val now = Date().time
             var diffTime = now - value

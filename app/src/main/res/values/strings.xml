@@ -29,6 +29,8 @@
     <string name="register_bold">Đăng ký</string>
     <string name="register_fail">Đăng ký thất bại vui lòng thử lại</string>
     <string name="change_password">Đổi mật khẩu</string>
+    <string name="send_info_room">Gửi thông tin</string>
+    <string name="edit_info_room">Sửa thông tin</string>
 
     <string name="account_wrong">Email đăng nhập chưa đúng định dạng</string>
     <string name="password_wrong">Mật khẩu sai</string>
@@ -48,6 +50,14 @@
     <string name="edit_information_account">chỉnh sửa thông tin</string>
     <string name="information_individual">Thông tin cá nhân</string>
     <string name="input_username">Nhập tên người dùng</string>
+    <string name="input_room_id">Nhập id phòng</string>
+    <string name="input_room_id_no">Hiện chưa có thông tin id</string>
+    <string name="input_password">Nhập mật khẩu</string>
+    <string name="input_commenter">Nhập bình luận ở đây</string>
+    <string name="input_feedback">Đóng góp ý kiến ở đây</string>
+    <string name="count_commenter">%s bình luận</string>
+    <string name="close">Đóng</string>
+    <string name="input_password_no">Hiện chưa có thông tin mật khẩu</string>
     <string name="version">Phiên bản 1.2.4</string>
     <string name="first_and_lastname">Họ và tên</string>
     <string name="date_of_birth">Ngày sinh</string>
@@ -73,7 +83,15 @@
     <string name="female">Nữ</string>
     <string name="other">Khác</string>
     <string name="province">Tỉnh thành</string>
+    <string name="room_info">Thông tin phòng</string>
+    <string name="feedback">Ý kiến phản hồi</string>
+    <string name="support_other">Hỗ trợ khác</string>
+    <string name="mail_feedback">Hòm thư góp ý</string>
+    <string name="message_room">Nhắn tin lớp</string>
+    <string name="please_rate">Vui lòng đánh giá học sinh sau khi kết thúc buổi học!</string>
+    <string name="student_list">Danh sách học sinh</string>
     <string name="select_province">Chọn tỉnh thành</string>
+    <string name="student">học sinh</string>
     <string name="input_province">Nhập tỉnh thành</string>
     <string name="input_province_error">Vui lòng nhập tỉnh thành</string>
     <string name="district">Quận/Huyện</string>
@@ -81,6 +99,7 @@
     <string name="input_district_error">Vui lòng nhập Quận/Huyện</string>
     <string name="select_district">Chọn Quận/Huyện</string>
     <string name="error_msg">Lỗi vui lòng thử lại</string>
+    <string name="error_join_room">Đã có lỗi xảy ra, vui lòng thử lại</string>
 
     <string name="register_success">Đăng kí tài khoản thành công</string>
     <string name="retry">Thử lại</string>
@@ -97,8 +116,16 @@
     <string name="upcoming">Sắp diễn ra</string>
     <string name="happening">Đang diễn ra</string>
     <string name="cancel">Hủy</string>
+    <string name="feedback_success">Đóng góp ý kiến thành công</string>
+    <string name="update_feature">Tính năng đang phát triển</string>
     <string name="took_place">Đã diễn ra</string>
     <string name="read">Đã đọc</string>
+    <string name="took_attendance">Đã điểm danh</string>
+    <string name="have_evaluated">Đã đánh giá:</string>
+    <string name="time_study">Thời gian dạy</string>
+    <string name="attendance">Điểm danh</string>
+    <string name="took_attendance_yet">Chưa điểm danh</string>
+    <string name="join_now">Tham gia ngay</string>
 
     <string name="second_ago">%s giây trước</string>
     <string name="minute_ago">%s phút trước</string>
@@ -112,6 +139,7 @@
     <string name="number_member">Sĩ số %s</string>
     <string name="number_member_lesson">Sĩ số %s/%s</string>
     <string name="number_evaluate_lesson">Đánh giá %s/%s</string>
+    <string name="evaluate_lesson">%s/%s</string>
     <string name="lesson_session">Buổi %s</string>
     <string name="accept_class">Nhận lớp</string>
     <string name="accept_class_question">Bạn chắc chắn muốn nhận lớp?</string>
@@ -124,12 +152,15 @@
     <string name="class_home_teacher_empty">Hiện tại chưa có lớp đăng ký dạy!</string>
     <string name="lesson_home_student_empty">Tuần này bạn không có ca học nào!</string>
     <string name="lesson_student_empty">Bạn không có ca học nào!</string>
+    <string name="chat_lesson_empty">Hiện không có bình luận nào!</string>
+    <string name="chat_feed_back">Hiện chưa có ý kiến nào!</string>
     <string name="class_home_student_empty">Bạn chưa đăng ký lớp học nào!</string>
     <string name="class_register_empty">Hiện tại chưa có lớp nào</string>
     <string name="notification_empty">Bạn chưa có thông báo nào!</string>
 
     <string name="view_all">Xem tất cả</string>
     <string name="view_detail">Xem chi tiết</string>
+    <string name="view_evaluate">Xem đánh giá</string>
     <string name="rating_count">%s rating</string>
     <string name="people_register">%s người đăng ký</string>
     <string name="price_value">%s đ</string>
@@ -143,7 +174,9 @@
     <string name="calender_learn">Lịch học</string>
     <string name="lesson_no_evaluate">Buổi học chưa đánh giá</string>
     <string name="evaluate_now">Đánh giá ngay</string>
+    <string name="evaluate">Đánh giá</string>
     <string name="class_detail">Chi tiết lớp học</string>
+    <string name="lesson_detail">Chi tiết buổi học</string>
     <string name="notify_detail">Chi tiết thông báo</string>
     <string name="opening_second">Khai giảng</string>
     <string name="count_lesson">Số buổi %s</string>
@@ -156,6 +189,8 @@
     <string name="edit_profile_change_avatar_take_photo">Chụp ảnh</string>
     <string name="edit_profile_select_gallery">Chọn từ  thư viện</string>
     <string name="update_image_error">Lỗi update ảnh, vui lòng thử lại</string>
+    <string name="send_message_error">Lỗi gửi bình luận, vui lòng thử lại</string>
+    <string name="send_zoom_info_error">Lỗi gửi thông tin phòng, vui lòng thử lại</string>
     <string name="confirmed">Đã xác nhận</string>
     <string name="confirm_second">xác nhận</string>
     <string name="out_of_date">Quá hạn</string>
@@ -163,6 +198,8 @@
     <string name="confirm">Đồng ý</string>
     <string name="class_regular">Lớp Regular</string>
     <string name="class_demo">Lớp Demo</string>
+    <string name="obtain">Đạt</string>
+    <string name="obtain_no">Không đạt</string>
     <string name="class_happen">Đang và sắp diễn ra</string>
     <string name="class_learn">Lịch sử lớp học</string>
     <string name="access_token">eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzNDAxOTQyIiwiYXBwX3R5cGUiOm51bGwsInV0bV9jYW1wYWlnbiI6bnVsbCwidXRtX21lZGl1bSI6bnVsbCwic291cmNlIjoiRlFBIiwiY2xpZW50X2lkIjoiZnFhLndlYi5hcHAiLCJwaWN0dXJlIjoiIiwiYWNjb3VudF9pZCI6IjM0MDE5NDIiLCJvc190eXBlIjpudWxsLCJzY29wZSI6WyJmcWE6ZnVsbCIsImZxYTpjbGllbnQ6cG9zdCIsImZxYTpjbGllbnQ6Z2V0Il0sIm5hbWUiOiJ2dXZ1MTIiLCJleHAiOjE2OTgwNTU1NzIsInV0bV9zb3VyY2UiOm51bGwsInVzZXJuYW1lIjoidnV2dTEyIn0.ntOleqL0JstBMn1SN7ZwDvOGg6xfUI8KUUC9rtFFmD4</string>

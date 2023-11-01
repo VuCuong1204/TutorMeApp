@@ -1,7 +1,9 @@
 package vn.tutorme.mobile.domain.repo
 
+import vn.tutorme.mobile.domain.model.authen.UserInfo
 import vn.tutorme.mobile.domain.model.clazz.ClassInfo
 import vn.tutorme.mobile.domain.model.course.CourseInfo
+import vn.tutorme.mobile.domain.model.feedback.FeedBackInfo
 import vn.tutorme.mobile.domain.model.lesson.LessonInfo
 
 interface ILessonRepo {
@@ -15,4 +17,11 @@ interface ILessonRepo {
     fun getLessonListInClass(classId: String, page: Int?, size: Int?): List<LessonInfo>
     fun updateStateClassRegister(classId: String, state: Int, teacherId: String): List<ClassInfo>
     fun getClassTeacherList(id: String, type: Int, page: Int?, size: Int?): List<ClassInfo>
+
+    fun getLessonDetail(lessonId: Int): LessonInfo
+    fun getStudentInLesson(classId: String): List<UserInfo>
+    fun attendanceStudent(lessonId: Int, studentId: String): Boolean
+    fun updateStateLesson(lessonId: Int, state: Int): LessonInfo
+    fun feedBackLesson(lessonId: Int, content: String): Boolean
+    fun getFeedbackList(lessonId: Int): List<FeedBackInfo>
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/fbase_dimen_12">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitleLessonTitleStudent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_raleway_bold"
+            android:text="@string/student_list"
+            android:textColor="@color/text6"
+            android:textSize="@dimen/fbase_text_size_18"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitleLessonPlease"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fbase_dimen_6"
+            android:fontFamily="@font/font_raleway_regular"
+            android:text="@string/please_rate"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/fbase_text_size_12"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleLessonTitleStudent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

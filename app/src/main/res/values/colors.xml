@@ -36,6 +36,9 @@
     <color name="blur">#33000000</color>
     <color name="red_10">#FF2C2C</color>
     <color name="red_30">#FD5E5E</color>
+    <color name="red_40">#FFDCD8</color>
+    <color name="red_50">#F26600</color>
+    <color name="red_60">#FFE4C5</color>
     <color name="neutral_9">#E3E3E3</color>
     <color name="neutral_40">#F5F5F5</color>
     <color name="black_70">#B3000000</color>
@@ -46,7 +49,7 @@
     <color name="green">#3DCC1D</color>
     <color name="success">#0FD186</color>
     <color name="error">#FF6259</color>
-    <color name="warning">#787878</color>
+    <color name="warning">#FFB524</color>
     <color name="secondary">#FFB524</color>
     <color name="tertiary">#3CBAEC</color>
     <color name="bg_dialog">#80182537</color>
@@ -70,6 +73,7 @@
     <color name="neutral_14">#A9A9A9</color>
     <color name="neutral_15">#F8F8F8</color>
     <color name="neutral_16">#33DAFF99</color>
+    <color name="neutral_17">#6B6B6B</color>
     <color name="ink_8">#DED8D8</color>
 
     <color name="text1">#404040</color>
@@ -95,6 +99,7 @@
     <color name="back2">#F8F8F8</color>
     <color name="gray1">#565656</color>
     <color name="status_success">#05C669</color>
+    <color name="green10">#D8FFEC</color>
     <color name="status_manual">#2A6BE8</color>
     <color name="status_classic">#644DF1</color>
     <color name="blue_10">#00ABEF</color>

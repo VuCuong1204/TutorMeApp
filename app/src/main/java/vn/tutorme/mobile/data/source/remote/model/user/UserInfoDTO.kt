@@ -34,5 +34,13 @@ data class UserInfoDTO(
 
     @SerializedName("role")
     @Expose
-    var role: Int? = null
+    var role: Int? = null,
+
+    @SerializedName("stateAttendance")
+    @Expose
+    var stateAttendance: Int? = null,
+
+    @SerializedName("updateReview")
+    @Expose
+    var updateReview: Int? = null
 )
