@@ -11,7 +11,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.common.IViewListener
-import vn.tutorme.mobile.base.common.anim.SlideAnimation
 import vn.tutorme.mobile.base.extension.Extension.STRING_DEFAULT
 import vn.tutorme.mobile.base.extension.coroutinesLaunch
 import vn.tutorme.mobile.base.extension.getAppDrawable
@@ -32,7 +31,6 @@ import vn.tutorme.mobile.presenter.dialog.InputFeedBackDialog
 import vn.tutorme.mobile.presenter.dialog.InputRoomInfoDialog
 import vn.tutorme.mobile.presenter.dialog.bottomsheetchat.BottomSheetChatDialog
 import vn.tutorme.mobile.presenter.dialog.feedbacklist.FeedBackListDialog
-import vn.tutorme.mobile.presenter.lessondetail.camera.FaceDetectionFragment
 import vn.tutorme.mobile.presenter.lessondetail.model.ZoomRoomInfo
 import vn.tutorme.mobile.presenter.lessondetail.zoomsdk.ZoomSdkConfig
 
@@ -276,7 +274,6 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
                 if (System.currentTimeMillis() in (viewModel.lessonInfo?.timeBegin?.times(1000)
                         ?: 1)..(viewModel.lessonInfo?.timeEnd?.times(1000) ?: 1)
                 ) {
-                    zoomSdkConfig.register()
                     viewModel.updateStateLesson(state = LESSON_STATUS.HAPPENING_STATUS)
                 } else if (System.currentTimeMillis() <= (viewModel.lessonInfo?.timeBegin?.times(1000)
                         ?: 1)
