@@ -34,6 +34,7 @@ import vn.tutorme.mobile.presenter.dialog.bottomsheetchat.BottomSheetChatDialog
 import vn.tutorme.mobile.presenter.dialog.feedbacklist.FeedBackListDialog
 import vn.tutorme.mobile.presenter.lessondetail.camera.FaceDetectionFragment
 import vn.tutorme.mobile.presenter.lessondetail.model.ZoomRoomInfo
+import vn.tutorme.mobile.presenter.lessondetail.zoomsdk.ZoomSdkConfig
 
 @AndroidEntryPoint
 class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layout.lesson_detail_fragment) {
@@ -46,6 +47,7 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
 
     private val viewModel by viewModels<LessonDetailViewModel>()
     private val studentLessonAdapter by lazy { StudentLessonAdapter() }
+    private val zoomSdkConfig by lazy { ZoomSdkConfig(mainActivity) }
     private lateinit var myRef: DatabaseReference
     private lateinit var postListener: ValueEventListener
     private lateinit var inputFeedBackDialog: InputFeedBackDialog
@@ -54,11 +56,6 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
 
     override fun onInitView() {
         super.onInitView()
-
-        val userInfo = AppPreferences.userInfo?.copy(
-            role = ROLE_TYPE.STUDENT_TYPE
-        )
-        AppPreferences.userInfo = userInfo
         addHeader()
         addAdapter()
         addRoomStateListenerEvent()
@@ -151,12 +148,14 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
     }
 
     private fun addHeader() {
+        zoomSdkConfig.register()
+
         binding.ivLessonDetailBack.setOnSafeClick {
-            showFeatureDialog(true)
+            onBackPressByFragment()
         }
 
         binding.ivLessonDetailViewMore.setOnSafeClick {
-            addFragment(fragment = FaceDetectionFragment(), screenAnim = SlideAnimation())
+            showFeatureDialog(true)
         }
 
         binding.rlLessonDetailSupport.setOnSafeClick {
@@ -277,6 +276,7 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
                 if (System.currentTimeMillis() in (viewModel.lessonInfo?.timeBegin?.times(1000)
                         ?: 1)..(viewModel.lessonInfo?.timeEnd?.times(1000) ?: 1)
                 ) {
+                    zoomSdkConfig.register()
                     viewModel.updateStateLesson(state = LESSON_STATUS.HAPPENING_STATUS)
                 } else if (System.currentTimeMillis() <= (viewModel.lessonInfo?.timeBegin?.times(1000)
                         ?: 1)

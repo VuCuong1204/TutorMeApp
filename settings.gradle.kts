@@ -15,3 +15,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "TutorMeApp"
 include(":app")
+include (":commonlib")
+include (":mobilertc")
