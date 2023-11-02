@@ -50,6 +50,8 @@
     <string name="edit_information_account">chỉnh sửa thông tin</string>
     <string name="information_individual">Thông tin cá nhân</string>
     <string name="input_username">Nhập tên người dùng</string>
+    <string name="student">Học sinh</string>
+    <string name="room_error">Thông tin phòng học không đúng, vui lòng báo lại giáo viên chủ trì</string>
     <string name="input_room_id">Nhập id phòng</string>
     <string name="input_room_id_no">Hiện chưa có thông tin id</string>
     <string name="input_password">Nhập mật khẩu</string>
@@ -91,7 +93,6 @@
     <string name="please_rate">Vui lòng đánh giá học sinh sau khi kết thúc buổi học!</string>
     <string name="student_list">Danh sách học sinh</string>
     <string name="select_province">Chọn tỉnh thành</string>
-    <string name="student">học sinh</string>
     <string name="input_province">Nhập tỉnh thành</string>
     <string name="input_province_error">Vui lòng nhập tỉnh thành</string>
     <string name="district">Quận/Huyện</string>

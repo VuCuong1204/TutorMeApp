@@ -1,5 +1,6 @@
 package vn.tutorme.mobile.presenter.lessondetail
 
+import android.util.Log
 import androidx.fragment.app.viewModels
 import com.example.syntheticapp.presenter.widget.collection.LAYOUT_MANAGER
 import com.google.firebase.database.DataSnapshot
@@ -8,9 +9,15 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import dagger.hilt.android.AndroidEntryPoint
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.R
+import vn.tutorme.mobile.base.common.GetUriFaceDetection
 import vn.tutorme.mobile.base.common.IViewListener
+import vn.tutorme.mobile.base.common.anim.SlideAnimation
+import vn.tutorme.mobile.base.common.eventbus.EventBusManager
+import vn.tutorme.mobile.base.common.eventbus.IEvent
 import vn.tutorme.mobile.base.extension.Extension.STRING_DEFAULT
 import vn.tutorme.mobile.base.extension.coroutinesLaunch
 import vn.tutorme.mobile.base.extension.getAppDrawable
@@ -31,6 +38,7 @@ import vn.tutorme.mobile.presenter.dialog.InputFeedBackDialog
 import vn.tutorme.mobile.presenter.dialog.InputRoomInfoDialog
 import vn.tutorme.mobile.presenter.dialog.bottomsheetchat.BottomSheetChatDialog
 import vn.tutorme.mobile.presenter.dialog.feedbacklist.FeedBackListDialog
+import vn.tutorme.mobile.presenter.lessondetail.camera.FaceDetectionFragment
 import vn.tutorme.mobile.presenter.lessondetail.model.ZoomRoomInfo
 import vn.tutorme.mobile.presenter.lessondetail.zoomsdk.ZoomSdkConfig
 
@@ -57,6 +65,27 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
         addHeader()
         addAdapter()
         addRoomStateListenerEvent()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        EventBusManager.instance?.register(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        EventBusManager.instance?.unregister(this)
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    override fun onEvent(event: IEvent) {
+        super.onEvent(event)
+        when (event) {
+            is GetUriFaceDetection -> {
+                Log.d(TAG, "onEvent: ${event.uri}")
+                EventBusManager.instance?.removeSticky(event)
+            }
+        }
     }
 
     override fun onDestroyView() {
@@ -137,6 +166,21 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
             override fun onRateClick(item: UserInfo) {
                 toast("success")
             }
+
+            override fun onAttendanceClick() {
+                addFragment(fragment = FaceDetectionFragment(), screenAnim = SlideAnimation())
+            }
+
+            override fun onJoinRoom() {
+                val userName = AppPreferences.userInfo?.fullName ?: getAppString(R.string.student)
+                val id = viewModel.zoomRoomInfo?.zoomId
+                val password = viewModel.zoomRoomInfo?.password
+                if (id.isNullOrEmpty() || password.isNullOrEmpty()) {
+                    showError(getAppString(R.string.room_error))
+                } else {
+                    zoomSdkConfig.joinRoom(userName, id, password)
+                }
+            }
         }
     }
 
@@ -146,8 +190,6 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
     }
 
     private fun addHeader() {
-        zoomSdkConfig.register()
-
         binding.ivLessonDetailBack.setOnSafeClick {
             onBackPressByFragment()
         }
@@ -274,6 +316,7 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
                 if (System.currentTimeMillis() in (viewModel.lessonInfo?.timeBegin?.times(1000)
                         ?: 1)..(viewModel.lessonInfo?.timeEnd?.times(1000) ?: 1)
                 ) {
+                    zoomSdkConfig.register()
                     viewModel.updateStateLesson(state = LESSON_STATUS.HAPPENING_STATUS)
                 } else if (System.currentTimeMillis() <= (viewModel.lessonInfo?.timeBegin?.times(1000)
                         ?: 1)

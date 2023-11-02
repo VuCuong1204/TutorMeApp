@@ -84,6 +84,17 @@ class StudentLessonAdapter : TutorMeAdapter() {
     }
 
     inner class UpComingVH(private val binding: HappenedLessonItemBinding) : BaseVH<LessonTypeDisplay>(binding) {
+
+        init {
+            binding.tvHappenedLessonAttendance.setOnSafeClick {
+                listener?.onAttendanceClick()
+            }
+
+            binding.tvHappenedLessonJoinRoom.setOnSafeClick {
+                listener?.onJoinRoom()
+            }
+        }
+
         override fun onBind(data: LessonTypeDisplay) {
             super.onBind(data)
             with(binding) {
