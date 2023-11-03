@@ -46,6 +46,7 @@
     <color name="white_10">#FAFAFF</color>
     <color name="gray_ripple">#5E4FB5</color>
     <color name="primary">#3C2C9E</color>
+    <color name="primary_10">#523CDD</color>
     <color name="green">#3DCC1D</color>
     <color name="success">#0FD186</color>
     <color name="error">#FF6259</color>

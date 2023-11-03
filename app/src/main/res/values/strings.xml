@@ -30,6 +30,7 @@
     <string name="register_fail">Đăng ký thất bại vui lòng thử lại</string>
     <string name="change_password">Đổi mật khẩu</string>
     <string name="send_info_room">Gửi thông tin</string>
+    <string name="send_rate">Gửi đánh giá</string>
     <string name="edit_info_room">Sửa thông tin</string>
 
     <string name="account_wrong">Email đăng nhập chưa đúng định dạng</string>
@@ -37,6 +38,7 @@
     <string name="password_new">Mật khẩu mới</string>
     <string name="import_password_new">Nhập lại mật khẩu mới</string>
     <string name="password_old">Mật khẩu cũ</string>
+    <string name="comment">Nhận xét</string>
     <string name="password_confirm">Mật khẩu xác nhận</string>
     <string name="password_wrong_limit">Mật khẩu phải từ 6-20 kí tự</string>
     <string name="password_confirm_wrong_limit">Mật khẩu xác nhận phải từ 6-20 kí tự</string>
@@ -179,6 +181,7 @@
     <string name="class_detail">Chi tiết lớp học</string>
     <string name="lesson_detail">Chi tiết buổi học</string>
     <string name="notify_detail">Chi tiết thông báo</string>
+    <string name="rate_detail">Chi tiết đánh giá</string>
     <string name="opening_second">Khai giảng</string>
     <string name="count_lesson">Số buổi %s</string>
     <string name="number_phone_teacher">Số điện thoại %s</string>
@@ -207,4 +210,24 @@
     <string name="take_picture">Take picture</string>
     <string name="detach_success">Nhận diện thành công</string>
     <string name="detach_fail">Vui lòng thử lại</string>
+
+    <string name="score_attitude">Thái độ</string>
+    <string name="score_preparation">Sự chuẩn bị</string>
+    <string name="score_ask_question">Hỏi câu hỏi</string>
+    <string name="score_join_the_discussion">Tham gia thảo luận</string>
+    <string name="score_attention">Độ chú tâm</string>
+    <string name="score_complete_the_xercise">Hoàn thành bài tập</string>
+    <string name="score_medium">Điểm trung bình</string>
+
+    <string name="number_0">0</string>
+    <string name="number_1">1</string>
+    <string name="number_2">2</string>
+    <string name="number_3">3</string>
+    <string name="number_4">4</string>
+    <string name="number_5">5</string>
+    <string name="number_6">6</string>
+    <string name="number_7">7</string>
+    <string name="number_8">8</string>
+    <string name="number_9">9</string>
+    <string name="number_10">10</string>
 </resources>

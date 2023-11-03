@@ -19,9 +19,8 @@ import vn.tutorme.mobile.presenter.authen.login.LoginFragment
 import vn.tutorme.mobile.presenter.dialog.BottomSheetConfirmDialog
 import vn.tutorme.mobile.presenter.home.HomeFragment
 import vn.tutorme.mobile.presenter.lessondetail.LessonDetailFragment
-import vn.tutorme.mobile.presenter.profile.changepassword.ChangePasswordFragment
 import vn.tutorme.mobile.presenter.profile.contact.ContactFragment
-import vn.tutorme.mobile.presenter.profile.infomation.InformationPersonFragment
+import vn.tutorme.mobile.presenter.ratestudent.RateStudentFragment
 
 @AndroidEntryPoint
 class ProfileFragment : TutorMeFragment<ProfileFragmentBinding>(R.layout.profile_fragment) {
@@ -56,7 +55,7 @@ class ProfileFragment : TutorMeFragment<ProfileFragmentBinding>(R.layout.profile
                     }
 
                     PROFILE_TYPE.CHANGE_PASSWORD_TYPE -> {
-                        replaceFragment(ChangePasswordFragment())
+                        replaceFragment(RateStudentFragment())
                     }
 
                     PROFILE_TYPE.LOGOUT_TYPE -> {
