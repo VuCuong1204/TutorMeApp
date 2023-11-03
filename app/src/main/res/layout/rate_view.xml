@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_bg_white_corner_16"
+    android:orientation="vertical"
+    android:paddingVertical="@dimen/fbase_dimen_12">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvRateViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/fbase_dimen_14"
+        android:fontFamily="@font/font_raleway_medium"
+        android:text="@string/score_attitude"
+        android:textColor="@color/text6"
+        android:textSize="@dimen/fbase_text_size_16" />
+
+    <androidx.appcompat.widget.AppCompatSeekBar
+        android:id="@+id/sbRateViewScore"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fbase_dimen_18"
+        android:layout_marginTop="@dimen/fbase_dimen_12"
+        android:max="100"
+        android:paddingVertical="@dimen/fbase_dimen_6"
+        android:progress="80"
+        android:progressDrawable="@drawable/custom_seekbar_progress"
+        android:progressTint="@color/primary"
+        android:thumb="@drawable/ic_circle_yellow" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="11">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_line"
+            android:fontFamily="@font/font_worksans_regular"
+            android:gravity="center"
+            android:text="@string/number_0"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/fbase_text_size_12" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_line"
+            android:fontFamily="@font/font_worksans_regular"
+            android:gravity="center"
+            android:text="@string/number_1"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/fbase_text_size_12" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_line"
+            android:fontFamily="@font/font_worksans_regular"
+            android:gravity="center"
+            android:text="@string/number_2"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/fbase_text_size_12" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_line"
+            android:fontFamily="@font/font_worksans_regular"
+            android:gravity="center"
+            android:text="@string/number_3"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/fbase_text_size_12" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_line"
+            android:fontFamily="@font/font_worksans_regular"
+            android:gravity="center"
+            android:text="@string/number_4"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/fbase_text_size_12" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_line"
+            android:fontFamily="@font/font_worksans_regular"
+            android:gravity="center"
+            android:text="@string/number_5"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/fbase_text_size_12" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_line"
+            android:fontFamily="@font/font_worksans_regular"
+            android:gravity="center"
+            android:text="@string/number_6"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/fbase_text_size_12" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_line"
+            android:fontFamily="@font/font_worksans_regular"
+            android:gravity="center"
+            android:text="@string/number_7"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/fbase_text_size_12" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_line"
+            android:fontFamily="@font/font_worksans_regular"
+            android:gravity="center"
+            android:text="@string/number_8"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/fbase_text_size_12" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_line"
+            android:fontFamily="@font/font_worksans_regular"
+            android:gravity="center"
+            android:text="@string/number_9"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/fbase_text_size_12" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_line"
+            android:fontFamily="@font/font_worksans_regular"
+            android:gravity="center"
+            android:text="@string/number_10"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/fbase_text_size_12" />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edtRateViewComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/fbase_dimen_16"
+        android:layout_marginTop="@dimen/fbase_dimen_12"
+        android:background="@drawable/shape_bg_gray_10_corner_12"
+        android:fontFamily="@font/font_raleway_medium"
+        android:gravity="center_vertical"
+        android:hint="@string/comment"
+        android:imeOptions="actionDone"
+        android:maxHeight="@dimen/fbase_dimen_60"
+        android:maxLength="200"
+        android:minHeight="@dimen/fbase_dimen_50"
+        android:paddingHorizontal="@dimen/fbase_dimen_10"
+        android:paddingVertical="@dimen/fbase_dimen_4"
+        android:textColor="@color/black"
+        android:textColorHint="@color/neutral_14"
+        android:textCursorDrawable="@drawable/shape_primary_bg_cursor_edit_text"
+        android:textSize="@dimen/fbase_text_size_14" />
+
+</LinearLayout>

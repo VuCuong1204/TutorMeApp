@@ -1,0 +1,20 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
+        <clip>
+            <shape>
+                <corners android:radius="@dimen/fbase_dimen_6" /> <!-- Điều chỉnh độ cong góc -->
+                <size android:height="@dimen/fbase_dimen_10" />
+                <solid android:color="@color/back2" />
+            </shape>
+        </clip>
+    </item>
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <solid android:color="@color/back2" /> <!-- Màu của thanh tiến trình -->
+                <corners android:radius="@dimen/fbase_dimen_6" /> <!-- Điều chỉnh độ cong góc -->
+                <size android:height="@dimen/fbase_dimen_10" /> <!-- Điều chỉnh độ dày của thanh tiến trình -->
+            </shape>
+        </clip>
+    </item>
+</layer-list>
