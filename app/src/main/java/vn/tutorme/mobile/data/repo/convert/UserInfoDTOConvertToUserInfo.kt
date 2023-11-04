@@ -21,7 +21,20 @@ class UserInfoDTOConvertToUserInfo : IConverter<UserInfoDTO, UserInfo> {
             phoneNumber = source.phoneNumber,
             role = ROLE_TYPE.valuesOfName(source.role) ?: ROLE_TYPE.STUDENT_TYPE,
             attendanceState = ATTENDANCE_STATE.valuesOfName(source.stateAttendance),
-            evaluateState = EVALUATE_STATE.valuesOfName(source.updateReview)
+            evaluateState = EVALUATE_STATE.valuesOfName(source.updateReview),
+            scoreAttitude = source.scoreAttitude,
+            commentAttitude = source.commentAttitude,
+            scorePreparation = source.scorePreparation,
+            commentPreparation = source.commentPreparation,
+            scoreAskQuestion = source.scoreAskQuestion,
+            commentAskQuestion = source.commentAskQuestion,
+            scoreJoinTheDiscussion = source.scoreJoinTheDiscussion,
+            commentJoinTheDiscussion = source.commentJoinTheDiscussion,
+            scoreAttention = source.scoreAttention,
+            commentAttention = source.commentAttention,
+            scoreCompleteTheXercise = source.scoreCompleteTheXercise,
+            commentCompleteTheXercise = source.commentCompleteTheXercise,
+            commentMedium = source.commentMedium
         )
     }
 }

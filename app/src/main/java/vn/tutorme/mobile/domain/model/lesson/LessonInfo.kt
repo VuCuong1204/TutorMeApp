@@ -45,7 +45,7 @@ data class LessonInfo(
         return String.format(getAppString(R.string.evaluate_lesson), memberNumber, totalNumber)
     }
 
-    fun getNumberRatio() : String{
+    fun getNumberRatio(): String {
         return String.format(getAppString(R.string.number_member_lesson), memberNumber, totalNumber)
     }
 
@@ -119,4 +119,18 @@ fun mockDataLessonInfoEvaluate(size: Int = 9): List<LessonInfo> {
     }
 
     return list
+}
+
+fun mockDataLessonInfoSingle(): LessonInfo {
+    return LessonInfo(
+        lessonId = 1,
+        classId = "Mã lớp D5C.045137",
+        status = LESSON_STATUS.HAPPENING_STATUS,
+        nameClass = "Lớp 3",
+        level = "Nâng cao",
+        memberNumber = 20,
+        totalNumber = 20,
+        lessonSession = 20,
+        countAssessment = 10
+    )
 }

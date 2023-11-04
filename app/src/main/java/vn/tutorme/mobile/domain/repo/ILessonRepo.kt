@@ -24,4 +24,24 @@ interface ILessonRepo {
     fun updateStateLesson(lessonId: Int, state: Int): LessonInfo
     fun feedBackLesson(lessonId: Int, content: String): Boolean
     fun getFeedbackList(lessonId: Int): List<FeedBackInfo>
+
+    fun insertReviewDetail(
+        scoreAttitude: Float,
+        commentAttitude: String,
+        scorePreparation: Float,
+        commentPreparation: String,
+        scoreAskQuestion: Float,
+        commentAskQuestion: String,
+        scoreJoinTheDiscussion: Float,
+        commentJoinTheDiscussion: String,
+        scoreAttention: Float,
+        commentAttention: String,
+        scoreCompleteTheXercise: Float,
+        commentCompleteTheXercise: String,
+        commentMedium: String,
+        userId: String,
+        lessonId: Int
+    ): Boolean
+
+    fun getReviewDetail(userId: String, lessonId: Int): UserInfo
 }

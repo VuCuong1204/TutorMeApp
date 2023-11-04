@@ -18,6 +18,8 @@
     <string name="read_all">Bạn có muốn đọc tất cả không?</string>
     <string name="delete_notify">Bạn có chắc chắn muốn xóa thông báo?</string>
     <string name="logout_notify">Bạn chắc chắn muốn đăng xuất?</string>
+    <string name="rate_student">Bạn chắc chắn muốn đánh giá?</string>
+    <string name="comment_success">Nhận xét thành công</string>
     <string name="login_failed_content">Tên đăng nhập hoặc mật khẩu không hợp lệ.\nVui lòng thử lại hoặc ấn Quên mật khẩu!</string>
     <string name="welcome">Chào mừng bạn đến với Tutor Me</string>
     <string name="remember_password">Nhớ mật khẩu</string>
@@ -218,6 +220,11 @@
     <string name="score_attention">Độ chú tâm</string>
     <string name="score_complete_the_xercise">Hoàn thành bài tập</string>
     <string name="score_medium">Điểm trung bình</string>
+    <string name="good">Giỏi</string>
+    <string name="rather">Khá</string>
+    <string name="medium_type">Trung bình</string>
+    <string name="weak">Yếu</string>
+    <string name="least">Kém</string>
 
     <string name="number_0">0</string>
     <string name="number_1">1</string>

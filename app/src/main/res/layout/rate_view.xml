@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/shape_bg_white_corner_16"
@@ -11,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/fbase_dimen_14"
-        android:fontFamily="@font/font_raleway_medium"
+        android:fontFamily="@font/font_worksans_medium"
         android:text="@string/score_attitude"
         android:textColor="@color/text6"
         android:textSize="@dimen/fbase_text_size_16" />
@@ -23,15 +24,18 @@
         android:layout_marginTop="@dimen/fbase_dimen_12"
         android:max="100"
         android:paddingVertical="@dimen/fbase_dimen_6"
-        android:progress="80"
+        android:progress="0"
         android:progressDrawable="@drawable/custom_seekbar_progress"
         android:progressTint="@color/primary"
-        android:thumb="@drawable/ic_circle_yellow" />
+        android:thumb="@drawable/ic_circle_yellow"
+        android:visibility="gone" />
 
     <LinearLayout
+        android:id="@+id/llRateViewScore"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:visibility="gone"
         android:weightSum="11">
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -176,6 +180,20 @@
         android:textColor="@color/black"
         android:textColorHint="@color/neutral_14"
         android:textCursorDrawable="@drawable/shape_primary_bg_cursor_edit_text"
-        android:textSize="@dimen/fbase_text_size_14" />
+        android:textSize="@dimen/fbase_text_size_14"
+        android:visibility="gone" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvRateViewComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fbase_dimen_12"
+        android:fontFamily="@font/font_worksans_regular"
+        android:gravity="start"
+        android:paddingHorizontal="@dimen/fbase_dimen_14"
+        android:textColor="@color/text1"
+        android:textSize="@dimen/fbase_text_size_12"
+        android:textStyle="italic"
+        tools:text="TIỀM NĂNG - Mức độ tiếp thu bài: Con cần giáo viên gợi ý và hỗ trợ để hoàn thành bài học, con cần cố gắng hơn, tự luyện bằng bài tập về nhà nữa nhé. Sự thể hiện trong lớp: Ban đầu con còn khá rụt rè, còn sợ tiếng Anh, nhưng sau khi được hướng dẫn con đã mạnh dạn hơn nhiều. Nhận xét khác: con khá rụt rè, chưa tự tin khi giao tiếp do con vẫn chưa có nhiều điều kiện để tiếp xúc với tiếng Anh." />
 
 </LinearLayout>

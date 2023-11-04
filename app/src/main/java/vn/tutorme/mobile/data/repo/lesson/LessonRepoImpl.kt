@@ -139,4 +139,35 @@ class LessonRepoImpl @Inject constructor() : ILessonRepo, IRepo {
             ListConverter(FeedBackInfoDTOConvertFeedBackInfo()).invoke(body.data!!)
         }
     }
+
+    override fun insertReviewDetail(scoreAttitude: Float, commentAttitude: String, scorePreparation: Float, commentPreparation: String, scoreAskQuestion: Float, commentAskQuestion: String, scoreJoinTheDiscussion: Float, commentJoinTheDiscussion: String, scoreAttention: Float, commentAttention: String, scoreCompleteTheXercise: Float, commentCompleteTheXercise: String, commentMedium: String, userId: String, lessonId: Int): Boolean {
+        val service = invokeAuthService(ILessonService::class.java)
+
+        return service.insertReviewDetail(
+            scoreAttitude,
+            commentAttitude,
+            scorePreparation,
+            commentPreparation,
+            scoreAskQuestion,
+            commentAskQuestion,
+            scoreJoinTheDiscussion,
+            commentJoinTheDiscussion,
+            scoreAttention,
+            commentAttention,
+            scoreCompleteTheXercise,
+            commentCompleteTheXercise,
+            commentMedium,
+            userId,
+            lessonId
+        ).invokeApi { _, _ ->
+            true
+        }
+    }
+
+    override fun getReviewDetail(userId: String, lessonId: Int): UserInfo {
+        val server = invokeAuthService(ILessonService::class.java)
+        return server.getReviewDetail(userId, lessonId).invokeApi { _, body ->
+            UserInfoDTOConvertToUserInfo().convert(body.data!!)
+        }
+    }
 }

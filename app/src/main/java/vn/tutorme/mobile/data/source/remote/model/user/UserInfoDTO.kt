@@ -42,5 +42,57 @@ data class UserInfoDTO(
 
     @SerializedName("updateReview")
     @Expose
-    var updateReview: Int? = null
+    var updateReview: Int? = null,
+
+    @SerializedName("scoreAttitude")
+    @Expose
+    var scoreAttitude: Float? = null,
+
+    @SerializedName("commentAttitude")
+    @Expose
+    var commentAttitude: String? = null,
+
+    @SerializedName("scorePreparation")
+    @Expose
+    var scorePreparation: Float? = null,
+
+    @SerializedName("commentPreparation")
+    @Expose
+    var commentPreparation: String? = null,
+
+    @SerializedName("scoreAskQuestion")
+    @Expose
+    var scoreAskQuestion: Float? = null,
+
+    @SerializedName("commentAskQuestion")
+    @Expose
+    var commentAskQuestion: String? = null,
+
+    @SerializedName("scoreJoinTheDiscussion")
+    @Expose
+    var scoreJoinTheDiscussion: Float? = null,
+
+    @SerializedName("commentJoinTheDiscussion")
+    @Expose
+    var commentJoinTheDiscussion: String? = null,
+
+    @SerializedName("scoreAttention")
+    @Expose
+    var scoreAttention: Float? = null,
+
+    @SerializedName("commentAttention")
+    @Expose
+    var commentAttention: String? = null,
+
+    @SerializedName("scoreCompleteTheXercise")
+    @Expose
+    var scoreCompleteTheXercise: Float? = null,
+
+    @SerializedName("commentCompleteTheXercise")
+    @Expose
+    var commentCompleteTheXercise: String? = null,
+
+    @SerializedName("commentMedium")
+    @Expose
+    var commentMedium: String? = null
 )

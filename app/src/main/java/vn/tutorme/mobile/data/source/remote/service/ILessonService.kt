@@ -14,6 +14,7 @@ import vn.tutorme.mobile.data.source.remote.model.course.CourseInfoResponse
 import vn.tutorme.mobile.data.source.remote.model.feedback.FeedbackInfoResponse
 import vn.tutorme.mobile.data.source.remote.model.lesson.LessonInfoMainResponse
 import vn.tutorme.mobile.data.source.remote.model.lesson.LessonInfoResponse
+import vn.tutorme.mobile.data.source.remote.model.user.ReviewDetailStudentResponse
 import vn.tutorme.mobile.data.source.remote.model.user.StudentInfoResponse
 
 interface ILessonService : IApiService {
@@ -124,4 +125,29 @@ interface ILessonService : IApiService {
     fun getFeedbackList(
         @Query("lessonId") lessonId: Int
     ): Call<FeedbackInfoResponse>
+
+    @POST("insert/review/student")
+    fun insertReviewDetail(
+        @Query("scoreAttitude") scoreAttitude: Float,
+        @Query("commentAttitude") commentAttitude: String,
+        @Query("scorePreparation") scorePreparation: Float,
+        @Query("commentPreparation") commentPreparation: String,
+        @Query("scoreAskQuestion") scoreAskQuestion: Float,
+        @Query("commentAskQuestion") commentAskQuestion: String,
+        @Query("scoreJoinTheDiscussion") scoreJoinTheDiscussion: Float,
+        @Query("commentJoinTheDiscussion") commentJoinTheDiscussion: String,
+        @Query("scoreAttention") scoreAttention: Float,
+        @Query("commentAttention") commentAttention: String,
+        @Query("scoreCompleteTheXercise") scoreCompleteTheXercise: Float,
+        @Query("commentCompleteTheXercise") commentCompleteTheXercise: String,
+        @Query("commentMedium") commentMedium: String,
+        @Query("userId") userId: String,
+        @Query("lessonId") lessonId: Int
+    ): Call<BaseApiResponse>
+
+    @GET("review/student/list")
+    fun getReviewDetail(
+        @Query("userId") userId: String,
+        @Query("lessonId") lessonId: Int
+    ): Call<ReviewDetailStudentResponse>
 }

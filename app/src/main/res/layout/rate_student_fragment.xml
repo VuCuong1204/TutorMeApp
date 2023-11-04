@@ -241,55 +241,51 @@
                     android:textSize="@dimen/fbase_text_size_18" />
 
                 <vn.tutorme.mobile.presenter.widget.rateview.RateView
+                    android:id="@+id/rvRateStudent1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/fbase_dimen_12"
-                    android:visibility="gone"
                     app:title="@string/score_attitude" />
 
                 <vn.tutorme.mobile.presenter.widget.rateview.RateView
+                    android:id="@+id/rvRateStudent2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/fbase_dimen_20"
-
-                    android:visibility="gone"
                     app:title="@string/score_preparation" />
 
                 <vn.tutorme.mobile.presenter.widget.rateview.RateView
+                    android:id="@+id/rvRateStudent3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/fbase_dimen_20"
-
-                    android:visibility="gone"
                     app:title="@string/score_ask_question" />
 
                 <vn.tutorme.mobile.presenter.widget.rateview.RateView
+                    android:id="@+id/rvRateStudent4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/fbase_dimen_20"
-
-                    android:visibility="gone"
                     app:title="@string/score_join_the_discussion" />
 
                 <vn.tutorme.mobile.presenter.widget.rateview.RateView
+                    android:id="@+id/rvRateStudent5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/fbase_dimen_20"
-
-                    android:visibility="gone"
                     app:title="@string/score_attention" />
 
                 <vn.tutorme.mobile.presenter.widget.rateview.RateView
+                    android:id="@+id/rvRateStudent6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/fbase_dimen_20"
-
-                    android:visibility="gone"
                     app:title="@string/score_complete_the_xercise" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fbase_dimen_20"
                     android:background="@drawable/shape_bg_primary_corner_12"
                     android:padding="@dimen/fbase_dimen_14">
 
@@ -297,7 +293,7 @@
                         android:id="@+id/tvRateStudentMedium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/font_raleway_bold"
+                        android:fontFamily="@font/font_worksans_bold"
                         android:text="@string/score_medium"
                         android:textColor="@color/white"
                         android:textSize="@dimen/fbase_text_size_18" />
@@ -314,6 +310,7 @@
                         tools:text="Tốt" />
 
                     <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvRateStudentRatio"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tvRateStudentMedium"
@@ -341,7 +338,7 @@
                         android:background="@drawable/shape_bg_state_warning_corner_8" />
 
                     <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/edtRateViewComment"
+                        android:id="@+id/edtRateStudentComment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/v11"
@@ -350,7 +347,6 @@
                         android:fontFamily="@font/font_raleway_medium"
                         android:gravity="center_vertical"
                         android:hint="@string/comment"
-                        android:imeOptions="actionDone"
                         android:maxHeight="@dimen/fbase_dimen_80"
                         android:maxLength="200"
                         android:minHeight="@dimen/fbase_dimen_50"
@@ -360,6 +356,21 @@
                         android:textColorHint="@color/neutral_14"
                         android:textCursorDrawable="@drawable/shape_primary_bg_cursor_edit_text"
                         android:textSize="@dimen/fbase_text_size_14" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvRateStudentComment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/edtRateStudentComment"
+                        android:layout_marginTop="@dimen/fbase_dimen_12"
+                        android:background="@drawable/shape_bg_white_corner_16"
+                        android:fontFamily="@font/font_worksans_regular"
+                        android:gravity="start"
+                        android:padding="@dimen/fbase_dimen_12"
+                        android:textColor="@color/text1"
+                        android:textSize="@dimen/fbase_text_size_12"
+                        android:textStyle="italic"
+                        tools:text="TIỀM NĂNG - Mức độ tiếp thu bài: Con cần giáo viên gợi ý và hỗ trợ để hoàn thành bài học, con cần cố gắng hơn, tự luyện bằng bài tập về nhà nữa nhé. Sự thể hiện trong lớp: Ban đầu con còn khá rụt rè, còn sợ tiếng Anh, nhưng sau khi được hướng dẫn con đã mạnh dạn hơn nhiều. Nhận xét khác: con khá rụt rè, chưa tự tin khi giao tiếp do con vẫn chưa có nhiều điều kiện để tiếp xúc với tiếng Anh. phản xạ và khả năng ghi nhớ từ vựng của con vẫn cần được rèn luyện thêm, con nhớ được một số từ do trong buổi được cô lặp đi lặp lại nhiều lần, còn lại thì vẫn chưa nhớ được. Phát âm của con còn bị lẫn qua khẩu âm tiếng Việt khá nhiều, con cần được tạo thêm điều kiện để tiếp xúc với tiếng Anh từ bây giờ để sau này đỡ vất vả hơn." />
 
                 </RelativeLayout>
 
