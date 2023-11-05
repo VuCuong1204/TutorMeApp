@@ -60,6 +60,7 @@
     <string name="input_room_id_no">Hiện chưa có thông tin id</string>
     <string name="input_password">Nhập mật khẩu</string>
     <string name="input_commenter">Nhập bình luận ở đây</string>
+    <string name="input_chat">Nhắn tin</string>
     <string name="input_feedback">Đóng góp ý kiến ở đây</string>
     <string name="count_commenter">%s bình luận</string>
     <string name="close">Đóng</string>
@@ -182,6 +183,7 @@
     <string name="evaluate">Đánh giá</string>
     <string name="class_detail">Chi tiết lớp học</string>
     <string name="lesson_detail">Chi tiết buổi học</string>
+    <string name="chat_list">Danh sách nhắn tin</string>
     <string name="notify_detail">Chi tiết thông báo</string>
     <string name="rate_detail">Chi tiết đánh giá</string>
     <string name="opening_second">Khai giảng</string>
@@ -196,6 +198,7 @@
     <string name="edit_profile_select_gallery">Chọn từ  thư viện</string>
     <string name="update_image_error">Lỗi update ảnh, vui lòng thử lại</string>
     <string name="send_message_error">Lỗi gửi bình luận, vui lòng thử lại</string>
+    <string name="send_message_single_error">Lỗi gửi tin nhắn, vui lòng thử lại</string>
     <string name="send_zoom_info_error">Lỗi gửi thông tin phòng, vui lòng thử lại</string>
     <string name="confirmed">Đã xác nhận</string>
     <string name="confirm_second">xác nhận</string>

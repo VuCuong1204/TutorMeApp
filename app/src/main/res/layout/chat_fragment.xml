@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvChatHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="@dimen/fbase_dimen_10"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivChatBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:padding="@dimen/fbase_dimen_16"
+                    android:src="@drawable/ic_arrow_primary_left" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/ivHomeAvatar"
+                    android:layout_width="@dimen/fbase_dimen_50"
+                    android:layout_height="@dimen/fbase_dimen_50"
+                    android:layout_marginStart="@dimen/fbase_dimen_6"
+                    android:layout_toEndOf="@id/ivChatBack"
+                    android:src="@drawable/bg_gender_male"
+                    app:shapeAppearanceOverlay="@style/CircleImageView" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvChatName"
+                    android:layout_width="@dimen/fbase_dimen_200"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/fbase_dimen_10"
+                    android:layout_toEndOf="@id/ivHomeAvatar"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/font_raleway_medium"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fbase_text_size_16"
+                    tools:text="Vũ Cường" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivChatCallVideo"
+                    android:layout_width="@dimen/fbase_dimen_40"
+                    android:layout_height="@dimen/fbase_dimen_40"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/fbase_dimen_16"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:padding="@dimen/fbase_dimen_8"
+                    android:src="@drawable/ic_call_phone_gray" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <vn.tutorme.mobile.presenter.widget.collection.CollectionView
+            android:id="@+id/cvChatContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/clChatSend"
+            android:layout_below="@+id/cvChatHeader"
+            android:overScrollMode="never"
+            android:paddingHorizontal="@dimen/fbase_dimen_16"
+            android:paddingBottom="@dimen/fbase_dimen_10" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clChatSend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:paddingBottom="@dimen/fbase_dimen_10">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtChatContent"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/fbase_dimen_20"
+                android:layout_marginEnd="@dimen/fbase_dimen_10"
+                android:background="@drawable/shape_bg_gray_10_corner_8"
+                android:fontFamily="@font/font_raleway_medium"
+                android:gravity="center_vertical"
+                android:hint="@string/input_chat"
+                android:imeOptions="actionDone"
+                android:maxHeight="@dimen/fbase_dimen_100"
+                android:minHeight="@dimen/fbase_dimen_50"
+                android:paddingHorizontal="@dimen/fbase_dimen_10"
+                android:paddingVertical="@dimen/fbase_dimen_4"
+                android:textColor="@color/black"
+                android:textColorHint="@color/neutral_14"
+                android:textCursorDrawable="@drawable/shape_primary_bg_cursor_edit_text"
+                android:textSize="@dimen/fbase_text_size_14"
+                app:layout_constraintEnd_toStartOf="@+id/ivChatSend"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivChatSend"
+                android:layout_width="@dimen/fbase_dimen_30"
+                android:layout_height="@dimen/fbase_dimen_30"
+                android:layout_marginTop="@dimen/fbase_dimen_6"
+                android:layout_marginEnd="@dimen/fbase_dimen_10"
+                android:background="?selectableItemBackgroundBorderless"
+                android:padding="@dimen/fbase_dimen_2"
+                android:src="@drawable/ic_send_disable"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </RelativeLayout>
+
+</layout>
