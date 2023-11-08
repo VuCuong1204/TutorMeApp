@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/flIncomingCallVideo"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fbase_dimen_300" />
+
+        <FrameLayout
+            android:id="@+id/flIncomingCallVideo2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fbase_dimen_300"
+            android:layout_below="@id/flIncomingCallVideo"
+            android:layout_marginTop="@dimen/fbase_dimen_10" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/flIncomingCallVideo2"
+            android:layout_marginTop="@dimen/fbase_dimen_20"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnIncomingConfirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnIncomingReject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnIncomingEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</layout>

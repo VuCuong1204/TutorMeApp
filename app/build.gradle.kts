@@ -82,7 +82,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.android.gms:play-services-auth:20.7.0")
-    implementation ("com.google.firebase:firebase-storage:19.1.0")
+    implementation("com.google.firebase:firebase-storage:19.1.0")
     implementation("com.google.firebase:firebase-database-ktx")
 
     //facebook
@@ -115,6 +115,10 @@ dependencies {
     //mlkit
     implementation("com.google.mlkit:face-detection:16.1.5")
     implementation("com.google.android.gms:play-services-mlkit-face-detection:17.1.0")
+
+    //stringee
+    implementation("com.stringee.sdk.android:stringee-android-sdk:1.9.3")
+    implementation("com.android.volley:volley:1.2.1")
 }
 
 kapt {

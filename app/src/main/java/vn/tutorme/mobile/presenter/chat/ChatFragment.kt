@@ -17,6 +17,7 @@ import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.ChatFragmentBinding
 import vn.tutorme.mobile.domain.model.chat.ChatInfo
 import vn.tutorme.mobile.domain.model.chat.SingleRoomInfo
+import vn.tutorme.mobile.presenter.chat.videocall.MainVideoCallFragment
 
 class ChatFragment : TutorMeFragment<ChatFragmentBinding>(R.layout.chat_fragment) {
 
@@ -84,6 +85,11 @@ class ChatFragment : TutorMeFragment<ChatFragmentBinding>(R.layout.chat_fragment
             setBaseLayoutManager(layout = LAYOUT_MANAGER.LINEARLAYOUT_VERTICAL, isReverse = true)
             setBaseAdapter(chatAdapter)
         }
+
+        binding.ivChatCallVideo.setOnSafeClick {
+            replaceFragment(MainVideoCallFragment())
+        }
+
         addMessageListenerEvent()
     }
 
