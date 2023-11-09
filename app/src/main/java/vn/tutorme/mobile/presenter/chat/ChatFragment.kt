@@ -1,5 +1,6 @@
 package vn.tutorme.mobile.presenter.chat
 
+import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import com.example.syntheticapp.presenter.widget.collection.LAYOUT_MANAGER
 import com.google.firebase.database.DataSnapshot
@@ -17,7 +18,7 @@ import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.ChatFragmentBinding
 import vn.tutorme.mobile.domain.model.chat.ChatInfo
 import vn.tutorme.mobile.domain.model.chat.SingleRoomInfo
-import vn.tutorme.mobile.presenter.chat.videocall.MainVideoCallFragment
+import vn.tutorme.mobile.presenter.chat.videocall.VideoCallFragment
 
 class ChatFragment : TutorMeFragment<ChatFragmentBinding>(R.layout.chat_fragment) {
 
@@ -87,7 +88,11 @@ class ChatFragment : TutorMeFragment<ChatFragmentBinding>(R.layout.chat_fragment
         }
 
         binding.ivChatCallVideo.setOnSafeClick {
-            replaceFragment(MainVideoCallFragment())
+            replaceFragment(fragment = VideoCallFragment(), bundleOf(
+                VideoCallFragment.USER_FROM_KEY to AppPreferences.userInfo?.userId,
+                VideoCallFragment.USER_TO_KEY to userId,
+                VideoCallFragment.STATE_CALL_KEY to 1
+            ))
         }
 
         addMessageListenerEvent()

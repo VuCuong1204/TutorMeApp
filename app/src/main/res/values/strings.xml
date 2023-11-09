@@ -3,6 +3,7 @@
     <string name="no_network">Vui lòng kiểm tra lại kết nối và thử lại</string>
     <string name="server_time_out">Server không phản hồi</string>
     <string name="convert_response_error">Lỗi convert response từ server</string>
+    <string name="connect_error">Lỗi kết nối vui lòng thử lại</string>
     <string name="response_error">Lỗi response</string>
 
     <string name="main_exit_confirm">Ấn back lần nữa để thoát app</string>
@@ -10,6 +11,7 @@
     <string name="title_first">Tutor</string>
     <string name="title_second">Me</string>
 
+    <string name="video_call_end">Cuộc gọi đã kết thúc</string>
     <string name="account_hint">Email đăng nhập</string>
     <string name="password_hint">Mật khẩu</string>
     <string name="fill_in_here">Điền vào đây</string>

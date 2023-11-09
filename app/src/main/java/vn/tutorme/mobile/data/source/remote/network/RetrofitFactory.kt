@@ -9,6 +9,7 @@ object RetrofitFactory {
     private val TAG = RetrofitFactory::class.java.simpleName
     private const val AUTH = "AUTH"
     private const val LOCATION = "LOCATION"
+    private const val STRINGEE = "STRINGEE"
 
     private val builderMap = ConcurrentHashMap<String, RetrofitBuilderInfo>()
 
@@ -38,6 +39,22 @@ object RetrofitFactory {
                 Log.d(TAG, "Create new domain retrofit builder for $LOCATION")
             }
             Log.e(TAG, "Reuse domain retrofit builder for $LOCATION")
+            val serviceApi = builderInfo.builder?.build()?.create(service)
+
+            return serviceApi ?: throw ApiException(ApiException.CREATE_INSTANCE_SERVICE_ERROR)
+        }
+    }
+
+    fun <T> createStringeeService(service: Class<T>): T {
+        synchronized(RetrofitBuilderInfo::class.java) {
+            var builderInfo = builderMap[STRINGEE]
+            if (builderInfo == null) {
+                builderInfo = RetrofitBuilderInfo()
+                builderInfo.builder = StringeeRetrofitConfig().getRetrofitBuilder()
+                builderMap[STRINGEE] = builderInfo
+                Log.d(TAG, "Create new domain retrofit builder for $STRINGEE")
+            }
+            Log.e(TAG, "Reuse domain retrofit builder for $STRINGEE")
             val serviceApi = builderInfo.builder?.build()?.create(service)
 
             return serviceApi ?: throw ApiException(ApiException.CREATE_INSTANCE_SERVICE_ERROR)

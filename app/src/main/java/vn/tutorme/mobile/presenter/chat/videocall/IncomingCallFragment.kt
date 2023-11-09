@@ -46,9 +46,7 @@ class IncomingCallFragment : TutorMeFragment<IncomingCallFragmentBinding>(R.layo
         stringCall = MainVideoCallFragment.callMap[callId]
 
         audioManager = StringeeAudioManager.create(this@IncomingCallFragment.context)
-        audioManager?.start { _, _ ->
-//            TODO("Not yet implemented")
-        }
+        audioManager?.start { _, _ -> }
         audioManager?.setSpeakerphoneOn(true)
         stringCall?.enableVideo(true)
         stringCall?.setQuality(StringeeConstant.QUALITY_FULLHD)
