@@ -21,7 +21,6 @@ import vn.tutorme.mobile.base.common.eventbus.EventBusManager
 import vn.tutorme.mobile.base.common.sociallogin.FacebookLogin
 import vn.tutorme.mobile.base.common.sociallogin.GoogleLogin
 import vn.tutorme.mobile.base.common.sociallogin.ISocialTokenListener
-import vn.tutorme.mobile.base.extension.Extension.STRING_DEFAULT
 import vn.tutorme.mobile.base.extension.getAppDrawable
 import vn.tutorme.mobile.base.extension.getAppString
 import vn.tutorme.mobile.base.extension.handleUiState

@@ -32,9 +32,9 @@ import vn.tutorme.mobile.base.screen.TutorMeActivity
 import vn.tutorme.mobile.databinding.MainActivityBinding
 import vn.tutorme.mobile.domain.model.authen.ROLE_TYPE
 import vn.tutorme.mobile.domain.model.chat.video.VideoCallInfo
-import vn.tutorme.mobile.presenter.chat.videocall.MainVideoCallFragment
 import vn.tutorme.mobile.presenter.chat.videocall.VideoCallFragment
 import vn.tutorme.mobile.presenter.classmanager.ClassManagerFragment
+import vn.tutorme.mobile.presenter.dialog.ConfirmVideoDialog
 import vn.tutorme.mobile.presenter.home.HomeFragment
 import vn.tutorme.mobile.presenter.notification.NotificationFragment
 import vn.tutorme.mobile.presenter.profile.ProfileFragment
@@ -205,11 +205,7 @@ class MainActivity : TutorMeActivity<MainActivityBinding>(R.layout.main_activity
                 ), object : PermissionListener {
                     override fun onAllow() {
                         runOnUiThread {
-                            MainVideoCallFragment.callMap[p0.callId] = p0
-                            replaceFragment(VideoCallFragment(), bundleOf(
-                                VideoCallFragment.CALL_ID_KEY to p0.callId,
-                                VideoCallFragment.STATE_CALL_KEY to 0
-                            ))
+                            showIncomingVideoDialog(p0)
                         }
                     }
 
@@ -239,5 +235,33 @@ class MainActivity : TutorMeActivity<MainActivityBinding>(R.layout.main_activity
         })
 
         strClient?.connect(viewModel.tokenVideoCall)
+    }
+
+    fun showIncomingVideoDialog(strCall: StringeeCall) {
+        var videoCallInfo: VideoCallInfo? = VideoCallInfo()
+        FirebaseDatabase.getInstance().getReference(HomeFragment.VIDEO_CALL_KEY).child(strCall.callId)
+            .get()
+            .addOnSuccessListener {
+                it.children.forEach { dataSnapShot ->
+                    videoCallInfo = dataSnapShot.getValue(VideoCallInfo::class.java)
+                }
+            }
+
+        ConfirmVideoDialog().apply {
+            userName = videoCallInfo?.userName
+            listener = object : ConfirmVideoDialog.IConfirmVideoListener {
+                override fun onRejectClick() {
+                    strCall.reject(null)
+                }
+
+                override fun onConfirmClick() {
+                    callMap[strCall.callId] = strCall
+                    replaceFragment(VideoCallFragment(), bundleOf(
+                        VideoCallFragment.CALL_ID_KEY to strCall.callId,
+                        VideoCallFragment.STATE_CALL_KEY to 0
+                    ))
+                }
+            }
+        }
     }
 }

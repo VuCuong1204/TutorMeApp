@@ -12,6 +12,8 @@
     <string name="title_second">Me</string>
 
     <string name="video_call_end">Cuộc gọi đã kết thúc</string>
+    <string name="video_call_busy">Người nhận đang bận hoặc không nhấc máy, vui lòng thử lại</string>
+    <string name="incoming_call">Cuộc gọi đến</string>
     <string name="account_hint">Email đăng nhập</string>
     <string name="password_hint">Mật khẩu</string>
     <string name="fill_in_here">Điền vào đây</string>

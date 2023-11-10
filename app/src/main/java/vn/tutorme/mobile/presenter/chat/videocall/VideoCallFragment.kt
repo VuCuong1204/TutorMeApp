@@ -110,6 +110,9 @@ class VideoCallFragment : TutorMeFragment<VideoCallFragmentBinding>(R.layout.vid
                 if (state == StringeeCall.SignalingState.ENDED) {
                     onBackPressByFragment()
                     showSuccess(getAppString(R.string.video_call_end))
+                } else if (state == StringeeCall.SignalingState.BUSY) {
+                    onBackPressByFragment()
+                    showError(getAppString(R.string.video_call_busy))
                 }
             }
 
