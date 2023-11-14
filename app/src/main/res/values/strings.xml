@@ -16,6 +16,7 @@
     <string name="incoming_call">Cuộc gọi đến</string>
     <string name="account_hint">Email đăng nhập</string>
     <string name="password_hint">Mật khẩu</string>
+    <string name="input_email">Nhập email</string>
     <string name="fill_in_here">Điền vào đây</string>
     <string name="login">Đăng nhập</string>
     <string name="login_failed">Đăng nhập thất bại</string>
@@ -30,6 +31,10 @@
     <string name="forgot_password">Quên mật khẩu?</string>
     <string name="update_profile_success">Cập nhật thành công</string>
     <string name="forgot_password_v2">Quên mật khẩu</string>
+    <string name="send_code_confirm">Gửi mã xác nhận</string>
+    <string name="send_request_forgot_password">Gửi yêu cầu thành công</string>
+    <string name="please_input_email">Vui lòng nhập Email để nhận mã xác nhận!</string>
+    <string name="please_coming_email">Vui lòng vào email đăng ký để xác nhận đổi mật khẩu</string>
     <string name="no_member">Chưa là thành viên</string>
     <string name="register">đăng ký</string>
     <string name="register_bold">Đăng ký</string>
@@ -80,6 +85,8 @@
     <string name="contact">Liên hệ</string>
     <string name="hotline">Hotline</string>
     <string name="email">Email</string>
+    <string name="email_to">mailto:</string>
+    <string name="email_not_exist">Email không tồn tại. Vui lòng kiểm tra lại!</string>
     <string name="website">Website</string>
     <string name="skype">Skype</string>
     <string name="phone_value">0941587396</string>

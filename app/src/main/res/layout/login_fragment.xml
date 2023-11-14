@@ -109,6 +109,7 @@
                 app:layout_constraintTop_toTopOf="@id/ivLoginCheck" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLoginChangePassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/fbase_dimen_6"

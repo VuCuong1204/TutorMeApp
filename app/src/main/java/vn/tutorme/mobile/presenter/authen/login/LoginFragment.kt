@@ -28,6 +28,7 @@ import vn.tutorme.mobile.base.extension.isEmailValid
 import vn.tutorme.mobile.base.extension.setOnSafeClick
 import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.LoginFragmentBinding
+import vn.tutorme.mobile.presenter.authen.forgotpassword.ForgotPasswordFragment
 import vn.tutorme.mobile.presenter.authen.register.RegisterFragment
 import vn.tutorme.mobile.presenter.dialog.BottomSheetConfirmDialog
 import vn.tutorme.mobile.presenter.home.HomeFragment
@@ -96,6 +97,10 @@ class LoginFragment : TutorMeFragment<LoginFragmentBinding>(R.layout.login_fragm
             binding.ivLoginCheck.setImageDrawable(getAppDrawable(R.drawable.ic_tick_show))
             AppPreferences.passwordAccount?.let { binding.tfvLoginPassword.setTextContent(it) }
         } else binding.ivLoginCheck.setImageDrawable(getAppDrawable(R.drawable.ic_tick_gone))
+
+        binding.tvLoginChangePassword.setOnSafeClick {
+            replaceFragment(fragment = ForgotPasswordFragment(), screenAnim = SlideAnimation())
+        }
     }
 
     private fun addEventOnClick() {

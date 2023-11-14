@@ -2,9 +2,12 @@ package vn.tutorme.mobile.presenter.home
 
 import android.Manifest
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.syntheticapp.presenter.widget.collection.LAYOUT_MANAGER
 import com.google.firebase.database.FirebaseDatabase
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.BaseActivity
@@ -42,6 +45,9 @@ class HomeFragment : TutorMeFragment<HomeFragmentBinding>(R.layout.home_fragment
         addListener()
         requestPermission()
         getAccessTokenVideoCall()
+        lifecycleScope.launch(Dispatchers.IO) {
+            mainActivity.initVideoCall()
+        }
     }
 
     override fun onObserverViewModel() {

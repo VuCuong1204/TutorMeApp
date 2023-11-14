@@ -54,7 +54,6 @@ class MainActivity : TutorMeActivity<MainActivityBinding>(R.layout.main_activity
         setBottomMainState()
         setOnMainClick()
         setBottomBarType()
-        initVideoCall()
     }
 
     override fun getContainerId(): Int = R.id.flMainRoot
@@ -189,7 +188,7 @@ class MainActivity : TutorMeActivity<MainActivityBinding>(R.layout.main_activity
         binding.bmvMainTab.setBottomBarType(AppPreferences.userInfo?.role ?: ROLE_TYPE.STUDENT_TYPE)
     }
 
-    private fun initVideoCall() {
+    fun initVideoCall() {
         strClient = StringeeClient(this)
         strClient?.setConnectionListener(object : StringeeConnectionListener {
             override fun onConnectionConnected(p0: StringeeClient?, p1: Boolean) {}
@@ -234,7 +233,7 @@ class MainActivity : TutorMeActivity<MainActivityBinding>(R.layout.main_activity
             }
         })
 
-        strClient?.connect(viewModel.tokenVideoCall)
+        viewModel.tokenVideoCall?.let { strClient?.connect(viewModel.tokenVideoCall) }
     }
 
     fun showIncomingVideoDialog(strCall: StringeeCall) {
