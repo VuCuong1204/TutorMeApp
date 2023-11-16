@@ -1,6 +1,7 @@
 package vn.tutorme.mobile.presenter.lessondetail
 
 import android.util.Log
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import com.example.syntheticapp.presenter.widget.collection.LAYOUT_MANAGER
 import com.google.firebase.database.DataSnapshot
@@ -26,7 +27,6 @@ import vn.tutorme.mobile.base.extension.gone
 import vn.tutorme.mobile.base.extension.handleUiState
 import vn.tutorme.mobile.base.extension.setOnSafeClick
 import vn.tutorme.mobile.base.extension.show
-import vn.tutorme.mobile.base.extension.toast
 import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.LessonDetailFragmentBinding
 import vn.tutorme.mobile.domain.model.authen.ROLE_TYPE
@@ -41,6 +41,7 @@ import vn.tutorme.mobile.presenter.dialog.feedbacklist.FeedBackListDialog
 import vn.tutorme.mobile.presenter.lessondetail.camera.FaceDetectionFragment
 import vn.tutorme.mobile.presenter.lessondetail.model.ZoomRoomInfo
 import vn.tutorme.mobile.presenter.lessondetail.zoomsdk.ZoomSdkConfig
+import vn.tutorme.mobile.presenter.ratestudent.RateStudentFragment
 
 @AndroidEntryPoint
 class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layout.lesson_detail_fragment) {
@@ -164,7 +165,16 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
     private fun addListener() {
         studentLessonAdapter.listener = object : IStudentLessonListener {
             override fun onRateClick(item: UserInfo) {
-                toast("success")
+                replaceFragment(
+                    fragment = RateStudentFragment(),
+                    bundle = bundleOf(
+                        RateStudentFragment.USER_ID_KEY to item.userId,
+                        RateStudentFragment.USER_NAME_KEY to item.fullName,
+                        RateStudentFragment.USER_EVALUATE_KEY to item.evaluateState,
+                        RateStudentFragment.LESSON_ID_KEY to viewModel.lessonId
+                    ),
+                    screenAnim = SlideAnimation()
+                )
             }
 
             override fun onAttendanceClick() {

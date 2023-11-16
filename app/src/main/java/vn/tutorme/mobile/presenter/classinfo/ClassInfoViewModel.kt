@@ -1,6 +1,5 @@
 package vn.tutorme.mobile.presenter.classinfo
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -17,20 +16,24 @@ import vn.tutorme.mobile.base.extension.reset
 import vn.tutorme.mobile.base.extension.success
 import vn.tutorme.mobile.base.model.DataPage
 import vn.tutorme.mobile.domain.usecase.GetLessonListInClassUseCase
-import vn.tutorme.mobile.presenter.classinfo.ClassInfoFragment.Companion.CLASS_ID_KEY
 import javax.inject.Inject
 
 @HiltViewModel
 class ClassInfoViewModel @Inject constructor(
     private val getLessonListInClassUseCase: GetLessonListInClassUseCase
 ) : BaseViewModel() {
+
+    companion object {
+        const val TIME_DELAY = 100L
+    }
+
     private val _lessonInfoState = MutableStateFlow(FlowResult.newInstance<DataPage<Any>>())
     val lessonInfoState = _lessonInfoState.asStateFlow()
     private var lessonDataPage = DataPage.newInstance(_lessonInfoState.value.data, true)
 
     fun getLessonList(isReload: Boolean = false, classId: String) {
         viewModelScope.launch {
-            delay(100)
+            delay(TIME_DELAY)
             lessonDataPage = DataPage.newInstance(_lessonInfoState.value.data, isReload)
             val rv = GetLessonListInClassUseCase.GetLessonListInClassVH(classId)
             getLessonListInClassUseCase.invoke(rv)

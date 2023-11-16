@@ -1,8 +1,6 @@
 package vn.tutorme.mobile.domain.usecase
 
 import vn.tutorme.mobile.base.common.BaseUseCase
-import vn.tutorme.mobile.base.extension.Extension.INT_DEFAULT
-import vn.tutorme.mobile.base.extension.Extension.LIMIT_SIZE
 import vn.tutorme.mobile.domain.model.lesson.TITLE_TYPE
 import vn.tutorme.mobile.domain.model.lesson.TitleLessonInfo
 import vn.tutorme.mobile.domain.repo.ILessonRepo
@@ -30,7 +28,7 @@ class GetLessonListInClassUseCase @Inject constructor(
     }
 
     class GetLessonListInClassVH(val classId: String) : RequestValue {
-        var page: Int? = INT_DEFAULT
-        var size: Int? = LIMIT_SIZE
+        var page: Int? = null
+        var size: Int? = null
     }
 }

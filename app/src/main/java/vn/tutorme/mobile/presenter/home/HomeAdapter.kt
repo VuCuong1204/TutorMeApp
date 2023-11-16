@@ -19,6 +19,7 @@ import vn.tutorme.mobile.base.extension.gone
 import vn.tutorme.mobile.base.extension.hide
 import vn.tutorme.mobile.base.extension.loadImage
 import vn.tutorme.mobile.base.extension.setImageTextView
+import vn.tutorme.mobile.base.extension.setOnSafeClick
 import vn.tutorme.mobile.base.extension.setOnTouchClick
 import vn.tutorme.mobile.databinding.BannerHomeItemBinding
 import vn.tutorme.mobile.databinding.CourseItemBinding
@@ -288,6 +289,12 @@ class HomeAdapter : TutorMeAdapter() {
                 setBaseLayoutManager(LAYOUT_MANAGER.LINEARLAYOUT_HORIZONTAL)
                 setBaseAdapter(lessonAdapter)
             }
+
+            lessonAdapter.listener = object : LessonUnderratedAdapter.ILessonUnderratedListener {
+                override fun onItemClick(item: LessonInfo) {
+                    listenerHome?.onClickLessonInfo(item)
+                }
+            }
         }
 
         override fun onBind(data: List<LessonInfo>) {
@@ -309,6 +316,12 @@ class HomeAdapter : TutorMeAdapter() {
                 setBaseLayoutManager(LAYOUT_MANAGER.LINEARLAYOUT_HORIZONTAL)
                 setBaseAdapter(lessonAdapter)
             }
+
+            lessonAdapter.listener = object : LessonStudentAdapter.ILessonStudentListener {
+                override fun onItemClick(item: LessonInfo) {
+                    listenerHome?.onClickLessonInfo(item)
+                }
+            }
         }
 
         override fun onBind(data: List<LessonInfo>) {
@@ -328,6 +341,10 @@ class HomeAdapter : TutorMeAdapter() {
                 teacherListener = object : IListener {
                     override fun onClick(classId: String) {
                         listenerHome?.onClickConfirmRegisterClass(classId)
+                    }
+
+                    override fun onClickInfo(classId: String) {
+                        listenerHome?.onClickClassInfo(classId)
                     }
                 }
             }
@@ -382,6 +399,14 @@ class HomeAdapter : TutorMeAdapter() {
                 setBaseLayoutManager(LAYOUT_MANAGER.LINEARLAYOUT_HORIZONTAL)
                 setBaseAdapter(classAdapter)
             }
+
+            classAdapter.listener = object : IListener {
+                override fun onClick(classId: String) {}
+
+                override fun onClickInfo(classId: String) {
+                    listenerHome?.onClickClassInfo(classId)
+                }
+            }
         }
 
         override fun onBind(data: List<ClassInfo>) {
@@ -396,6 +421,14 @@ class HomeAdapter : TutorMeAdapter() {
     }
 
     inner class CourseVH(private val binding: CourseItemBinding) : BaseVH<CourseInfo>(binding) {
+
+        init {
+            binding.root.setOnSafeClick {
+                getItem {
+                    it.courseId?.let { id -> listenerHome?.onClickCourseInfo(id) }
+                }
+            }
+        }
 
         override fun onBind(data: CourseInfo) {
             super.onBind(data)

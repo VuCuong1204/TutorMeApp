@@ -7,8 +7,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
+import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.base.common.BaseViewModel
 import vn.tutorme.mobile.base.common.FlowResult
+import vn.tutorme.mobile.base.extension.Extension.STRING_DEFAULT
 import vn.tutorme.mobile.base.extension.failure
 import vn.tutorme.mobile.base.extension.loading
 import vn.tutorme.mobile.base.extension.onException
@@ -28,7 +30,7 @@ class CourseViewModel @Inject constructor(
     private val getClassListFromCourseUseCase: GetClassListFromCourseUseCase,
     private val checkCourseRegisteredUseCase: CheckCourseRegisteredUseCase,
     private val registerCourseUseCase: RegisterCourseUseCase,
-    private val savedStateHandle: SavedStateHandle
+    savedStateHandle: SavedStateHandle
 ) : BaseViewModel() {
 
     private val _courseInfoState = MutableStateFlow(FlowResult.newInstance<CourseInfo>())
@@ -43,11 +45,11 @@ class CourseViewModel @Inject constructor(
     private val _registerCourseState = MutableStateFlow(FlowResult.newInstance<Boolean>())
     val registerCourseState = _registerCourseState.asStateFlow()
 
-    var courseId = savedStateHandle.get<String>(COURSE_ID_KEY) ?: "K00002"
+    var courseId = savedStateHandle.get<String>(COURSE_ID_KEY) ?: STRING_DEFAULT
 
     init {
         getCourseInfo(courseId)
-        checkCourseRegister(courseId, "Vucuonghihi1234")
+        checkCourseRegister(courseId, AppPreferences.userInfo?.userId ?: STRING_DEFAULT)
     }
 
     private fun getCourseInfo(courseId: String) {

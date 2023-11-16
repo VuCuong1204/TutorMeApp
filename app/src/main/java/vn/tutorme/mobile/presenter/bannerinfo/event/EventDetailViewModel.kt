@@ -8,6 +8,8 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import vn.tutorme.mobile.base.common.BaseViewModel
 import vn.tutorme.mobile.base.common.FlowResult
+import vn.tutorme.mobile.base.extension.Extension.INT_DEFAULT
+import vn.tutorme.mobile.base.extension.failure
 import vn.tutorme.mobile.base.extension.loading
 import vn.tutorme.mobile.base.extension.onException
 import vn.tutorme.mobile.base.extension.success
@@ -19,19 +21,19 @@ import javax.inject.Inject
 @HiltViewModel
 class EventDetailViewModel @Inject constructor(
     private val getBannerInfoEventUseCase: GetBannerInfoEventUseCase,
-    private val savedStateHandle: SavedStateHandle
+    savedStateHandle: SavedStateHandle
 ) : BaseViewModel() {
 
     private val _eventInfoState = MutableStateFlow(FlowResult.newInstance<BannerEventInfo>())
     val eventInfoState = _eventInfoState
 
-    private var eventId = savedStateHandle.get<Int>(EVENT_ID_KEY) ?: 7
+    private var eventId = savedStateHandle.get<Int>(EVENT_ID_KEY) ?: INT_DEFAULT
 
     init {
         getEventInfo()
     }
 
-    fun getEventInfo() {
+    private fun getEventInfo() {
         viewModelScope.launch {
             val rv = GetBannerInfoEventUseCase.GetBannerInfoEventRV(eventId)
             getBannerInfoEventUseCase.invoke(rv)
@@ -39,7 +41,7 @@ class EventDetailViewModel @Inject constructor(
                     _eventInfoState.loading()
                 }
                 .onException {
-//                    _eventInfoState.failure(it)
+                    _eventInfoState.failure(it)
                 }
                 .collect {
                     _eventInfoState.success(it)

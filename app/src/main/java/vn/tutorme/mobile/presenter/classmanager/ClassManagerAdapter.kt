@@ -8,10 +8,13 @@ import vn.tutorme.mobile.base.adapter.TutorMeAdapter
 import vn.tutorme.mobile.base.extension.getAppDimension
 import vn.tutorme.mobile.base.extension.getAppDrawable
 import vn.tutorme.mobile.base.extension.gone
+import vn.tutorme.mobile.base.extension.setOnSafeClick
 import vn.tutorme.mobile.databinding.LessonHomeItemBinding
 import vn.tutorme.mobile.domain.model.clazz.ClassInfo
 
 class ClassChildAdapter : TutorMeAdapter() {
+
+    var listener: IClassManagerListener? = null
 
     override fun getLayoutResource(viewType: Int): Int = R.layout.lesson_home_item
 
@@ -38,6 +41,12 @@ class ClassChildAdapter : TutorMeAdapter() {
                 val layoutParams = clLessonHomeRoot.layoutParams
                 layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
                 clLessonHomeRoot.layoutParams = layoutParams
+
+                root.setOnSafeClick {
+                    getItem {
+                        it.classId?.let { it1 -> listener?.onItemClick(it1) }
+                    }
+                }
             }
         }
 

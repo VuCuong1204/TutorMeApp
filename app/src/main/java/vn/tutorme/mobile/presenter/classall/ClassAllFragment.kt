@@ -1,15 +1,18 @@
 package vn.tutorme.mobile.presenter.classall
 
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import com.example.syntheticapp.presenter.widget.collection.LAYOUT_MANAGER
 import dagger.hilt.android.AndroidEntryPoint
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.common.IViewListener
+import vn.tutorme.mobile.base.common.anim.SlideAnimation
 import vn.tutorme.mobile.base.extension.coroutinesLaunch
 import vn.tutorme.mobile.base.extension.handleUiState
 import vn.tutorme.mobile.base.extension.setOnSafeClick
 import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.ClassAllFragmentBinding
+import vn.tutorme.mobile.presenter.classinfo.ClassInfoFragment
 
 @AndroidEntryPoint
 class ClassAllFragment : TutorMeFragment<ClassAllFragmentBinding>(R.layout.class_all_fragment) {
@@ -42,6 +45,11 @@ class ClassAllFragment : TutorMeFragment<ClassAllFragmentBinding>(R.layout.class
         }
     }
 
+    override fun onDestroyView() {
+        removeListener()
+        super.onDestroyView()
+    }
+
     private fun addAdapter() {
         binding.cvLessonAllRoot.apply {
             setBaseLayoutManager(LAYOUT_MANAGER.LINEARLAYOUT_VERTICAL)
@@ -51,6 +59,8 @@ class ClassAllFragment : TutorMeFragment<ClassAllFragmentBinding>(R.layout.class
         binding.srlLessonAllReload.setOnRefreshListener {
             viewModel.getClassInfo(true)
         }
+
+        addListener()
     }
 
     private fun addHeader() {
@@ -58,5 +68,21 @@ class ClassAllFragment : TutorMeFragment<ClassAllFragmentBinding>(R.layout.class
         binding.ivClassAllBack.setOnSafeClick {
             onBackPressByFragment()
         }
+    }
+
+    private fun addListener() {
+        classAllAdapter.listener = object : IClassAllListener {
+            override fun onItemClick(classId: String) {
+                replaceFragment(
+                    fragment = ClassInfoFragment(),
+                    bundle = bundleOf(ClassInfoFragment.CLASS_ID_KEY to classId),
+                    screenAnim = SlideAnimation()
+                )
+            }
+        }
+    }
+
+    private fun removeListener() {
+        classAllAdapter.listener = null
     }
 }

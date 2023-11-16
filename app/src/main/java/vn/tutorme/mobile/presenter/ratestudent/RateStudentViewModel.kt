@@ -23,7 +23,7 @@ import vn.tutorme.mobile.domain.usecase.lesson.InsertReviewDetailUseCase
 import vn.tutorme.mobile.presenter.ratestudent.RateStudentFragment.Companion.LESSON_ID_KEY
 import vn.tutorme.mobile.presenter.ratestudent.RateStudentFragment.Companion.USER_ID_KEY
 import vn.tutorme.mobile.presenter.ratestudent.RateStudentFragment.Companion.USER_NAME_KEY
-import vn.tutorme.mobile.presenter.ratestudent.RateStudentFragment.Companion.USER_ROLE_KEY
+import vn.tutorme.mobile.presenter.ratestudent.RateStudentFragment.Companion.USER_EVALUATE_KEY
 import javax.inject.Inject
 
 @HiltViewModel
@@ -45,7 +45,7 @@ class RateStudentViewModel @Inject constructor(
 
     var userId = savedStateHandle.get<String>(USER_ID_KEY) ?: "vq9"
     var userName = savedStateHandle.get<String>(USER_NAME_KEY) ?: "Vũ Quốc Cường"
-    var userRole = savedStateHandle.get<EVALUATE_STATE>(USER_ROLE_KEY)
+    var userEvaluate = savedStateHandle.get<EVALUATE_STATE>(USER_EVALUATE_KEY)
         ?: EVALUATE_STATE.HAVE_EVALUATE_STATE
     var lessonId = savedStateHandle.get<Int>(LESSON_ID_KEY) ?: 7
 
@@ -104,7 +104,7 @@ class RateStudentViewModel @Inject constructor(
                     _userInfoState.failure(it)
                 }
                 .collect {
-                    userInfo = it.copy(evaluateState = userRole, fullName = userName)
+                    userInfo = it.copy(evaluateState = userEvaluate, fullName = userName)
                     _userInfoState.success(it)
                 }
         }
@@ -123,7 +123,7 @@ class RateStudentViewModel @Inject constructor(
                     _lessonInfoState.failure(it)
                 }
                 .collect {
-                    if (userRole == EVALUATE_STATE.HAVE_EVALUATE_STATE) {
+                    if (userEvaluate == EVALUATE_STATE.HAVE_EVALUATE_STATE) {
                         getReviewDetail(false)
                     }
                     lessonInfo = it

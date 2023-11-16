@@ -9,6 +9,7 @@ import vn.tutorme.mobile.base.extension.getAppDimension
 import vn.tutorme.mobile.base.extension.getAppDrawable
 import vn.tutorme.mobile.base.extension.getAppString
 import vn.tutorme.mobile.base.extension.hide
+import vn.tutorme.mobile.base.extension.setOnSafeClick
 import vn.tutorme.mobile.databinding.InfoItemBinding
 import vn.tutorme.mobile.databinding.TitleDayItemBinding
 import vn.tutorme.mobile.databinding.TitleTimeItemBinding
@@ -23,6 +24,8 @@ class LessonEvaluateAdapter : TutorMeAdapter() {
         const val TITLE_HOUR_VIEW_TYPE = 11
         const val CONTENT_VIEW_TYPE = 12
     }
+
+    var listener: ILessonEvaluateListener? = null
 
     override fun getItemViewType(position: Int): Int {
         return when (val item = getDataListAtPosition(position)) {
@@ -98,6 +101,14 @@ class LessonEvaluateAdapter : TutorMeAdapter() {
     }
 
     inner class LessonEvaluateVH(private val binding: InfoItemBinding) : BaseVH<LessonInfo>(binding) {
+
+        init {
+            binding.root.setOnSafeClick {
+                getItem {
+                    listener?.onItemClick(it)
+                }
+            }
+        }
 
         override fun onBind(data: LessonInfo) {
             super.onBind(data)

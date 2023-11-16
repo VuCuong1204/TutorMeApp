@@ -1,5 +1,6 @@
 package vn.tutorme.mobile.presenter.lessonall
 
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import com.example.syntheticapp.presenter.widget.collection.LAYOUT_MANAGER
 import dagger.hilt.android.AndroidEntryPoint
@@ -12,6 +13,8 @@ import vn.tutorme.mobile.base.extension.setActionRoleState
 import vn.tutorme.mobile.base.extension.setOnSafeClick
 import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.LessonAllFragmentBinding
+import vn.tutorme.mobile.domain.model.lesson.LessonInfo
+import vn.tutorme.mobile.presenter.lessondetail.LessonDetailFragment
 
 @AndroidEntryPoint
 class LessonAllFragment : TutorMeFragment<LessonAllFragmentBinding>(R.layout.lesson_all_fragment) {
@@ -41,6 +44,11 @@ class LessonAllFragment : TutorMeFragment<LessonAllFragmentBinding>(R.layout.les
         }
     }
 
+    override fun onDestroyView() {
+        removeListener()
+        super.onDestroyView()
+    }
+
     private fun addAdapter() {
         binding.cvLessonRoot.apply {
             setBaseLayoutManager(LAYOUT_MANAGER.LINEARLAYOUT_VERTICAL)
@@ -57,5 +65,25 @@ class LessonAllFragment : TutorMeFragment<LessonAllFragmentBinding>(R.layout.les
             { binding.tvLessonAllContent.text = getAppString(R.string.calender_teach) },
             { binding.tvLessonAllContent.text = getAppString(R.string.calender_learn) }
         )
+
+        addListener()
+    }
+
+    private fun addListener() {
+        lessonAllAdapter.listener = object : ILessonAllListener {
+            override fun onItemClick(item: LessonInfo) {
+                replaceFragment(
+                    fragment = LessonDetailFragment(),
+                    bundle = bundleOf(
+                        LessonDetailFragment.CLASS_ID_KEY to item.classId,
+                        LessonDetailFragment.LESSON_ID_KEY to item.lessonId
+                    )
+                )
+            }
+        }
+    }
+
+    private fun removeListener() {
+        lessonAllAdapter.listener = null
     }
 }

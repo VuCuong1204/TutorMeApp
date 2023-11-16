@@ -11,6 +11,7 @@ import vn.tutorme.mobile.base.extension.getAppString
 import vn.tutorme.mobile.base.extension.gone
 import vn.tutorme.mobile.base.extension.hide
 import vn.tutorme.mobile.base.extension.setImageTextView
+import vn.tutorme.mobile.base.extension.setOnSafeClick
 import vn.tutorme.mobile.databinding.InfoItemBinding
 import vn.tutorme.mobile.databinding.TitleTimeItemBinding
 import vn.tutorme.mobile.domain.model.lesson.LESSON_STATUS
@@ -23,6 +24,8 @@ class ClassInfoAdapter : TutorMeAdapter() {
         const val DAY_VIEW_TYPE = 10
         const val LESSON_VIEW_TYPE = 11
     }
+
+    var listener: IClassInfoListener? = null
 
     override fun getItemViewType(position: Int): Int {
         return when (getDataListAtPosition(position)) {
@@ -65,6 +68,12 @@ class ClassInfoAdapter : TutorMeAdapter() {
                 tvInfoPencil.hide()
                 tvInfoLesson.hide()
                 tvInfoTimeSlot.gone()
+
+                root.setOnSafeClick {
+                    getItem {
+                        listener?.onItemClick(it)
+                    }
+                }
             }
         }
 

@@ -36,6 +36,11 @@ class ClassTeacherAdapter : TutorMeAdapter() {
                         it.classId?.let { classId -> teacherListener?.onClick(classId) }
                     }
                 }
+                binding.root.setOnSafeClick {
+                    getItem {
+                        it.classId?.let { it1 -> teacherListener?.onClickInfo(it1) }
+                    }
+                }
             }
         }
 

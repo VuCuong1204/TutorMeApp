@@ -1,12 +1,11 @@
 package vn.tutorme.mobile.presenter.bannerinfo.course
 
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.common.IViewListener
+import vn.tutorme.mobile.base.extension.Extension.STRING_DEFAULT
 import vn.tutorme.mobile.base.extension.coroutinesLaunch
 import vn.tutorme.mobile.base.extension.getAppColor
 import vn.tutorme.mobile.base.extension.getAppDrawable
@@ -45,7 +44,7 @@ class CourseFragment : TutorMeFragment<CourseFragmentBinding>(R.layout.course_fr
                 override fun onSuccess() {
                     it.data?.let { value -> setCourseInfo(value) }
                 }
-            },canShowLoading = true)
+            }, canShowLoading = true)
         }
 
         coroutinesLaunch(viewModel.checkRegisteredState) {
@@ -125,7 +124,7 @@ class CourseFragment : TutorMeFragment<CourseFragmentBinding>(R.layout.course_fr
                 if (item.classId != null && item.lessonFirst != null && item.lessonSecond != null) {
                     viewModel.registerCourse(
                         item.classId!!,
-                        "Vucuonghihi1236",
+                        AppPreferences.userInfo?.userId?:STRING_DEFAULT,
                         item.lessonFirst!!,
                         item.lessonSecond!!
                     )

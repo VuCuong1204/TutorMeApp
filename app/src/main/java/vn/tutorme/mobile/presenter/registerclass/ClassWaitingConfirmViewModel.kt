@@ -10,6 +10,7 @@ import kotlinx.coroutines.launch
 import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.base.common.BaseViewModel
 import vn.tutorme.mobile.base.common.FlowResult
+import vn.tutorme.mobile.base.extension.Extension.STRING_DEFAULT
 import vn.tutorme.mobile.base.extension.failure
 import vn.tutorme.mobile.base.extension.loading
 import vn.tutorme.mobile.base.extension.onException
@@ -25,6 +26,10 @@ class ClassWaitingConfirmViewModel @Inject constructor(
     private val getClassTeacherRegisterUseCase: GetClassTeacherRegisterUseCase,
     private val updateStateClassRegisterUseCase: UpdateStateClassRegisterUseCase
 ) : BaseViewModel() {
+    companion object {
+        const val TIME_DELAY = 200L
+    }
+
     private val _classInfoState = MutableStateFlow(FlowResult.newInstance<DataPage<ClassInfo>>())
     val classInfoState = _classInfoState.asStateFlow()
     private var classDataPage = DataPage.newInstance(_classInfoState.value.data, true)
@@ -35,12 +40,12 @@ class ClassWaitingConfirmViewModel @Inject constructor(
 
     fun getClassInfoList(isReload: Boolean = false, state: Int) {
         viewModelScope.launch {
-            delay(200L)
+            delay(TIME_DELAY)
             classDataPage = DataPage.newInstance(_classInfoState.value.data, true)
             val rv = GetClassTeacherRegisterUseCase.GetClassTeacherRegisterRV(
                 0L,
                 state,
-                "Vucuonghihi"
+                AppPreferences.userInfo?.userId ?: STRING_DEFAULT
             )
 
             getClassTeacherRegisterUseCase.invoke(rv)
@@ -63,7 +68,7 @@ class ClassWaitingConfirmViewModel @Inject constructor(
             val rv = UpdateStateClassRegisterUseCase.UpdateStateClassRegisterRV(
                 classId,
                 state,
-                "Vucuonghihi"
+                AppPreferences.userInfo?.userId ?: STRING_DEFAULT
             )
 
             updateStateClassRegisterUseCase.invoke(rv)

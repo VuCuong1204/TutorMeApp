@@ -28,7 +28,7 @@ class RateStudentFragment : TutorMeFragment<RateStudentFragmentBinding>(R.layout
     companion object {
         const val USER_ID_KEY = "USER_ID_KEY"
         const val USER_NAME_KEY = "USER_NAME_KEY"
-        const val USER_ROLE_KEY = "USER_ROLE_KEY"
+        const val USER_EVALUATE_KEY = "USER_EVALUATE_KEY"
         const val LESSON_ID_KEY = "LESSON_ID_KEY"
     }
 
@@ -46,7 +46,7 @@ class RateStudentFragment : TutorMeFragment<RateStudentFragmentBinding>(R.layout
 
         binding.ivRateStudentBack.setOnSafeClick { onBackPressByFragment() }
         binding.tvRateStudentConfirm.setOnSafeClick { showConfirmDialog() }
-        if (viewModel.userRole == EVALUATE_STATE.NO_EVALUATE_STATE) {
+        if (viewModel.userEvaluate == EVALUATE_STATE.NO_EVALUATE_STATE) {
             setEditState()
         }
     }

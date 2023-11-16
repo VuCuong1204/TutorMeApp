@@ -20,13 +20,12 @@ class GetHomeStudentUseCase @Inject constructor(
     override suspend fun execute(rv: GetHomeTeacherRV): List<Any> {
         val dataList = mutableListOf<Any>()
 
-        val bannerEvent = bannerRepo.getBannerEvent(rv.page, rv.size)
-        val bannerJob = bannerRepo.getBannerJob(rv.page, rv.size)
+        val bannerEvent = bannerRepo.getBannerEvent(rv.page, rv.sizeEvent)
+        val bannerJob = bannerRepo.getBannerJob(rv.page, rv.sizeJob)
 
         val bannerList = mutableListOf<Banner>()
 
-        bannerJob.forEachIndexed { index, bannerJobInfo ->
-            if (index == 3) return@forEachIndexed
+        bannerJob.forEachIndexed { _, bannerJobInfo ->
             bannerList.add(Banner(
                 id = bannerJobInfo.id,
                 link = bannerJobInfo.banner,
@@ -34,8 +33,7 @@ class GetHomeStudentUseCase @Inject constructor(
             ))
         }
 
-        bannerEvent.forEachIndexed { index, bannerEventInfo ->
-            if (index == 2) return@forEachIndexed
+        bannerEvent.forEachIndexed { _, bannerEventInfo ->
             bannerList.add(Banner(
                 id = bannerEventInfo.id,
                 link = bannerEventInfo.banner,
@@ -84,5 +82,7 @@ class GetHomeStudentUseCase @Inject constructor(
     ) : RequestValue {
         var page: Int? = INT_DEFAULT
         var size: Int? = LIMIT_SIZE
+        var sizeJob = 4
+        var sizeEvent = 4
     }
 }

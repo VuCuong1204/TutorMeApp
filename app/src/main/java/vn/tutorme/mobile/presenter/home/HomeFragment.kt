@@ -1,6 +1,7 @@
 package vn.tutorme.mobile.presenter.home
 
 import android.Manifest
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.syntheticapp.presenter.widget.collection.LAYOUT_MANAGER
@@ -22,11 +23,17 @@ import vn.tutorme.mobile.base.extension.handleUiState
 import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.HomeFragmentBinding
 import vn.tutorme.mobile.domain.model.authen.ROLE_TYPE
+import vn.tutorme.mobile.domain.model.banner.BANNER_TYPE
 import vn.tutorme.mobile.domain.model.banner.Banner
 import vn.tutorme.mobile.domain.model.chat.video.VideoCallInfo
+import vn.tutorme.mobile.domain.model.lesson.LessonInfo
+import vn.tutorme.mobile.presenter.bannerinfo.course.CourseFragment
+import vn.tutorme.mobile.presenter.bannerinfo.event.EventDetailFragment
 import vn.tutorme.mobile.presenter.classall.ClassAllFragment
+import vn.tutorme.mobile.presenter.classinfo.ClassInfoFragment
 import vn.tutorme.mobile.presenter.dialog.BottomSheetConfirmDialog
 import vn.tutorme.mobile.presenter.lessonall.LessonAllFragment
+import vn.tutorme.mobile.presenter.lessondetail.LessonDetailFragment
 import vn.tutorme.mobile.presenter.lessonevaluate.LessonEvaluateFragment
 import vn.tutorme.mobile.presenter.registerclass.ClassWaitingConfirmFragment
 
@@ -110,7 +117,11 @@ class HomeFragment : TutorMeFragment<HomeFragmentBinding>(R.layout.home_fragment
         homeAdapter.listenerHome = object : IHomeListener {
 
             override fun onItemBannerClick(item: Banner) {
-
+                if (item.type == BANNER_TYPE.EVENT_TYPE) {
+                    replaceFragment(fragment = EventDetailFragment(), bundle = bundleOf(
+                        EventDetailFragment.EVENT_ID_KEY to item.id
+                    ))
+                }
             }
 
             override fun onClickTeachViewMore() {
@@ -131,6 +142,32 @@ class HomeFragment : TutorMeFragment<HomeFragmentBinding>(R.layout.home_fragment
 
             override fun onClickConfirmRegisterClass(classId: String) {
                 showDialogConfirm(classId)
+            }
+
+            override fun onClickCourseInfo(courseId: String) {
+                replaceFragment(
+                    fragment = CourseFragment(),
+                    bundle = bundleOf(CourseFragment.COURSE_ID_KEY to courseId),
+                    screenAnim = SlideAnimation()
+                )
+            }
+
+            override fun onClickClassInfo(classId: String) {
+                replaceFragment(
+                    fragment = ClassInfoFragment(),
+                    bundle = bundleOf(ClassInfoFragment.CLASS_ID_KEY to classId),
+                    screenAnim = SlideAnimation()
+                )
+            }
+
+            override fun onClickLessonInfo(item: LessonInfo) {
+                replaceFragment(
+                    fragment = LessonDetailFragment(),
+                    bundle = bundleOf(
+                        LessonDetailFragment.CLASS_ID_KEY to item.classId,
+                        LessonDetailFragment.LESSON_ID_KEY to item.lessonId
+                    )
+                )
             }
         }
     }

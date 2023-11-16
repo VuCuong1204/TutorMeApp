@@ -1,10 +1,12 @@
 package vn.tutorme.mobile.presenter.classinfo
 
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import com.example.syntheticapp.presenter.widget.collection.LAYOUT_MANAGER
 import dagger.hilt.android.AndroidEntryPoint
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.common.IViewListener
+import vn.tutorme.mobile.base.extension.Extension.STRING_DEFAULT
 import vn.tutorme.mobile.base.extension.coroutinesLaunch
 import vn.tutorme.mobile.base.extension.getAppString
 import vn.tutorme.mobile.base.extension.handleUiState
@@ -13,6 +15,7 @@ import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.ClassInfoFragmentBinding
 import vn.tutorme.mobile.domain.model.lesson.LESSON_STATUS
 import vn.tutorme.mobile.domain.model.lesson.LessonInfo
+import vn.tutorme.mobile.presenter.lessondetail.LessonDetailFragment
 
 @AndroidEntryPoint
 class ClassInfoFragment : TutorMeFragment<ClassInfoFragmentBinding>(R.layout.class_info_fragment) {
@@ -23,10 +26,11 @@ class ClassInfoFragment : TutorMeFragment<ClassInfoFragmentBinding>(R.layout.cla
 
     private val viewModel by viewModels<ClassInfoViewModel>()
     private val classInfoAdapter by lazy { ClassInfoAdapter() }
-    val classId = arguments?.getString(CLASS_ID_KEY) ?: "D10"
+    var classId: String = STRING_DEFAULT
 
     override fun onPrepareInitView() {
         super.onPrepareInitView()
+        classId = arguments?.getString(CLASS_ID_KEY) ?: STRING_DEFAULT
         viewModel.getLessonList(classId = classId)
     }
 
@@ -48,7 +52,9 @@ class ClassInfoFragment : TutorMeFragment<ClassInfoFragmentBinding>(R.layout.cla
 
                 override fun onSuccess() {
                     binding.cvClassInfoRoot.submitList(it.data?.dataList)
-                    setClassInfo(it.data?.dataList)
+                    if (!it.data?.dataList.isNullOrEmpty()) {
+                        setClassInfo(it.data?.dataList)
+                    }
                     viewModel.resetState()
 
                     binding.srlClassInfoReload.isRefreshing = false
@@ -57,11 +63,18 @@ class ClassInfoFragment : TutorMeFragment<ClassInfoFragmentBinding>(R.layout.cla
         }
     }
 
+    override fun onDestroyView() {
+        removeListener()
+        super.onDestroyView()
+    }
+
     private fun addHeader() {
         binding.srlClassInfoReload.setColorSchemeResources(R.color.primary)
         binding.ivClassInfoBack.setOnSafeClick {
             onBackPressByFragment()
         }
+
+        addListener()
     }
 
     private fun addAdapter() {
@@ -73,6 +86,24 @@ class ClassInfoFragment : TutorMeFragment<ClassInfoFragmentBinding>(R.layout.cla
         binding.srlClassInfoReload.setOnRefreshListener {
             viewModel.getLessonList(true, classId = classId)
         }
+    }
+
+    private fun addListener() {
+        classInfoAdapter.listener = object : IClassInfoListener {
+            override fun onItemClick(item: LessonInfo) {
+                replaceFragment(
+                    fragment = LessonDetailFragment(),
+                    bundle = bundleOf(
+                        LessonDetailFragment.CLASS_ID_KEY to item.classId,
+                        LessonDetailFragment.LESSON_ID_KEY to item.lessonId
+                    )
+                )
+            }
+        }
+    }
+
+    private fun removeListener() {
+        classInfoAdapter.listener = null
     }
 
     private fun setClassInfo(dataList: MutableList<Any>?) {

@@ -10,21 +10,21 @@ import vn.tutorme.mobile.base.common.anim.SlideAnimation
 import vn.tutorme.mobile.base.extension.getAppColor
 import vn.tutorme.mobile.base.extension.getAppDrawable
 import vn.tutorme.mobile.base.extension.getAppString
+import vn.tutorme.mobile.base.extension.loadUser
 import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.ProfileFragmentBinding
 import vn.tutorme.mobile.domain.model.profile.PROFILE_TYPE
 import vn.tutorme.mobile.domain.model.profile.ProfileInfo
 import vn.tutorme.mobile.domain.model.profile.mockDataProfileInfo
 import vn.tutorme.mobile.presenter.authen.login.LoginFragment
-import vn.tutorme.mobile.presenter.chat.ChatFragment
-import vn.tutorme.mobile.presenter.chat.user.ChatUserFragment
 import vn.tutorme.mobile.presenter.bannerinfo.course.CourseFragment
 import vn.tutorme.mobile.presenter.bannerinfo.event.EventDetailFragment
+import vn.tutorme.mobile.presenter.chat.ChatFragment
+import vn.tutorme.mobile.presenter.chat.user.ChatUserFragment
 import vn.tutorme.mobile.presenter.dialog.BottomSheetConfirmDialog
 import vn.tutorme.mobile.presenter.home.HomeFragment
 import vn.tutorme.mobile.presenter.lessondetail.LessonDetailFragment
 import vn.tutorme.mobile.presenter.ratestudent.RateStudentFragment
-import vn.tutorme.mobile.presenter.profile.infomation.InformationPersonFragment
 
 @AndroidEntryPoint
 class ProfileFragment : TutorMeFragment<ProfileFragmentBinding>(R.layout.profile_fragment) {
@@ -33,8 +33,14 @@ class ProfileFragment : TutorMeFragment<ProfileFragmentBinding>(R.layout.profile
 
     override fun onInitView() {
         super.onInitView()
+        addHeader()
         addListener()
         addAdapter()
+    }
+
+    private fun addHeader() {
+        binding.tvProfileName.text = AppPreferences.userInfo?.fullName
+        binding.ivProfileUser.loadUser(AppPreferences.userInfo?.avatar)
     }
 
     override fun onDestroyView() {

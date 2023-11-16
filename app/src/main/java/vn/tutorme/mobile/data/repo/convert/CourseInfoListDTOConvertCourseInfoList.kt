@@ -15,7 +15,8 @@ class CourseInfoListDTOConvertCourseInfoList : IConverter<List<CourseInfoDTO>, L
                 ratingTotal = it.rating,
                 ratingNumber = it.studentRegistered,
                 memberRegister = it.studentRegistered,
-                timeLesson = it.createDate,
+                timeLesson = it.timeLesson,
+                createTime = it.createDate,
                 dateEnd = it.endDate,
                 price = it.price
             ))

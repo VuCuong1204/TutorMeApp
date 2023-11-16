@@ -7,8 +7,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
+import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.base.common.BaseViewModel
 import vn.tutorme.mobile.base.common.FlowResult
+import vn.tutorme.mobile.base.extension.Extension.STRING_DEFAULT
 import vn.tutorme.mobile.base.extension.data
 import vn.tutorme.mobile.base.extension.failure
 import vn.tutorme.mobile.base.extension.loading
@@ -31,9 +33,14 @@ class NotificationViewModel @Inject constructor(
     private val updateNotificationUseCase: UpdateNotificationUseCase,
     private val updateNotificationAllUseCase: UpdateNotificationAllUseCase
 ) : BaseViewModel() {
+
+    companion object {
+        const val TIME_DELAY = 1000L
+    }
+
     private val _notificationState = MutableStateFlow(FlowResult.newInstance<DataPage<NotificationInfo>>())
     val notificationState = _notificationState.asStateFlow()
-    var notificationDataPage = DataPage.newInstance(_notificationState.data(), true)
+    private var notificationDataPage = DataPage.newInstance(_notificationState.data(), true)
 
     init {
         getNotificationInfoList(true)
@@ -42,7 +49,9 @@ class NotificationViewModel @Inject constructor(
     fun getNotificationInfoList(isReload: Boolean = true, isShowLoading: Boolean = true) {
         viewModelScope.launch {
             notificationDataPage = DataPage.newInstance(_notificationState.data(), isReload)
-            val rv = GetNotificationListUseCase.GetNotificationListRV("vucuonghihi").apply {
+            val rv = GetNotificationListUseCase.GetNotificationListRV(
+                AppPreferences.userInfo?.userId ?: STRING_DEFAULT
+            ).apply {
                 page = notificationDataPage.page * notificationDataPage.limitPage
                 size = notificationDataPage.limitPage
             }
@@ -56,7 +65,7 @@ class NotificationViewModel @Inject constructor(
                     _notificationState.failure(it)
                 }
                 .collect {
-                    delay(1000)
+                    delay(TIME_DELAY)
                     if (isReload) {
                         notificationDataPage.clearDataPage()
                     }
@@ -128,7 +137,9 @@ class NotificationViewModel @Inject constructor(
     fun readAllNotification() {
         viewModelScope.launch {
 
-            val rv = UpdateNotificationAllUseCase.UpdateNotificationAllRV("vucuonghihi")
+            val rv = UpdateNotificationAllUseCase.UpdateNotificationAllRV(
+                AppPreferences.userInfo?.userId ?: STRING_DEFAULT
+            )
             updateNotificationAllUseCase.invoke(rv)
                 .onException {
                     _notificationState.failure(it)

@@ -11,7 +11,7 @@ import vn.tutorme.mobile.base.extension.getAppDrawable
 import vn.tutorme.mobile.base.extension.getAppString
 import vn.tutorme.mobile.base.extension.gone
 import vn.tutorme.mobile.base.extension.hide
-import vn.tutorme.mobile.base.extension.setActionRoleState
+import vn.tutorme.mobile.base.extension.setOnSafeClick
 import vn.tutorme.mobile.databinding.InfoItemBinding
 import vn.tutorme.mobile.databinding.TitleTimeItemBinding
 import vn.tutorme.mobile.domain.model.authen.ROLE_TYPE
@@ -24,6 +24,8 @@ class LessonAllAdapter : TutorMeAdapter() {
         const val TITLE_VIEW_TYPE = 10
         const val CONTENT_VIEW_TYPE = 11
     }
+
+    var listener: ILessonAllListener? = null
 
     override fun getItemViewType(position: Int): Int {
         return when (getDataListAtPosition(position)) {
@@ -96,6 +98,12 @@ class LessonAllAdapter : TutorMeAdapter() {
         init {
             binding.tvInfoTimeSlot.gone()
             binding.tvInfoPencil.hide()
+
+            binding.root.setOnSafeClick {
+                getItem {
+                    listener?.onItemClick(it)
+                }
+            }
         }
 
         override fun onBind(data: LessonInfo) {
