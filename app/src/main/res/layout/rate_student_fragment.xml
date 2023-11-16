@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/neutral_40">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/fbase_dimen_280"
+            android:background="@drawable/bg_home_blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivRateStudentBack"
+            android:layout_width="@dimen/fbase_dimen_36"
+            android:layout_height="@dimen/fbase_dimen_36"
+            android:layout_marginVertical="@dimen/fbase_dimen_20"
+            android:layout_marginStart="@dimen/fbase_dimen_16"
+            android:background="@drawable/ripple_bg_comp_corner_12"
+            android:padding="@dimen/fbase_dimen_10"
+            android:src="@drawable/ic_arrow_white_left"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvRateStudentContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/font_raleway_bold"
+            android:text="@string/rate_detail"
+            android:textColor="@color/back2"
+            android:textSize="@dimen/fbase_text_size_18"
+            app:layout_constraintBottom_toBottomOf="@id/ivRateStudentBack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ivRateStudentBack" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvRateStudentNameStudent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fbase_dimen_12"
+            android:fontFamily="@font/font_raleway_semibold"
+            android:text="Học sinh Vũ Quốc Cường"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fbase_text_size_16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvRateStudentContent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivRateStudentAvatar"
+            android:layout_width="@dimen/fbase_dimen_80"
+            android:layout_height="@dimen/fbase_dimen_80"
+            android:layout_marginTop="@dimen/fbase_dimen_8"
+            android:src="@drawable/ic_mission_complete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvRateStudentNameStudent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivRateStudentStar"
+            android:layout_width="@dimen/fbase_dimen_120"
+            android:layout_height="@dimen/fbase_dimen_30"
+            android:src="@drawable/ic_star_five"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivRateStudentAvatar" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/fbase_dimen_20"
+            android:layout_marginBottom="@dimen/fbase_dimen_10"
+            android:background="@drawable/shape_neutral_40_bg_top_corner_18"
+            android:paddingHorizontal="@dimen/fbase_dimen_16"
+            android:paddingTop="@dimen/fbase_dimen_10"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivRateStudentStar">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clRateStudentRoot"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ripple_bg_white_corner_12"
+                    android:paddingHorizontal="@dimen/fbase_dimen_16"
+                    android:paddingVertical="@dimen/fbase_dimen_16"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivRateStudentStar">
+
+                    <RelativeLayout
+                        android:id="@+id/rlRateStudentLeft"
+                        android:layout_width="@dimen/fbase_dimen_94"
+                        android:layout_height="0dp"
+                        android:background="@drawable/shape_bg_white_corner_14"
+                        android:gravity="center_horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/tvRateStudentAvatar"
+                            android:layout_width="@dimen/fbase_dimen_80"
+                            android:layout_height="@dimen/fbase_dimen_80"
+                            android:layout_centerInParent="true"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_rate" />
+
+                    </RelativeLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvRateStudentId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fbase_dimen_10"
+                        android:fontFamily="@font/font_worksans_semibold"
+                        android:textColor="@color/text1"
+                        android:textSize="@dimen/fbase_text_size_16"
+                        app:layout_constraintStart_toEndOf="@id/rlRateStudentLeft"
+                        app:layout_constraintTop_toTopOf="@id/rlRateStudentLeft"
+                        tools:text="Mã lớp D5C.045137" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivRateStudentIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_arrow_right_text1"
+                        app:layout_constraintBottom_toBottomOf="@id/tvRateStudentId"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tvRateStudentId" />
+
+                    <View
+                        android:id="@+id/vRateStudentFirst"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/fbase_dimen_1"
+                        android:layout_marginStart="@dimen/fbase_dimen_10"
+                        android:layout_marginTop="@dimen/fbase_dimen_6"
+                        android:background="@color/text5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/rlRateStudentLeft"
+                        app:layout_constraintTop_toBottomOf="@id/tvRateStudentId" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvRateStudentClass"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fbase_dimen_10"
+                        android:layout_marginTop="@dimen/fbase_dimen_8"
+                        android:drawableStart="@drawable/ic_id_card"
+                        android:drawablePadding="@dimen/fbase_dimen_6"
+                        android:fontFamily="@font/font_worksans_regular"
+                        android:textColor="@color/text1"
+                        android:textSize="@dimen/fbase_text_size_14"
+                        app:layout_constraintStart_toEndOf="@id/rlRateStudentLeft"
+                        app:layout_constraintTop_toBottomOf="@id/vRateStudentFirst"
+                        tools:text="Lớp 2 - Khá" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvRateStudentNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fbase_dimen_10"
+                        android:layout_marginTop="@dimen/fbase_dimen_8"
+                        android:drawableStart="@drawable/ic_number"
+                        android:drawablePadding="@dimen/fbase_dimen_6"
+                        android:fontFamily="@font/font_worksans_regular"
+                        android:textColor="@color/text1"
+                        android:textSize="@dimen/fbase_text_size_14"
+                        app:layout_constraintStart_toEndOf="@id/rlRateStudentLeft"
+                        app:layout_constraintTop_toBottomOf="@id/tvRateStudentClass"
+                        tools:text="Sĩ số 1/2" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvRateStudentClock"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fbase_dimen_10"
+                        android:layout_marginTop="@dimen/fbase_dimen_8"
+                        android:drawableStart="@drawable/ic_clock"
+                        android:drawablePadding="@dimen/fbase_dimen_6"
+                        android:fontFamily="@font/font_worksans_regular"
+                        android:textColor="@color/text1"
+                        android:textSize="@dimen/fbase_text_size_14"
+                        app:layout_constraintStart_toEndOf="@id/rlRateStudentLeft"
+                        app:layout_constraintTop_toBottomOf="@id/tvRateStudentNumber"
+                        tools:text="14:00 - 16:00" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvRateStudentAdvanced"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fbase_dimen_10"
+                        android:drawableStart="@drawable/ic_advanced"
+                        android:drawablePadding="@dimen/fbase_dimen_6"
+                        android:fontFamily="@font/font_worksans_regular"
+                        android:textColor="@color/text1"
+                        android:textSize="@dimen/fbase_text_size_14"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvRateStudentClass"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tvRateStudentClass"
+                        tools:text="Nâng cao" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvRateStudentLesson"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_lesson"
+                        android:drawablePadding="@dimen/fbase_dimen_6"
+                        android:fontFamily="@font/font_worksans_regular"
+                        android:textColor="@color/text1"
+                        android:textSize="@dimen/fbase_text_size_14"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvRateStudentNumber"
+                        app:layout_constraintStart_toStartOf="@+id/tvRateStudentAdvanced"
+                        app:layout_constraintTop_toTopOf="@id/tvRateStudentNumber"
+                        tools:text="Buổi 12" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fbase_dimen_20"
+                    android:fontFamily="@font/font_raleway_bold"
+                    android:text="@string/evaluate"
+                    android:textColor="@color/text6"
+                    android:textSize="@dimen/fbase_text_size_18" />
+
+                <vn.tutorme.mobile.presenter.widget.rateview.RateView
+                    android:id="@+id/rvRateStudent1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fbase_dimen_12"
+                    app:title="@string/score_attitude" />
+
+                <vn.tutorme.mobile.presenter.widget.rateview.RateView
+                    android:id="@+id/rvRateStudent2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fbase_dimen_20"
+                    app:title="@string/score_preparation" />
+
+                <vn.tutorme.mobile.presenter.widget.rateview.RateView
+                    android:id="@+id/rvRateStudent3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fbase_dimen_20"
+                    app:title="@string/score_ask_question" />
+
+                <vn.tutorme.mobile.presenter.widget.rateview.RateView
+                    android:id="@+id/rvRateStudent4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fbase_dimen_20"
+                    app:title="@string/score_join_the_discussion" />
+
+                <vn.tutorme.mobile.presenter.widget.rateview.RateView
+                    android:id="@+id/rvRateStudent5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fbase_dimen_20"
+                    app:title="@string/score_attention" />
+
+                <vn.tutorme.mobile.presenter.widget.rateview.RateView
+                    android:id="@+id/rvRateStudent6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fbase_dimen_20"
+                    app:title="@string/score_complete_the_xercise" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fbase_dimen_20"
+                    android:background="@drawable/shape_bg_primary_corner_12"
+                    android:padding="@dimen/fbase_dimen_14">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvRateStudentMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font_worksans_bold"
+                        android:text="@string/score_medium"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fbase_text_size_18" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvRateStudentState"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvRateStudentMedium"
+                        android:layout_marginTop="@dimen/fbase_dimen_18"
+                        android:fontFamily="@font/font_raleway_medium"
+                        android:textColor="@color/warning"
+                        android:textSize="@dimen/fbase_text_size_14"
+                        tools:text="Tốt" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvRateStudentRatio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvRateStudentMedium"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="@dimen/fbase_dimen_18"
+                        android:fontFamily="@font/font_worksans_regular"
+                        android:textColor="@color/warning"
+                        android:textSize="@dimen/fbase_text_size_14"
+                        tools:text="8/10" />
+
+                    <View
+                        android:id="@+id/v11"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/fbase_dimen_4"
+                        android:layout_below="@+id/tvRateStudentState"
+                        android:layout_marginTop="@dimen/fbase_dimen_6"
+                        android:background="@drawable/shape_bg_white_corner_8" />
+
+                    <View
+                        android:id="@+id/v12"
+                        android:layout_width="@dimen/fbase_dimen_300"
+                        android:layout_height="@dimen/fbase_dimen_4"
+                        android:layout_below="@+id/tvRateStudentState"
+                        android:layout_marginTop="@dimen/fbase_dimen_6"
+                        android:background="@drawable/shape_bg_state_warning_corner_8" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edtRateStudentComment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/v11"
+                        android:layout_marginTop="@dimen/fbase_dimen_16"
+                        android:background="@drawable/shape_bg_white_corner_12"
+                        android:fontFamily="@font/font_raleway_medium"
+                        android:gravity="center_vertical"
+                        android:hint="@string/comment"
+                        android:maxHeight="@dimen/fbase_dimen_80"
+                        android:maxLength="200"
+                        android:minHeight="@dimen/fbase_dimen_50"
+                        android:paddingHorizontal="@dimen/fbase_dimen_10"
+                        android:paddingVertical="@dimen/fbase_dimen_4"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/neutral_14"
+                        android:textCursorDrawable="@drawable/shape_primary_bg_cursor_edit_text"
+                        android:textSize="@dimen/fbase_text_size_14" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvRateStudentComment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/edtRateStudentComment"
+                        android:layout_marginTop="@dimen/fbase_dimen_12"
+                        android:background="@drawable/shape_bg_white_corner_16"
+                        android:fontFamily="@font/font_worksans_regular"
+                        android:gravity="start"
+                        android:padding="@dimen/fbase_dimen_12"
+                        android:textColor="@color/text1"
+                        android:textSize="@dimen/fbase_text_size_12"
+                        android:textStyle="italic"
+                        tools:text="TIỀM NĂNG - Mức độ tiếp thu bài: Con cần giáo viên gợi ý và hỗ trợ để hoàn thành bài học, con cần cố gắng hơn, tự luyện bằng bài tập về nhà nữa nhé. Sự thể hiện trong lớp: Ban đầu con còn khá rụt rè, còn sợ tiếng Anh, nhưng sau khi được hướng dẫn con đã mạnh dạn hơn nhiều. Nhận xét khác: con khá rụt rè, chưa tự tin khi giao tiếp do con vẫn chưa có nhiều điều kiện để tiếp xúc với tiếng Anh. phản xạ và khả năng ghi nhớ từ vựng của con vẫn cần được rèn luyện thêm, con nhớ được một số từ do trong buổi được cô lặp đi lặp lại nhiều lần, còn lại thì vẫn chưa nhớ được. Phát âm của con còn bị lẫn qua khẩu âm tiếng Việt khá nhiều, con cần được tạo thêm điều kiện để tiếp xúc với tiếng Anh từ bây giờ để sau này đỡ vất vả hơn." />
+
+                </RelativeLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvRateStudentConfirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fbase_dimen_20"
+                    android:background="@drawable/ripple_bg_primary_corner_16"
+                    android:fontFamily="@font/font_raleway_bold"
+                    android:gravity="center"
+                    android:paddingVertical="@dimen/fbase_dimen_12"
+                    android:text="@string/send_rate"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/fbase_text_size_14" />
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

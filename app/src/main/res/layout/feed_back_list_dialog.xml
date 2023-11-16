@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <FrameLayout
+        android:id="@+id/flFeedBackListRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_dialog">
+
+        <RelativeLayout
+            android:layout_width="@dimen/fbase_dimen_300"
+            android:layout_height="@dimen/fbase_dimen_300"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="@dimen/fbase_dimen_16"
+            android:background="@drawable/shape_bg_white_corner_8">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivFeedbackListClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="end"
+                android:background="?selectableItemBackgroundBorderless"
+                android:padding="@dimen/fbase_dimen_16"
+                android:src="@drawable/ic_delete_gray" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/fbase_dimen_12"
+                android:fontFamily="@font/font_raleway_semibold"
+                android:text="@string/feedback"
+                android:textColor="@color/primary"
+                android:textSize="@dimen/fbase_text_size_16" />
+
+            <vn.tutorme.mobile.presenter.widget.collection.CollectionView
+                android:id="@+id/cvFeedbackMessage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/ivFeedbackListClose"
+                android:overScrollMode="never"
+                android:paddingHorizontal="@dimen/fbase_dimen_16"
+                android:paddingBottom="@dimen/fbase_dimen_16" />
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
+</layout>

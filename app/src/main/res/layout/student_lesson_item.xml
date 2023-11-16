@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/fbase_dimen_12"
+        android:background="@drawable/shape_bg_white_corner_8"
+        android:padding="@dimen/fbase_dimen_12">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivStudentLessonAvatar"
+            android:layout_width="@dimen/fbase_dimen_50"
+            android:layout_height="@dimen/fbase_dimen_50"
+            android:layout_centerVertical="true"
+            android:background="@color/back1"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg_gender_male"
+            app:shapeAppearanceOverlay="@style/CircleImageView" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvStudentLessonName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fbase_dimen_10"
+            android:layout_toEndOf="@id/ivStudentLessonAvatar"
+            android:ellipsize="end"
+            android:fontFamily="@font/font_raleway_bold"
+            android:maxLength="150"
+            android:maxLines="1"
+            android:textColor="@color/gray_8"
+            android:textSize="@dimen/fbase_text_size_16"
+            tools:text="Vũ Cường" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvStudentLessonAttendance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvStudentLessonName"
+            android:layout_marginStart="@dimen/fbase_dimen_10"
+            android:layout_marginTop="@dimen/fbase_dimen_4"
+            android:layout_toEndOf="@id/ivStudentLessonAvatar"
+            android:background="@drawable/shape_bg_green_corner_8_stroke_green"
+            android:fontFamily="@font/font_raleway_medium"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/fbase_dimen_12"
+            android:paddingVertical="@dimen/fbase_dimen_6"
+            android:textColor="@color/status_success"
+            android:textSize="@dimen/fbase_text_size_12"
+            tools:text="Đã điểm danh" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvStudentLessonGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvStudentLessonAttendance"
+            android:layout_marginStart="@dimen/fbase_dimen_10"
+            android:layout_marginTop="@dimen/fbase_dimen_4"
+            android:layout_toEndOf="@id/ivStudentLessonAvatar"
+            android:drawableStart="@drawable/ic_gender_gray"
+            android:drawablePadding="@dimen/fbase_dimen_6"
+            android:fontFamily="@font/font_worksans_regular"
+            android:gravity="center"
+            android:paddingVertical="@dimen/fbase_dimen_2"
+            android:textColor="@color/neutral_17"
+            android:textSize="@dimen/fbase_text_size_14"
+            tools:text="Nam" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvStudentLessonDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvStudentLessonGender"
+            android:layout_marginStart="@dimen/fbase_dimen_10"
+            android:layout_marginTop="@dimen/fbase_dimen_2"
+            android:layout_toEndOf="@id/ivStudentLessonAvatar"
+            android:drawableStart="@drawable/ic_calender_gray"
+            android:drawablePadding="@dimen/fbase_dimen_6"
+            android:fontFamily="@font/font_worksans_regular"
+            android:gravity="center"
+            android:paddingVertical="@dimen/fbase_dimen_2"
+            android:textColor="@color/neutral_17"
+            android:textSize="@dimen/fbase_text_size_14"
+            tools:text="12/04/2001" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvStudentLessonRate"
+            android:layout_width="@dimen/fbase_dimen_120"
+            android:layout_height="@dimen/fbase_dimen_40"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ripple_bg_red_60_corner_14"
+            android:fontFamily="@font/font_raleway_bold"
+            android:gravity="center"
+            android:textColor="@color/red_50"
+            android:textSize="@dimen/fbase_text_size_14"
+            tools:text="Đánh giá" />
+
+    </RelativeLayout>
+
+</layout>

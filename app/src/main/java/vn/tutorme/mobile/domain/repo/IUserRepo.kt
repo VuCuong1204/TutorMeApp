@@ -15,4 +15,6 @@ interface IAuthRepo {
         phoneNumber: Long,
         avatar: String
     ): Boolean
+
+    fun getAccessTokenVideo(id: String): String
 }

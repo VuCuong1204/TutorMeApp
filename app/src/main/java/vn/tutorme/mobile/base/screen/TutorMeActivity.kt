@@ -47,7 +47,7 @@ abstract class TutorMeActivity<DB : ViewDataBinding>(layoutId: Int) : BaseBindin
     }
 
     override fun showWarning(msg: String?, timeShown: HEADER_ALERT_TIME_SHOWN) {
-        showCustomToast(msg = msg, type = HEADER_ALERT_TYPE.CUSTOM, timeShown = timeShown)
+        showCustomToast(msg = msg, type = HEADER_ALERT_TYPE.WARNING, timeShown = timeShown)
     }
 
     override fun onEvent(event: IEvent) {

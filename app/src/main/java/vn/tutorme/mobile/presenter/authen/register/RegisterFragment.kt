@@ -8,6 +8,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
+import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.common.IViewListener
 import vn.tutorme.mobile.base.common.anim.FadeAnim
@@ -125,7 +126,10 @@ class RegisterFragment : TutorMeFragment<RegisterFragmentBinding>(R.layout.regis
                 if (task.isSuccessful) {
                     Log.d(TAG, "createUserWithEmail:success")
                     val id = auth.currentUser?.uid
-                    id?.let { viewModel.register(it, email, password) }
+                    id?.let {
+                        AppPreferences.token = auth.currentUser?.getIdToken(false)?.result?.token
+                        viewModel.register(it, email, password)
+                    }
                 } else {
                     Log.d(TAG, "createUserWithEmail:failure", task.exception)
                     showError(getAppString(R.string.register_fail))

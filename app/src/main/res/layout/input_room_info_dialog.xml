@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <FrameLayout
+        android:id="@+id/flInputRoomInfoRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_dialog">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="@dimen/fbase_dimen_20"
+            android:background="@drawable/shape_bg_white_corner_8"
+            android:orientation="vertical"
+            android:padding="@dimen/fbase_dimen_16">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/font_raleway_semibold"
+                    android:text="@string/room_info"
+                    android:textColor="@color/primary"
+                    android:textSize="@dimen/fbase_text_size_22" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivInputRoomInfoClose"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_close_gray" />
+
+            </FrameLayout>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtInputRoomInfoId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fbase_dimen_10"
+                android:background="@drawable/shape_bg_white_corner_8_stroke_1"
+                android:fontFamily="@font/font_raleway_medium"
+                android:gravity="start"
+                android:hint="@string/input_room_id"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:maxLength="100"
+                android:maxLines="1"
+                android:paddingHorizontal="@dimen/fbase_dimen_10"
+                android:paddingVertical="@dimen/fbase_dimen_14"
+                android:textColor="@color/neutral_13"
+                android:textColorHint="@color/neutral_14"
+                android:textCursorDrawable="@drawable/shape_primary_bg_cursor_edit_text"
+                android:textSize="@dimen/fbase_text_size_14"
+                android:visibility="gone" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvInputRoomInfoId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fbase_dimen_10"
+                android:background="@drawable/shape_bg_white_corner_8_stroke_1"
+                android:fontFamily="@font/font_worksans_medium"
+                android:gravity="start"
+                android:hint="@string/input_room_id_no"
+                android:maxLength="100"
+                android:maxLines="1"
+                android:paddingHorizontal="@dimen/fbase_dimen_10"
+                android:paddingVertical="@dimen/fbase_dimen_14"
+                android:textColor="@color/neutral_13"
+                android:textColorHint="@color/neutral_14"
+                android:textSize="@dimen/fbase_text_size_14" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtInputRoomInfoPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fbase_dimen_10"
+                android:background="@drawable/shape_bg_white_corner_8_stroke_1"
+                android:fontFamily="@font/font_worksans_medium"
+                android:gravity="start"
+                android:hint="@string/input_password"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:maxLength="100"
+                android:maxLines="1"
+                android:paddingHorizontal="@dimen/fbase_dimen_10"
+                android:paddingVertical="@dimen/fbase_dimen_14"
+                android:textColor="@color/neutral_13"
+                android:textColorHint="@color/neutral_14"
+                android:textCursorDrawable="@drawable/shape_primary_bg_cursor_edit_text"
+                android:textSize="@dimen/fbase_text_size_14"
+                android:visibility="gone" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvInputRoomInfoPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fbase_dimen_10"
+                android:background="@drawable/shape_bg_white_corner_8_stroke_1"
+                android:fontFamily="@font/font_raleway_medium"
+                android:gravity="start"
+                android:hint="@string/input_password_no"
+                android:maxLength="100"
+                android:maxLines="1"
+                android:paddingHorizontal="@dimen/fbase_dimen_10"
+                android:paddingVertical="@dimen/fbase_dimen_14"
+                android:textColor="@color/neutral_13"
+                android:textColorHint="@color/neutral_14"
+                android:textSize="@dimen/fbase_text_size_14" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fbase_dimen_16"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvInputRoomInfoSend"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/fbase_dimen_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_bg_gray_corner_16"
+                    android:enabled="false"
+                    android:fontFamily="@font/font_raleway_bold"
+                    android:gravity="center"
+                    android:paddingVertical="@dimen/fbase_dimen_16"
+                    android:text="@string/send_info_room"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/fbase_text_size_14" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvInputRoomInfoEdit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/fbase_dimen_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple_bg_white_corner_16_stroke_1"
+                    android:fontFamily="@font/font_raleway_bold"
+                    android:gravity="center"
+                    android:paddingVertical="@dimen/fbase_dimen_16"
+                    android:text="@string/edit_info_room"
+                    android:textColor="@color/primary"
+                    android:textSize="@dimen/fbase_text_size_14" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</layout>

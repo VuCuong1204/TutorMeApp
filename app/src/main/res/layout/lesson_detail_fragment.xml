@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/neutral_40">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/fbase_dimen_140"
+            android:background="@drawable/bg_home_blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivLessonDetailBack"
+            android:layout_width="@dimen/fbase_dimen_36"
+            android:layout_height="@dimen/fbase_dimen_36"
+            android:layout_marginVertical="@dimen/fbase_dimen_20"
+            android:layout_marginStart="@dimen/fbase_dimen_16"
+            android:background="@drawable/ripple_bg_comp_corner_12"
+            android:padding="@dimen/fbase_dimen_10"
+            android:src="@drawable/ic_arrow_white_left"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLessonDetailContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/font_raleway_bold"
+            android:text="@string/lesson_detail"
+            android:textColor="@color/back2"
+            android:textSize="@dimen/fbase_text_size_18"
+            app:layout_constraintBottom_toBottomOf="@id/ivLessonDetailBack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ivLessonDetailBack" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivLessonDetailViewMore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/fbase_dimen_16"
+            android:background="@drawable/ripple_bg_comp_corner_12"
+            android:paddingHorizontal="@dimen/fbase_dimen_8"
+            android:paddingVertical="@dimen/fbase_dimen_16"
+            android:src="@drawable/ic_view_more"
+            app:layout_constraintBottom_toBottomOf="@id/tvLessonDetailContent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvLessonDetailContent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clLessonDetailRoot"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/fbase_dimen_16"
+            android:layout_marginTop="@dimen/fbase_dimen_20"
+            android:background="@drawable/ripple_bg_white_corner_12"
+            android:paddingHorizontal="@dimen/fbase_dimen_16"
+            android:paddingVertical="@dimen/fbase_dimen_16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvLessonDetailContent">
+
+            <RelativeLayout
+                android:id="@+id/rlLessonDetailLeft"
+                android:layout_width="@dimen/fbase_dimen_94"
+                android:layout_height="0dp"
+                android:background="@drawable/shape_bg_back2_corner_14"
+                android:gravity="center_horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/tvLessonDetailAvatar"
+                    android:layout_width="@dimen/fbase_dimen_80"
+                    android:layout_height="@dimen/fbase_dimen_80"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="@dimen/fbase_dimen_12"
+                    android:scaleType="center"
+                    android:src="@drawable/ic_took_place" />
+
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLessonDetailId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fbase_dimen_10"
+                android:fontFamily="@font/font_worksans_semibold"
+                android:textColor="@color/text1"
+                android:textSize="@dimen/fbase_text_size_16"
+                app:layout_constraintStart_toEndOf="@id/rlLessonDetailLeft"
+                app:layout_constraintTop_toTopOf="@id/rlLessonDetailLeft"
+                tools:text="Mã lớp D5C.045137" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivLessonDetailIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_right_text1"
+                app:layout_constraintBottom_toBottomOf="@id/tvLessonDetailId"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvLessonDetailId" />
+
+            <View
+                android:id="@+id/vLessonDetailFirst"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/fbase_dimen_1"
+                android:layout_marginStart="@dimen/fbase_dimen_10"
+                android:layout_marginTop="@dimen/fbase_dimen_6"
+                android:background="@color/text5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/rlLessonDetailLeft"
+                app:layout_constraintTop_toBottomOf="@id/tvLessonDetailId" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLessonDetailState"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/fbase_dimen_26"
+                android:layout_marginStart="@dimen/fbase_dimen_10"
+                android:layout_marginTop="@dimen/fbase_dimen_12"
+                android:background="@drawable/shape_bg_status_manual_corner_10"
+                android:fontFamily="@font/font_worksans_regular"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/fbase_dimen_12"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fbase_text_size_12"
+                app:layout_constraintStart_toEndOf="@id/rlLessonDetailLeft"
+                app:layout_constraintTop_toBottomOf="@id/vLessonDetailFirst"
+                tools:text="Đang diễn ra" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLessonDetailClass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fbase_dimen_10"
+                android:layout_marginTop="@dimen/fbase_dimen_8"
+                android:drawableStart="@drawable/ic_id_card"
+                android:drawablePadding="@dimen/fbase_dimen_6"
+                android:fontFamily="@font/font_worksans_regular"
+                android:textColor="@color/text1"
+                android:textSize="@dimen/fbase_text_size_14"
+                app:layout_constraintStart_toEndOf="@id/rlLessonDetailLeft"
+                app:layout_constraintTop_toBottomOf="@id/tvLessonDetailState"
+                tools:text="Lớp 2 - Khá" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLessonDetailNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fbase_dimen_10"
+                android:layout_marginTop="@dimen/fbase_dimen_8"
+                android:drawableStart="@drawable/ic_number"
+                android:drawablePadding="@dimen/fbase_dimen_6"
+                android:fontFamily="@font/font_worksans_regular"
+                android:textColor="@color/text1"
+                android:textSize="@dimen/fbase_text_size_14"
+                app:layout_constraintStart_toEndOf="@id/rlLessonDetailLeft"
+                app:layout_constraintTop_toBottomOf="@id/tvLessonDetailClass"
+                tools:text="Sĩ số 1/2" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLessonDetailAdvanced"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fbase_dimen_10"
+                android:drawableStart="@drawable/ic_advanced"
+                android:drawablePadding="@dimen/fbase_dimen_6"
+                android:fontFamily="@font/font_worksans_regular"
+                android:textColor="@color/text1"
+                android:textSize="@dimen/fbase_text_size_14"
+                app:layout_constraintBottom_toBottomOf="@+id/tvLessonDetailClass"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvLessonDetailClass"
+                tools:text="Nâng cao" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLessonDetailLesson"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_lesson"
+                android:drawablePadding="@dimen/fbase_dimen_6"
+                android:fontFamily="@font/font_worksans_regular"
+                android:textColor="@color/text1"
+                android:textSize="@dimen/fbase_text_size_14"
+                app:layout_constraintBottom_toBottomOf="@+id/tvLessonDetailNumber"
+                app:layout_constraintStart_toStartOf="@+id/tvLessonDetailAdvanced"
+                app:layout_constraintTop_toTopOf="@id/tvLessonDetailNumber"
+                tools:text="Buổi 12" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <vn.tutorme.mobile.presenter.widget.collection.CollectionView
+            android:id="@+id/cvLessonDetailRoot"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="@dimen/fbase_dimen_16"
+            android:overScrollMode="never"
+            android:paddingTop="@dimen/fbase_dimen_6"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clLessonDetailRoot" />
+
+        <RelativeLayout
+            android:id="@+id/rlLessonDetailSupport"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivLessonDetailTop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/fbase_dimen_62"
+                android:layout_marginEnd="@dimen/fbase_dimen_26"
+                android:src="@drawable/ic_triangle_white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/fbase_dimen_70"
+                android:layout_marginEnd="@dimen/fbase_dimen_16"
+                android:background="@color/white"
+                app:cardCornerRadius="@dimen/fbase_dimen_8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivLessonDetailTop">
+
+                <LinearLayout
+                    android:id="@+id/llLessonSupport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="@dimen/fbase_dimen_170"
+                    android:minHeight="@dimen/fbase_dimen_48"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvLessonDetailInfoRoom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?selectableItemBackground"
+                        android:drawableStart="@drawable/ic_room"
+                        android:drawablePadding="@dimen/fbase_dimen_8"
+                        android:fontFamily="@font/font_raleway_medium"
+                        android:padding="@dimen/fbase_dimen_14"
+                        android:text="@string/room_info"
+                        android:textColor="@color/neutral_13"
+                        android:textSize="@dimen/fbase_text_size_14" />
+
+                    <View
+                        android:layout_width="@dimen/fbase_dimen_200"
+                        android:layout_height="@dimen/fbase_dimen_1"
+                        android:background="@color/text5" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvLessonDetailChatRoom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?selectableItemBackground"
+                        android:drawableStart="@drawable/ic_chat_room"
+                        android:drawablePadding="@dimen/fbase_dimen_8"
+                        android:fontFamily="@font/font_raleway_medium"
+                        android:padding="@dimen/fbase_dimen_14"
+                        android:text="@string/message_room"
+                        android:textColor="@color/neutral_13"
+                        android:textSize="@dimen/fbase_text_size_14" />
+
+                    <View
+                        android:layout_width="@dimen/fbase_dimen_200"
+                        android:layout_height="@dimen/fbase_dimen_1"
+                        android:background="@color/text5" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvLessonDetailSupport"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?selectableItemBackground"
+                        android:drawableStart="@drawable/ic_support"
+                        android:drawablePadding="@dimen/fbase_dimen_8"
+                        android:fontFamily="@font/font_raleway_medium"
+                        android:padding="@dimen/fbase_dimen_14"
+                        android:text="@string/support_other"
+                        android:textColor="@color/neutral_13"
+                        android:textSize="@dimen/fbase_text_size_14" />
+
+                    <View
+                        android:layout_width="@dimen/fbase_dimen_200"
+                        android:layout_height="@dimen/fbase_dimen_1"
+                        android:background="@color/text5" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvLessonDetailFeedback"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?selectableItemBackground"
+                        android:drawableStart="@drawable/ic_message"
+                        android:drawablePadding="@dimen/fbase_dimen_8"
+                        android:fontFamily="@font/font_raleway_medium"
+                        android:padding="@dimen/fbase_dimen_14"
+                        android:text="@string/mail_feedback"
+                        android:textColor="@color/neutral_13"
+                        android:textSize="@dimen/fbase_text_size_14" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

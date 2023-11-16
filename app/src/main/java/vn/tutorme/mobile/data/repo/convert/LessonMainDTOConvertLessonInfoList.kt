@@ -7,7 +7,7 @@ import vn.tutorme.mobile.domain.model.lesson.LESSON_STATUS
 import vn.tutorme.mobile.domain.model.lesson.LESSON_TYPE
 import vn.tutorme.mobile.domain.model.lesson.LessonInfo
 
-class LessonMainDTOConvertLessonInfo : IConverter<List<LessonInfoMainDTO>, List<LessonInfo>> {
+class LessonMainDTOConvertLessonInfoList : IConverter<List<LessonInfoMainDTO>, List<LessonInfo>> {
 
     override fun convert(source: List<LessonInfoMainDTO>): List<LessonInfo> {
         val list = mutableListOf<LessonInfo>()
@@ -31,5 +31,26 @@ class LessonMainDTOConvertLessonInfo : IConverter<List<LessonInfoMainDTO>, List<
         }
 
         return list
+    }
+}
+
+class LessonInfoDTOConvertLessonInfoList : IConverter<LessonInfoMainDTO, LessonInfo> {
+    override fun convert(source: LessonInfoMainDTO): LessonInfo {
+        return LessonInfo(
+            lessonId = source.lessonInfo?.id,
+            classId = source.classInfo?.id,
+            timeBegin = source.lessonInfo?.beginTime,
+            timeEnd = source.lessonInfo?.endTime,
+            status = LESSON_STATUS.valuesOfName(source.lessonInfo?.state ?: INT_DEFAULT),
+            nameClass = source.classInfo?.nameClass,
+            level = source.classInfo?.describeClass,
+            totalNumber = source.classInfo?.countStudent,
+            lessonSession = source.classInfo?.countLesson,
+            type = LESSON_TYPE.valueOfName(source.lessonInfo?.updateAssessment),
+            memberNumber = source.lessonInfo?.countAttendance,
+            countAssessment = source.lessonInfo?.countReview,
+            nameTeacher = source.userInfo?.fullName,
+            phoneNumberTeacher = source.userInfo?.phoneNumber
+        )
     }
 }

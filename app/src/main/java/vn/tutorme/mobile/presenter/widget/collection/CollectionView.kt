@@ -44,14 +44,14 @@ class CollectionView(
         this.adapter = adapter
     }
 
-    fun setBaseLayoutManager(layout: LAYOUT_MANAGER, spanCount: Int = 2) {
+    fun setBaseLayoutManager(layout: LAYOUT_MANAGER, spanCount: Int = 2, isReverse: Boolean = false) {
         orientation = layout
         when (layout) {
             LAYOUT_MANAGER.LINEARLAYOUT_VERTICAL -> {
                 layoutManager = LinearLayoutManager(
                     context,
                     LinearLayoutManager.VERTICAL,
-                    false
+                    isReverse
                 )
                 setLayoutManager(layoutManager)
             }
@@ -60,7 +60,7 @@ class CollectionView(
                 layoutManager = LinearLayoutManager(
                     context,
                     LinearLayoutManager.HORIZONTAL,
-                    false
+                    isReverse
                 )
                 setLayoutManager(layoutManager)
             }
@@ -70,7 +70,7 @@ class CollectionView(
                     context,
                     spanCount,
                     GridLayoutManager.HORIZONTAL,
-                    false)
+                    isReverse)
 
                 setLayoutManager(layoutManager)
             }
@@ -82,7 +82,7 @@ class CollectionView(
                     context,
                     columnMax,
                     GridLayoutManager.VERTICAL,
-                    false
+                    isReverse
                 )
 
                 getSpanSizeLookup()

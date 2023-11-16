@@ -1,12 +1,19 @@
 package vn.tutorme.mobile.presenter.home
 
+import android.Manifest
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.syntheticapp.presenter.widget.collection.LAYOUT_MANAGER
+import com.google.firebase.database.FirebaseDatabase
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.R
+import vn.tutorme.mobile.base.BaseActivity
 import vn.tutorme.mobile.base.common.IViewListener
 import vn.tutorme.mobile.base.common.anim.SlideAnimation
+import vn.tutorme.mobile.base.extension.Extension.STRING_DEFAULT
 import vn.tutorme.mobile.base.extension.coroutinesLaunch
 import vn.tutorme.mobile.base.extension.getAppColor
 import vn.tutorme.mobile.base.extension.getAppDrawable
@@ -15,6 +22,8 @@ import vn.tutorme.mobile.base.extension.handleUiState
 import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.HomeFragmentBinding
 import vn.tutorme.mobile.domain.model.authen.ROLE_TYPE
+import vn.tutorme.mobile.domain.model.banner.Banner
+import vn.tutorme.mobile.domain.model.chat.video.VideoCallInfo
 import vn.tutorme.mobile.presenter.classall.ClassAllFragment
 import vn.tutorme.mobile.presenter.dialog.BottomSheetConfirmDialog
 import vn.tutorme.mobile.presenter.lessonall.LessonAllFragment
@@ -24,6 +33,10 @@ import vn.tutorme.mobile.presenter.registerclass.ClassWaitingConfirmFragment
 @AndroidEntryPoint
 class HomeFragment : TutorMeFragment<HomeFragmentBinding>(R.layout.home_fragment) {
 
+    companion object {
+        const val VIDEO_CALL_KEY = "VideoCall"
+    }
+
     private val viewModel by viewModels<HomeViewModel>()
     private val homeAdapter by lazy { HomeAdapter() }
 
@@ -32,6 +45,11 @@ class HomeFragment : TutorMeFragment<HomeFragmentBinding>(R.layout.home_fragment
         addHeader()
         addAdapter()
         addListener()
+        requestPermission()
+        getAccessTokenVideoCall()
+        lifecycleScope.launch(Dispatchers.IO) {
+            mainActivity.initVideoCall()
+        }
     }
 
     override fun onObserverViewModel() {
@@ -70,6 +88,7 @@ class HomeFragment : TutorMeFragment<HomeFragmentBinding>(R.layout.home_fragment
 
     private fun addHeader() {
         binding.srlHomeRoot.setColorSchemeResources(R.color.primary)
+        binding.tvHomeName.text = "${AppPreferences.userInfo?.fullName}"
     }
 
     private fun addAdapter() {
@@ -89,6 +108,11 @@ class HomeFragment : TutorMeFragment<HomeFragmentBinding>(R.layout.home_fragment
 
     private fun addListener() {
         homeAdapter.listenerHome = object : IHomeListener {
+
+            override fun onItemBannerClick(item: Banner) {
+
+            }
+
             override fun onClickTeachViewMore() {
                 replaceFragment(fragment = LessonAllFragment(), screenAnim = SlideAnimation())
             }
@@ -111,6 +135,17 @@ class HomeFragment : TutorMeFragment<HomeFragmentBinding>(R.layout.home_fragment
         }
     }
 
+    private fun requestPermission() {
+        mainActivity.doRequestPermission(arrayOf(
+            Manifest.permission.CAMERA,
+            Manifest.permission.RECORD_AUDIO
+        ), object : BaseActivity.PermissionListener {
+            override fun onAllow() {}
+
+            override fun onDenied(neverAskAgainPermissionList: List<String>) {}
+        })
+    }
+
     private fun showDialogConfirm(classId: String) {
         BottomSheetConfirmDialog().apply {
             avatar = getAppDrawable(R.drawable.ic_class_empty)
@@ -127,6 +162,29 @@ class HomeFragment : TutorMeFragment<HomeFragmentBinding>(R.layout.home_fragment
                 viewModel.updateClassRegister(classId)
             }
         }.show(childFragmentManager, BottomSheetConfirmDialog::class.java.simpleName)
+    }
+
+    private fun getAccessTokenVideoCall() {
+        var videoCallInfo: VideoCallInfo? = VideoCallInfo()
+        FirebaseDatabase.getInstance().getReference(VIDEO_CALL_KEY).child(AppPreferences.userInfo?.userId!!)
+            .get()
+            .addOnSuccessListener {
+                it.children.forEach { dataSnapShot ->
+                    videoCallInfo = dataSnapShot.getValue(VideoCallInfo::class.java)
+                }
+            }
+
+        val currentTime = System.currentTimeMillis() / 1000
+        if ((videoCallInfo != null && ((videoCallInfo?.time?.minus(2700) ?: 0) < currentTime))
+            || videoCallInfo?.time == 0L
+        ) {
+            FirebaseDatabase.getInstance().getReference(VIDEO_CALL_KEY).child(
+                AppPreferences.userInfo?.userId ?: STRING_DEFAULT
+            ).removeValue()
+            mainViewModel.getAccessTokenVideo(AppPreferences.userInfo?.userId!!)
+        } else {
+            mainViewModel.tokenVideoCall = videoCallInfo?.accessToken
+        }
     }
 
     private fun removeListener() {
