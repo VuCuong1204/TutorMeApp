@@ -2,13 +2,11 @@ package vn.tutorme.mobile.data.repo.lesson
 
 import vn.tutorme.mobile.base.common.converter.ListConverter
 import vn.tutorme.mobile.data.repo.convert.ClassMainDTOConvertToClassInfo
-import vn.tutorme.mobile.data.repo.convert.CourseInfoDTOConvertCourseInfo
+import vn.tutorme.mobile.data.repo.convert.CourseInfoListDTOConvertCourseInfoList
 import vn.tutorme.mobile.data.repo.convert.FeedBackInfoDTOConvertFeedBackInfo
 import vn.tutorme.mobile.data.repo.convert.LessonInfoDTOConvertLessonInfoList
 import vn.tutorme.mobile.data.repo.convert.LessonMainDTOConvertLessonInfoList
 import vn.tutorme.mobile.data.repo.convert.UserInfoDTOConvertToUserInfo
-import vn.tutorme.mobile.data.repo.convert.CourseInfoListDTOConvertCourseInfoList
-import vn.tutorme.mobile.data.repo.convert.LessonMainDTOConvertLessonInfo
 import vn.tutorme.mobile.data.source.remote.base.IRepo
 import vn.tutorme.mobile.data.source.remote.base.invokeApi
 import vn.tutorme.mobile.data.source.remote.base.invokeAuthService
