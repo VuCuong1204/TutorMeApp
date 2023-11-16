@@ -141,6 +141,12 @@ class HomeAdapter : TutorMeAdapter() {
                 orientation = ViewPager2.ORIENTATION_HORIZONTAL
             }
 
+            bannerAdapter.listener = object : BannerHomeAdapter.IBannerHomeAdapter {
+                override fun onItemClick(item: Banner) {
+                    listenerHome?.onItemBannerClick(item)
+                }
+            }
+
             binding.crBannerHomeNext.setViewPager2(binding.vpBannerHomeRoot)
         }
 

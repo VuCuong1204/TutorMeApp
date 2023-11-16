@@ -9,6 +9,7 @@ import kotlinx.coroutines.launch
 import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.base.common.BaseViewModel
 import vn.tutorme.mobile.base.common.FlowResult
+import vn.tutorme.mobile.base.extension.Extension.STRING_DEFAULT
 import vn.tutorme.mobile.base.extension.data
 import vn.tutorme.mobile.base.extension.failure
 import vn.tutorme.mobile.base.extension.loading
@@ -23,6 +24,11 @@ import vn.tutorme.mobile.domain.model.lesson.LESSON_TYPE
 import vn.tutorme.mobile.domain.usecase.GetHomeStudentUseCase
 import vn.tutorme.mobile.domain.usecase.GetHomeTeacherUseCase
 import vn.tutorme.mobile.domain.usecase.UpdateStateClassRegisterUseCase
+import vn.tutorme.mobile.utils.TimeUtils.getEndOfWeek
+import vn.tutorme.mobile.utils.TimeUtils.getNextDay
+import vn.tutorme.mobile.utils.TimeUtils.getStartOfDay
+import vn.tutorme.mobile.utils.TimeUtils.getStartOfWeek
+import vn.tutorme.mobile.utils.TimeUtils.getTimeCurrent
 import javax.inject.Inject
 
 @HiltViewModel
@@ -46,14 +52,16 @@ class HomeViewModel @Inject constructor(
     fun getHomeTeacher(reload: Boolean = false) {
         viewModelScope.launch {
             homeDataList = DataPage.newInstance(_homeState.value.data, reload)
-            val rv = GetHomeTeacherUseCase.GetHomeTeacherRV("vucuonghihi").apply {
-                sizeSchedule = 10
-                sizeEvaluator = 10
-                beginTimeSchedule = 1696788000
-                endTimeSchedule = 1696874400
-                beginTimeEvaluated = 1696788000
-                endTimeEvaluated = 1697392800
-                currentTime = 1696269600
+            val rv = GetHomeTeacherUseCase.GetHomeTeacherRV(
+                AppPreferences.userInfo?.fullName ?: STRING_DEFAULT
+            ).apply {
+                sizeSchedule = 4
+                sizeEvaluator = 4
+                beginTimeSchedule = getStartOfDay()
+                endTimeSchedule = getNextDay()
+                beginTimeEvaluated = getStartOfWeek()
+                endTimeEvaluated = getEndOfWeek()
+                currentTime = getTimeCurrent()
                 stateRate = LESSON_TYPE.NOT_YET_RATE_TYPE
                 stateClass = CLASS_STATUS.EMPTY_CLASS_STATUS
             }
@@ -77,7 +85,13 @@ class HomeViewModel @Inject constructor(
     fun getHomeStudent(reload: Boolean = false) {
         viewModelScope.launch {
             homeDataList = DataPage.newInstance(_homeState.value.data, reload)
-            val rv = GetHomeStudentUseCase.GetHomeTeacherRV("vq3", 1696402317, 1696788000, 1697392800)
+            val rv = GetHomeStudentUseCase.GetHomeTeacherRV(
+                AppPreferences.userInfo?.userId ?: STRING_DEFAULT,
+                getTimeCurrent(),
+                getStartOfWeek(),
+                getEndOfWeek()
+            )
+
             getHomeStudentUseCase.invoke(rv)
                 .onStart {
                     if (!reload) {
@@ -100,7 +114,7 @@ class HomeViewModel @Inject constructor(
             val rv = UpdateStateClassRegisterUseCase.UpdateStateClassRegisterRV(
                 classId,
                 0,
-                "Vucuonghihi"
+                AppPreferences.userInfo?.userId ?: STRING_DEFAULT
             )
 
             updateStateClassRegisterUseCase.invoke(rv)

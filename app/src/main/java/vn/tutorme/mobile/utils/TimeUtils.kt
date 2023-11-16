@@ -3,6 +3,7 @@ package vn.tutorme.mobile.utils
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.extension.getAppString
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import java.util.concurrent.TimeUnit
@@ -53,5 +54,54 @@ object TimeUtils {
         val date = Date(input)
         val df2 = SimpleDateFormat(output, Locale.getDefault())
         return df2.format(date)
+    }
+
+    fun getStartOfDay(): Long {
+        val calendar = Calendar.getInstance()
+        calendar.time = Date()
+        calendar.set(Calendar.HOUR_OF_DAY, 0)
+        calendar.set(Calendar.MINUTE, 0)
+        calendar.set(Calendar.SECOND, 0)
+        calendar.set(Calendar.MILLISECOND, 0)
+        return dateToSeconds(calendar.time)
+    }
+
+    fun getNextDay(): Long {
+        val calendar = Calendar.getInstance()
+        calendar.time = Date()
+        calendar.add(Calendar.DAY_OF_MONTH, 1)
+        return dateToSeconds(calendar.time)
+    }
+
+    fun getEndOfWeek(): Long {
+        val calendar = Calendar.getInstance()
+        calendar.time = Date()
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY) // Thiết lập là chủ nhật
+        calendar.add(Calendar.WEEK_OF_YEAR, 1) // Chuyển đến tuần tiếp theo
+        calendar.set(Calendar.HOUR_OF_DAY, 23)
+        calendar.set(Calendar.MINUTE, 59)
+        calendar.set(Calendar.SECOND, 59)
+        calendar.set(Calendar.MILLISECOND, 999)
+        return dateToSeconds(calendar.time)
+    }
+
+    fun getStartOfWeek(): Long {
+        val calendar = Calendar.getInstance()
+        calendar.time = Date()
+        calendar.set(Calendar.DAY_OF_WEEK, calendar.firstDayOfWeek) // Lấy ngày đầu tiên của tuần
+        calendar.set(Calendar.HOUR_OF_DAY, 0)
+        calendar.set(Calendar.MINUTE, 0)
+        calendar.set(Calendar.SECOND, 0)
+        calendar.set(Calendar.MILLISECOND, 0)
+        return dateToSeconds(calendar.time)
+    }
+
+    fun getTimeCurrent(): Long {
+        val currentTime = Date()
+        return dateToSeconds(currentTime)
+    }
+
+    private fun dateToSeconds(date: Date): Long {
+        return date.time / 1000
     }
 }

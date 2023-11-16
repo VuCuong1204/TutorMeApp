@@ -30,7 +30,6 @@ class GetHomeTeacherUseCase @Inject constructor(
         val bannerList = mutableListOf<Banner>()
 
         bannerJob.forEachIndexed { index, bannerJobInfo ->
-            if (index == 3) return@forEachIndexed
             bannerList.add(Banner(
                 id = bannerJobInfo.id,
                 link = bannerJobInfo.banner,
@@ -39,7 +38,6 @@ class GetHomeTeacherUseCase @Inject constructor(
         }
 
         bannerEvent.forEachIndexed { index, bannerEventInfo ->
-            if (index == 2) return@forEachIndexed
             bannerList.add(Banner(
                 id = bannerEventInfo.id,
                 link = bannerEventInfo.banner,

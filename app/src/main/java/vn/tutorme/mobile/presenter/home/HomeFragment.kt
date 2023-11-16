@@ -13,6 +13,7 @@ import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.BaseActivity
 import vn.tutorme.mobile.base.common.IViewListener
 import vn.tutorme.mobile.base.common.anim.SlideAnimation
+import vn.tutorme.mobile.base.extension.Extension.STRING_DEFAULT
 import vn.tutorme.mobile.base.extension.coroutinesLaunch
 import vn.tutorme.mobile.base.extension.getAppColor
 import vn.tutorme.mobile.base.extension.getAppDrawable
@@ -21,6 +22,7 @@ import vn.tutorme.mobile.base.extension.handleUiState
 import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.HomeFragmentBinding
 import vn.tutorme.mobile.domain.model.authen.ROLE_TYPE
+import vn.tutorme.mobile.domain.model.banner.Banner
 import vn.tutorme.mobile.domain.model.chat.video.VideoCallInfo
 import vn.tutorme.mobile.presenter.classall.ClassAllFragment
 import vn.tutorme.mobile.presenter.dialog.BottomSheetConfirmDialog
@@ -86,6 +88,7 @@ class HomeFragment : TutorMeFragment<HomeFragmentBinding>(R.layout.home_fragment
 
     private fun addHeader() {
         binding.srlHomeRoot.setColorSchemeResources(R.color.primary)
+        binding.tvHomeName.text = "${AppPreferences.userInfo?.fullName}"
     }
 
     private fun addAdapter() {
@@ -105,6 +108,11 @@ class HomeFragment : TutorMeFragment<HomeFragmentBinding>(R.layout.home_fragment
 
     private fun addListener() {
         homeAdapter.listenerHome = object : IHomeListener {
+
+            override fun onItemBannerClick(item: Banner) {
+
+            }
+
             override fun onClickTeachViewMore() {
                 replaceFragment(fragment = LessonAllFragment(), screenAnim = SlideAnimation())
             }
@@ -170,7 +178,9 @@ class HomeFragment : TutorMeFragment<HomeFragmentBinding>(R.layout.home_fragment
         if ((videoCallInfo != null && ((videoCallInfo?.time?.minus(2700) ?: 0) < currentTime))
             || videoCallInfo?.time == 0L
         ) {
-            FirebaseDatabase.getInstance().getReference(VIDEO_CALL_KEY).child(AppPreferences.userInfo?.userId!!).removeValue()
+            FirebaseDatabase.getInstance().getReference(VIDEO_CALL_KEY).child(
+                AppPreferences.userInfo?.userId ?: STRING_DEFAULT
+            ).removeValue()
             mainViewModel.getAccessTokenVideo(AppPreferences.userInfo?.userId!!)
         } else {
             mainViewModel.tokenVideoCall = videoCallInfo?.accessToken
