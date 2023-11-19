@@ -6,6 +6,7 @@ import com.example.syntheticapp.presenter.widget.collection.LAYOUT_MANAGER
 import dagger.hilt.android.AndroidEntryPoint
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.common.IViewListener
+import vn.tutorme.mobile.base.common.anim.SlideAnimation
 import vn.tutorme.mobile.base.extension.Extension.STRING_DEFAULT
 import vn.tutorme.mobile.base.extension.coroutinesLaunch
 import vn.tutorme.mobile.base.extension.getAppString
@@ -28,12 +29,6 @@ class ClassInfoFragment : TutorMeFragment<ClassInfoFragmentBinding>(R.layout.cla
     private val classInfoAdapter by lazy { ClassInfoAdapter() }
     var classId: String = STRING_DEFAULT
 
-    override fun onPrepareInitView() {
-        super.onPrepareInitView()
-        classId = arguments?.getString(CLASS_ID_KEY) ?: STRING_DEFAULT
-        viewModel.getLessonList(classId = classId)
-    }
-
     override fun onInitView() {
         super.onInitView()
         addHeader()
@@ -55,7 +50,6 @@ class ClassInfoFragment : TutorMeFragment<ClassInfoFragmentBinding>(R.layout.cla
                     if (!it.data?.dataList.isNullOrEmpty()) {
                         setClassInfo(it.data?.dataList)
                     }
-                    viewModel.resetState()
 
                     binding.srlClassInfoReload.isRefreshing = false
                 }
@@ -84,7 +78,7 @@ class ClassInfoFragment : TutorMeFragment<ClassInfoFragmentBinding>(R.layout.cla
         }
 
         binding.srlClassInfoReload.setOnRefreshListener {
-            viewModel.getLessonList(true, classId = classId)
+            viewModel.getLessonList(true)
         }
     }
 
@@ -96,7 +90,8 @@ class ClassInfoFragment : TutorMeFragment<ClassInfoFragmentBinding>(R.layout.cla
                     bundle = bundleOf(
                         LessonDetailFragment.CLASS_ID_KEY to item.classId,
                         LessonDetailFragment.LESSON_ID_KEY to item.lessonId
-                    )
+                    ),
+                    screenAnim = SlideAnimation()
                 )
             }
         }
@@ -122,7 +117,7 @@ class ClassInfoFragment : TutorMeFragment<ClassInfoFragmentBinding>(R.layout.cla
             tvClassInfoNumber.text = lessonInfo?.getNumberMember()
             tvClassInfoAdvanced.text = lessonInfo?.level
             tvClassInfoLesson.text = String.format(getAppString(R.string.count_lesson), countLesson)
-            tvClassInfoTeacher.text = "${getAppString(R.string.name_teacher)} ${lessonInfo?.nameTeacher}"
+            tvClassInfoTeacher.text = lessonInfo?.getNameStudent()
             tvClassInfoTeacherNumber.text = String.format(getAppString(R.string.number_phone_teacher), lessonInfo?.phoneNumberTeacher)
         }
     }

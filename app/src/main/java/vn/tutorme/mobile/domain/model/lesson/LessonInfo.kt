@@ -6,12 +6,14 @@ import vn.tutorme.mobile.base.extension.Extension
 import vn.tutorme.mobile.base.extension.getAppString
 import vn.tutorme.mobile.base.model.IParcelable
 import vn.tutorme.mobile.utils.TimeUtils
+import vn.tutorme.mobile.utils.TimeUtils.HOUR_MINUTE_FORMAT_V1
 
 @Parcelize
 data class LessonInfo(
     var lessonId: Int? = null,
     var classId: String? = null,
     var timeBegin: Long? = null,
+    var timeBeginLesson: Long? = null,
     var timeEnd: Long? = null,
     var status: LESSON_STATUS? = null,
     var nameClass: String? = null,
@@ -31,6 +33,10 @@ data class LessonInfo(
 
     fun getTimeLearnHour(): String {
         return "${getHourBegin()} - ${getHourEnd()}"
+    }
+
+    fun getNameStudent(): String {
+        return "${getAppString(R.string.name_teacher)} ${nameTeacher ?: Extension.STRING_DEFAULT}"
     }
 
     fun getTimeLearnDay(): String {
@@ -66,11 +72,13 @@ data class LessonInfo(
     }
 
     fun getHourBegin(): String {
-        return TimeUtils.convertTimeToHour(timeBegin ?: Extension.LONG_DEFAULT)
+        return TimeUtils.convertTimeToHour(timeBeginLesson ?: Extension.LONG_DEFAULT,
+            HOUR_MINUTE_FORMAT_V1)
     }
 
     fun getHourEnd(): String {
-        return TimeUtils.convertTimeToHour(timeEnd ?: Extension.LONG_DEFAULT)
+        return TimeUtils.convertTimeToHour(timeEnd ?: Extension.LONG_DEFAULT,
+            HOUR_MINUTE_FORMAT_V1)
     }
 
     fun getDayBegin(): String {

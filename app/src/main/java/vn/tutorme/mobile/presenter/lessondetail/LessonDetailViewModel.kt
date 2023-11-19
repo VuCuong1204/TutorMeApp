@@ -10,6 +10,8 @@ import kotlinx.coroutines.launch
 import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.base.common.BaseViewModel
 import vn.tutorme.mobile.base.common.FlowResult
+import vn.tutorme.mobile.base.extension.Extension.INT_DEFAULT
+import vn.tutorme.mobile.base.extension.Extension.STRING_DEFAULT
 import vn.tutorme.mobile.base.extension.failure
 import vn.tutorme.mobile.base.extension.loading
 import vn.tutorme.mobile.base.extension.onException
@@ -17,7 +19,6 @@ import vn.tutorme.mobile.base.extension.success
 import vn.tutorme.mobile.domain.model.authen.mockDataUserInfo
 import vn.tutorme.mobile.domain.model.lesson.LESSON_STATUS
 import vn.tutorme.mobile.domain.model.lesson.LessonInfo
-import vn.tutorme.mobile.domain.model.lesson.mockDataLessonInfoEvaluate
 import vn.tutorme.mobile.domain.usecase.lesson.AttendanceStudentUseCase
 import vn.tutorme.mobile.domain.usecase.lesson.FeedBackLessonUseCase
 import vn.tutorme.mobile.domain.usecase.lesson.GetFeedbackListUseCase
@@ -54,14 +55,14 @@ class LessonDetailViewModel @Inject constructor(
     private val _attendanceStudentState = MutableStateFlow(FlowResult.newInstance<Boolean>())
     val attendanceStudentState = _attendanceStudentState.asStateFlow()
 
-    var lessonId = savedStateHandle.get<Int>(LESSON_ID_KEY) ?: 7
-    var classId = savedStateHandle.get<String>(CLASS_ID_KEY) ?: "D10"
-    var lessonInfo: LessonInfo? = mockDataLessonInfoEvaluate()[0]
+    var lessonId = savedStateHandle.get<Int>(LESSON_ID_KEY) ?: INT_DEFAULT
+    var classId = savedStateHandle.get<String>(CLASS_ID_KEY) ?: STRING_DEFAULT
+    var lessonInfo: LessonInfo? = null
     private var studentInfoLesson = mockDataUserInfo()
     var zoomRoomInfo: ZoomRoomInfo? = null
 
     init {
-//        getLessonDetail(true)
+        getLessonDetail(true)
     }
 
     fun getLessonDetail(isReload: Boolean = false) {
@@ -78,7 +79,7 @@ class LessonDetailViewModel @Inject constructor(
                 }
                 .collect {
                     lessonInfo = it
-                    getStudentInfoLesson(false)
+//                    getStudentInfoLesson(false)
                     _lessonDetailState.success(it)
                 }
         }

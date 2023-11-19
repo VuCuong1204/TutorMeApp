@@ -15,9 +15,9 @@ import javax.inject.Inject
 class GetHomeStudentUseCase @Inject constructor(
     private val bannerRepo: IBannerRepo,
     private val lessonRepo: ILessonRepo
-) : BaseUseCase<GetHomeStudentUseCase.GetHomeTeacherRV, List<Any>>() {
+) : BaseUseCase<GetHomeStudentUseCase.GetHomeStudentRV, List<Any>>() {
 
-    override suspend fun execute(rv: GetHomeTeacherRV): List<Any> {
+    override suspend fun execute(rv: GetHomeStudentRV): List<Any> {
         val dataList = mutableListOf<Any>()
 
         val bannerEvent = bannerRepo.getBannerEvent(rv.page, rv.sizeEvent)
@@ -74,7 +74,7 @@ class GetHomeStudentUseCase @Inject constructor(
         return dataList
     }
 
-    class GetHomeTeacherRV(
+    class GetHomeStudentRV(
         val studentId: String,
         val currentTime: Long,
         val beginTime: Long,

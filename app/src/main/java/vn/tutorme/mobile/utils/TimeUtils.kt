@@ -10,14 +10,15 @@ import java.util.concurrent.TimeUnit
 
 object TimeUtils {
     const val HOUR_MINUTE_FORMAT = "HH:mm:ss"
+    const val HOUR_MINUTE_FORMAT_V1 = "HH:mm"
     const val DAY_MONTH_YEAR_FORMAT = "dd.MM.yyyy"
     const val DATE_FORMAT = "dd/MM/yyyy"
     const val DATE_FORMAT_V2 = "dd-MM-yyyy"
 
-    fun convertTimeToHour(value: Long): String {
+    fun convertTimeToHour(value: Long, format: String = HOUR_MINUTE_FORMAT): String {
         val date = Date(value * 1000) // Convert seconds to milliseconds
 
-        val timeFormat = SimpleDateFormat(HOUR_MINUTE_FORMAT, Locale.getDefault())
+        val timeFormat = SimpleDateFormat(format, Locale.getDefault())
 
         return timeFormat.format(date)
     }

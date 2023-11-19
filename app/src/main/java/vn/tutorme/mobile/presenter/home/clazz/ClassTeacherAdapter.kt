@@ -6,6 +6,7 @@ import vn.tutorme.mobile.base.adapter.BaseVH
 import vn.tutorme.mobile.base.adapter.TutorMeAdapter
 import vn.tutorme.mobile.base.extension.getAppDrawable
 import vn.tutorme.mobile.base.extension.gone
+import vn.tutorme.mobile.base.extension.hide
 import vn.tutorme.mobile.base.extension.setOnSafeClick
 import vn.tutorme.mobile.databinding.LessonHomeItemBinding
 import vn.tutorme.mobile.domain.model.clazz.ClassInfo
@@ -28,7 +29,7 @@ class ClassTeacherAdapter : TutorMeAdapter() {
             with(binding) {
                 tvLessonHomeType.gone()
                 ivLessonHomeIcon.gone()
-                tvLessonHomeLesson.gone()
+                tvLessonHomeLesson.hide()
                 tvLessonHomePencil.gone()
                 tvLessonHomeTimeSlot.gone()
                 tvLessonHomeConfirm.setOnSafeClick {

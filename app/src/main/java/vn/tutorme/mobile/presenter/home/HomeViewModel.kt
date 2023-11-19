@@ -85,11 +85,11 @@ class HomeViewModel @Inject constructor(
     fun getHomeStudent(reload: Boolean = false) {
         viewModelScope.launch {
             homeDataList = DataPage.newInstance(_homeState.value.data, reload)
-            val rv = GetHomeStudentUseCase.GetHomeTeacherRV(
+            val rv = GetHomeStudentUseCase.GetHomeStudentRV(
                 AppPreferences.userInfo?.userId ?: STRING_DEFAULT,
                 getTimeCurrent(),
-                getStartOfWeek(),
-                getEndOfWeek()
+                getStartOfDay(),
+                getNextDay()
             )
 
             getHomeStudentUseCase.invoke(rv)

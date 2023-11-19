@@ -53,10 +53,10 @@ class HomeFragment : TutorMeFragment<HomeFragmentBinding>(R.layout.home_fragment
         addAdapter()
         addListener()
         requestPermission()
-        getAccessTokenVideoCall()
-        lifecycleScope.launch(Dispatchers.IO) {
-            mainActivity.initVideoCall()
-        }
+//        getAccessTokenVideoCall()
+//        lifecycleScope.launch(Dispatchers.IO) {
+//            mainActivity.initVideoCall()
+//        }
     }
 
     override fun onObserverViewModel() {

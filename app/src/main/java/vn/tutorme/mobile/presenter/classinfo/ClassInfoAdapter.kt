@@ -115,7 +115,7 @@ class ClassInfoAdapter : TutorMeAdapter() {
                 }
 
                 tvInfoAdvanced.setImageTextView(getAppDrawable(R.drawable.ic_clock))
-                tvInfoAdvanced.text = data.getHourBegin()
+                tvInfoAdvanced.text = data.getTimeLearnHour()
 
                 if (absoluteAdapterPosition == dataList.lastIndex) {
                     val params = clInfoRoot.layoutParams as ViewGroup.MarginLayoutParams

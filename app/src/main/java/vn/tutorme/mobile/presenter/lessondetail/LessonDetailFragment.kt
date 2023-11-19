@@ -116,7 +116,6 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
         coroutinesLaunch(viewModel.studentInfoLessonState) {
             handleUiState(it, object : IViewListener {
                 override fun onSuccess() {
-
                     binding.cvLessonDetailRoot.apply {
                         setBaseAdapter(studentLessonAdapter.apply { lessonType = viewModel.lessonInfo?.status })
                         submitList(it.data)
