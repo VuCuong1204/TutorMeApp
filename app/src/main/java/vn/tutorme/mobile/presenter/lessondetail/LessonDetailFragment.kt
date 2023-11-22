@@ -14,7 +14,7 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.R
-import vn.tutorme.mobile.base.common.GetUriFaceDetection
+import vn.tutorme.mobile.base.common.GetImageDetect
 import vn.tutorme.mobile.base.common.IViewListener
 import vn.tutorme.mobile.base.common.anim.SlideAnimation
 import vn.tutorme.mobile.base.common.eventbus.EventBusManager
@@ -42,6 +42,7 @@ import vn.tutorme.mobile.presenter.lessondetail.camera.FaceDetectionFragment
 import vn.tutorme.mobile.presenter.lessondetail.model.ZoomRoomInfo
 import vn.tutorme.mobile.presenter.lessondetail.zoomsdk.ZoomSdkConfig
 import vn.tutorme.mobile.presenter.ratestudent.RateStudentFragment
+import vn.tutorme.mobile.utils.FileUtils
 
 @AndroidEntryPoint
 class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layout.lesson_detail_fragment) {
@@ -82,8 +83,12 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
     override fun onEvent(event: IEvent) {
         super.onEvent(event)
         when (event) {
-            is GetUriFaceDetection -> {
-                Log.d(TAG, "onEvent: ${event.uri}")
+            is GetImageDetect -> {
+                val file = FileUtils.saveBitmap(mainActivity, event.bitmap)
+                file?.let {
+                    Log.d("TAG", "onEvent: $it")
+                    viewModel.sendFaceDetectImage(it)
+                }
                 EventBusManager.instance?.removeSticky(event)
             }
         }
@@ -148,6 +153,18 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
             handleUiState(it, object : IViewListener {
                 override fun onSuccess() {
                     viewModel.getStudentInfoLesson()
+                }
+            }, canShowLoading = true)
+        }
+
+        coroutinesLaunch(viewModel.detectInfoState) {
+            handleUiState(it, object : IViewListener {
+                override fun onFailure() {
+                    showError(getAppString(R.string.detect_error))
+                }
+
+                override fun onSuccess() {
+                    showSuccess(getAppString(R.string.detect_success))
                 }
             }, canShowLoading = true)
         }
@@ -326,13 +343,19 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
                         ?: 1)..(viewModel.lessonInfo?.timeEnd?.times(1000) ?: 1)
                 ) {
                     zoomSdkConfig.register()
-                    viewModel.updateStateLesson(state = LESSON_STATUS.HAPPENING_STATUS)
+                    if (viewModel.lessonInfo?.status != LESSON_STATUS.HAPPENING_STATUS) {
+                        viewModel.updateStateLesson(state = LESSON_STATUS.HAPPENING_STATUS)
+                    }
                 } else if (System.currentTimeMillis() <= (viewModel.lessonInfo?.timeBegin?.times(1000)
                         ?: 1)
                 ) {
-                    viewModel.updateStateLesson(state = LESSON_STATUS.UPCOMING_STATUS)
+                    if (viewModel.lessonInfo?.status != LESSON_STATUS.UPCOMING_STATUS) {
+                        viewModel.updateStateLesson(state = LESSON_STATUS.UPCOMING_STATUS)
+                    }
                 } else {
-                    viewModel.updateStateLesson(state = LESSON_STATUS.TOOK_PLACE_STATUS)
+                    if (viewModel.lessonInfo?.status != LESSON_STATUS.TOOK_PLACE_STATUS) {
+                        viewModel.updateStateLesson(state = LESSON_STATUS.TOOK_PLACE_STATUS)
+                    }
                 }
             }
 

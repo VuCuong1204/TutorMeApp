@@ -35,7 +35,7 @@ data class MissionInfo(
     }
 
     fun getTimeWeek(): String {
-        return "02.10.2023 - 09.10.2023"
+        return "${TimeUtils.convertTimeToDay(TimeUtils.getStartOfWeek())} - ${TimeUtils.convertTimeToDay(TimeUtils.getEndOfWeek())}}"
     }
 
     fun getHourBegin(): String {

@@ -20,9 +20,12 @@ import androidx.core.content.ContextCompat
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.face.FaceDetection
 import com.google.mlkit.vision.face.FaceDetectorOptions
+import dagger.hilt.android.AndroidEntryPoint
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.BaseActivity
+import vn.tutorme.mobile.base.common.GetImageDetect
 import vn.tutorme.mobile.base.common.activityresultlauncher.OpenAppSettingResult
+import vn.tutorme.mobile.base.common.eventbus.EventBusManager
 import vn.tutorme.mobile.base.extension.getAppColor
 import vn.tutorme.mobile.base.extension.getAppString
 import vn.tutorme.mobile.base.extension.setOnSafeClick
@@ -34,6 +37,7 @@ import vn.tutorme.mobile.presenter.widget.detectview.RADIUS_DEFAULT
 import java.text.SimpleDateFormat
 import java.util.Locale
 
+@AndroidEntryPoint
 class FaceDetectionFragment : TutorMeFragment<FaceDetectionFragmentBinding>(R.layout.face_detection_fragment) {
 
     companion object {
@@ -139,7 +143,6 @@ class FaceDetectionFragment : TutorMeFragment<FaceDetectionFragmentBinding>(R.la
                         val currentTime = System.currentTimeMillis()
                         if (currentTime - lastAnalysisTime >= MIN_ANALYSIS_INTERVAL) {
                             lastAnalysisTime = currentTime
-                            detectInImage(cropBitmap)
                             detectInImage(cropBitmap)
                         }
 
@@ -267,6 +270,8 @@ class FaceDetectionFragment : TutorMeFragment<FaceDetectionFragmentBinding>(R.la
                             binding.tvFaceDetectionName.text = getAppString(R.string.detach_success)
                             binding.tvFaceDetectionName.setTextColor(getAppColor(R.color.blue))
                             binding.ccvFaceDetectionCircle.setCircleState(DETECT_STATE.SUCCESS)
+                            EventBusManager.instance?.post(GetImageDetect(bitmap))
+                            onBackPressByFragment()
                         } else {
                             binding.tvFaceDetectionName.text = getAppString(R.string.detach_fail)
                             binding.tvFaceDetectionName.setTextColor(getAppColor(R.color.red))

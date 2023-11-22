@@ -7,8 +7,11 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
+import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.base.common.BaseViewModel
 import vn.tutorme.mobile.base.common.FlowResult
+import vn.tutorme.mobile.base.extension.Extension.INT_DEFAULT
+import vn.tutorme.mobile.base.extension.Extension.STRING_DEFAULT
 import vn.tutorme.mobile.base.extension.failure
 import vn.tutorme.mobile.base.extension.loading
 import vn.tutorme.mobile.base.extension.onException
@@ -33,9 +36,10 @@ class ClassChildViewModel @Inject constructor(
     fun getClassList(isReload: Boolean = false, isShowLoading: Boolean = true) {
         viewModelScope.launch {
             classInfoDataPage = DataPage.newInstance(_classInfoState.value.data, isReload)
-            val rv = GetClassTeacherListUseCase.GetClassTeacherListRV("vucuonghihi").apply {
+            val rv = GetClassTeacherListUseCase.GetClassTeacherListRV(AppPreferences.userInfo?.userId
+                ?: STRING_DEFAULT).apply {
                 type = classType
-                page = classInfoDataPage.page * classInfoDataPage.limitPage
+                page = INT_DEFAULT
                 size = classInfoDataPage.limitPage
             }
 

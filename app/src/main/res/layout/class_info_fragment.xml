@@ -219,6 +219,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/fbase_dimen_8"
+                android:background="?selectableItemBackground"
                 android:drawableStart="@drawable/ic_star"
                 android:drawablePadding="@dimen/fbase_dimen_6"
                 android:fontFamily="@font/font_worksans_regular"

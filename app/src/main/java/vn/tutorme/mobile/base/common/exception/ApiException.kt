@@ -1,7 +1,7 @@
 package vn.tutorme.mobile.base.common.exception
 
 class ApiException : BaseException {
-    companion object{
+    companion object {
         /**
          * code in app
          */
@@ -11,6 +11,7 @@ class ApiException : BaseException {
         const val RESPONSE_BODY_ERROR = 20005
         const val CREATE_INSTANCE_SERVICE_ERROR = 20006
         const val CONVERT_JSON_FROM_RESPONSE_ERROR = 20008
+        const val ERROR_DETECT_FACE = 20009
     }
 
     constructor(code: Int) : super(code)

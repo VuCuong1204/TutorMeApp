@@ -82,7 +82,7 @@ data class LessonInfo(
     }
 
     fun getDayBegin(): String {
-        return TimeUtils.convertTimeToDay(timeBegin ?: Extension.LONG_DEFAULT)
+        return TimeUtils.convertTimeToDay(timeBeginLesson ?: Extension.LONG_DEFAULT)
     }
 
     fun getDayEnd(): String {

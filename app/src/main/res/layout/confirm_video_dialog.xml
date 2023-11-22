@@ -40,22 +40,22 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivConfirmVideoReject"
-                android:layout_width="@dimen/fbase_dimen_60"
-                android:layout_height="@dimen/fbase_dimen_60"
+                android:layout_width="@dimen/fbase_dimen_80"
+                android:layout_height="@dimen/fbase_dimen_80"
                 android:layout_below="@id/tvConfirmVideoUserName"
-                android:layout_marginStart="@dimen/fbase_dimen_90"
+                android:layout_marginStart="@dimen/fbase_dimen_80"
                 android:layout_marginTop="@dimen/fbase_dimen_40"
                 android:background="?selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_call_reject" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivConfirmVideoAccept"
-                android:layout_width="@dimen/fbase_dimen_60"
-                android:layout_height="@dimen/fbase_dimen_60"
+                android:layout_width="@dimen/fbase_dimen_80"
+                android:layout_height="@dimen/fbase_dimen_80"
                 android:layout_below="@id/tvConfirmVideoUserName"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="@dimen/fbase_dimen_40"
-                android:layout_marginEnd="@dimen/fbase_dimen_90"
+                android:layout_marginEnd="@dimen/fbase_dimen_80"
                 android:background="?selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_video_call_accept" />
 

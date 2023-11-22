@@ -10,12 +10,14 @@ import vn.tutorme.mobile.data.repo.course.CourseRepoImpl
 import vn.tutorme.mobile.data.repo.lesson.LessonRepoImpl
 import vn.tutorme.mobile.data.repo.location.LocationRepoImpl
 import vn.tutorme.mobile.data.repo.notification.NotificationRepoImpl
+import vn.tutorme.mobile.data.repo.tensorflow.TensorflowRepoImpl
 import vn.tutorme.mobile.domain.repo.IAuthRepo
 import vn.tutorme.mobile.domain.repo.IBannerRepo
 import vn.tutorme.mobile.domain.repo.ICourseRepo
 import vn.tutorme.mobile.domain.repo.ILessonRepo
 import vn.tutorme.mobile.domain.repo.ILocationRepo
 import vn.tutorme.mobile.domain.repo.INotificationRepo
+import vn.tutorme.mobile.domain.repo.ITensorflowRepo
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -38,4 +40,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun provideCourseRepository(courseImpl: CourseRepoImpl): ICourseRepo
+
+    @Binds
+    abstract fun provideTensorflowRepository(tensorflowRepoImpl: TensorflowRepoImpl): ITensorflowRepo
 }

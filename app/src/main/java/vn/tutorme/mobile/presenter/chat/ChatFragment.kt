@@ -41,10 +41,9 @@ class ChatFragment : TutorMeFragment<ChatFragmentBinding>(R.layout.chat_fragment
 
     override fun onPrepareInitView() {
         super.onPrepareInitView()
-        userId = arguments?.getString(USER_ID_KEY) ?: "hihi123456"
-        userName = arguments?.getString(USER_NAME_KEY) ?: "VuQuocCuong"
+        userId = arguments?.getString(USER_ID_KEY)
+        userName = arguments?.getString(USER_NAME_KEY)
         userAvatar = arguments?.getString(USER_AVATAR_KEY)
-            ?: "https://i.pinimg.com/236x/c2/9a/7d/c29a7d29348b1a3f502803ab9d8355cc.jpg"
     }
 
     override fun onInitView() {

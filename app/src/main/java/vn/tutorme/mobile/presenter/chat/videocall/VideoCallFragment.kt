@@ -1,5 +1,6 @@
 package vn.tutorme.mobile.presenter.chat.videocall
 
+import android.media.MediaPlayer
 import com.stringee.call.StringeeCall
 import com.stringee.common.StringeeAudioManager
 import com.stringee.common.StringeeConstant
@@ -7,10 +8,9 @@ import com.stringee.listener.StatusListener
 import dagger.hilt.android.AndroidEntryPoint
 import org.json.JSONObject
 import vn.tutorme.mobile.R
-import vn.tutorme.mobile.base.extension.getAppString
-import vn.tutorme.mobile.base.extension.gone
+import vn.tutorme.mobile.base.common.SendVideoCallState
+import vn.tutorme.mobile.base.common.eventbus.EventBusManager
 import vn.tutorme.mobile.base.extension.setOnSafeClick
-import vn.tutorme.mobile.base.extension.show
 import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.VideoCallFragmentBinding
 
@@ -33,9 +33,11 @@ class VideoCallFragment : TutorMeFragment<VideoCallFragmentBinding>(R.layout.vid
     private var userReceiverId: String? = null
     private var callVideoType: CALL_VIDEO_TYPE? = null
 
-    private var stateMicro = true
+    private var stateMicro = false
     private var stateVolume = false
     private var stateCamera = true
+
+    private var mediaPlayer: MediaPlayer? = null
 
     override fun onPrepareInitView() {
         super.onPrepareInitView()
@@ -47,20 +49,27 @@ class VideoCallFragment : TutorMeFragment<VideoCallFragmentBinding>(R.layout.vid
 
     override fun onInitView() {
         super.onInitView()
+
+        mediaPlayer = MediaPlayer.create(this@VideoCallFragment.context, R.raw.ring_phone_coming)
+        mediaPlayer?.setOnCompletionListener {
+            mediaPlayer?.start()
+        }
+        mediaPlayer?.start()
+
         initAnswer()
 
         binding.ivVideoCallMic.setOnSafeClick {
-            stateMicro != stateMicro
+            stateMicro = !stateMicro
             stringCall?.mute(stateMicro)
             binding.ivVideoCallMic.setImageResource(
-                if (stateMicro) R.drawable.ic_micro
-                else R.drawable.ic_micro_turn_off
+                if (stateMicro) R.drawable.ic_micro_turn_off
+                else R.drawable.ic_micro
             )
         }
 
         binding.ivVideoCallVolume.setOnSafeClick {
-            stateVolume != stateVolume
-            audioManager?.setSpeakerphoneOn(stateMicro)
+            stateVolume = !stateVolume
+            audioManager?.setSpeakerphoneOn(stateVolume)
             binding.ivVideoCallVolume.setImageResource(
                 if (stateVolume) R.drawable.ic_loudspeaker_external
                 else R.drawable.ic_loudspeaker
@@ -68,10 +77,10 @@ class VideoCallFragment : TutorMeFragment<VideoCallFragmentBinding>(R.layout.vid
         }
 
         binding.ivVideoCallCamera.setOnSafeClick {
-            stateCamera != stateCamera
+            stateCamera = !stateCamera
             stringCall?.enableVideo(stateCamera)
             binding.ivVideoCallCamera.setImageResource(
-                if (stateVolume) R.drawable.ic_camera_video
+                if (stateCamera) R.drawable.ic_camera_video
                 else R.drawable.ic_camera_gone
             )
         }
@@ -87,14 +96,25 @@ class VideoCallFragment : TutorMeFragment<VideoCallFragmentBinding>(R.layout.vid
             stringCall?.let {
                 stringCall!!.hangup(null)
                 audioManager?.stop()
+                EventBusManager.instance?.postPending(SendVideoCallState(CALL_VIDEO_STATE.ENDED))
                 onBackPressByFragment()
             }
         }
     }
 
+    override fun onBackPressByFragment() {
+        backFragment(VideoCallFragment::class.java.simpleName)
+    }
+
+    override fun onDestroyView() {
+        mediaPlayer?.release()
+        mediaPlayer = null
+        super.onDestroyView()
+    }
+
     private fun initAnswer() {
         stringCall = if (callVideoType == CALL_VIDEO_TYPE.OUT_GOING_CALL_TYPE) {
-            StringeeCall(MainVideoCallFragment.strClient, userSendId, userReceiverId)
+            StringeeCall(mainActivity.strClient, userSendId, userReceiverId)
         } else {
             mainActivity.callMap[callId]
         }
@@ -103,21 +123,23 @@ class VideoCallFragment : TutorMeFragment<VideoCallFragmentBinding>(R.layout.vid
         audioManager?.start { _, _ -> }
         audioManager?.setSpeakerphoneOn(false)
         stringCall?.enableVideo(true)
+        stringCall?.isVideoCall = true
         stringCall?.setQuality(StringeeConstant.QUALITY_FULLHD)
         stringCall?.setCallListener(object : StringeeCall.StringeeCallListener {
             override fun onSignalingStateChange(p0: StringeeCall?, p1: StringeeCall.SignalingState?, p2: String?, p3: Int, p4: String?) {
                 state = p1
                 if (state == StringeeCall.SignalingState.ENDED) {
+                    EventBusManager.instance?.postPending(SendVideoCallState(CALL_VIDEO_STATE.ENDED))
                     onBackPressByFragment()
-                    showSuccess(getAppString(R.string.video_call_end))
                 } else if (state == StringeeCall.SignalingState.BUSY) {
+                    EventBusManager.instance?.postPending(SendVideoCallState(CALL_VIDEO_STATE.BUSY))
                     onBackPressByFragment()
-                    showError(getAppString(R.string.video_call_busy))
                 }
             }
 
             override fun onError(p0: StringeeCall?, p1: Int, p2: String?) {
-//                TODO("Not yet implemented")
+                EventBusManager.instance?.postPending(SendVideoCallState(CALL_VIDEO_STATE.ERROR))
+                onBackPressByFragment()
             }
 
             override fun onHandledOnAnotherDevice(p0: StringeeCall?, p1: StringeeCall.SignalingState?, p2: String?) {
@@ -130,25 +152,15 @@ class VideoCallFragment : TutorMeFragment<VideoCallFragmentBinding>(R.layout.vid
 
             override fun onLocalStream(p0: StringeeCall?) {
                 mainActivity.runOnUiThread {
-                    if (callVideoType == CALL_VIDEO_TYPE.OUT_GOING_CALL_TYPE) {
-                        binding.flVideoCallSender.addView(p0?.localView)
-                        binding.rlVideoCallReceiver.addView(p0?.localView)
-                        binding.flVideoCallSender.gone()
-                    } else {
-                        binding.flVideoCallSender.addView(p0?.localView)
-                        binding.flVideoCallSender.show()
-                    }
+                    binding.flVideoCallSender.addView(p0?.localView)
                     p0?.renderLocalView(true)
                 }
             }
 
             override fun onRemoteStream(p0: StringeeCall?) {
                 mainActivity.runOnUiThread {
-                    if (callVideoType == CALL_VIDEO_TYPE.OUT_GOING_CALL_TYPE) {
-                        binding.flVideoCallSender.show()
-                        binding.rlVideoCallReceiver.removeView(p0?.localView)
-                    }
                     binding.rlVideoCallReceiver.addView(p0?.remoteView)
+                    mediaPlayer?.pause()
                     p0?.renderRemoteView(false)
                 }
             }
@@ -162,6 +174,7 @@ class VideoCallFragment : TutorMeFragment<VideoCallFragmentBinding>(R.layout.vid
             stringCall?.makeCall(null)
         } else {
             stringCall?.ringing(null)
+            stringCall?.answer(null)
         }
     }
 }

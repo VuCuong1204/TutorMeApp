@@ -17,6 +17,7 @@ import vn.tutorme.mobile.base.extension.loading
 import vn.tutorme.mobile.base.extension.onException
 import vn.tutorme.mobile.base.extension.success
 import vn.tutorme.mobile.domain.model.authen.mockDataUserInfo
+import vn.tutorme.mobile.domain.model.detectinfo.DetectInfo
 import vn.tutorme.mobile.domain.model.lesson.LESSON_STATUS
 import vn.tutorme.mobile.domain.model.lesson.LessonInfo
 import vn.tutorme.mobile.domain.usecase.lesson.AttendanceStudentUseCase
@@ -25,6 +26,7 @@ import vn.tutorme.mobile.domain.usecase.lesson.GetFeedbackListUseCase
 import vn.tutorme.mobile.domain.usecase.lesson.GetLessonDetailUseCase
 import vn.tutorme.mobile.domain.usecase.lesson.GetStudentInLessonUseCase
 import vn.tutorme.mobile.domain.usecase.lesson.UpdateStateLessonUseCase
+import vn.tutorme.mobile.domain.usecase.tensorflow.SendFaceDetectImageUseCase
 import vn.tutorme.mobile.presenter.lessondetail.LessonDetailFragment.Companion.CLASS_ID_KEY
 import vn.tutorme.mobile.presenter.lessondetail.LessonDetailFragment.Companion.LESSON_ID_KEY
 import vn.tutorme.mobile.presenter.lessondetail.model.LESSON_DETAIL_TYPE
@@ -40,6 +42,7 @@ class LessonDetailViewModel @Inject constructor(
     private val feedBackLessonUseCase: FeedBackLessonUseCase,
     private val attendanceStudentUseCase: AttendanceStudentUseCase,
     private val getStudentInLessonUseCase: GetStudentInLessonUseCase,
+    private val sendFaceDetectImageUseCase: SendFaceDetectImageUseCase,
     savedStateHandle: SavedStateHandle
 ) : BaseViewModel() {
 
@@ -54,6 +57,9 @@ class LessonDetailViewModel @Inject constructor(
 
     private val _attendanceStudentState = MutableStateFlow(FlowResult.newInstance<Boolean>())
     val attendanceStudentState = _attendanceStudentState.asStateFlow()
+
+    private val _detectInfoState = MutableStateFlow(FlowResult.newInstance<DetectInfo>())
+    val detectInfoState = _detectInfoState.asStateFlow()
 
     var lessonId = savedStateHandle.get<Int>(LESSON_ID_KEY) ?: INT_DEFAULT
     var classId = savedStateHandle.get<String>(CLASS_ID_KEY) ?: STRING_DEFAULT
@@ -79,7 +85,7 @@ class LessonDetailViewModel @Inject constructor(
                 }
                 .collect {
                     lessonInfo = it
-//                    getStudentInfoLesson(false)
+                    getStudentInfoLesson(false)
                     _lessonDetailState.success(it)
                 }
         }
@@ -110,7 +116,7 @@ class LessonDetailViewModel @Inject constructor(
 
                     dataList.add(LESSON_DETAIL_TYPE.TITLE_TYPE)
 
-                    dataList.addAll(studentInfoLesson)
+                    dataList.addAll(it)
                     _studentInfoLessonState.success(dataList)
                 }
         }
@@ -150,6 +156,22 @@ class LessonDetailViewModel @Inject constructor(
                 }
                 .collect {
                     _feedbackListState.success(it)
+                }
+        }
+    }
+
+    fun sendFaceDetectImage(uri: String) {
+        viewModelScope.launch {
+            val rv = SendFaceDetectImageUseCase.SendFaceDetectImageRV(uri)
+            sendFaceDetectImageUseCase.invoke(rv)
+                .onStart {
+                    _detectInfoState.loading()
+                }
+                .onException {
+                    _detectInfoState.failure(it)
+                }
+                .collect {
+                    _detectInfoState.success(it)
                 }
         }
     }

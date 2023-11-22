@@ -21,6 +21,7 @@ import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.common.CountNotifyEvent
 import vn.tutorme.mobile.base.common.IViewListener
+import vn.tutorme.mobile.base.common.SendVideoCallState
 import vn.tutorme.mobile.base.common.eventbus.EventBusManager
 import vn.tutorme.mobile.base.common.eventbus.IEvent
 import vn.tutorme.mobile.base.extension.coroutinesLaunch
@@ -32,6 +33,7 @@ import vn.tutorme.mobile.base.screen.TutorMeActivity
 import vn.tutorme.mobile.databinding.MainActivityBinding
 import vn.tutorme.mobile.domain.model.authen.ROLE_TYPE
 import vn.tutorme.mobile.domain.model.chat.video.VideoCallInfo
+import vn.tutorme.mobile.presenter.chat.videocall.CALL_VIDEO_STATE
 import vn.tutorme.mobile.presenter.chat.videocall.VideoCallFragment
 import vn.tutorme.mobile.presenter.classmanager.ClassManagerFragment
 import vn.tutorme.mobile.presenter.dialog.ConfirmVideoDialog
@@ -47,6 +49,8 @@ class MainActivity : TutorMeActivity<MainActivityBinding>(R.layout.main_activity
     private val viewModel by viewModels<MainViewModel>()
     var strClient: StringeeClient? = null
     val callMap: HashMap<String, StringeeCall> = hashMapOf()
+    private var confirmVideoDialog: ConfirmVideoDialog? = null
+    private var callVideoType: Boolean = true
 
     override fun onInitView() {
         super.onInitView()
@@ -78,6 +82,24 @@ class MainActivity : TutorMeActivity<MainActivityBinding>(R.layout.main_activity
         when (event) {
             is CountNotifyEvent -> {
 //                viewModel.getNotificationInfoList()
+                EventBusManager.instance?.removeSticky(event)
+            }
+
+            is SendVideoCallState -> {
+                when (event.state) {
+                    CALL_VIDEO_STATE.BUSY -> {
+                        showError(getAppString(R.string.video_call_busy))
+                    }
+
+                    CALL_VIDEO_STATE.ENDED -> {
+                        showSuccess(getAppString(R.string.video_call_end))
+                    }
+
+                    CALL_VIDEO_STATE.ERROR -> {
+                        showError(getAppString(R.string.connect_error))
+                    }
+                }
+
                 EventBusManager.instance?.removeSticky(event)
             }
         }
@@ -194,7 +216,8 @@ class MainActivity : TutorMeActivity<MainActivityBinding>(R.layout.main_activity
             override fun onConnectionConnected(p0: StringeeClient?, p1: Boolean) {}
 
             override fun onConnectionDisconnected(p0: StringeeClient?, p1: Boolean) {
-//                TODO("Not yet implemented")
+                callVideoType = true
+                confirmVideoDialog?.dismiss()
             }
 
             override fun onIncomingCall(p0: StringeeCall) {
@@ -204,7 +227,10 @@ class MainActivity : TutorMeActivity<MainActivityBinding>(R.layout.main_activity
                 ), object : PermissionListener {
                     override fun onAllow() {
                         runOnUiThread {
-                            showIncomingVideoDialog(p0)
+                            if (callVideoType) {
+                                showIncomingVideoDialog(p0)
+                                callVideoType = false
+                            }
                         }
                     }
 
@@ -238,7 +264,7 @@ class MainActivity : TutorMeActivity<MainActivityBinding>(R.layout.main_activity
 
     fun showIncomingVideoDialog(strCall: StringeeCall) {
         var videoCallInfo: VideoCallInfo? = VideoCallInfo()
-        FirebaseDatabase.getInstance().getReference(HomeFragment.VIDEO_CALL_KEY).child(strCall.callId)
+        FirebaseDatabase.getInstance().getReference(HomeFragment.VIDEO_CALL_KEY).child(strCall.from)
             .get()
             .addOnSuccessListener {
                 it.children.forEach { dataSnapShot ->
@@ -246,14 +272,16 @@ class MainActivity : TutorMeActivity<MainActivityBinding>(R.layout.main_activity
                 }
             }
 
-        ConfirmVideoDialog().apply {
+        confirmVideoDialog = ConfirmVideoDialog().apply {
             userName = videoCallInfo?.userName
             listener = object : ConfirmVideoDialog.IConfirmVideoListener {
                 override fun onRejectClick() {
+                    callVideoType = true
                     strCall.reject(null)
                 }
 
                 override fun onConfirmClick() {
+                    callVideoType = true
                     callMap[strCall.callId] = strCall
                     replaceFragment(VideoCallFragment(), bundleOf(
                         VideoCallFragment.CALL_ID_KEY to strCall.callId,
@@ -262,5 +290,6 @@ class MainActivity : TutorMeActivity<MainActivityBinding>(R.layout.main_activity
                 }
             }
         }
+        confirmVideoDialog?.show(supportFragmentManager, ConfirmVideoDialog::class.simpleName)
     }
 }

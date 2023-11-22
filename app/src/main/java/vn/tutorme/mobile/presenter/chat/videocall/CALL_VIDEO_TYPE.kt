@@ -14,3 +14,9 @@ enum class CALL_VIDEO_TYPE(val value: Int) {
         }
     }
 }
+
+enum class CALL_VIDEO_STATE {
+    BUSY,
+    ENDED,
+    ERROR
+}

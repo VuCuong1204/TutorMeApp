@@ -1,40 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <RelativeLayout
-        android:id="@+id/rlVideoCallReceiver"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/black">
+        android:layout_height="match_parent">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="@dimen/fbase_dimen_16"
-            android:layout_marginEnd="@dimen/fbase_dimen_16"
-            app:cardCornerRadius="@dimen/fbase_dimen_16">
+        <RelativeLayout
+            android:id="@+id/rlVideoCallReceiver"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black">
 
-            <FrameLayout
-                android:id="@+id/flVideoCallSender"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvVideoCallSender"
                 android:layout_width="@dimen/fbase_dimen_150"
                 android:layout_height="@dimen/fbase_dimen_220"
-                android:background="@color/white">
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/fbase_dimen_16"
+                android:layout_marginEnd="@dimen/fbase_dimen_16">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/ivVideoCallRotate"
-                    android:layout_width="@dimen/fbase_dimen_60"
-                    android:layout_height="@dimen/fbase_dimen_60"
-                    android:layout_gravity="bottom"
-                    android:padding="@dimen/fbase_dimen_20"
-                    android:src="@drawable/ic_rotate" />
+                <FrameLayout
+                    android:id="@+id/flVideoCallSender"
+                    android:layout_width="@dimen/fbase_dimen_150"
+                    android:layout_height="@dimen/fbase_dimen_220"
+                    android:background="@color/white" />
 
-            </FrameLayout>
+            </androidx.cardview.widget.CardView>
 
-        </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivVideoCallRotate"
+            android:layout_width="@dimen/fbase_dimen_60"
+            android:layout_height="@dimen/fbase_dimen_60"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="@dimen/fbase_dimen_180"
+            android:layout_marginEnd="@dimen/fbase_dimen_106"
+            android:padding="@dimen/fbase_dimen_20"
+            android:src="@drawable/ic_rotate" />
 
         <LinearLayout
+            android:id="@+id/llVideoCallAction"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

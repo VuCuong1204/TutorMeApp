@@ -43,3 +43,7 @@ fun <T : IApiService> IRepo.invokeLocationService(service: Class<T>): T {
 fun <T : IApiService> IRepo.invokeStringeeService(service: Class<T>): T {
     return RetrofitFactory.createStringeeService(service)
 }
+
+fun <T : IApiService> IRepo.invokeTenserFlowService(service: Class<T>): T {
+    return RetrofitFactory.createTensorflowService(service)
+}

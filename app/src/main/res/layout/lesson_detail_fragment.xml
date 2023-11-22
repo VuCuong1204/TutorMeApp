@@ -171,14 +171,13 @@
                 android:id="@+id/tvLessonDetailAdvanced"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/fbase_dimen_10"
                 android:drawableStart="@drawable/ic_advanced"
                 android:drawablePadding="@dimen/fbase_dimen_6"
                 android:fontFamily="@font/font_worksans_regular"
                 android:textColor="@color/text1"
                 android:textSize="@dimen/fbase_text_size_14"
                 app:layout_constraintBottom_toBottomOf="@+id/tvLessonDetailClass"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvLessonDetailLesson"
                 app:layout_constraintTop_toTopOf="@id/tvLessonDetailClass"
                 tools:text="Nâng cao" />
 
@@ -186,13 +185,14 @@
                 android:id="@+id/tvLessonDetailLesson"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/fbase_dimen_20"
                 android:drawableStart="@drawable/ic_lesson"
                 android:drawablePadding="@dimen/fbase_dimen_6"
                 android:fontFamily="@font/font_worksans_regular"
                 android:textColor="@color/text1"
                 android:textSize="@dimen/fbase_text_size_14"
                 app:layout_constraintBottom_toBottomOf="@+id/tvLessonDetailNumber"
-                app:layout_constraintStart_toStartOf="@+id/tvLessonDetailAdvanced"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tvLessonDetailNumber"
                 tools:text="Buổi 12" />
 

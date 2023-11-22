@@ -16,6 +16,7 @@ import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.ClassInfoFragmentBinding
 import vn.tutorme.mobile.domain.model.lesson.LESSON_STATUS
 import vn.tutorme.mobile.domain.model.lesson.LessonInfo
+import vn.tutorme.mobile.presenter.chat.ChatFragment
 import vn.tutorme.mobile.presenter.lessondetail.LessonDetailFragment
 
 @AndroidEntryPoint
@@ -119,6 +120,15 @@ class ClassInfoFragment : TutorMeFragment<ClassInfoFragmentBinding>(R.layout.cla
             tvClassInfoLesson.text = String.format(getAppString(R.string.count_lesson), countLesson)
             tvClassInfoTeacher.text = lessonInfo?.getNameStudent()
             tvClassInfoTeacherNumber.text = String.format(getAppString(R.string.number_phone_teacher), lessonInfo?.phoneNumberTeacher)
+
+            binding.tvClassInfoTeacher.setOnSafeClick {
+                if (!lessonInfo?.getNameStudent().isNullOrEmpty()) {
+                    replaceFragment(fragment = ChatFragment(), bundleOf(
+                        ChatFragment.USER_ID_KEY to "J26YjtUYN2R6D2eCYllgQjqUiba2",
+                        ChatFragment.USER_NAME_KEY to lessonInfo?.nameTeacher
+                    ))
+                }
+            }
         }
     }
 }
