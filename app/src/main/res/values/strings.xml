@@ -216,6 +216,7 @@
     <string name="class_detail">Chi tiết lớp học</string>
     <string name="lesson_detail">Chi tiết buổi học</string>
     <string name="chat_list">Danh sách nhắn tin</string>
+    <string name="course_list">Danh sách khóa học</string>
     <string name="notify_detail">Chi tiết thông báo</string>
     <string name="rate_detail">Chi tiết đánh giá</string>
     <string name="opening_second">Khai giảng</string>

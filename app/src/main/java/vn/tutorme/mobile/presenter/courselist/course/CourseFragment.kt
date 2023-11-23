@@ -1,4 +1,4 @@
-package vn.tutorme.mobile.presenter.bannerinfo.course
+package vn.tutorme.mobile.presenter.courselist.course
 
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint

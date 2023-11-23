@@ -180,6 +180,10 @@ class HomeAdapter : TutorMeAdapter() {
                             listenerHome?.onClickClassWaitingConfirm()
                         }
 
+                        TITLE_HOME_TYPE.LIST_COURSE_TYPE -> {
+                            listenerHome?.onClickViewMoreCourse()
+                        }
+
                         else -> {
 
                         }

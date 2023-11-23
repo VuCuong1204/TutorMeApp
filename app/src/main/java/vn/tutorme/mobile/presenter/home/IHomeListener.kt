@@ -13,4 +13,5 @@ interface IHomeListener {
     fun onClickCourseInfo(courseId: String)
     fun onClickClassInfo(classId: String)
     fun onClickLessonInfo(item: LessonInfo)
+    fun onClickViewMoreCourse()
 }

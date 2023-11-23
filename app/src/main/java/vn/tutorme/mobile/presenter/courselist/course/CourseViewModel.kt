@@ -1,4 +1,4 @@
-package vn.tutorme.mobile.presenter.bannerinfo.course
+package vn.tutorme.mobile.presenter.courselist.course
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
@@ -21,7 +21,7 @@ import vn.tutorme.mobile.domain.usecase.course.CheckCourseRegisteredUseCase
 import vn.tutorme.mobile.domain.usecase.course.GetClassListFromCourseUseCase
 import vn.tutorme.mobile.domain.usecase.course.GetCourseInfoUseCase
 import vn.tutorme.mobile.domain.usecase.course.RegisterCourseUseCase
-import vn.tutorme.mobile.presenter.bannerinfo.course.CourseFragment.Companion.COURSE_ID_KEY
+import vn.tutorme.mobile.presenter.courselist.course.CourseFragment.Companion.COURSE_ID_KEY
 import javax.inject.Inject
 
 @HiltViewModel

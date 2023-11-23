@@ -17,6 +17,10 @@ class GetHomeStudentUseCase @Inject constructor(
     private val lessonRepo: ILessonRepo
 ) : BaseUseCase<GetHomeStudentUseCase.GetHomeStudentRV, List<Any>>() {
 
+    companion object {
+        const val LIMIT_COURSE = 5
+    }
+
     override suspend fun execute(rv: GetHomeStudentRV): List<Any> {
         val dataList = mutableListOf<Any>()
 
@@ -67,7 +71,7 @@ class GetHomeStudentUseCase @Inject constructor(
         if (classInfoList.isEmpty()) classInfoList.add(ClassInfo())
         dataList.add(classInfoList)
 
-        val courseInfoList = lessonRepo.getCourseList(rv.currentTime, rv.page, rv.size)
+        val courseInfoList = lessonRepo.getCourseList(rv.currentTime, rv.page, LIMIT_COURSE)
         dataList.add(TITLE_HOME_TYPE.LIST_COURSE_TYPE)
         dataList.addAll(courseInfoList)
 

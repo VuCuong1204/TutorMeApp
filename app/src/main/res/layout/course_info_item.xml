@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/fbase_dimen_8"
+        android:layout_marginBottom="@dimen/fbase_dimen_8"
+        android:background="@drawable/ripple_bg_white_corner_12"
+        android:paddingBottom="@dimen/fbase_dimen_16">
+
+        <vn.tutorme.mobile.presenter.widget.leafcardview.LeafCardView
+            android:id="@+id/lcvCourseInfoInfoAvatar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:corner_top_left="@dimen/fbase_dimen_12"
+            app:corner_top_right="@dimen/fbase_dimen_12">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivCourseInfoInfoBanner"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fbase_dimen_200"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg_contact_banner" />
+
+        </vn.tutorme.mobile.presenter.widget.leafcardview.LeafCardView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCourseInfoTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lcvCourseInfoInfoAvatar"
+            android:layout_marginStart="@dimen/fbase_dimen_6"
+            android:ellipsize="end"
+            android:fontFamily="@font/font_raleway_bold"
+            android:maxLines="2"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/fbase_text_size_16"
+            tools:text="Giọng nói chuẩn Tiếng Anh trong sư phạm" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCourseInfoRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvCourseInfoTitle"
+            android:layout_marginStart="@dimen/fbase_dimen_6"
+            android:layout_marginTop="@dimen/fbase_dimen_6"
+            android:fontFamily="@font/font_worksans_regular"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/fbase_text_size_12"
+            tools:text="4,9 sao 30 ratings" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCourseInfoCountMember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvCourseInfoRate"
+            android:layout_marginStart="@dimen/fbase_dimen_6"
+            android:layout_marginTop="@dimen/fbase_dimen_6"
+            android:fontFamily="@font/font_worksans_regular"
+            android:textColor="@color/secondary_1"
+            android:textSize="@dimen/fbase_text_size_12"
+            tools:text="124 người đã đăng kí" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCourseInfoDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvCourseInfoCountMember"
+            android:layout_marginStart="@dimen/fbase_dimen_6"
+            android:layout_marginTop="@dimen/fbase_dimen_6"
+            android:fontFamily="@font/font_worksans_semibold"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/fbase_text_size_14"
+            tools:text="18/10/2023" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCourseInfoPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvCourseInfoCountMember"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/fbase_dimen_6"
+            android:layout_marginEnd="@dimen/fbase_dimen_6"
+            android:fontFamily="@font/font_worksans_medium"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/fbase_text_size_14"
+            tools:text="2,140,000đ" />
+
+    </RelativeLayout>
+
+</layout>

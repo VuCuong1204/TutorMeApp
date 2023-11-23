@@ -27,10 +27,11 @@ import vn.tutorme.mobile.domain.model.banner.BANNER_TYPE
 import vn.tutorme.mobile.domain.model.banner.Banner
 import vn.tutorme.mobile.domain.model.chat.video.VideoCallInfo
 import vn.tutorme.mobile.domain.model.lesson.LessonInfo
-import vn.tutorme.mobile.presenter.bannerinfo.course.CourseFragment
 import vn.tutorme.mobile.presenter.bannerinfo.event.EventDetailFragment
 import vn.tutorme.mobile.presenter.classall.ClassAllFragment
 import vn.tutorme.mobile.presenter.classinfo.ClassInfoFragment
+import vn.tutorme.mobile.presenter.courselist.CourseListFragment
+import vn.tutorme.mobile.presenter.courselist.course.CourseFragment
 import vn.tutorme.mobile.presenter.dialog.BottomSheetConfirmDialog
 import vn.tutorme.mobile.presenter.lessonall.LessonAllFragment
 import vn.tutorme.mobile.presenter.lessondetail.LessonDetailFragment
@@ -167,6 +168,13 @@ class HomeFragment : TutorMeFragment<HomeFragmentBinding>(R.layout.home_fragment
                         LessonDetailFragment.CLASS_ID_KEY to item.classId,
                         LessonDetailFragment.LESSON_ID_KEY to item.lessonId
                     )
+                )
+            }
+
+            override fun onClickViewMoreCourse() {
+                replaceFragment(
+                    fragment = CourseListFragment(),
+                    screenAnim = SlideAnimation()
                 )
             }
         }
