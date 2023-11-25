@@ -340,7 +340,7 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
                     viewModel.zoomRoomInfo = it.child(viewModel.lessonInfo?.lessonId.toString()).getValue(ZoomRoomInfo::class.java)
                 }
                 if (System.currentTimeMillis() in (viewModel.lessonInfo?.timeBegin?.times(1000)
-                        ?: 1)..(viewModel.lessonInfo?.timeEnd?.times(1000) ?: 1)
+                        ?: 1)..(viewModel.lessonInfo?.timeEndLesson?.times(1000) ?: 1)
                 ) {
                     zoomSdkConfig.register()
                     if (viewModel.lessonInfo?.status != LESSON_STATUS.HAPPENING_STATUS) {

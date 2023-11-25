@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/fbase_dimen_10">
+
+        <RelativeLayout
+            android:id="@+id/rlScheduleTitle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fbase_dimen_90"
+            android:background="@color/primary">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivScheduleBack"
+                android:layout_width="@dimen/fbase_dimen_40"
+                android:layout_height="@dimen/fbase_dimen_40"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/fbase_dimen_10"
+                android:background="?selectableItemBackgroundBorderless"
+                android:padding="@dimen/fbase_dimen_10"
+                android:src="@drawable/ic_arrow_white_left" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvScheduleTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/fbase_dimen_10"
+                android:fontFamily="@font/font_worksans_bold"
+                android:text="@string/schedule"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fbase_text_size_24" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvScheduleTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="@dimen/fbase_dimen_16"
+                android:fontFamily="@font/font_worksans_semibold"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fbase_text_size_16"
+                tools:text="20/11/2023 - 26/11/2023" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/llScheduleTime"
+            android:layout_width="@dimen/fbase_dimen_100"
+            android:layout_height="match_parent"
+            android:layout_below="@id/rlScheduleTitle"
+            android:orientation="vertical"
+            android:weightSum="11">
+
+            <TextView
+                android:layout_width="@dimen/fbase_dimen_100"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/font_worksans_regular"
+                android:gravity="center|end"
+                android:paddingEnd="@dimen/fbase_dimen_10"
+                android:text="@string/time6" />
+
+            <TextView
+                android:layout_width="@dimen/fbase_dimen_100"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/font_worksans_regular"
+                android:gravity="center|end"
+                android:paddingEnd="@dimen/fbase_dimen_10"
+                android:text="@string/time7" />
+
+            <TextView
+                android:layout_width="@dimen/fbase_dimen_100"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/font_worksans_regular"
+                android:gravity="center|end"
+                android:paddingEnd="@dimen/fbase_dimen_10"
+                android:text="@string/time8" />
+
+            <TextView
+                android:layout_width="@dimen/fbase_dimen_100"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/font_worksans_regular"
+                android:gravity="center|end"
+                android:paddingEnd="@dimen/fbase_dimen_10"
+                android:text="@string/time9" />
+
+            <TextView
+                android:layout_width="@dimen/fbase_dimen_100"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/font_worksans_regular"
+                android:gravity="center|end"
+                android:paddingEnd="@dimen/fbase_dimen_10"
+                android:text="@string/time10" />
+
+            <TextView
+                android:layout_width="@dimen/fbase_dimen_100"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/font_worksans_regular"
+                android:gravity="center|end"
+                android:paddingEnd="@dimen/fbase_dimen_10"
+                android:text="@string/time11" />
+
+            <TextView
+                android:layout_width="@dimen/fbase_dimen_100"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/font_worksans_regular"
+                android:gravity="center|end"
+                android:paddingEnd="@dimen/fbase_dimen_10"
+                android:text="@string/time12" />
+
+            <TextView
+                android:layout_width="@dimen/fbase_dimen_100"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/font_worksans_regular"
+                android:gravity="center|end"
+                android:paddingEnd="@dimen/fbase_dimen_10"
+                android:text="@string/time13" />
+
+            <TextView
+                android:layout_width="@dimen/fbase_dimen_100"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/font_worksans_regular"
+                android:gravity="center|end"
+                android:paddingEnd="@dimen/fbase_dimen_10"
+                android:text="@string/time14" />
+
+            <TextView
+                android:layout_width="@dimen/fbase_dimen_100"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/font_worksans_regular"
+                android:gravity="center|end"
+                android:paddingEnd="@dimen/fbase_dimen_10"
+                android:text="@string/time15" />
+
+            <TextView
+                android:layout_width="@dimen/fbase_dimen_100"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/font_worksans_regular"
+                android:gravity="center|end"
+                android:paddingEnd="@dimen/fbase_dimen_10"
+                android:text="@string/time16" />
+
+        </LinearLayout>
+
+        <HorizontalScrollView
+            android:id="@+id/hsvScheduleEvent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/rlScheduleTitle"
+            android:layout_toEndOf="@+id/llScheduleTime">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clSchedule"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/glScheduleV1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.04545" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/glScheduleV2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.13645" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/glScheduleV3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.22735" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/glScheduleV4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.31825" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/glScheduleV5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.40915" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/glScheduleV6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.50005" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/glScheduleV7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.59095" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/glScheduleV8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.68185" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/glScheduleV9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.77275" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/glScheduleV10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.86365" />   
+                
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/glScheduleV11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.95455" />
+
+                <TextView
+                    android:id="@+id/tvScheduleDay2"
+                    android:layout_width="@dimen/fbase_dimen_100"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@color/gray"
+                    android:fontFamily="@font/font_worksans_bold"
+                    android:gravity="center"
+                    android:text="@string/monday"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fbase_text_size_14"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/glScheduleV1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvScheduleDay3"
+                    android:layout_width="@dimen/fbase_dimen_100"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@color/gray"
+                    android:fontFamily="@font/font_worksans_bold"
+                    android:gravity="center"
+                    android:text="@string/tuesday"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fbase_text_size_14"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/glScheduleV1"
+                    app:layout_constraintStart_toEndOf="@id/tvScheduleDay2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvScheduleDay4"
+                    android:layout_width="@dimen/fbase_dimen_100"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@color/gray"
+                    android:fontFamily="@font/font_worksans_bold"
+                    android:gravity="center"
+                    android:text="@string/wednesday"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fbase_text_size_14"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/glScheduleV1"
+                    app:layout_constraintStart_toEndOf="@id/tvScheduleDay3"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvScheduleDay5"
+                    android:layout_width="@dimen/fbase_dimen_100"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@color/gray"
+                    android:fontFamily="@font/font_worksans_bold"
+                    android:gravity="center"
+                    android:text="@string/thursday"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fbase_text_size_14"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/glScheduleV1"
+                    app:layout_constraintStart_toEndOf="@id/tvScheduleDay4"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvScheduleDay6"
+                    android:layout_width="@dimen/fbase_dimen_100"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@color/gray"
+                    android:fontFamily="@font/font_worksans_bold"
+                    android:gravity="center"
+                    android:text="@string/friday"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fbase_text_size_14"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/glScheduleV1"
+                    app:layout_constraintStart_toEndOf="@+id/tvScheduleDay5"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/tvScheduleDay7"
+                    android:layout_width="@dimen/fbase_dimen_100"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@color/gray"
+                    android:fontFamily="@font/font_worksans_bold"
+                    android:gravity="center"
+                    android:text="@string/saturday"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fbase_text_size_14"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/glScheduleV1"
+                    app:layout_constraintStart_toEndOf="@+id/tvScheduleDay6"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvScheduleDay8"
+                    android:layout_width="@dimen/fbase_dimen_100"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@color/gray"
+                    android:fontFamily="@font/font_worksans_bold"
+                    android:gravity="center"
+                    android:text="@string/sunday"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fbase_text_size_14"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/glScheduleV1"
+                    app:layout_constraintStart_toEndOf="@+id/tvScheduleDay7"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_10"
+                    app:layout_constraintBottom_toBottomOf="@id/glScheduleV1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/glScheduleV1" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_10"
+                    app:layout_constraintBottom_toBottomOf="@id/glScheduleV2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/glScheduleV2" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_10"
+                    app:layout_constraintBottom_toBottomOf="@id/glScheduleV3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/glScheduleV3" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_10"
+                    app:layout_constraintBottom_toBottomOf="@id/glScheduleV4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/glScheduleV4" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_10"
+                    app:layout_constraintBottom_toBottomOf="@id/glScheduleV5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/glScheduleV5" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_10"
+                    app:layout_constraintBottom_toBottomOf="@id/glScheduleV6"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/glScheduleV6" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_10"
+                    app:layout_constraintBottom_toBottomOf="@id/glScheduleV7"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/glScheduleV7" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_10"
+                    app:layout_constraintBottom_toBottomOf="@id/glScheduleV8"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/glScheduleV8" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_10"
+                    app:layout_constraintBottom_toBottomOf="@id/glScheduleV9"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/glScheduleV9" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_10"
+                    app:layout_constraintBottom_toBottomOf="@id/glScheduleV10"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/glScheduleV10" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </HorizontalScrollView>
+
+    </RelativeLayout>
+
+</layout>

@@ -42,7 +42,7 @@ class LessonAllViewModel @Inject constructor(
         )
     }
 
-    private fun getLessonAll(
+    fun getLessonAll(
         beginTime: Long = TimeUtils.getStartOfDay(),
         endTime: Long = TimeUtils.getNextDay()
     ) {
@@ -67,7 +67,7 @@ class LessonAllViewModel @Inject constructor(
         }
     }
 
-    private fun getLessonAllStudent(
+     fun getLessonAllStudent(
         beginTime: Long = TimeUtils.getStartOfDay(),
         endTime: Long = TimeUtils.getNextDay()
     ) {

@@ -14,7 +14,10 @@ import vn.tutorme.mobile.base.extension.setOnSafeClick
 import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.LessonAllFragmentBinding
 import vn.tutorme.mobile.domain.model.lesson.LessonInfo
+import vn.tutorme.mobile.presenter.dialog.datepicker.DATE_TYPE
+import vn.tutorme.mobile.presenter.dialog.datepicker.DatePickerDialog
 import vn.tutorme.mobile.presenter.lessondetail.LessonDetailFragment
+import vn.tutorme.mobile.utils.TimeUtils
 
 @AndroidEntryPoint
 class LessonAllFragment : TutorMeFragment<LessonAllFragmentBinding>(R.layout.lesson_all_fragment) {
@@ -61,12 +64,27 @@ class LessonAllFragment : TutorMeFragment<LessonAllFragmentBinding>(R.layout.les
             onBackPressByFragment()
         }
 
+        binding.ivLessonAllFilter.setOnSafeClick {
+            showDateDialog()
+        }
+
         setActionRoleState(
             { binding.tvLessonAllContent.text = getAppString(R.string.calender_teach) },
             { binding.tvLessonAllContent.text = getAppString(R.string.calender_learn) }
         )
 
         addListener()
+    }
+
+    private fun showDateDialog() {
+        val dialog = DatePickerDialog(datePickerListener = {
+            val time = TimeUtils.getTimeByDay(it.timeInMillis)
+            setActionRoleState(
+                { viewModel.getLessonAll(time.first, time.second) },
+                { viewModel.getLessonAllStudent(time.first, time.second) }
+            )
+        }, dateType = DATE_TYPE.PASS)
+        dialog.show(childFragmentManager, TAG)
     }
 
     private fun addListener() {

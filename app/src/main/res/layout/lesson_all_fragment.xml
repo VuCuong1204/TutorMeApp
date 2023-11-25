@@ -31,6 +31,17 @@
                 android:textColor="@color/text6"
                 android:textSize="@dimen/fbase_text_size_18" />
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivLessonAllFilter"
+                android:layout_width="@dimen/fbase_dimen_36"
+                android:layout_height="@dimen/fbase_dimen_36"
+                android:layout_gravity="end"
+                android:layout_marginVertical="@dimen/fbase_dimen_10"
+                android:layout_marginEnd="@dimen/fbase_dimen_16"
+                android:background="@drawable/ripple_bg_white_corner_12"
+                android:padding="@dimen/fbase_dimen_10"
+                android:src="@drawable/ic_view_more_black" />
+
         </FrameLayout>
 
         <vn.tutorme.mobile.presenter.widget.collection.CollectionView

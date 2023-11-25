@@ -73,28 +73,11 @@
 
         </RelativeLayout>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvLessonEvaluateTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/rlLessonEvaluateInfo"
-            android:layout_marginStart="@dimen/fbase_dimen_16"
-            android:layout_marginTop="@dimen/fbase_dimen_10"
-            android:background="@drawable/ripple_bg_white_corner_14"
-            android:drawableEnd="@drawable/ic_arrow_black1_bottom"
-            android:drawablePadding="@dimen/fbase_dimen_16"
-            android:fontFamily="@font/font_worksans_semibold"
-            android:paddingHorizontal="@dimen/fbase_dimen_16"
-            android:paddingVertical="@dimen/fbase_dimen_12"
-            android:text="09/10/2023 - 16/10/2023"
-            android:textColor="@color/text1"
-            android:textSize="@dimen/fbase_text_size_14" />
-
         <vn.tutorme.mobile.presenter.widget.collection.CollectionView
             android:id="@+id/cvLessonEvaluateRoot"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/tvLessonEvaluateTime"
+            android:layout_below="@+id/rlLessonEvaluateInfo"
             android:layout_marginHorizontal="@dimen/fbase_dimen_16"
             android:layout_marginTop="@dimen/fbase_dimen_10"
             android:overScrollMode="never" />

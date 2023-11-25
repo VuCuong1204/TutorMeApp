@@ -35,7 +35,7 @@ data class MissionInfo(
     }
 
     fun getTimeWeek(): String {
-        return "${TimeUtils.convertTimeToDay(TimeUtils.getStartOfWeek())} - ${TimeUtils.convertTimeToDay(TimeUtils.getEndOfWeek())}}"
+        return "${TimeUtils.convertTimeToDay(TimeUtils.getStartOfWeek())} - ${TimeUtils.convertTimeToDay(TimeUtils.getEndOfWeek())}"
     }
 
     fun getHourBegin(): String {

@@ -155,13 +155,13 @@
             app:layout_constraintBottom_toBottomOf="@+id/tvLessonHomeClass"
             app:layout_constraintStart_toStartOf="@+id/tvLessonHomeLesson"
             app:layout_constraintTop_toTopOf="@id/tvLessonHomeClass"
-            tools:text="Khá" />
+            tools:text="Nâng cao" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvLessonHomeLesson"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/fbase_dimen_20"
+            android:layout_marginEnd="@dimen/fbase_dimen_24"
             android:drawableStart="@drawable/ic_lesson"
             android:drawablePadding="@dimen/fbase_dimen_6"
             android:fontFamily="@font/font_worksans_regular"

@@ -111,6 +111,7 @@
     <string name="gender">Giới tính</string>
     <string name="input_gender">Nhập giới tính</string>
     <string name="select_gender">Chọn giới tính</string>
+    <string name="select_week">Chọn thời gian</string>
     <string name="edit_profile_save">Lưu</string>
     <string name="male">Nam</string>
     <string name="female">Nữ</string>
@@ -279,4 +280,32 @@
     <string name="number_8">8</string>
     <string name="number_9">9</string>
     <string name="number_10">10</string>
+
+    <string name="time1">08:00:00</string>
+    <string name="time2">09:00:00</string>
+    <string name="time3">10:00:00</string>
+    <string name="time4">11:00:00</string>
+    <string name="time5">12:00:00</string>
+    <string name="time6">13:00:00</string>
+    <string name="time7">14:00:00</string>
+    <string name="time8">15:00:00</string>
+    <string name="time9">16:00:00</string>
+    <string name="time10">17:00:00</string>
+    <string name="time11">18:00:00</string>
+    <string name="time12">19:00:00</string>
+    <string name="time13">20:00:00</string>
+    <string name="time14">21:00:00</string>
+    <string name="time15">22:00:00</string>
+    <string name="time16">23:00:00</string>
+
+    <string name="monday">Thứ 2</string>
+    <string name="tuesday">Thứ 3</string>
+    <string name="wednesday">Thứ 4</string>
+    <string name="thursday">Thứ 5</string>
+    <string name="friday">Thứ 6</string>
+    <string name="saturday">Thứ 7</string>
+    <string name="sunday">Chủ nhật</string>
+    <string name="schedule">Thời khóa biểu</string>
+    <string name="between_time_week">%s - %s</string>
+
 </resources>

@@ -23,6 +23,7 @@ import vn.tutorme.mobile.presenter.home.HomeFragment
 import vn.tutorme.mobile.presenter.profile.changepassword.ChangePasswordFragment
 import vn.tutorme.mobile.presenter.profile.contact.ContactFragment
 import vn.tutorme.mobile.presenter.profile.infomation.InformationPersonFragment
+import vn.tutorme.mobile.presenter.profile.schedule.ScheduleFragment
 
 @AndroidEntryPoint
 class ProfileFragment : TutorMeFragment<ProfileFragmentBinding>(R.layout.profile_fragment) {
@@ -68,6 +69,10 @@ class ProfileFragment : TutorMeFragment<ProfileFragmentBinding>(R.layout.profile
 
                     PROFILE_TYPE.CHAT_TYPE -> {
                         replaceFragment(ChatUserFragment())
+                    }
+
+                    PROFILE_TYPE.SCHEDULE_TYPE -> {
+                        replaceFragment(ScheduleFragment())
                     }
 
                     PROFILE_TYPE.LOGOUT_TYPE -> {

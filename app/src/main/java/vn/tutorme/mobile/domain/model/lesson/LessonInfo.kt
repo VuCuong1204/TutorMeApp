@@ -14,7 +14,7 @@ data class LessonInfo(
     var classId: String? = null,
     var timeBegin: Long? = null,
     var timeBeginLesson: Long? = null,
-    var timeEnd: Long? = null,
+    var timeEndLesson: Long? = null,
     var status: LESSON_STATUS? = null,
     var nameClass: String? = null,
     var level: String? = null,
@@ -77,7 +77,7 @@ data class LessonInfo(
     }
 
     fun getHourEnd(): String {
-        return TimeUtils.convertTimeToHour(timeEnd ?: Extension.LONG_DEFAULT,
+        return TimeUtils.convertTimeToHour(timeEndLesson ?: Extension.LONG_DEFAULT,
             HOUR_MINUTE_FORMAT_V1)
     }
 
@@ -86,7 +86,7 @@ data class LessonInfo(
     }
 
     fun getDayEnd(): String {
-        return TimeUtils.convertTimeToDay(timeEnd ?: Extension.LONG_DEFAULT)
+        return TimeUtils.convertTimeToDay(timeEndLesson ?: Extension.LONG_DEFAULT)
     }
 }
 

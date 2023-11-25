@@ -100,10 +100,10 @@ class CollectionView(
         if (scrollListener?.isLoadMore == true) {
             hideLoadMore()
         }
+        baseAdapter?.setDataList(newList)
         if (newList.isNullOrEmpty()) {
             baseAdapter?.addEmpty()
         } else {
-            baseAdapter?.setDataList(newList)
             scrollListener?.isLoadMore = false
         }
     }

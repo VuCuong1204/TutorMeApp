@@ -86,7 +86,6 @@ object TimeUtils {
         val calendar = Calendar.getInstance()
         calendar.time = Date()
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY) // Thiết lập là chủ nhật
-        calendar.add(Calendar.WEEK_OF_YEAR, 1) // Chuyển đến tuần tiếp theo
         calendar.set(Calendar.HOUR_OF_DAY, 23)
         calendar.set(Calendar.MINUTE, 59)
         calendar.set(Calendar.SECOND, 59)
@@ -112,5 +111,45 @@ object TimeUtils {
 
     private fun dateToSeconds(date: Date): Long {
         return date.time / 1000
+    }
+
+    fun getTimeByDay(time: Long): Pair<Long, Long> {
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = time
+        calendar.set(Calendar.HOUR_OF_DAY, 0)
+        calendar.set(Calendar.MINUTE, 0)
+        calendar.set(Calendar.SECOND, 0)
+
+        val startTime = calendar.timeInMillis / 1000
+
+        calendar.set(Calendar.HOUR_OF_DAY, 23)
+        calendar.set(Calendar.MINUTE, 59)
+        calendar.set(Calendar.SECOND, 59)
+
+        val endTime = calendar.timeInMillis / 1000
+
+        return Pair(startTime, endTime)
+    }
+
+    fun getTimeMinute(value: Long): Int {
+        val date = Date(value * 1000)
+
+        // Sử dụng Calendar để lấy thông tin về giờ, phút và thứ trong tuần
+        val calendar = Calendar.getInstance()
+        calendar.time = date
+
+        // Lấy giờ và phút
+        val hour = calendar.get(Calendar.HOUR_OF_DAY)
+        val minute = calendar.get(Calendar.MINUTE)
+
+        return hour * 60 + minute
+    }
+
+    fun getRankInWeek(value: Long): Int {
+        val date = Date(value * 1000)
+        // Sử dụng Calendar để lấy thông tin về giờ, phút và thứ trong tuần
+        val calendar = Calendar.getInstance()
+        calendar.time = date
+        return calendar.get(Calendar.DAY_OF_WEEK)
     }
 }
