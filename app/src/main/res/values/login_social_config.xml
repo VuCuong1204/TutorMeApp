@@ -7,4 +7,6 @@
 
     <string name="sdk_key">r80UJNuRgCDOKEv_13fQ</string>
     <string name="sdk_secret">fSArB7UZxirO6g832RoUDqsHaV8zs0WC</string>
+
+    <string name="default_notification_channel_id">12042001</string>
 </resources>

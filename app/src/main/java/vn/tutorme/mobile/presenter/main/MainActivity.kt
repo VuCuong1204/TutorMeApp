@@ -1,6 +1,7 @@
 package vn.tutorme.mobile.presenter.main
 
 import android.Manifest
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -58,6 +59,7 @@ class MainActivity : TutorMeActivity<MainActivityBinding>(R.layout.main_activity
         setBottomMainState()
         setOnMainClick()
         setBottomBarType()
+        getDataIntent()
     }
 
     override fun getContainerId(): Int = R.id.flMainRoot
@@ -140,6 +142,13 @@ class MainActivity : TutorMeActivity<MainActivityBinding>(R.layout.main_activity
 
     override fun hideLoading() {
         binding.icMainLoading.gone()
+    }
+
+    private fun getDataIntent() {
+
+        val title = intent?.getStringExtra("userId")
+
+        Log.d("TAG", "onNewIntent: $title ")
     }
 
     private fun setFragmentDefault() {

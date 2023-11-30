@@ -85,6 +85,9 @@ dependencies {
     implementation("com.google.firebase:firebase-storage:19.1.0")
     implementation("com.google.firebase:firebase-database-ktx")
 
+    implementation(platform("com.google.firebase:firebase-bom:32.6.0"))
+    implementation("com.google.firebase:firebase-messaging")
+
     //facebook
     implementation("com.facebook.android:facebook-login:latest.release")
 

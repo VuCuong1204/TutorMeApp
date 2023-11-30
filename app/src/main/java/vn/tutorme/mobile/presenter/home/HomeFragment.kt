@@ -1,11 +1,14 @@
 package vn.tutorme.mobile.presenter.home
 
 import android.Manifest
+import android.util.Log
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.syntheticapp.presenter.widget.collection.LAYOUT_MANAGER
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -55,6 +58,7 @@ class HomeFragment : TutorMeFragment<HomeFragmentBinding>(R.layout.home_fragment
         addListener()
         requestPermission()
         getAccessTokenVideoCall()
+        getFcmToken()
         lifecycleScope.launch(Dispatchers.IO) {
             mainActivity.initVideoCall()
         }
@@ -234,5 +238,15 @@ class HomeFragment : TutorMeFragment<HomeFragmentBinding>(R.layout.home_fragment
 
     private fun removeListener() {
         homeAdapter.listenerHome = null
+    }
+
+    private fun getFcmToken() {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Log.d("TAG", "getFcmToken: ${task.result}")
+
+            }
+            Log.w("TAG", "Fetching FCM registration token failed", task.exception)
+        })
     }
 }
