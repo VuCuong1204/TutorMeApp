@@ -185,7 +185,7 @@
                 android:id="@+id/tvLessonDetailLesson"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/fbase_dimen_20"
+                android:layout_marginEnd="@dimen/fbase_dimen_26"
                 android:drawableStart="@drawable/ic_lesson"
                 android:drawablePadding="@dimen/fbase_dimen_6"
                 android:fontFamily="@font/font_worksans_regular"
@@ -194,7 +194,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/tvLessonDetailNumber"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tvLessonDetailNumber"
-                tools:text="Buổi 12" />
+                tools:text="Buổi 5" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

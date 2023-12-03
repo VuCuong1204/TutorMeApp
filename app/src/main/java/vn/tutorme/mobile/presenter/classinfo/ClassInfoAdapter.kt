@@ -66,7 +66,7 @@ class ClassInfoAdapter : TutorMeAdapter() {
         init {
             with(binding) {
                 tvInfoPencil.hide()
-                tvInfoLesson.hide()
+                tvInfoAdvanced.hide()
                 tvInfoTimeSlot.gone()
 
                 root.setOnSafeClick {
@@ -114,8 +114,8 @@ class ClassInfoAdapter : TutorMeAdapter() {
                     data.getNumberMember()
                 }
 
-                tvInfoAdvanced.setImageTextView(getAppDrawable(R.drawable.ic_clock))
-                tvInfoAdvanced.text = data.getTimeLearnHour()
+                tvInfoLesson.setImageTextView(getAppDrawable(R.drawable.ic_clock))
+                tvInfoLesson.text = data.getTimeLearnHour()
 
                 if (absoluteAdapterPosition == dataList.lastIndex) {
                     val params = clInfoRoot.layoutParams as ViewGroup.MarginLayoutParams

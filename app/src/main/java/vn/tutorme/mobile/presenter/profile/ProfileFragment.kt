@@ -109,6 +109,7 @@ class ProfileFragment : TutorMeFragment<ProfileFragmentBinding>(R.layout.profile
             clTextLeft = getAppColor(R.color.white)
             clTextRight = getAppColor(R.color.text1)
             eventLeftClick {
+
                 AppPreferences.userInfo = null
                 mainViewModel.indexFragmentInBackStack = 0
                 mainActivity.unregisterDeviceForNotification()

@@ -5,9 +5,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clLessonHomeRoot"
-        android:layout_width="@dimen/fbase_dimen_374"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/fbase_dimen_12"
+        android:layout_marginEnd="@dimen/fbase_dimen_30"
         android:background="@drawable/ripple_bg_white_corner_12"
         android:paddingHorizontal="@dimen/fbase_dimen_16"
         android:paddingVertical="@dimen/fbase_dimen_16">
@@ -126,7 +126,7 @@
             android:textSize="@dimen/fbase_text_size_14"
             app:layout_constraintStart_toEndOf="@id/rlLessonHomeLeft"
             app:layout_constraintTop_toBottomOf="@id/tvLessonHomeState"
-            tools:text="Lớp 2 - Khá" />
+            tools:text="Toán - Lớp 9" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvLessonHomeNumber"
@@ -161,7 +161,7 @@
             android:id="@+id/tvLessonHomeLesson"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/fbase_dimen_24"
+            android:layout_marginEnd="@dimen/fbase_dimen_30"
             android:drawableStart="@drawable/ic_lesson"
             android:drawablePadding="@dimen/fbase_dimen_6"
             android:fontFamily="@font/font_worksans_regular"

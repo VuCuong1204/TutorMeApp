@@ -145,11 +145,12 @@
                 android:drawableStart="@drawable/ic_id_card"
                 android:drawablePadding="@dimen/fbase_dimen_6"
                 android:fontFamily="@font/font_worksans_regular"
+                android:maxWidth="@dimen/fbase_dimen_180"
                 android:textColor="@color/text1"
                 android:textSize="@dimen/fbase_text_size_14"
                 app:layout_constraintStart_toEndOf="@id/rlInfoLeft"
                 app:layout_constraintTop_toBottomOf="@id/tvInfoState"
-                tools:text="Lớp 2 - Khá" />
+                tools:text="Toán - Lớp 12" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvInfoNumber"
@@ -172,15 +173,13 @@
                 android:id="@+id/tvInfoAdvanced"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/fbase_dimen_10"
-                android:layout_marginEnd="@dimen/fbase_dimen_36"
                 android:drawableStart="@drawable/ic_advanced"
                 android:drawablePadding="@dimen/fbase_dimen_6"
                 android:fontFamily="@font/font_worksans_regular"
                 android:textColor="@color/text1"
                 android:textSize="@dimen/fbase_text_size_14"
                 app:layout_constraintBottom_toBottomOf="@+id/tvInfoClass"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvInfoLesson"
                 app:layout_constraintTop_toTopOf="@id/tvInfoClass"
                 tools:text="Nâng cao" />
 
@@ -188,13 +187,14 @@
                 android:id="@+id/tvInfoLesson"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/fbase_dimen_30"
                 android:drawableStart="@drawable/ic_lesson"
                 android:drawablePadding="@dimen/fbase_dimen_6"
                 android:fontFamily="@font/font_worksans_regular"
                 android:textColor="@color/text1"
                 android:textSize="@dimen/fbase_text_size_14"
                 app:layout_constraintBottom_toBottomOf="@+id/tvInfoNumber"
-                app:layout_constraintStart_toStartOf="@+id/tvInfoAdvanced"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tvInfoNumber"
                 tools:text="Buổi 12" />
 

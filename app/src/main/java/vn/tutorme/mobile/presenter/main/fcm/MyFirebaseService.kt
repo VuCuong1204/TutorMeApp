@@ -29,7 +29,7 @@ import vn.tutorme.mobile.utils.TimeUtils
 class MyFirebaseService : FirebaseMessagingService() {
 
     companion object {
-        const val CHANNEL_ID = "TUTOR ME1"
+        const val CHANNEL_ID = "NOTIFICATION_ID_VER_1"
     }
 
     override fun onNewToken(token: String) {
@@ -86,7 +86,7 @@ class MyFirebaseService : FirebaseMessagingService() {
             PendingIntent.FLAG_UPDATE_CURRENT
         )
 
-        val defaultSoundUri = Uri.parse("android.resources://" + packageName + "/" + R.raw.notification_tutor_me)
+        val defaultSoundUri = Uri.parse("android.resource://${packageName}/${R.raw.sound_notify}")
 
         val notificationBuilder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_notification_1)

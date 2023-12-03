@@ -42,7 +42,7 @@ data class CourseInfo(
     }
 
     fun getTimeExpired(): String {
-        return TimeUtils.convertTimeToDay(dateEnd ?: Extension.LONG_DEFAULT)
+        return TimeUtils.convertTimeToDay(createTime ?: Extension.LONG_DEFAULT)
     }
 
     fun getCountPeopleRegister(): String {

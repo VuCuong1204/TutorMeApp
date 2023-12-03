@@ -10,8 +10,10 @@ import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
 import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.R
+import vn.tutorme.mobile.base.common.CountNotifyEvent
 import vn.tutorme.mobile.base.common.IViewListener
 import vn.tutorme.mobile.base.common.anim.FadeAnim
+import vn.tutorme.mobile.base.common.eventbus.EventBusManager
 import vn.tutorme.mobile.base.extension.getAppString
 import vn.tutorme.mobile.base.extension.handleUiState
 import vn.tutorme.mobile.base.extension.isEmailValid
@@ -52,6 +54,7 @@ class RegisterFragment : TutorMeFragment<RegisterFragmentBinding>(R.layout.regis
             viewModel.userInfoState.collect {
                 handleUiState(it, object : IViewListener {
                     override fun onSuccess() {
+                        EventBusManager.instance?.postPending(CountNotifyEvent())
                         mainActivity.registerDeviceForNotification()
                         clearBackStackFragment()
                         replaceFragment(

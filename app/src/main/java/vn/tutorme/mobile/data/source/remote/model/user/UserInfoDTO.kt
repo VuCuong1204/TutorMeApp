@@ -28,6 +28,10 @@ data class UserInfoDTO(
     @Expose
     var gender: Int? = null,
 
+    @SerializedName("avatar")
+    @Expose
+    var avatar: String? = null,
+
     @SerializedName("phoneNumber")
     @Expose
     var phoneNumber: Long? = null,

@@ -23,6 +23,8 @@ data class LessonInfo(
     var lessonSession: Int? = null,
     var type: LESSON_TYPE? = null,
     var countAssessment: Int? = null,
+    var idTeacher: String? = null,
+    var avatarTeacher: String? = null,
     var nameTeacher: String? = null,
     var emailTeacher: String? = null,
     var phoneNumberTeacher: Long? = null,
