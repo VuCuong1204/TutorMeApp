@@ -9,6 +9,7 @@ import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
 import vn.tutorme.mobile.AppPreferences
@@ -37,10 +38,15 @@ import vn.tutorme.mobile.presenter.widget.textfield.INPUT_TYPE
 @AndroidEntryPoint
 class LoginFragment : TutorMeFragment<LoginFragmentBinding>(R.layout.login_fragment) {
 
+    companion object {
+        const val TOKEN_DEVICE_NOTIFICATION = "TokenDeviceNotification"
+    }
+
     private val viewModel by viewModels<LoginViewModel>()
 
     private var facebookLogin: FacebookLogin? = null
     private var googleLogin: GoogleLogin? = null
+    private lateinit var myRef: DatabaseReference
 
     private lateinit var auth: FirebaseAuth
 
@@ -59,6 +65,7 @@ class LoginFragment : TutorMeFragment<LoginFragmentBinding>(R.layout.login_fragm
             viewModel.userInfoState.collect {
                 handleUiState(it, object : IViewListener {
                     override fun onSuccess() {
+                        mainActivity.registerDeviceForNotification()
                         clearBackStackFragment()
                         replaceFragment(
                             fragment = HomeFragment(),

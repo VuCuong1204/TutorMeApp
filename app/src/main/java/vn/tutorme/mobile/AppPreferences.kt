@@ -32,6 +32,7 @@ object AppPreferences {
     private val SAVE_TOKEN_KEY = Pair("SAVE_TOKEN_KEY", "")
     private val SAVE_CHECK_INFO_KEY = Pair("SAVE_CHECK_INFO_KEY", false)
     private val SAVE_USER_INFO_KEY = Pair("SAVE_USER_INFO_KEY", "")
+    private val SAVE_DEVICE_ID_KEY = Pair("SAVE_DEVICE_ID_KEY", "")
 
     var userNameAccount: String?
         get() = preferences.getString(SAVE_NAME_USER_KEY.first, SAVE_NAME_USER_KEY.second)
@@ -63,5 +64,11 @@ object AppPreferences {
         )
         set(value) = preferences.edit {
             it.putString(SAVE_USER_INFO_KEY.first, gson.toJson(value))
+        }
+
+    var deviceId: String?
+        get() = preferences.getString(SAVE_DEVICE_ID_KEY.first, SAVE_DEVICE_ID_KEY.second)
+        set(value) = preferences.edit {
+            it.putString(SAVE_DEVICE_ID_KEY.first, value)
         }
 }

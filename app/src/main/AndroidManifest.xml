@@ -37,6 +37,7 @@
         <activity
             android:name=".presenter.main.MainActivity"
             android:exported="true"
+            android:launchMode="singleTask"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -76,7 +77,8 @@
 
         <service
             android:name="vn.tutorme.mobile.presenter.main.fcm.MyFirebaseService"
-            android:exported="false">
+            android:enabled="true"
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
@@ -84,11 +86,11 @@
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_splash" />
+            android:resource="@drawable/ic_notification_1" />
 
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/black" />
+        <!--        <meta-data-->
+        <!--            android:name="com.google.firebase.messaging.default_notification_color"-->
+        <!--            android:resource="@color/black" />-->
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"

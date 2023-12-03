@@ -1,22 +1,24 @@
 package vn.tutorme.mobile.presenter.home
 
 import android.Manifest
-import android.util.Log
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.syntheticapp.presenter.widget.collection.LAYOUT_MANAGER
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.BaseActivity
 import vn.tutorme.mobile.base.common.IViewListener
+import vn.tutorme.mobile.base.common.NavigateLessonInfo
 import vn.tutorme.mobile.base.common.anim.SlideAnimation
+import vn.tutorme.mobile.base.common.eventbus.EventBusManager
+import vn.tutorme.mobile.base.common.eventbus.IEvent
 import vn.tutorme.mobile.base.extension.Extension.STRING_DEFAULT
 import vn.tutorme.mobile.base.extension.coroutinesLaunch
 import vn.tutorme.mobile.base.extension.getAppColor
@@ -58,9 +60,36 @@ class HomeFragment : TutorMeFragment<HomeFragmentBinding>(R.layout.home_fragment
         addListener()
         requestPermission()
         getAccessTokenVideoCall()
-        getFcmToken()
         lifecycleScope.launch(Dispatchers.IO) {
             mainActivity.initVideoCall()
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        EventBusManager.instance?.register(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        EventBusManager.instance?.unregister(this)
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    override fun onEvent(event: IEvent) {
+        super.onEvent(event)
+        when (event) {
+            is NavigateLessonInfo -> {
+                replaceFragment(
+                    fragment = LessonDetailFragment(),
+                    bundle = bundleOf(
+                        LessonDetailFragment.LESSON_ID_KEY to event.lessonId,
+                        LessonDetailFragment.CLASS_ID_KEY to event.classId
+                    ),
+                    screenAnim = SlideAnimation()
+                )
+                EventBusManager.instance?.removeSticky(event)
+            }
         }
     }
 
@@ -238,15 +267,5 @@ class HomeFragment : TutorMeFragment<HomeFragmentBinding>(R.layout.home_fragment
 
     private fun removeListener() {
         homeAdapter.listenerHome = null
-    }
-
-    private fun getFcmToken() {
-        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
-            if (task.isSuccessful) {
-                Log.d("TAG", "getFcmToken: ${task.result}")
-
-            }
-            Log.w("TAG", "Fetching FCM registration token failed", task.exception)
-        })
     }
 }

@@ -13,7 +13,8 @@ data class NotificationInfo(
     var notifyType: NOTIFICATION_TYPE? = null,
     var timeSend: Long? = null,
     var userId: String? = null,
-    var isLastIndex: Boolean? = null
+    var isLastIndex: Boolean? = null,
+    var refInfo: RefInfo? = null
 ) : IParcelable {
 
     fun getTime(): String {

@@ -5,6 +5,7 @@ import vn.tutorme.mobile.data.source.remote.model.notification.NotificationInfoD
 import vn.tutorme.mobile.domain.model.notification.NOTIFICATION_STATE
 import vn.tutorme.mobile.domain.model.notification.NOTIFICATION_TYPE
 import vn.tutorme.mobile.domain.model.notification.NotificationInfo
+import vn.tutorme.mobile.domain.model.notification.RefInfo
 
 class NotificationInfoDTOConvertToNotificationInfo : IConverter<List<NotificationInfoDTO>, List<NotificationInfo>> {
     override fun convert(source: List<NotificationInfoDTO>): List<NotificationInfo> {
@@ -16,7 +17,11 @@ class NotificationInfoDTOConvertToNotificationInfo : IConverter<List<Notificatio
                 content = it.content,
                 notifyState = NOTIFICATION_STATE.valueOfName(it.notifyState),
                 notifyType = NOTIFICATION_TYPE.valueOfName(it.notifyType),
-                timeSend = it.timeSend
+                timeSend = it.timeSend,
+                refInfo = RefInfo(
+                    it.refInfo?.lessonId,
+                    it.refInfo?.classId
+                )
             ))
         }
 

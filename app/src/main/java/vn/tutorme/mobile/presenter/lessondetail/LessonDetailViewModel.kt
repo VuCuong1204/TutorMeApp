@@ -2,6 +2,7 @@ package vn.tutorme.mobile.presenter.lessondetail
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
+import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -16,16 +17,18 @@ import vn.tutorme.mobile.base.extension.failure
 import vn.tutorme.mobile.base.extension.loading
 import vn.tutorme.mobile.base.extension.onException
 import vn.tutorme.mobile.base.extension.success
-import vn.tutorme.mobile.domain.model.authen.mockDataUserInfo
+import vn.tutorme.mobile.domain.model.authen.UserInfo
 import vn.tutorme.mobile.domain.model.detectinfo.DetectInfo
 import vn.tutorme.mobile.domain.model.lesson.LESSON_STATUS
 import vn.tutorme.mobile.domain.model.lesson.LessonInfo
+import vn.tutorme.mobile.domain.model.notification.DeviceInfo
 import vn.tutorme.mobile.domain.usecase.lesson.AttendanceStudentUseCase
 import vn.tutorme.mobile.domain.usecase.lesson.FeedBackLessonUseCase
 import vn.tutorme.mobile.domain.usecase.lesson.GetFeedbackListUseCase
 import vn.tutorme.mobile.domain.usecase.lesson.GetLessonDetailUseCase
 import vn.tutorme.mobile.domain.usecase.lesson.GetStudentInLessonUseCase
 import vn.tutorme.mobile.domain.usecase.lesson.UpdateStateLessonUseCase
+import vn.tutorme.mobile.domain.usecase.notification.SendNotificationBeginLessonUseCase
 import vn.tutorme.mobile.domain.usecase.tensorflow.SendFaceDetectImageUseCase
 import vn.tutorme.mobile.presenter.lessondetail.LessonDetailFragment.Companion.CLASS_ID_KEY
 import vn.tutorme.mobile.presenter.lessondetail.LessonDetailFragment.Companion.LESSON_ID_KEY
@@ -43,6 +46,7 @@ class LessonDetailViewModel @Inject constructor(
     private val attendanceStudentUseCase: AttendanceStudentUseCase,
     private val getStudentInLessonUseCase: GetStudentInLessonUseCase,
     private val sendFaceDetectImageUseCase: SendFaceDetectImageUseCase,
+    private val sendNotificationBeginLessonUseCase: SendNotificationBeginLessonUseCase,
     savedStateHandle: SavedStateHandle
 ) : BaseViewModel() {
 
@@ -61,10 +65,13 @@ class LessonDetailViewModel @Inject constructor(
     private val _detectInfoState = MutableStateFlow(FlowResult.newInstance<DetectInfo>())
     val detectInfoState = _detectInfoState.asStateFlow()
 
+    private val _notificationState = MutableStateFlow(FlowResult.newInstance<Boolean>())
+    val notificationState = _notificationState.asStateFlow()
+
     var lessonId = savedStateHandle.get<Int>(LESSON_ID_KEY) ?: INT_DEFAULT
     var classId = savedStateHandle.get<String>(CLASS_ID_KEY) ?: STRING_DEFAULT
     var lessonInfo: LessonInfo? = null
-    private var studentInfoLesson = mockDataUserInfo()
+    private var studentInfoLesson = mutableListOf<UserInfo>()
     var zoomRoomInfo: ZoomRoomInfo? = null
 
     init {
@@ -104,7 +111,7 @@ class LessonDetailViewModel @Inject constructor(
                     _studentInfoLessonState.failure(it)
                 }
                 .collect {
-                    studentInfoLesson = it
+                    studentInfoLesson = it.toMutableList()
                     val dataList = mutableListOf<Any>()
                     val userInfo = studentInfoLesson.find { it.userId == AppPreferences.userInfo?.userId }
                         ?: AppPreferences.userInfo
@@ -208,6 +215,41 @@ class LessonDetailViewModel @Inject constructor(
                 }
                 .collect {
                     _feedbackListState.success(it)
+                }
+        }
+    }
+
+    fun sendNotificationToUser(
+        dataList: List<DeviceInfo>,
+        lessonId: String,
+        classId: String,
+        title: String,
+        body: String
+    ) {
+        viewModelScope.launch {
+            val deviceIdList = mutableListOf<String>()
+            studentInfoLesson.forEach { userInfo ->
+                for (deviceInfo in dataList.iterator()) {
+                    if (userInfo.userId == deviceInfo.userId) {
+                        deviceInfo.deviceId?.let { deviceIdList.add(it) }
+                        break
+                    }
+                }
+            }
+
+            val gson = Gson()
+            val jsonDeviceIdString = gson.toJson(deviceIdList)
+
+            val rv = SendNotificationBeginLessonUseCase.SendNotificationBeginLessonRV(
+                jsonDeviceIdString, lessonId, classId, title, body
+            )
+
+            sendNotificationBeginLessonUseCase.invoke(rv)
+                .onException {
+                    _notificationState.failure(it)
+                }
+                .collect {
+                    _notificationState.success(it)
                 }
         }
     }

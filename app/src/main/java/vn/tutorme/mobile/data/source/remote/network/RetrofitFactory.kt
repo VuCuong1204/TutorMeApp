@@ -11,6 +11,7 @@ object RetrofitFactory {
     private const val LOCATION = "LOCATION"
     private const val STRINGEE = "STRINGEE"
     private const val TENSERFLOW = "TENSERFLOW"
+    private const val NOTICATION = "NOTICATION"
 
     private val builderMap = ConcurrentHashMap<String, RetrofitBuilderInfo>()
 
@@ -72,6 +73,22 @@ object RetrofitFactory {
                 Log.d(TAG, "Create new domain retrofit builder for $TENSERFLOW")
             }
             Log.e(TAG, "Reuse domain retrofit builder for $TENSERFLOW")
+            val serviceApi = builderInfo.builder?.build()?.create(service)
+
+            return serviceApi ?: throw ApiException(ApiException.CREATE_INSTANCE_SERVICE_ERROR)
+        }
+    }
+
+    fun <T> createNotificationService(service: Class<T>): T {
+        synchronized(RetrofitBuilderInfo::class.java) {
+            var builderInfo = builderMap[NOTICATION]
+            if (builderInfo == null) {
+                builderInfo = RetrofitBuilderInfo()
+                builderInfo.builder = NotificationRetrofitConfig().getRetrofitBuilder()
+                builderMap[NOTICATION] = builderInfo
+                Log.d(TAG, "Create new domain retrofit builder for $NOTICATION")
+            }
+            Log.e(TAG, "Reuse domain retrofit builder for $NOTICATION")
             val serviceApi = builderInfo.builder?.build()?.create(service)
 
             return serviceApi ?: throw ApiException(ApiException.CREATE_INSTANCE_SERVICE_ERROR)

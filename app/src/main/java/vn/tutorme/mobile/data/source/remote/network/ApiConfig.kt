@@ -5,6 +5,7 @@ object ApiConfig {
     val LOCATION_URL = BuildConfig.LOCATION_DOMAIN
     val STRINGEE_URL = BuildConfig.STRINGEE_DOMAIN
     val TENSORFLOW_URL = BuildConfig.TENSORFLOW_DOMAIN
+    val NOTIFICATION_URL = BuildConfig.NOTIFICATION_DOMAIN
 
     object HeaderName {
         const val CONTENT_TYPE = "Content-Type"

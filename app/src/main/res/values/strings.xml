@@ -268,6 +268,9 @@
     <string name="medium_type">Trung bình</string>
     <string name="weak">Yếu</string>
     <string name="least">Kém</string>
+    <string name="begin_lesson_success">Đã bắt đầu buổi học thành công!</string>
+    <string name="begin_lesson_error">Đã có lỗi xảy ra, vui lòng bắt đầu lại</string>
+    <string name="begin_lesson">Buổi học đã bắt đầu, tham gia ngay thôi!</string>
 
     <string name="number_0">0</string>
     <string name="number_1">1</string>

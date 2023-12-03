@@ -30,5 +30,9 @@ data class NotificationInfoDTO(
 
     @SerializedName("userId")
     @Expose
-    var userId: String? = null
+    var userId: String? = null,
+
+    @SerializedName("refInfo")
+    @Expose
+    var refInfo: RefInfoDTO? = null
 )

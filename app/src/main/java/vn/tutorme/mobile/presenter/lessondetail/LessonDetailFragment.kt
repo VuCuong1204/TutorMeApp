@@ -34,6 +34,8 @@ import vn.tutorme.mobile.domain.model.authen.UserInfo
 import vn.tutorme.mobile.domain.model.feedback.FeedBackInfo
 import vn.tutorme.mobile.domain.model.lesson.LESSON_STATUS
 import vn.tutorme.mobile.domain.model.lesson.LessonInfo
+import vn.tutorme.mobile.domain.model.notification.DeviceInfo
+import vn.tutorme.mobile.presenter.authen.login.LoginFragment
 import vn.tutorme.mobile.presenter.dialog.InputFeedBackDialog
 import vn.tutorme.mobile.presenter.dialog.InputRoomInfoDialog
 import vn.tutorme.mobile.presenter.dialog.bottomsheetchat.BottomSheetChatDialog
@@ -59,6 +61,7 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
     private lateinit var myRef: DatabaseReference
     private lateinit var postListener: ValueEventListener
     private lateinit var inputFeedBackDialog: InputFeedBackDialog
+    private val deviceIdList = mutableListOf<DeviceInfo>()
 
     private var isShowViewMore = false
 
@@ -67,6 +70,7 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
         addHeader()
         addAdapter()
         addRoomStateListenerEvent()
+        getDeviceId()
     }
 
     override fun onStart() {
@@ -167,6 +171,18 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
                     showSuccess(getAppString(R.string.detect_success))
                 }
             }, canShowLoading = true)
+        }
+
+        coroutinesLaunch(viewModel.notificationState) {
+            handleUiState(it, object : IViewListener {
+                override fun onFailure() {
+                    showError(getAppString(R.string.begin_lesson_error))
+                }
+
+                override fun onSuccess() {
+                    showSuccess(getAppString(R.string.begin_lesson_success))
+                }
+            }, canShowError = false)
         }
     }
 
@@ -369,11 +385,38 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
 
 
     private fun sendZoomRoomInfoListenerEvent(zoomRoomInfo: ZoomRoomInfo) {
-        viewModel.lessonInfo?.let {
-            myRef.child(it.toString()).setValue(zoomRoomInfo)
+        viewModel.lessonInfo?.let { lessonInfo ->
+            myRef.child(lessonInfo.toString()).setValue(zoomRoomInfo)
+                .addOnSuccessListener {
+                    val body = lessonInfo.nameClass + "-" + lessonInfo.level + "-" + lessonInfo.lessonSession + "-" + lessonInfo.nameTeacher
+                    viewModel.sendNotificationToUser(
+                        deviceIdList.toList(),
+                        lessonInfo.lessonId.toString(),
+                        lessonInfo.classId.toString(),
+                        getAppString(R.string.begin_lesson),
+                        body
+                    )
+                }
                 .addOnFailureListener {
                     showError(getAppString(R.string.send_zoom_info_error))
                 }
         }
+    }
+
+    private fun getDeviceId() {
+        FirebaseDatabase.getInstance().getReference(LoginFragment.TOKEN_DEVICE_NOTIFICATION)
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    deviceIdList.clear()
+                    for (childSnapshot in dataSnapshot.children) {
+                        val itemValue = childSnapshot.getValue(DeviceInfo::class.java)
+                        if (itemValue != null) {
+                            deviceIdList.add(itemValue)
+                        }
+                    }
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {}
+            })
     }
 }

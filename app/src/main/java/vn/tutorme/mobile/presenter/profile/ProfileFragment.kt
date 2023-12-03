@@ -111,6 +111,7 @@ class ProfileFragment : TutorMeFragment<ProfileFragmentBinding>(R.layout.profile
             eventLeftClick {
                 AppPreferences.userInfo = null
                 mainViewModel.indexFragmentInBackStack = 0
+                mainActivity.unregisterDeviceForNotification()
                 Firebase.auth.signOut()
                 clearBackStackFragment()
                 replaceFragment(fragment = LoginFragment(),

@@ -1,12 +1,14 @@
 package vn.tutorme.mobile.presenter.main
 
 import android.Manifest
+import android.content.Intent
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.messaging.FirebaseMessaging
 import com.stringee.StringeeClient
 import com.stringee.call.StringeeCall
 import com.stringee.call.StringeeCall2
@@ -22,18 +24,26 @@ import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.common.CountNotifyEvent
 import vn.tutorme.mobile.base.common.IViewListener
+import vn.tutorme.mobile.base.common.InsertNotificationState
+import vn.tutorme.mobile.base.common.NavigateLessonInfo
 import vn.tutorme.mobile.base.common.SendVideoCallState
+import vn.tutorme.mobile.base.common.anim.SlideAnimation
 import vn.tutorme.mobile.base.common.eventbus.EventBusManager
 import vn.tutorme.mobile.base.common.eventbus.IEvent
 import vn.tutorme.mobile.base.extension.coroutinesLaunch
 import vn.tutorme.mobile.base.extension.getAppString
 import vn.tutorme.mobile.base.extension.gone
 import vn.tutorme.mobile.base.extension.handleUiState
+import vn.tutorme.mobile.base.extension.isLogin
 import vn.tutorme.mobile.base.extension.show
 import vn.tutorme.mobile.base.screen.TutorMeActivity
 import vn.tutorme.mobile.databinding.MainActivityBinding
 import vn.tutorme.mobile.domain.model.authen.ROLE_TYPE
 import vn.tutorme.mobile.domain.model.chat.video.VideoCallInfo
+import vn.tutorme.mobile.domain.model.notification.DeviceInfo
+import vn.tutorme.mobile.domain.model.notification.NOTIFICATION_STATE
+import vn.tutorme.mobile.domain.model.notification.NOTIFICATION_TYPE
+import vn.tutorme.mobile.presenter.authen.login.LoginFragment
 import vn.tutorme.mobile.presenter.chat.videocall.CALL_VIDEO_STATE
 import vn.tutorme.mobile.presenter.chat.videocall.VideoCallFragment
 import vn.tutorme.mobile.presenter.classmanager.ClassManagerFragment
@@ -43,6 +53,7 @@ import vn.tutorme.mobile.presenter.notification.NotificationFragment
 import vn.tutorme.mobile.presenter.profile.ProfileFragment
 import vn.tutorme.mobile.presenter.splash.SplashFragment
 import vn.tutorme.mobile.presenter.widget.bottombarview.SELECTED_STATE
+import vn.tutorme.mobile.utils.TimeUtils
 
 @AndroidEntryPoint
 class MainActivity : TutorMeActivity<MainActivityBinding>(R.layout.main_activity) {
@@ -60,6 +71,7 @@ class MainActivity : TutorMeActivity<MainActivityBinding>(R.layout.main_activity
         setOnMainClick()
         setBottomBarType()
         getDataIntent()
+        getFcmToken()
     }
 
     override fun getContainerId(): Int = R.id.flMainRoot
@@ -83,7 +95,7 @@ class MainActivity : TutorMeActivity<MainActivityBinding>(R.layout.main_activity
         super.onEvent(event)
         when (event) {
             is CountNotifyEvent -> {
-//                viewModel.getNotificationInfoList()
+                viewModel.getCountNotificationUnreadList()
                 EventBusManager.instance?.removeSticky(event)
             }
 
@@ -104,6 +116,20 @@ class MainActivity : TutorMeActivity<MainActivityBinding>(R.layout.main_activity
 
                 EventBusManager.instance?.removeSticky(event)
             }
+
+            is InsertNotificationState -> {
+                viewModel.insertNotification(
+                    event.notificationInfo.title,
+                    event.notificationInfo.content,
+                    event.notificationInfo.notifyState,
+                    event.notificationInfo.notifyType,
+                    event.notificationInfo.timeSend,
+                    event.notificationInfo.userId,
+                    event.notificationInfo.refInfo?.lessonId,
+                    event.notificationInfo.refInfo?.classId,
+                )
+                EventBusManager.instance?.removeSticky(event)
+            }
         }
     }
 
@@ -114,7 +140,7 @@ class MainActivity : TutorMeActivity<MainActivityBinding>(R.layout.main_activity
                 override fun onSuccess() {
                     it.data?.let { count -> binding.bmvMainTab.setCountNotification(count) }
                 }
-            })
+            }, canShowError = false)
         }
 
         coroutinesLaunch(viewModel.tokenVideoCallState) {
@@ -138,17 +164,61 @@ class MainActivity : TutorMeActivity<MainActivityBinding>(R.layout.main_activity
                 }
             })
         }
+
+        coroutinesLaunch(viewModel.insertNotificationState) {
+            handleUiState(it, object : IViewListener {
+                override fun onSuccess() {
+                    viewModel.getCountNotificationUnreadList()
+                }
+            }, canShowError = false)
+        }
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        replaceFragment(
+            fragment = HomeFragment(),
+            screenAnim = SlideAnimation(),
+            bundle = null
+        )
+        lifecycleScope.launch {
+            delay(1000L)
+            getDataIntent(intentSingleTask = intent, insertNotifyState = false)
+        }
     }
 
     override fun hideLoading() {
         binding.icMainLoading.gone()
     }
 
-    private fun getDataIntent() {
+    private fun getDataIntent(intentSingleTask: Intent? = null, insertNotifyState: Boolean = true) {
+        val intent = intentSingleTask ?: intent
+        val title = intent?.getStringExtra("title")
+        val body = intent?.getStringExtra("body")
+        val lessonId = intent?.getStringExtra("lessonId")
+        val classId = intent?.getStringExtra("classId")
+        val notificationType = NOTIFICATION_TYPE.valueOfName(intent?.getStringExtra("notificationType")?.toInt())
+        Log.d("TAG", "getDataIntent: $title $body $lessonId $classId")
+        if (isLogin() && title != null
+            && body != null
+            && lessonId != null
+            && classId != null
+        ) {
+            if (insertNotifyState) {
+                viewModel.insertNotification(
+                    title = title,
+                    content = body,
+                    notifyState = NOTIFICATION_STATE.READ_STATE,
+                    notifyType = notificationType,
+                    timeSend = TimeUtils.getTimeCurrent(),
+                    userId = AppPreferences.userInfo?.userId,
+                    lessonId = lessonId.toInt(),
+                    classId = classId
+                )
+            }
 
-        val title = intent?.getStringExtra("userId")
-
-        Log.d("TAG", "onNewIntent: $title ")
+            EventBusManager.instance?.postPending(NavigateLessonInfo(lessonId.toInt(), classId))
+        }
     }
 
     private fun setFragmentDefault() {
@@ -300,5 +370,43 @@ class MainActivity : TutorMeActivity<MainActivityBinding>(R.layout.main_activity
             }
         }
         confirmVideoDialog?.show(supportFragmentManager, ConfirmVideoDialog::class.simpleName)
+    }
+
+    private fun getFcmToken() {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Log.d("TAG", "getFcmToken: ${task.result}")
+                AppPreferences.deviceId = task.result
+            }
+        }
+    }
+
+    fun registerDeviceForNotification() {
+        val deviceId: String? = AppPreferences.deviceId
+        val userId: String? = AppPreferences.userInfo?.userId
+        if (deviceId != null && userId != null) {
+            FirebaseDatabase.getInstance()
+                .getReference(LoginFragment.TOKEN_DEVICE_NOTIFICATION)
+                .child(deviceId)
+                .removeValue()
+
+            FirebaseDatabase.getInstance()
+                .getReference(LoginFragment.TOKEN_DEVICE_NOTIFICATION)
+                .child(deviceId)
+                .setValue(
+                    DeviceInfo(deviceId, userId)
+                )
+        }
+    }
+
+    fun unregisterDeviceForNotification() {
+        val deviceId: String? = AppPreferences.deviceId
+        val userId: String? = AppPreferences.userInfo?.userId
+        if (deviceId != null && userId != null) {
+            FirebaseDatabase.getInstance()
+                .getReference(LoginFragment.TOKEN_DEVICE_NOTIFICATION)
+                .child(deviceId)
+                .removeValue()
+        }
     }
 }

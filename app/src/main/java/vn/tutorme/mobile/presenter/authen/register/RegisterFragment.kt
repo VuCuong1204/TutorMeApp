@@ -52,6 +52,7 @@ class RegisterFragment : TutorMeFragment<RegisterFragmentBinding>(R.layout.regis
             viewModel.userInfoState.collect {
                 handleUiState(it, object : IViewListener {
                     override fun onSuccess() {
+                        mainActivity.registerDeviceForNotification()
                         clearBackStackFragment()
                         replaceFragment(
                             fragment = HomeFragment(),
