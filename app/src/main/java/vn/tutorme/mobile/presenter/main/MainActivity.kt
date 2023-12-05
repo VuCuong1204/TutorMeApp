@@ -162,7 +162,7 @@ class MainActivity : TutorMeActivity<MainActivityBinding>(R.layout.main_activity
                             .setValue(videoCallInfo)
                     }
                 }
-            })
+            }, canShowError = false)
         }
 
         coroutinesLaunch(viewModel.insertNotificationState) {

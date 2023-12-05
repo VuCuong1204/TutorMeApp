@@ -100,6 +100,9 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch {
             val rv = GetAccessTokenVideoUseCase.GetAccessTokenVideoRV(userId)
             getAccessTokenVideoUseCase.invoke(rv)
+                .onException {
+                    _tokenVideoCallState.failure(it)
+                }
                 .collect {
                     _tokenVideoCallState.success(it)
                 }
