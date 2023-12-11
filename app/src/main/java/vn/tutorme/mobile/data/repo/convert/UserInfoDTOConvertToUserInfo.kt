@@ -19,6 +19,7 @@ class UserInfoDTOConvertToUserInfo : IConverter<UserInfoDTO, UserInfo> {
             nameSchool = source.nameSchool,
             gender = GENDER_TYPE.valuesOfName(source.gender) ?: GENDER_TYPE.OTHER,
             phoneNumber = source.phoneNumber,
+            avatar = source.avatar,
             role = ROLE_TYPE.valuesOfName(source.role) ?: ROLE_TYPE.STUDENT_TYPE,
             attendanceState = ATTENDANCE_STATE.valuesOfName(source.stateAttendance),
             evaluateState = EVALUATE_STATE.valuesOfName(source.updateReview),

@@ -100,10 +100,10 @@ class LessonRepoImpl @Inject constructor() : ILessonRepo, IRepo {
         }
     }
 
-    override fun getStudentInLesson(classId: String): List<UserInfo> {
+    override fun getStudentInLesson(classId: String, lessonId: Int): List<UserInfo> {
         val service = invokeAuthService(ILessonService::class.java)
 
-        return service.getStudentInLesson(classId).invokeApi { _, body ->
+        return service.getStudentInLesson(classId,lessonId).invokeApi { _, body ->
             ListConverter(UserInfoDTOConvertToUserInfo()).invoke(body.data!!)
         }
     }

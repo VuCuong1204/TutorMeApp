@@ -30,6 +30,7 @@
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/ivHomeAvatar"
+                    android:scaleType="centerCrop"
                     android:layout_width="@dimen/fbase_dimen_50"
                     android:layout_height="@dimen/fbase_dimen_50"
                     android:layout_marginStart="@dimen/fbase_dimen_6"

@@ -33,10 +33,9 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/ivProfileUser"
-            android:layout_width="@dimen/fbase_dimen_60"
-            android:layout_height="@dimen/fbase_dimen_60"
-            android:layout_marginStart="@dimen/fbase_dimen_8"
-            android:layout_marginBottom="@dimen/fbase_dimen_28"
+            android:layout_width="@dimen/fbase_dimen_110"
+            android:layout_height="@dimen/fbase_dimen_110"
+            android:scaleType="centerCrop"
             android:src="@drawable/ic_gender_male"
             app:layout_constraintBottom_toBottomOf="@+id/ivProfileTitle"
             app:layout_constraintEnd_toEndOf="parent"

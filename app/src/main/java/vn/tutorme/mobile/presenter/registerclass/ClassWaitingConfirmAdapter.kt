@@ -88,7 +88,7 @@ class ClassWaitingConfirmAdapter : TutorMeAdapter() {
 
                 if (type == CLASS_STATUS.RECEIVED_STATUS) {
                     tvLessonHomeConfirm.text = getAppString(R.string.reject)
-                    tvLessonHomeConfirm.background = getAppDrawable(R.drawable.ripple_bg_gray_corner_14)
+                    tvLessonHomeConfirm.background = getAppDrawable(R.drawable.ripple_bg_purple_corner_14)
                     tvLessonHomeConfirm.setTextColor(getAppColor(R.color.white))
                 } else {
                     tvLessonHomeConfirm.text = getAppString(R.string.accept_class)

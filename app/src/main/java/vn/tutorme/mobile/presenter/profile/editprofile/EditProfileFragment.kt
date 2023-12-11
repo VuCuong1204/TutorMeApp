@@ -158,7 +158,7 @@ class EditProfileFragment : TutorMeFragment<EditProfileFragmentBinding>(R.layout
 
         binding.tvEditProfileConfirm.setOnSafeClick {
             val fullName = binding.edtEditProfileUserName.text.toString()
-            val phone = binding.edtEditProfilePhone.text.toString().toLong()
+            val phone = if (!binding.edtEditProfilePhone.text.isNullOrEmpty()) binding.edtEditProfilePhone.text.toString().toLong() else LONG_DEFAULT
             val address = "${binding.edtEditProfileDistrict.text} - ${binding.edtEditProfileProvince.text}"
             val date = binding.edtEditProfileDate.text.toString()
             val schoolName = binding.edtEditProfileSchool.text.toString()

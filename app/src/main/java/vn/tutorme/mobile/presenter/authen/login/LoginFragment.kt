@@ -230,7 +230,9 @@ class LoginFragment : TutorMeFragment<LoginFragmentBinding>(R.layout.login_fragm
 
     private fun showLoginFailedDialog() {
         BottomSheetConfirmDialog().apply {
-            eventLeftClick {}
+            eventLeftClick {
+                replaceFragment(fragment = ForgotPasswordFragment(), screenAnim = SlideAnimation())
+            }
         }.show(childFragmentManager, BottomSheetConfirmDialog::class.java.simpleName)
     }
 }

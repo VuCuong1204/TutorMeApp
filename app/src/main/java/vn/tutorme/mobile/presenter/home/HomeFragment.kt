@@ -1,15 +1,6 @@
 package vn.tutorme.mobile.presenter.home
 
 import android.Manifest
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
-import android.media.AudioAttributes
-import android.net.Uri
-import android.os.Build
-import androidx.core.app.NotificationCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -34,7 +25,7 @@ import vn.tutorme.mobile.base.extension.getAppColor
 import vn.tutorme.mobile.base.extension.getAppDrawable
 import vn.tutorme.mobile.base.extension.getAppString
 import vn.tutorme.mobile.base.extension.handleUiState
-import vn.tutorme.mobile.base.extension.setOnSafeClick
+import vn.tutorme.mobile.base.extension.loadUser
 import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.HomeFragmentBinding
 import vn.tutorme.mobile.domain.model.authen.ROLE_TYPE
@@ -42,7 +33,6 @@ import vn.tutorme.mobile.domain.model.banner.BANNER_TYPE
 import vn.tutorme.mobile.domain.model.banner.Banner
 import vn.tutorme.mobile.domain.model.chat.video.VideoCallInfo
 import vn.tutorme.mobile.domain.model.lesson.LessonInfo
-import vn.tutorme.mobile.domain.model.notification.NOTIFICATION_TYPE
 import vn.tutorme.mobile.presenter.bannerinfo.event.EventDetailFragment
 import vn.tutorme.mobile.presenter.classall.ClassAllFragment
 import vn.tutorme.mobile.presenter.classinfo.ClassInfoFragment
@@ -52,7 +42,6 @@ import vn.tutorme.mobile.presenter.dialog.BottomSheetConfirmDialog
 import vn.tutorme.mobile.presenter.lessonall.LessonAllFragment
 import vn.tutorme.mobile.presenter.lessondetail.LessonDetailFragment
 import vn.tutorme.mobile.presenter.lessonevaluate.LessonEvaluateFragment
-import vn.tutorme.mobile.presenter.main.MainActivity
 import vn.tutorme.mobile.presenter.registerclass.ClassWaitingConfirmFragment
 
 @AndroidEntryPoint
@@ -140,6 +129,7 @@ class HomeFragment : TutorMeFragment<HomeFragmentBinding>(R.layout.home_fragment
     }
 
     private fun addHeader() {
+        binding.ivHomeAvatar.loadUser(url = AppPreferences.userInfo?.avatar, placeHolder = getAppDrawable(R.mipmap.ic_tutor_me))
         binding.srlHomeRoot.setColorSchemeResources(R.color.primary)
         binding.tvHomeName.text = "${AppPreferences.userInfo?.fullName}"
     }

@@ -278,7 +278,7 @@
             android:fontFamily="@font/font_raleway_bold"
             android:gravity="center"
             android:paddingVertical="@dimen/fbase_dimen_16"
-            android:text="@string/change_password"
+            android:text="@string/confirm_third"
             android:textColor="@color/white"
             android:textSize="@dimen/fbase_text_size_14"
             app:layout_constraintBottom_toBottomOf="parent"

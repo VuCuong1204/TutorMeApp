@@ -9,8 +9,8 @@ class GetStudentInLessonUseCase @Inject constructor(
     private val lessonRepo: ILessonRepo
 ) : BaseUseCase<GetStudentInLessonUseCase.GetStudentInLessonRV, List<UserInfo>>() {
     override suspend fun execute(rv: GetStudentInLessonRV): List<UserInfo> {
-        return lessonRepo.getStudentInLesson(rv.classId)
+        return lessonRepo.getStudentInLesson(rv.classId, rv.lessonId)
     }
 
-    class GetStudentInLessonRV(val classId: String) : RequestValue
+    class GetStudentInLessonRV(val classId: String, val lessonId: Int) : RequestValue
 }

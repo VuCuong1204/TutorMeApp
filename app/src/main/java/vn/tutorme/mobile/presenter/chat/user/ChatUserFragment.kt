@@ -1,5 +1,6 @@
 package vn.tutorme.mobile.presenter.chat.user
 
+import androidx.core.os.bundleOf
 import com.example.syntheticapp.presenter.widget.collection.LAYOUT_MANAGER
 import com.google.firebase.database.FirebaseDatabase
 import dagger.hilt.android.AndroidEntryPoint
@@ -9,6 +10,7 @@ import vn.tutorme.mobile.base.extension.setOnSafeClick
 import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.ChatUserFragmentBinding
 import vn.tutorme.mobile.domain.model.chat.SingleRoomInfo
+import vn.tutorme.mobile.presenter.chat.ChatFragment
 
 @AndroidEntryPoint
 class ChatUserFragment : TutorMeFragment<ChatUserFragmentBinding>(R.layout.chat_user_fragment) {
@@ -61,7 +63,11 @@ class ChatUserFragment : TutorMeFragment<ChatUserFragmentBinding>(R.layout.chat_
     private fun addListener() {
         chatUserAdapter.listener = object : ChatUserAdapter.IChatUserListener {
             override fun onItemClick(item: SingleRoomInfo) {
-//                TODO("Not yet implemented")
+                replaceFragment(fragment = ChatFragment(), bundleOf(
+                    ChatFragment.USER_ID_KEY to item.receiverId,
+                    ChatFragment.USER_NAME_KEY to item.nameReceiver,
+                    ChatFragment.USER_AVATAR_KEY to item.avatarReceiver,
+                ))
             }
         }
     }

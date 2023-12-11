@@ -19,7 +19,7 @@ interface ILessonRepo {
     fun getClassTeacherList(id: String, type: Int, page: Int?, size: Int?): List<ClassInfo>
 
     fun getLessonDetail(lessonId: Int): LessonInfo
-    fun getStudentInLesson(classId: String): List<UserInfo>
+    fun getStudentInLesson(classId: String, lessonId: Int): List<UserInfo>
     fun attendanceStudent(lessonId: Int, studentId: String): Boolean
     fun updateStateLesson(lessonId: Int, state: Int): LessonInfo
     fun feedBackLesson(lessonId: Int, content: String): Boolean

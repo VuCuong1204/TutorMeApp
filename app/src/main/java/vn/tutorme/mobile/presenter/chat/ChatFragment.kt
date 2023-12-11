@@ -16,6 +16,7 @@ import vn.tutorme.mobile.base.extension.loadUser
 import vn.tutorme.mobile.base.extension.setOnSafeClick
 import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.ChatFragmentBinding
+import vn.tutorme.mobile.domain.model.authen.ROLE_TYPE
 import vn.tutorme.mobile.domain.model.chat.ChatInfo
 import vn.tutorme.mobile.domain.model.chat.SingleRoomInfo
 import vn.tutorme.mobile.presenter.chat.videocall.VideoCallFragment
@@ -30,7 +31,7 @@ class ChatFragment : TutorMeFragment<ChatFragmentBinding>(R.layout.chat_fragment
         const val LIST_CHAT_KEY = "ListChatSingle"
     }
 
-    private var userId: String? = null
+    private var userReceiverId: String? = null
     private var userName: String? = null
     private var userAvatar: String? = null
     private lateinit var myRef: DatabaseReference
@@ -41,7 +42,7 @@ class ChatFragment : TutorMeFragment<ChatFragmentBinding>(R.layout.chat_fragment
 
     override fun onPrepareInitView() {
         super.onPrepareInitView()
-        userId = arguments?.getString(USER_ID_KEY)
+        userReceiverId = arguments?.getString(USER_ID_KEY)
         userName = arguments?.getString(USER_NAME_KEY)
         userAvatar = arguments?.getString(USER_AVATAR_KEY)
     }
@@ -72,7 +73,7 @@ class ChatFragment : TutorMeFragment<ChatFragmentBinding>(R.layout.chat_fragment
             val chatInfo = ChatInfo(
                 id = dataList.size,
                 sendId = AppPreferences.userInfo?.userId,
-                receiverId = userId,
+                receiverId = userReceiverId,
                 content = binding.edtChatContent.text.toString().trim(),
                 url = AppPreferences.userInfo?.avatar
             )
@@ -89,7 +90,7 @@ class ChatFragment : TutorMeFragment<ChatFragmentBinding>(R.layout.chat_fragment
         binding.ivChatCallVideo.setOnSafeClick {
             replaceFragment(fragment = VideoCallFragment(), bundleOf(
                 VideoCallFragment.USER_FROM_KEY to AppPreferences.userInfo?.userId,
-                VideoCallFragment.USER_TO_KEY to userId,
+                VideoCallFragment.USER_TO_KEY to userReceiverId,
                 VideoCallFragment.STATE_CALL_KEY to 1
             ))
         }
@@ -103,8 +104,10 @@ class ChatFragment : TutorMeFragment<ChatFragmentBinding>(R.layout.chat_fragment
     }
 
     private fun addMessageListenerEvent() {
-        if (userId != null && AppPreferences.userInfo?.userId != null) {
-            myRef = FirebaseDatabase.getInstance().getReference(ROOM_CHAT_KEY).child(userId!!).child(AppPreferences.userInfo?.userId!!)
+        if (userReceiverId != null && AppPreferences.userInfo?.userId != null) {
+            val receiverId = if (AppPreferences.userInfo?.role == ROLE_TYPE.TEACHER_TYPE) AppPreferences.userInfo?.userId else userReceiverId
+            val senderId = if (AppPreferences.userInfo?.role == ROLE_TYPE.STUDENT_TYPE) AppPreferences.userInfo?.userId else userReceiverId
+            myRef = FirebaseDatabase.getInstance().getReference(ROOM_CHAT_KEY).child(receiverId!!).child(senderId!!)
             postListener = object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     dataList.clear()
@@ -127,48 +130,40 @@ class ChatFragment : TutorMeFragment<ChatFragmentBinding>(R.layout.chat_fragment
 
     private fun sendMessageListenerEvent(value: ChatInfo) {
         val chatId = myRef.push().key
-        var check = false
         if (chatId != null) {
             myRef.child(chatId).setValue(value)
                 .addOnFailureListener {
                     showMessage(getAppString(R.string.send_message_single_error))
                 }
-            if (userId != null && AppPreferences.userInfo?.userId != null) {
+            if (userReceiverId != null && AppPreferences.userInfo?.userId != null) {
                 FirebaseDatabase.getInstance().getReference(LIST_CHAT_KEY).child(AppPreferences.userInfo?.userId!!)
                     .get()
                     .addOnSuccessListener {
-                        it.children.forEach { dataSnapshot ->
-                            val singleRoomInfo = dataSnapshot.getValue(SingleRoomInfo::class.java)
-                            if (singleRoomInfo?.sendId == AppPreferences.userInfo?.userId ||
-                                singleRoomInfo?.receiverId == userId
-                            ) {
-                                check = true
-                            }
-                        }
 
-                        if (!check) {
-                            FirebaseDatabase.getInstance().getReference(LIST_CHAT_KEY).child(AppPreferences.userInfo?.userId!!).child(chatId).setValue(
-                                SingleRoomInfo(
-                                    sendId = AppPreferences.userInfo?.userId,
-                                    receiverId = userId,
-                                    avatarSend = AppPreferences.userInfo?.avatar,
-                                    avatarReceiver = userAvatar,
-                                    nameSend = AppPreferences.userInfo?.fullName,
-                                    nameReceiver = userName,
-                                )
-                            )
+                        FirebaseDatabase.getInstance().getReference(LIST_CHAT_KEY).child(AppPreferences.userInfo?.userId!!).child(userReceiverId!!).removeValue()
+                        FirebaseDatabase.getInstance().getReference(LIST_CHAT_KEY).child(userReceiverId!!).child(AppPreferences.userInfo?.userId!!).removeValue()
 
-                            FirebaseDatabase.getInstance().getReference(LIST_CHAT_KEY).child(userId!!).child(chatId).setValue(
-                                SingleRoomInfo(
-                                    sendId = userId,
-                                    receiverId = AppPreferences.userInfo?.userId,
-                                    avatarSend = userAvatar,
-                                    avatarReceiver = AppPreferences.userInfo?.avatar,
-                                    nameSend = userName,
-                                    nameReceiver = AppPreferences.userInfo?.fullName,
-                                )
+                        FirebaseDatabase.getInstance().getReference(LIST_CHAT_KEY).child(AppPreferences.userInfo?.userId!!).child(userReceiverId!!).setValue(
+                            SingleRoomInfo(
+                                sendId = AppPreferences.userInfo?.userId,
+                                receiverId = userReceiverId,
+                                avatarSend = AppPreferences.userInfo?.avatar,
+                                avatarReceiver = userAvatar,
+                                nameSend = AppPreferences.userInfo?.fullName,
+                                nameReceiver = userName,
                             )
-                        }
+                        )
+
+                        FirebaseDatabase.getInstance().getReference(LIST_CHAT_KEY).child(userReceiverId!!).child(AppPreferences.userInfo?.userId!!).setValue(
+                            SingleRoomInfo(
+                                sendId = userReceiverId,
+                                receiverId = AppPreferences.userInfo?.userId,
+                                avatarSend = userAvatar,
+                                avatarReceiver = AppPreferences.userInfo?.avatar,
+                                nameSend = userName,
+                                nameReceiver = AppPreferences.userInfo?.fullName,
+                            )
+                        )
                     }
             }
         }

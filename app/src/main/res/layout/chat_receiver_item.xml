@@ -13,6 +13,7 @@
             android:layout_width="@dimen/fbase_dimen_40"
             android:layout_height="@dimen/fbase_dimen_40"
             android:layout_marginStart="@dimen/fbase_dimen_10"
+            android:scaleType="centerCrop"
             android:src="@drawable/bg_gender_female"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

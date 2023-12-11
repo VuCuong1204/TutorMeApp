@@ -100,7 +100,8 @@ interface ILessonService : IApiService {
 
     @GET("student/lesson/list")
     fun getStudentInLesson(
-        @Query("classId") classId: String
+        @Query("classId") classId: String,
+        @Query("lessonId") lessonId: Int
     ): Call<StudentInfoResponse>
 
     @PUT("update/state/assessment")

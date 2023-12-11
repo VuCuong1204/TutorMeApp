@@ -297,7 +297,9 @@ class StudentLessonAdapter : TutorMeAdapter() {
                         }
 
                         if (AppPreferences.userInfo?.role == ROLE_TYPE.STUDENT_TYPE) {
-                            if (AppPreferences.userInfo?.userId == data.userId) {
+                            if (AppPreferences.userInfo?.userId == data.userId &&
+                                data.evaluateState == EVALUATE_STATE.HAVE_EVALUATE_STATE
+                            ) {
                                 tvStudentLessonRate.show()
                             } else {
                                 tvStudentLessonRate.gone()

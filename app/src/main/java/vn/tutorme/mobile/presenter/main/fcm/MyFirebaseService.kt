@@ -25,13 +25,9 @@ import vn.tutorme.mobile.domain.model.notification.NotificationInfo
 import vn.tutorme.mobile.domain.model.notification.RefInfo
 import vn.tutorme.mobile.presenter.main.MainActivity
 import vn.tutorme.mobile.utils.TimeUtils
+import kotlin.random.Random
 
 class MyFirebaseService : FirebaseMessagingService() {
-
-    companion object {
-        const val CHANNEL_ID = "NOTIFICATION_ID_VER_1"
-    }
-
     override fun onNewToken(token: String) {
         super.onNewToken(token)
     }
@@ -73,6 +69,7 @@ class MyFirebaseService : FirebaseMessagingService() {
         classId: String?,
         notificationType: NOTIFICATION_TYPE
     ) {
+        val channelId = "${Random.nextInt(100)}"
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra("title", messageTitle)
         intent.putExtra("body", messageTitle)
@@ -88,7 +85,7 @@ class MyFirebaseService : FirebaseMessagingService() {
 
         val defaultSoundUri = Uri.parse("android.resource://${packageName}/${R.raw.sound_notify}")
 
-        val notificationBuilder = NotificationCompat.Builder(this, CHANNEL_ID)
+        val notificationBuilder = NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.drawable.ic_notification_1)
             .setContentTitle(messageTitle)
             .setContentText(messageBody)
@@ -106,7 +103,7 @@ class MyFirebaseService : FirebaseMessagingService() {
                 .build()
 
             val channel = NotificationChannel(
-                CHANNEL_ID,
+                channelId,
                 "Channel human readable title",
                 NotificationManager.IMPORTANCE_HIGH
             ).apply {

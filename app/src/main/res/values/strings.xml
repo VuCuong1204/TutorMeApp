@@ -238,6 +238,7 @@
     <string name="send_zoom_info_error">Lỗi gửi thông tin phòng, vui lòng thử lại</string>
     <string name="confirmed">Đã xác nhận</string>
     <string name="confirm_second">xác nhận</string>
+    <string name="confirm_third">Xác nhận</string>
     <string name="out_of_date">Quá hạn</string>
     <string name="reject">Từ chối</string>
     <string name="confirm">Đồng ý</string>

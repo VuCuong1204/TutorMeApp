@@ -16,7 +16,7 @@ class UpdateProfileUseCase @Inject constructor(
     override suspend fun execute(rv: UpdateProfileRV): Boolean {
 
         val updateState = authRepo.updateProfile(
-            userId = "XoY3l0swNWQtLEOJCcZOC516d1u1",
+            userId = AppPreferences.userInfo?.userId ?: STRING_DEFAULT,
             fullName = rv.fullName,
             date = rv.date,
             address = rv.address,

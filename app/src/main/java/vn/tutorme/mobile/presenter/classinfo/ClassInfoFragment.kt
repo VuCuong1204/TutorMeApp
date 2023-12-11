@@ -124,8 +124,9 @@ class ClassInfoFragment : TutorMeFragment<ClassInfoFragmentBinding>(R.layout.cla
             binding.tvClassInfoTeacher.setOnSafeClick {
                 if (!lessonInfo?.getNameStudent().isNullOrEmpty()) {
                     replaceFragment(fragment = ChatFragment(), bundleOf(
-                        ChatFragment.USER_ID_KEY to "J26YjtUYN2R6D2eCYllgQjqUiba2",
-                        ChatFragment.USER_NAME_KEY to lessonInfo?.nameTeacher
+                        ChatFragment.USER_ID_KEY to lessonInfo?.idTeacher,
+                        ChatFragment.USER_NAME_KEY to lessonInfo?.nameTeacher,
+                        ChatFragment.USER_AVATAR_KEY to lessonInfo?.avatarTeacher
                     ))
                 }
             }

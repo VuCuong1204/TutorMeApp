@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import vn.tutorme.mobile.base.common.BaseViewModel
 import vn.tutorme.mobile.base.common.FlowResult
+import vn.tutorme.mobile.base.extension.Extension.INT_DEFAULT
 import vn.tutorme.mobile.base.extension.Extension.STRING_DEFAULT
 import vn.tutorme.mobile.base.extension.failure
 import vn.tutorme.mobile.base.extension.loading
@@ -43,11 +44,11 @@ class RateStudentViewModel @Inject constructor(
     private val _insertReviewState = MutableStateFlow(FlowResult.newInstance<Boolean>())
     val insertReviewState = _insertReviewState.asStateFlow()
 
-    var userId = savedStateHandle.get<String>(USER_ID_KEY) ?: "vq9"
-    var userName = savedStateHandle.get<String>(USER_NAME_KEY) ?: "Vũ Quốc Cường"
+    var userId = savedStateHandle.get<String>(USER_ID_KEY) ?: STRING_DEFAULT
+    var userName = savedStateHandle.get<String>(USER_NAME_KEY) ?: STRING_DEFAULT
     var userEvaluate = savedStateHandle.get<EVALUATE_STATE>(USER_EVALUATE_KEY)
         ?: EVALUATE_STATE.HAVE_EVALUATE_STATE
-    var lessonId = savedStateHandle.get<Int>(LESSON_ID_KEY) ?: 7
+    var lessonId = savedStateHandle.get<Int>(LESSON_ID_KEY) ?: INT_DEFAULT
 
     var userInfo: UserInfo? = null
     var lessonInfo: LessonInfo? = null

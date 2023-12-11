@@ -100,7 +100,7 @@ class LessonDetailViewModel @Inject constructor(
 
     fun getStudentInfoLesson(isReload: Boolean = false) {
         viewModelScope.launch {
-            val rv = GetStudentInLessonUseCase.GetStudentInLessonRV(classId)
+            val rv = GetStudentInLessonUseCase.GetStudentInLessonRV(classId, lessonId)
             getStudentInLessonUseCase.invoke(rv)
                 .onStart {
                     if (isReload) {
