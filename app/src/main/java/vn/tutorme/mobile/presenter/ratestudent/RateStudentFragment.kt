@@ -6,6 +6,8 @@ import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.common.IViewListener
+import vn.tutorme.mobile.base.common.UpdateLessonInfoAfterUpdate
+import vn.tutorme.mobile.base.common.eventbus.EventBusManager
 import vn.tutorme.mobile.base.common.view.SpannableBuilder
 import vn.tutorme.mobile.base.extension.coroutinesLaunch
 import vn.tutorme.mobile.base.extension.getAppColor
@@ -73,6 +75,9 @@ class RateStudentFragment : TutorMeFragment<RateStudentFragmentBinding>(R.layout
             handleUiState(it, object : IViewListener {
                 override fun onSuccess() {
                     showSuccess(getAppString(R.string.comment_success))
+                    if (viewModel.lessonInfo?.classId != null) {
+                        EventBusManager.instance?.postPending(UpdateLessonInfoAfterUpdate(viewModel.lessonId, viewModel.lessonInfo?.classId!!))
+                    }
                     onBackPressByFragment()
                 }
             }, canShowLoading = true)
@@ -199,11 +204,12 @@ class RateStudentFragment : TutorMeFragment<RateStudentFragmentBinding>(R.layout
     }
 
     private fun setMediumState(score: Float) {
+        val result = score.toString().substringAfterLast('.').take(2)
         binding.tvRateStudentMedium.text = "${getAppString(R.string.score_medium)}: $score"
         binding.tvRateStudentState.text = checkForce(score)
 
         val content = SpannableBuilder()
-            .appendText("$score")
+            .appendText(result)
             .withSpan(ForegroundColorSpan(getAppColor(R.color.secondary_1)))
             .appendText("/10")
             .withSpan(ForegroundColorSpan(getAppColor(R.color.white)))

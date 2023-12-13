@@ -16,6 +16,7 @@ import vn.tutorme.mobile.base.extension.Extension.STRING_DEFAULT
 import vn.tutorme.mobile.base.extension.failure
 import vn.tutorme.mobile.base.extension.loading
 import vn.tutorme.mobile.base.extension.onException
+import vn.tutorme.mobile.base.extension.reset
 import vn.tutorme.mobile.base.extension.success
 import vn.tutorme.mobile.domain.model.authen.UserInfo
 import vn.tutorme.mobile.domain.model.detectinfo.DetectInfo
@@ -183,9 +184,12 @@ class LessonDetailViewModel @Inject constructor(
         }
     }
 
-    fun attendanceStudent(isReload: Boolean = false, studentId: String) {
+    fun attendanceStudent(isReload: Boolean = false, studentId: String?) {
         viewModelScope.launch {
-            val rv = AttendanceStudentUseCase.AttendanceStudentRV(lessonId, studentId)
+            val rv = AttendanceStudentUseCase.AttendanceStudentRV(
+                lessonId,
+                studentId ?: STRING_DEFAULT
+            )
             attendanceStudentUseCase.invoke(rv)
                 .onStart {
                     if (isReload) {
@@ -252,5 +256,9 @@ class LessonDetailViewModel @Inject constructor(
                     _notificationState.success(it)
                 }
         }
+    }
+
+    fun resetStateAttendanceStudent() {
+        _attendanceStudentState.reset()
     }
 }

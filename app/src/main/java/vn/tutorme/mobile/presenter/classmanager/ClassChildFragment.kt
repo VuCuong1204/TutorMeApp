@@ -95,7 +95,7 @@ class ClassChildFragment : TutorMeFragment<ClassChildFragmentBinding>(R.layout.c
     private fun addHeader() {
         binding.srlClassChildReload.setColorSchemeResources(R.color.primary)
         binding.srlClassChildReload.setOnRefreshListener {
-            binding.cvClassChildContent.removeEmpty()
+//            binding.cvClassChildContent.removeEmpty()
             viewModel.getClassList(isReload = true, isShowLoading = false)
         }
     }

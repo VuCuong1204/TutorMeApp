@@ -198,17 +198,24 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <vn.tutorme.mobile.presenter.widget.collection.CollectionView
-            android:id="@+id/cvLessonDetailRoot"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/srlLessonDetailReload"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginHorizontal="@dimen/fbase_dimen_16"
-            android:overScrollMode="never"
             android:paddingTop="@dimen/fbase_dimen_6"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/clLessonDetailRoot" />
+            app:layout_constraintTop_toBottomOf="@+id/clLessonDetailRoot">
+
+            <vn.tutorme.mobile.presenter.widget.collection.CollectionView
+                android:id="@+id/cvLessonDetailRoot"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <RelativeLayout
             android:id="@+id/rlLessonDetailSupport"

@@ -105,7 +105,6 @@ class StudentLessonAdapter : TutorMeAdapter() {
                         tvHappenedLessonJoinRoom.gone()
                     },
                     {
-                        tvHappenedLessonAttendance.show()
                         if (data.userInfo?.evaluateState == EVALUATE_STATE.NO_EVALUATE_STATE) {
                             tvHappenedLessonAttendance.apply {
                                 text = getAppString(R.string.attendance)
@@ -125,8 +124,10 @@ class StudentLessonAdapter : TutorMeAdapter() {
                         }
                         if (data.lessonInfo?.status == LESSON_STATUS.HAPPENING_STATUS) {
                             tvHappenedLessonJoinRoom.show()
+                            tvHappenedLessonAttendance.show()
                         } else {
                             tvHappenedLessonJoinRoom.gone()
+                            tvHappenedLessonAttendance.gone()
                         }
                     }
                 )

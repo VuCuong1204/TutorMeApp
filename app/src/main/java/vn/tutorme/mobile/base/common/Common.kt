@@ -12,3 +12,4 @@ class SendVideoCallState(val state: CALL_VIDEO_STATE) : IEvent
 class InsertNotificationState(val notificationInfo: NotificationInfo) : IEvent
 class UpdateNotificationListState() : IEvent
 class NavigateLessonInfo(val lessonId: Int, val classId: String) : IEvent
+class UpdateLessonInfoAfterUpdate(val lessonId: Int, val classId: String) : IEvent

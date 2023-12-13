@@ -16,6 +16,7 @@ import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.common.GetImageDetect
 import vn.tutorme.mobile.base.common.IViewListener
+import vn.tutorme.mobile.base.common.UpdateLessonInfoAfterUpdate
 import vn.tutorme.mobile.base.common.anim.SlideAnimation
 import vn.tutorme.mobile.base.common.eventbus.EventBusManager
 import vn.tutorme.mobile.base.common.eventbus.IEvent
@@ -71,6 +72,18 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
         addAdapter()
         addRoomStateListenerEvent()
         getDeviceId()
+
+        binding.tvLessonDetailClass.setOnSafeClick {
+            viewModel.updateStateLesson(isReload = true, state = LESSON_STATUS.UPCOMING_STATUS)
+        }
+
+        binding.tvLessonDetailAvatar.setOnSafeClick {
+            viewModel.updateStateLesson(isReload = true, state = LESSON_STATUS.HAPPENING_STATUS)
+        }
+
+        binding.tvLessonDetailId.setOnSafeClick {
+            viewModel.updateStateLesson(isReload = true, state = LESSON_STATUS.TOOK_PLACE_STATUS)
+        }
     }
 
     override fun onStart() {
@@ -95,6 +108,13 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
                 }
                 EventBusManager.instance?.removeSticky(event)
             }
+
+            is UpdateLessonInfoAfterUpdate -> {
+                viewModel.lessonId = event.lessonId
+                viewModel.classId = event.classId
+                viewModel.getLessonDetail(false)
+                EventBusManager.instance?.removeSticky(event)
+            }
         }
     }
 
@@ -116,7 +136,12 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
         super.onObserverViewModel()
         coroutinesLaunch(viewModel.lessonDetailState) {
             handleUiState(it, object : IViewListener {
+                override fun onFailure() {
+                    binding.srlLessonDetailReload.isRefreshing = false
+                }
+
                 override fun onSuccess() {
+                    binding.srlLessonDetailReload.isRefreshing = false
                     it.data?.let { value -> setLessonInfo(value) }
                 }
             }, canShowLoading = true)
@@ -157,6 +182,7 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
             handleUiState(it, object : IViewListener {
                 override fun onSuccess() {
                     viewModel.getStudentInfoLesson()
+                    viewModel.resetStateAttendanceStudent()
                 }
             }, canShowLoading = true)
         }
@@ -168,6 +194,7 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
                 }
 
                 override fun onSuccess() {
+                    viewModel.attendanceStudent(true, AppPreferences.userInfo?.userId)
                     showSuccess(getAppString(R.string.detect_success))
                 }
             }, canShowLoading = true)
@@ -263,6 +290,13 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
             showFeatureDialog(false)
             viewModel.getFeedbackList()
         }
+
+        binding.srlLessonDetailReload.apply {
+            setColorSchemeResources(R.color.primary)
+            setOnRefreshListener {
+                viewModel.getLessonDetail(false)
+            }
+        }
     }
 
     private fun showFeatureDialog(state: Boolean) {
@@ -355,22 +389,22 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
                 dataSnapshot.children.forEach {
                     viewModel.zoomRoomInfo = it.child(viewModel.lessonInfo?.lessonId.toString()).getValue(ZoomRoomInfo::class.java)
                 }
-                if (System.currentTimeMillis() in (viewModel.lessonInfo?.timeBegin?.times(1000)
+                if (System.currentTimeMillis() in (viewModel.lessonInfo?.timeBeginLesson?.times(1000)
                         ?: 1)..(viewModel.lessonInfo?.timeEndLesson?.times(1000) ?: 1)
                 ) {
                     zoomSdkConfig.register()
                     if (viewModel.lessonInfo?.status != LESSON_STATUS.HAPPENING_STATUS) {
-                        viewModel.updateStateLesson(state = LESSON_STATUS.HAPPENING_STATUS)
+                        viewModel.updateStateLesson(isReload = true, state = LESSON_STATUS.HAPPENING_STATUS)
                     }
-                } else if (System.currentTimeMillis() <= (viewModel.lessonInfo?.timeBegin?.times(1000)
+                } else if (System.currentTimeMillis() <= (viewModel.lessonInfo?.timeBeginLesson?.times(1000)
                         ?: 1)
                 ) {
                     if (viewModel.lessonInfo?.status != LESSON_STATUS.UPCOMING_STATUS) {
-                        viewModel.updateStateLesson(state = LESSON_STATUS.UPCOMING_STATUS)
+                        viewModel.updateStateLesson(isReload = true, state = LESSON_STATUS.UPCOMING_STATUS)
                     }
                 } else {
                     if (viewModel.lessonInfo?.status != LESSON_STATUS.TOOK_PLACE_STATUS) {
-                        viewModel.updateStateLesson(state = LESSON_STATUS.TOOK_PLACE_STATUS)
+                        viewModel.updateStateLesson(isReload = true, state = LESSON_STATUS.TOOK_PLACE_STATUS)
                     }
                 }
             }
