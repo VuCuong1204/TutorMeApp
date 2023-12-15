@@ -18,7 +18,7 @@ abstract class TutorMeDialog<DB : ViewDataBinding>(layoutId: Int) : BaseBindingD
 
     private var window: Window? = null
 
-    private val mainActivity by lazy {
+    val mainActivity by lazy {
         requireActivity() as MainActivity
     }
 

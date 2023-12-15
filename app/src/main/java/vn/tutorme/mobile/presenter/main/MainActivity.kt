@@ -2,7 +2,10 @@ package vn.tutorme.mobile.presenter.main
 
 import android.Manifest
 import android.content.Intent
+import android.os.Build
 import android.util.Log
+import android.view.Window
+import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -54,6 +57,7 @@ import vn.tutorme.mobile.presenter.profile.ProfileFragment
 import vn.tutorme.mobile.presenter.splash.SplashFragment
 import vn.tutorme.mobile.presenter.widget.bottombarview.SELECTED_STATE
 import vn.tutorme.mobile.utils.TimeUtils
+
 
 @AndroidEntryPoint
 class MainActivity : TutorMeActivity<MainActivityBinding>(R.layout.main_activity) {

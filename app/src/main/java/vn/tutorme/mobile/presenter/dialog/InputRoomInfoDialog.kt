@@ -62,8 +62,9 @@ class InputRoomInfoDialog : TutorMeDialog<InputRoomInfoDialogBinding>(R.layout.i
                 roomId != binding.edtInputRoomInfoId.text.toString().trim() ||
                 roomPassword != binding.edtInputRoomInfoPassword.text.toString().trim()
             ) {
+                listener?.onSendClick(binding.edtInputRoomInfoId.text.toString().trim(),
+                    binding.edtInputRoomInfoPassword.text.toString().trim())
                 dismiss()
-                listener?.onSendClick(roomId, roomPassword)
             }
 
             roomId = binding.edtInputRoomInfoId.text.toString().trim()

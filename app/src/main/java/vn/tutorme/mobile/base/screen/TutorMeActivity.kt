@@ -9,6 +9,7 @@ import vn.tutorme.mobile.base.common.eventbus.IEventHandler
 import vn.tutorme.mobile.base.common.screenstate.IDisplayState
 import vn.tutorme.mobile.presenter.widget.headeralert.HEADER_ALERT_TIME_SHOWN
 import vn.tutorme.mobile.presenter.widget.headeralert.HEADER_ALERT_TYPE
+import vn.tutorme.mobile.utils.keyboard.KeyboardUtility
 
 abstract class TutorMeActivity<DB : ViewDataBinding>(layoutId: Int) : BaseBindingActivity<DB>(layoutId), IDisplayState, IEventHandler {
     private var headerAlertDefault: HeaderAlertDefault? = null
@@ -52,5 +53,13 @@ abstract class TutorMeActivity<DB : ViewDataBinding>(layoutId: Int) : BaseBindin
 
     override fun onEvent(event: IEvent) {
         // TODO("Not yet implemented")
+    }
+
+    fun showKeyboard() {
+        KeyboardUtility.showKeyBoard(this)
+    }
+
+    fun hideKeyboard() {
+        KeyboardUtility.hideSoftKeyboard(this)
     }
 }

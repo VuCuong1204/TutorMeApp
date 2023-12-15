@@ -70,7 +70,6 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
         super.onInitView()
         addHeader()
         addAdapter()
-        addRoomStateListenerEvent()
         getDeviceId()
 
         binding.tvLessonDetailClass.setOnSafeClick {
@@ -141,6 +140,7 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
                 }
 
                 override fun onSuccess() {
+                    addRoomStateListenerEvent()
                     binding.srlLessonDetailReload.isRefreshing = false
                     it.data?.let { value -> setLessonInfo(value) }
                 }
@@ -247,7 +247,11 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
                 if (id.isNullOrEmpty() || password.isNullOrEmpty()) {
                     showError(getAppString(R.string.room_error))
                 } else {
-                    zoomSdkConfig.joinRoom(userName, id, password)
+                    try {
+                        zoomSdkConfig.joinRoom(userName, id, password)
+                    } catch (e: Exception) {
+                        Log.d("ZoomSdkError", "${e.printStackTrace()}")
+                    }
                 }
             }
         }
@@ -317,9 +321,10 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
     private fun showRoomInfoDialog() {
         InputRoomInfoDialog().apply {
             roomId = viewModel.zoomRoomInfo?.zoomId ?: STRING_DEFAULT
-            roomPassword = viewModel.zoomRoomInfo?.zoomId ?: STRING_DEFAULT
+            roomPassword = viewModel.zoomRoomInfo?.password ?: STRING_DEFAULT
             listener = object : InputRoomInfoDialog.IInputRoomInfoListener {
                 override fun onSendClick(id: String, password: String) {
+                    mainActivity.hideKeyboard()
                     val zoomRoomInfo = ZoomRoomInfo(id, password)
                     sendZoomRoomInfoListenerEvent(zoomRoomInfo)
                 }
@@ -383,12 +388,10 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
     }
 
     private fun addRoomStateListenerEvent() {
-        myRef = FirebaseDatabase.getInstance().getReference(ZOOM_INFO_CHILD_KEY)
+        myRef = FirebaseDatabase.getInstance().getReference(ZOOM_INFO_CHILD_KEY).child(viewModel.lessonInfo?.lessonId.toString())
         postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                dataSnapshot.children.forEach {
-                    viewModel.zoomRoomInfo = it.child(viewModel.lessonInfo?.lessonId.toString()).getValue(ZoomRoomInfo::class.java)
-                }
+                viewModel.zoomRoomInfo = dataSnapshot.getValue(ZoomRoomInfo::class.java)
                 if (System.currentTimeMillis() in (viewModel.lessonInfo?.timeBeginLesson?.times(1000)
                         ?: 1)..(viewModel.lessonInfo?.timeEndLesson?.times(1000) ?: 1)
                 ) {
@@ -417,10 +420,9 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
         myRef.addValueEventListener(postListener)
     }
 
-
     private fun sendZoomRoomInfoListenerEvent(zoomRoomInfo: ZoomRoomInfo) {
         viewModel.lessonInfo?.let { lessonInfo ->
-            myRef.child(lessonInfo.toString()).setValue(zoomRoomInfo)
+            myRef.setValue(zoomRoomInfo)
                 .addOnSuccessListener {
                     val body = lessonInfo.nameClass + "-" + lessonInfo.level + "-" + lessonInfo.lessonSession + "-" + lessonInfo.nameTeacher
                     viewModel.sendNotificationToUser(

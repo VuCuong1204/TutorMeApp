@@ -204,12 +204,12 @@ class RateStudentFragment : TutorMeFragment<RateStudentFragmentBinding>(R.layout
     }
 
     private fun setMediumState(score: Float) {
-        val result = score.toString().substringAfterLast('.').take(2)
-        binding.tvRateStudentMedium.text = "${getAppString(R.string.score_medium)}: $score"
+        val result = (score * 100).toDouble().toInt() / 100.0
+        binding.tvRateStudentMedium.text = "${getAppString(R.string.score_medium)}: $result"
         binding.tvRateStudentState.text = checkForce(score)
 
         val content = SpannableBuilder()
-            .appendText(result)
+            .appendText("$result")
             .withSpan(ForegroundColorSpan(getAppColor(R.color.secondary_1)))
             .appendText("/10")
             .withSpan(ForegroundColorSpan(getAppColor(R.color.white)))
