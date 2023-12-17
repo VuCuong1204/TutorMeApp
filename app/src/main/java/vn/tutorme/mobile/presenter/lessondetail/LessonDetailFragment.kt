@@ -194,7 +194,8 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
                 }
 
                 override fun onSuccess() {
-                    viewModel.attendanceStudent(true, AppPreferences.userInfo?.userId)
+//                    viewModel.attendanceStudent(true, AppPreferences.userInfo?.userId)
+                    Log.d("TAG", "detect onSuccess: ${it.data}")
                     showSuccess(getAppString(R.string.detect_success))
                 }
             }, canShowLoading = true)
@@ -392,24 +393,24 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
         postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 viewModel.zoomRoomInfo = dataSnapshot.getValue(ZoomRoomInfo::class.java)
-                if (System.currentTimeMillis() in (viewModel.lessonInfo?.timeBeginLesson?.times(1000)
-                        ?: 1)..(viewModel.lessonInfo?.timeEndLesson?.times(1000) ?: 1)
-                ) {
-                    zoomSdkConfig.register()
-                    if (viewModel.lessonInfo?.status != LESSON_STATUS.HAPPENING_STATUS) {
-                        viewModel.updateStateLesson(isReload = true, state = LESSON_STATUS.HAPPENING_STATUS)
-                    }
-                } else if (System.currentTimeMillis() <= (viewModel.lessonInfo?.timeBeginLesson?.times(1000)
-                        ?: 1)
-                ) {
-                    if (viewModel.lessonInfo?.status != LESSON_STATUS.UPCOMING_STATUS) {
-                        viewModel.updateStateLesson(isReload = true, state = LESSON_STATUS.UPCOMING_STATUS)
-                    }
-                } else {
-                    if (viewModel.lessonInfo?.status != LESSON_STATUS.TOOK_PLACE_STATUS) {
-                        viewModel.updateStateLesson(isReload = true, state = LESSON_STATUS.TOOK_PLACE_STATUS)
-                    }
-                }
+//                if (System.currentTimeMillis() in (viewModel.lessonInfo?.timeBeginLesson?.times(1000)
+//                        ?: 1)..(viewModel.lessonInfo?.timeEndLesson?.times(1000) ?: 1)
+//                ) {
+//                    zoomSdkConfig.register()
+//                    if (viewModel.lessonInfo?.status != LESSON_STATUS.HAPPENING_STATUS) {
+//                        viewModel.updateStateLesson(isReload = true, state = LESSON_STATUS.HAPPENING_STATUS)
+//                    }
+//                } else if (System.currentTimeMillis() <= (viewModel.lessonInfo?.timeBeginLesson?.times(1000)
+//                        ?: 1)
+//                ) {
+//                    if (viewModel.lessonInfo?.status != LESSON_STATUS.UPCOMING_STATUS) {
+//                        viewModel.updateStateLesson(isReload = true, state = LESSON_STATUS.UPCOMING_STATUS)
+//                    }
+//                } else {
+//                    if (viewModel.lessonInfo?.status != LESSON_STATUS.TOOK_PLACE_STATUS) {
+//                        viewModel.updateStateLesson(isReload = true, state = LESSON_STATUS.TOOK_PLACE_STATUS)
+//                    }
+//                }
             }
 
             override fun onCancelled(databaseError: DatabaseError) {

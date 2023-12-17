@@ -23,6 +23,7 @@ import vn.tutorme.mobile.base.extension.loadUser
 import vn.tutorme.mobile.base.extension.setOnSafeClick
 import vn.tutorme.mobile.base.screen.TutorMeFragment
 import vn.tutorme.mobile.databinding.EditProfileFragmentBinding
+import vn.tutorme.mobile.domain.model.authen.GENDER_TYPE
 import vn.tutorme.mobile.domain.model.authen.ROLE_TYPE
 import vn.tutorme.mobile.domain.model.profile.provinces.LocationInfo
 import vn.tutorme.mobile.domain.model.profile.provinces.ProvincesMain
@@ -132,7 +133,6 @@ class EditProfileFragment : TutorMeFragment<EditProfileFragmentBinding>(R.layout
             binding.tvEditProfileSchool.gone()
         }
 
-        binding.tvEditProfileConfirm.setOnSafeClick { }
         binding.edtEditProfileGender.setOnSafeClick { showGenderDialog() }
         binding.edtEditProfileDate.setOnSafeClick { showDateDialog() }
         binding.edtEditProfileProvince.setOnSafeClick { showProvincesDialog() }
@@ -167,7 +167,8 @@ class EditProfileFragment : TutorMeFragment<EditProfileFragmentBinding>(R.layout
                 date = date,
                 nameSchool = schoolName,
                 phoneNumber = phone,
-                address = address
+                address = address,
+                avatar = AppPreferences.userInfo?.avatar ?: STRING_DEFAULT
             )
         }
     }

@@ -79,8 +79,6 @@ class CourseFragment : TutorMeFragment<CourseFragmentBinding>(R.layout.course_fr
             handleUiState(it, object : IViewListener {
                 override fun onSuccess() {
                     showSuccess(getAppString(R.string.register_course_success))
-                    binding.tvCourseRegister.isEnabled = false
-                    binding.tvCourseRegister.background = getAppDrawable(R.drawable.ripple_bg_gray_corner_16)
                 }
             })
         }
@@ -124,7 +122,7 @@ class CourseFragment : TutorMeFragment<CourseFragmentBinding>(R.layout.course_fr
                 if (item.classId != null && item.lessonFirst != null && item.lessonSecond != null) {
                     viewModel.registerCourse(
                         item.classId!!,
-                        AppPreferences.userInfo?.userId?:STRING_DEFAULT,
+                        AppPreferences.userInfo?.userId ?: STRING_DEFAULT,
                         item.lessonFirst!!,
                         item.lessonSecond!!
                     )

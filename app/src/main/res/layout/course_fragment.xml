@@ -372,7 +372,6 @@ Mô hình lớp: 2 học sinh, giảng dạy online qua phần mềm classin
             android:layout_marginHorizontal="@dimen/fbase_dimen_16"
             android:layout_marginBottom="@dimen/fbase_dimen_20"
             android:background="@drawable/ripple_bg_primary_corner_16"
-            android:enabled="false"
             android:fontFamily="@font/font_raleway_bold"
             android:gravity="center"
             android:paddingVertical="@dimen/fbase_dimen_16"

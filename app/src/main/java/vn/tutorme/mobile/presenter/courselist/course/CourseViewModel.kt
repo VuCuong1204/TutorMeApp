@@ -49,7 +49,7 @@ class CourseViewModel @Inject constructor(
 
     init {
         getCourseInfo(courseId)
-        checkCourseRegister(courseId, AppPreferences.userInfo?.userId ?: STRING_DEFAULT)
+//        checkCourseRegister(courseId, AppPreferences.userInfo?.userId ?: STRING_DEFAULT)
     }
 
     private fun getCourseInfo(courseId: String) {

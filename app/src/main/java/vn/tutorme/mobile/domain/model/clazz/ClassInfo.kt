@@ -28,7 +28,11 @@ data class ClassInfo(
     }
 
     fun getDayBegin(): String {
-        return String.format(getAppString(R.string.time_begin), lessonFirst, lessonSecond)
+        return if (lessonSecond == 8) {
+            String.format(getAppString(R.string.time_begin_sunday), lessonFirst)
+        } else {
+            String.format(getAppString(R.string.time_begin), lessonFirst, lessonSecond)
+        }
     }
 
     fun getCountLesson(): String {

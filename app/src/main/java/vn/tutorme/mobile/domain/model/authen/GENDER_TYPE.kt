@@ -8,7 +8,7 @@ enum class GENDER_TYPE(val value: Int) {
     OTHER(3);
 
     companion object {
-        fun valuesOfName(value: Int?): GENDER_TYPE? {
+        fun valuesOfName(value: Int?): GENDER_TYPE {
             val item = GENDER_TYPE.values().find {
                 it.value == value
             }
@@ -17,7 +17,7 @@ enum class GENDER_TYPE(val value: Int) {
                 Log.d("GENDER_TYPE", "Can't find GENDER_TYPE with value: $value")
             }
 
-            return item
+            return item ?: OTHER
         }
     }
 }
