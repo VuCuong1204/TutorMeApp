@@ -138,6 +138,22 @@
                 tools:text="Đang diễn ra" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLessonDetailEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/fbase_dimen_26"
+                android:layout_marginStart="@dimen/fbase_dimen_20"
+                android:background="@drawable/ripple_bg_red_corner_10"
+                android:fontFamily="@font/font_worksans_regular"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/fbase_dimen_12"
+                android:text="@string/end"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fbase_text_size_12"
+                android:visibility="gone"
+                app:layout_constraintStart_toEndOf="@id/tvLessonDetailState"
+                app:layout_constraintTop_toTopOf="@id/tvLessonDetailState" />
+
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvLessonDetailClass"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

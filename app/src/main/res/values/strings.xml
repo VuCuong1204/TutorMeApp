@@ -13,6 +13,7 @@
     <string name="detect_not_register">Điểm danh thất bại, vui lòng thử lại</string>
     <string name="detect_error">Đã có lỗi xảy ra, vui lòng thử lại</string>
     <string name="detect_success">Điểm danh thành công</string>
+    <string name="detect_not_success">Điểm danh không thành công</string>
 
     <string name="video_call_end">Cuộc gọi đã kết thúc</string>
     <string name="video_call_busy">Người nhận đang bận hoặc không nhấc máy, vui lòng thử lại</string>
@@ -123,6 +124,7 @@
     <string name="mail_feedback">Hòm thư góp ý</string>
     <string name="message_room">Nhắn tin lớp</string>
     <string name="please_rate">Vui lòng đánh giá học sinh sau khi kết thúc buổi học!</string>
+    <string name="end">Kết thúc</string>
     <string name="student_list">Danh sách học sinh</string>
     <string name="select_province">Chọn tỉnh thành</string>
     <string name="input_province">Nhập tỉnh thành</string>

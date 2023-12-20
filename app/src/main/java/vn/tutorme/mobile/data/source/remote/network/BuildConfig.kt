@@ -6,7 +6,7 @@ import kotlin.String
 object BuildConfig {
     val DEBUG = Boolean.parseBoolean("true")
 
-    val BASE_DOMAIN: String = "http://192.168.0.108:8085/"
+    val BASE_DOMAIN: String = "http://192.168.0.105:8085/"
     val LOCATION_DOMAIN: String = "https://fqa-social.dev.ftech.ai/"
     val STRINGEE_DOMAIN: String = "https://minhvt18147.000webhostapp.com/php/"
     val TENSORFLOW_DOMAIN: String = "http://192.168.0.104:8080/"
