@@ -24,6 +24,7 @@ interface INotificationRepo {
         lessonId: String,
         classId: String,
         title: String,
-        body: String
+        body: String,
+        notificationId: String
     ): Boolean
 }

@@ -7,7 +7,6 @@ import android.content.Context
 import android.content.Intent
 import android.media.AudioAttributes
 import android.media.RingtoneManager
-import android.net.Uri
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
@@ -26,6 +25,7 @@ import vn.tutorme.mobile.domain.model.notification.RefInfo
 import vn.tutorme.mobile.presenter.main.MainActivity
 import vn.tutorme.mobile.utils.TimeUtils
 import kotlin.random.Random
+
 
 class MyFirebaseService : FirebaseMessagingService() {
     override fun onNewToken(token: String) {
@@ -83,7 +83,7 @@ class MyFirebaseService : FirebaseMessagingService() {
             PendingIntent.FLAG_UPDATE_CURRENT
         )
 
-        val defaultSoundUri = Uri.parse("android.resource://${packageName}/${R.raw.sound_notify}")
+        val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
 
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.drawable.ic_notification_1)

@@ -49,5 +49,6 @@ interface INotificationService : IApiService {
         @Query("classId") classId: String,
         @Query("title") title: String,
         @Query("body") body: String,
+        @Query("notificationType") notificationType: String
     ): Call<BaseApiResponse>
 }

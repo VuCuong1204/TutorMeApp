@@ -83,10 +83,11 @@ class NotificationRepoImpl @Inject constructor() : INotificationRepo, IRepo {
         lessonId: String,
         classId: String,
         title: String,
-        body: String
+        body: String,
+        notificationId: String
     ): Boolean {
         val service = invokeNotificationService(INotificationService::class.java)
-        return service.sendNotificationBeginLesson(tokens, lessonId, classId, title, body).invokeApi { _, _ ->
+        return service.sendNotificationBeginLesson(tokens, lessonId, classId, title, body, notificationId).invokeApi { _, _ ->
             true
         }
     }

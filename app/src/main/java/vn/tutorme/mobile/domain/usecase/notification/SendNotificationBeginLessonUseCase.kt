@@ -1,6 +1,7 @@
 package vn.tutorme.mobile.domain.usecase.notification
 
 import vn.tutorme.mobile.base.common.BaseUseCase
+import vn.tutorme.mobile.base.extension.Extension.INT_DEFAULT
 import vn.tutorme.mobile.domain.repo.INotificationRepo
 import javax.inject.Inject
 
@@ -9,7 +10,7 @@ class SendNotificationBeginLessonUseCase @Inject constructor(
 ) : BaseUseCase<SendNotificationBeginLessonUseCase.SendNotificationBeginLessonRV, Boolean>() {
     override suspend fun execute(rv: SendNotificationBeginLessonRV): Boolean {
         return notificationRepo.sendNotificationBeginLesson(
-            rv.tokens, rv.lessonId, rv.classId, rv.title, rv.body
+            rv.tokens, rv.lessonId, rv.classId, rv.title, rv.body, "$INT_DEFAULT"
         )
     }
 

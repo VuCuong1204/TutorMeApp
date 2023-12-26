@@ -62,7 +62,7 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
     private lateinit var myRef: DatabaseReference
     private lateinit var postListener: ValueEventListener
     private lateinit var inputFeedBackDialog: InputFeedBackDialog
-    private val deviceIdList = mutableListOf<DeviceInfo>()
+    private val deviceIdList = mutableListOf<DeviceInfo>(DeviceInfo("c1vqZ77jQx2L0hT_iKqyh1:APA91bGb7OW36HeQwM8UyCyhR08pOnAwN4VYfhpGdaO0DU1dCoPK5O3cCb1yAlVlSxYMFeiXp-FcbwwigaqIeVfS60dK_ofoU-JcnOfVJD964WFI_BveMQl_d2tyaLKbRF3B_Wzg0Tnp","EHNhkYw9GocOxtqKVrEaE6S7Ajr1"))
 
     private var isShowViewMore = false
 
@@ -81,7 +81,7 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
         }
 
         binding.tvLessonDetailId.setOnSafeClick {
-            viewModel.updateStateLesson(isReload = true, state = LESSON_STATUS.TOOK_PLACE_STATUS)
+            sendZoomRoomInfoListenerEvent(ZoomRoomInfo(zoomId = "hihihi", password = "123456"))
         }
 
         binding.tvLessonDetailEnd.setOnSafeClick {
@@ -334,6 +334,7 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
             listener = object : InputRoomInfoDialog.IInputRoomInfoListener {
                 override fun onSendClick(id: String, password: String) {
                     mainActivity.hideKeyboard()
+                    this@LessonDetailFragment.binding.tvLessonDetailEnd.show()
                     val zoomRoomInfo = ZoomRoomInfo(id, password)
                     sendZoomRoomInfoListenerEvent(zoomRoomInfo)
                 }
@@ -397,6 +398,7 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
     }
 
     private fun addRoomStateListenerEvent() {
+        zoomSdkConfig.register()
         myRef = FirebaseDatabase.getInstance().getReference(ZOOM_INFO_CHILD_KEY).child(viewModel.lessonInfo?.lessonId.toString())
         postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -404,7 +406,6 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
                 if (System.currentTimeMillis() in (viewModel.lessonInfo?.timeBeginLesson?.times(1000)
                         ?: 1)..(viewModel.lessonInfo?.timeEndLesson?.times(1000) ?: 1)
                 ) {
-                    zoomSdkConfig.register()
                     if (viewModel.lessonInfo?.status == LESSON_STATUS.UPCOMING_STATUS) {
                         viewModel.updateStateLesson(isReload = true, state = LESSON_STATUS.HAPPENING_STATUS)
                     }
@@ -412,7 +413,7 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
                         ?: 1)
                 ) {
                     if (viewModel.lessonInfo?.status != LESSON_STATUS.HAPPENING_STATUS) {
-                        viewModel.updateStateLesson(isReload = true, state = LESSON_STATUS.UPCOMING_STATUS)
+
                     }
                 } else {
                     if (viewModel.lessonInfo?.status != LESSON_STATUS.TOOK_PLACE_STATUS) {
