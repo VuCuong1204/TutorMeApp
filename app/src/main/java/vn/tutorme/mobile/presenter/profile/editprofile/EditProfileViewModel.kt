@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
+import vn.tutorme.mobile.AppPreferences
 import vn.tutorme.mobile.R
 import vn.tutorme.mobile.base.common.BaseViewModel
 import vn.tutorme.mobile.base.common.FlowResult
@@ -78,7 +79,7 @@ class EditProfileViewModel @Inject constructor(
         nameSchool: String? = STRING_DEFAULT,
         gender: GENDER_TYPE = getGenderType(genderName),
         phoneNumber: Long? = LONG_DEFAULT,
-        avatar: String = avatarLink ?: STRING_DEFAULT) {
+        avatar: String = avatarLink ?: AppPreferences.userInfo?.avatar ?: STRING_DEFAULT) {
         viewModelScope.launch {
             val rv = UpdateProfileUseCase.UpdateProfileRV().apply {
                 this.fullName = fullName!!

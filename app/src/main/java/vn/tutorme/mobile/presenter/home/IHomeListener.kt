@@ -6,6 +6,7 @@ import vn.tutorme.mobile.domain.model.lesson.LessonInfo
 interface IHomeListener {
     fun onItemBannerClick(item: Banner)
     fun onClickTeachViewMore()
+    fun onClickSchedule(item: LessonInfo)
     fun onClickEvaluateViewMore()
     fun onClickClassRegisterViewMore()
     fun onClickClassWaitingConfirm()

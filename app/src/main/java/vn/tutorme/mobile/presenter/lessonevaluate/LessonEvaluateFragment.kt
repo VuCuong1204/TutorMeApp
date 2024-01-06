@@ -31,6 +31,13 @@ class LessonEvaluateFragment : TutorMeFragment<LessonEvaluateFragmentBinding>(R.
         coroutinesLaunch(viewModel.lessonInfoState) {
             handleUiState(it, object : IViewListener {
                 override fun onSuccess() {
+                    var count = 0
+                    it.data?.forEach { value ->
+                        if (value is LessonInfo) {
+                            count++
+                        }
+                    }
+                    binding.tvLessonEvaluateCount.text = "$count"
                     binding.cvLessonEvaluateRoot.submitList(it.data)
                     viewModel.reset()
                 }

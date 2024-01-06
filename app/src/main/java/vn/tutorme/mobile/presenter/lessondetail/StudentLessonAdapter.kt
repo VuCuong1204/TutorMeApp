@@ -185,7 +185,7 @@ class StudentLessonAdapter : TutorMeAdapter() {
                 val text = SpannableBuilder()
                     .appendText(getAppString(R.string.have_evaluated))
                     .withSpan(ForegroundColorSpan(getAppColor(R.color.primary)))
-                    .appendText(" ${data.lessonInfo?.getNumberMemberRatio()} ")
+                    .appendText(" ${data.lessonInfo?.getNumberEvaluate()} ")
                     .withSpan(ForegroundColorSpan(getAppColor(R.color.status_warring)))
                     .appendText(getAppString(R.string.student))
                     .withSpan(ForegroundColorSpan(getAppColor(R.color.primary)))

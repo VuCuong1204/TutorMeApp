@@ -261,4 +261,8 @@ class LessonDetailViewModel @Inject constructor(
     fun resetStateAttendanceStudent() {
         _attendanceStudentState.reset()
     }
+
+    fun resetDetect(){
+        _detectInfoState.reset()
+    }
 }

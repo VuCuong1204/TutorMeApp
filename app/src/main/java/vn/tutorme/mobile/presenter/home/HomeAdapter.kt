@@ -272,6 +272,12 @@ class HomeAdapter : TutorMeAdapter() {
                 setBaseLayoutManager(LAYOUT_MANAGER.LINEARLAYOUT_HORIZONTAL)
                 setBaseAdapter(scheduleAdapter)
             }
+
+            scheduleAdapter.listener = object : ScheduleAdapter.IScheduleListener {
+                override fun onItemClick(item: LessonInfo) {
+                    listenerHome?.onClickSchedule(item)
+                }
+            }
         }
 
         override fun onBind(data: List<LessonInfo>) {

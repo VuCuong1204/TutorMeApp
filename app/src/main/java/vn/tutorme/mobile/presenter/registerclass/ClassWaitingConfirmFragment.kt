@@ -45,6 +45,7 @@ class ClassWaitingConfirmFragment : TutorMeFragment<ClassWaitingConfirmFragmentB
                         setBaseAdapter(waitingConfirmAdapter)
                         submitList(it.data?.dataList)
                     }
+                    viewModel.reset()
                 }
             }, canShowLoading = true)
         }
@@ -59,6 +60,14 @@ class ClassWaitingConfirmFragment : TutorMeFragment<ClassWaitingConfirmFragmentB
         waitingConfirmAdapter.listener = object : IListener {
             override fun onConfirmClick(classId: String) {
                 showDialogConfirm(classId)
+            }
+
+            override fun onReceived(classId: String) {
+//                TODO("Not yet implemented")
+            }
+
+            override fun onCancel(classId: String) {
+//                TODO("Not yet implemented")
             }
         }
     }
@@ -81,6 +90,11 @@ class ClassWaitingConfirmFragment : TutorMeFragment<ClassWaitingConfirmFragmentB
             clTextRight = getAppColor(R.color.neutral_13)
 
             eventLeftClick {
+                if (waitingConfirmAdapter.type == CLASS_STATUS.EMPTY_CLASS_STATUS || waitingConfirmAdapter.type == CLASS_STATUS.OUT_OF_DATE_STATUS) {
+                    showSuccess(getAppString(R.string.register_receiver_class))
+                } else {
+                    showSuccess(getAppString(R.string.cancel_register_receiver_class))
+                }
                 viewModel.updateClassRegister(true, waitingConfirmAdapter.type.value, classId)
             }
         }.show(childFragmentManager, BottomSheetConfirmDialog::class.java.simpleName)

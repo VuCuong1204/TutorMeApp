@@ -14,6 +14,7 @@ import vn.tutorme.mobile.base.extension.Extension.STRING_DEFAULT
 import vn.tutorme.mobile.base.extension.failure
 import vn.tutorme.mobile.base.extension.loading
 import vn.tutorme.mobile.base.extension.onException
+import vn.tutorme.mobile.base.extension.reset
 import vn.tutorme.mobile.base.extension.success
 import vn.tutorme.mobile.base.model.DataPage
 import vn.tutorme.mobile.domain.model.clazz.ClassInfo
@@ -83,5 +84,9 @@ class ClassWaitingConfirmViewModel @Inject constructor(
                     _classInfoState.success(classDataPage)
                 }
         }
+    }
+
+    fun reset(){
+        _classInfoState.reset()
     }
 }

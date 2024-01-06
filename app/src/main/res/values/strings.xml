@@ -27,6 +27,8 @@
     <string name="read_all">Bạn có muốn đọc tất cả không?</string>
     <string name="delete_notify">Bạn có chắc chắn muốn xóa thông báo?</string>
     <string name="delete_register_course">Bạn có chắc chắn muốn đăng ký lớp học chứ?</string>
+    <string name="register_receiver_class">Đăng ký nhận lớp thành công</string>
+    <string name="cancel_register_receiver_class">Hủy đăng ký thành công</string>
     <string name="logout_notify">Bạn chắc chắn muốn đăng xuất?</string>
     <string name="rate_student">Bạn chắc chắn muốn đánh giá?</string>
     <string name="comment_success">Nhận xét thành công</string>
@@ -255,7 +257,7 @@
     <string name="info_event">Thông tin sự kiện</string>
     <string name="info_event_description">Mô tả chương trình</string>
     <string name="how_to_join">Cách tham gia</string>
-    <string name="access_token">eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzNDAyNDQ5IiwiYXBwX3R5cGUiOm51bGwsInV0bV9jYW1wYWlnbiI6bnVsbCwidXRtX21lZGl1bSI6bnVsbCwic291cmNlIjoiRlFBIiwiY2xpZW50X2lkIjoiZnFhLndlYi5hcHAiLCJwaWN0dXJlIjoiIiwiYWNjb3VudF9pZCI6IjM0MDI0NDkiLCJndWVzdF9pZCI6bnVsbCwib3NfdHlwZSI6bnVsbCwic2NvcGUiOlsiZnFhOmZ1bGwiLCJmcWE6Y2xpZW50OnBvc3QiLCJmcWE6Y2xpZW50OmdldCJdLCJuYW1lIjoib2FuaG9hbmgwMDkiLCJleHAiOjE3MDE3MTA4MjcsInV0bV9zb3VyY2UiOm51bGwsInVzZXJuYW1lIjoib2FuaG9hbmgwMDkifQ.wyKh3vFOeUKaa2xxoAzQbFNWCdOnSxlhoFCH0UNnPEA</string>
+    <string name="access_token">eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzNDAyNDQzIiwiYXBwX3R5cGUiOm51bGwsInV0bV9jYW1wYWlnbiI6bnVsbCwidXRtX21lZGl1bSI6bnVsbCwic291cmNlIjoiRlFBIiwiY2xpZW50X2lkIjoiZnFhLndlYi5hcHAiLCJwaWN0dXJlIjoiaHR0cHM6Ly9taW5pby5kZXYuZnRlY2guYWkvZnFhL3NvY2lhbC90dXRvci85MGZiY2IwZi1jM2QwLTQxMGYtOWVmZC02YmFlMGM3NGVkYWQuc3ZnIiwiYWNjb3VudF9pZCI6IjM0MDI0NDMiLCJndWVzdF9pZCI6bnVsbCwib3NfdHlwZSI6bnVsbCwic2NvcGUiOlsiZnFhOmZ1bGwiLCJmcWE6Y2xpZW50OnBvc3QiLCJmcWE6Y2xpZW50OmdldCJdLCJuYW1lIjoib2FuaG9hbmgwMDgiLCJleHAiOjE3MDQ1NTY1ODEsInV0bV9zb3VyY2UiOm51bGwsInVzZXJuYW1lIjoib2FuaG9hbmgwMDgifQ.y8NqpuatEZVbP3955NMOsyqjDFWD5jVm6wl_0dd4LZg</string>
     <string name="take_picture">Take picture</string>
     <string name="detach_success">Nhận diện thành công</string>
     <string name="detach_fail">Vui lòng thử lại</string>

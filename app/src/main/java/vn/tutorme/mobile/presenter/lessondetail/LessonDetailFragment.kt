@@ -62,7 +62,7 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
     private lateinit var myRef: DatabaseReference
     private lateinit var postListener: ValueEventListener
     private lateinit var inputFeedBackDialog: InputFeedBackDialog
-    private val deviceIdList = mutableListOf<DeviceInfo>(DeviceInfo("c1vqZ77jQx2L0hT_iKqyh1:APA91bGb7OW36HeQwM8UyCyhR08pOnAwN4VYfhpGdaO0DU1dCoPK5O3cCb1yAlVlSxYMFeiXp-FcbwwigaqIeVfS60dK_ofoU-JcnOfVJD964WFI_BveMQl_d2tyaLKbRF3B_Wzg0Tnp","EHNhkYw9GocOxtqKVrEaE6S7Ajr1"))
+    private val deviceIdList = mutableListOf<DeviceInfo>(DeviceInfo("c1vqZ77jQx2L0hT_iKqyh1:APA91bGb7OW36HeQwM8UyCyhR08pOnAwN4VYfhpGdaO0DU1dCoPK5O3cCb1yAlVlSxYMFeiXp-FcbwwigaqIeVfS60dK_ofoU-JcnOfVJD964WFI_BveMQl_d2tyaLKbRF3B_Wzg0Tnp", "EHNhkYw9GocOxtqKVrEaE6S7Ajr1"))
 
     private var isShowViewMore = false
 
@@ -78,13 +78,24 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
 
         binding.tvLessonDetailAvatar.setOnSafeClick {
             viewModel.updateStateLesson(isReload = true, state = LESSON_STATUS.HAPPENING_STATUS)
+            val body = viewModel.lessonInfo?.nameClass + "-" + viewModel.lessonInfo?.level + "-" + viewModel.lessonInfo?.lessonSession + "-" + viewModel.lessonInfo?.nameTeacher
+            viewModel.sendNotificationToUser(
+                deviceIdList.toList(),
+                viewModel.lessonInfo?.lessonId.toString(),
+                viewModel.lessonInfo?.classId.toString(),
+                getAppString(R.string.begin_lesson),
+                body
+            )
         }
 
         binding.tvLessonDetailId.setOnSafeClick {
-            sendZoomRoomInfoListenerEvent(ZoomRoomInfo(zoomId = "hihihi", password = "123456"))
+            viewModel.updateStateLesson(isReload = true, state = LESSON_STATUS.TOOK_PLACE_STATUS)
+
+//            sendZoomRoomInfoListenerEvent(ZoomRoomInfo(zoomId = "hihihi", password = "123456"))
         }
 
         binding.tvLessonDetailEnd.setOnSafeClick {
+            binding.tvLessonDetailEnd.gone()
             viewModel.updateStateLesson(isReload = true, state = LESSON_STATUS.TOOK_PLACE_STATUS)
         }
     }
@@ -195,16 +206,19 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
             handleUiState(it, object : IViewListener {
                 override fun onFailure() {
                     showError(getAppString(R.string.detect_error))
+                    viewModel.resetDetect()
                 }
 
                 override fun onSuccess() {
-//                    viewModel.attendanceStudent(true, AppPreferences.userInfo?.userId)
                     if (it.data?.userId == AppPreferences.userInfo?.userId) {
+                        viewModel.attendanceStudent(true, AppPreferences.userInfo?.userId)
                         Log.d("TAG", "detect onSuccess: ${it.data}")
                         showSuccess(getAppString(R.string.detect_success))
                     } else {
                         showError(getAppString(R.string.detect_not_success))
                     }
+
+                    viewModel.resetDetect()
                 }
             }, canShowLoading = true)
         }
@@ -386,6 +400,12 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
             else -> getAppString(R.string.upcoming)
         }
 
+        if (value.status == LESSON_STATUS.HAPPENING_STATUS) {
+            binding.tvLessonDetailEnd.show()
+        } else {
+            binding.tvLessonDetailEnd.gone()
+        }
+
         binding.tvLessonDetailClass.text = value.getClassTitle()
         binding.tvLessonDetailAdvanced.text = value.level
         binding.tvLessonDetailLesson.text = value.getSession()
@@ -407,6 +427,7 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
                         ?: 1)..(viewModel.lessonInfo?.timeEndLesson?.times(1000) ?: 1)
                 ) {
                     if (viewModel.lessonInfo?.status == LESSON_STATUS.UPCOMING_STATUS) {
+                        binding.tvLessonDetailEnd.show()
                         viewModel.updateStateLesson(isReload = true, state = LESSON_STATUS.HAPPENING_STATUS)
                     }
                 } else if (System.currentTimeMillis() <= (viewModel.lessonInfo?.timeBeginLesson?.times(1000)
@@ -416,9 +437,9 @@ class LessonDetailFragment : TutorMeFragment<LessonDetailFragmentBinding>(R.layo
 
                     }
                 } else {
-                    if (viewModel.lessonInfo?.status != LESSON_STATUS.TOOK_PLACE_STATUS) {
-                        viewModel.updateStateLesson(isReload = true, state = LESSON_STATUS.TOOK_PLACE_STATUS)
-                    }
+//                    if (viewModel.lessonInfo?.status != LESSON_STATUS.TOOK_PLACE_STATUS) {
+//                        viewModel.updateStateLesson(isReload = true, state = LESSON_STATUS.TOOK_PLACE_STATUS)
+//                    }
                 }
             }
 

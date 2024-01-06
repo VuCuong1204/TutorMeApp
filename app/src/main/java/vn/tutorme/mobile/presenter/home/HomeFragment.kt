@@ -212,6 +212,16 @@ class HomeFragment : TutorMeFragment<HomeFragmentBinding>(R.layout.home_fragment
                     screenAnim = SlideAnimation()
                 )
             }
+
+            override fun onClickSchedule(item: LessonInfo) {
+                replaceFragment(
+                    fragment = LessonDetailFragment(),
+                    bundle = bundleOf(
+                        LessonDetailFragment.CLASS_ID_KEY to item.classId,
+                        LessonDetailFragment.LESSON_ID_KEY to item.lessonId
+                    )
+                )
+            }
         }
     }
 

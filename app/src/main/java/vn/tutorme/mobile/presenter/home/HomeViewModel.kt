@@ -53,7 +53,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             homeDataList = DataPage.newInstance(_homeState.value.data, reload)
             val rv = GetHomeTeacherUseCase.GetHomeTeacherRV(
-                AppPreferences.userInfo?.fullName ?: STRING_DEFAULT
+                AppPreferences.userInfo?.userId ?: STRING_DEFAULT
             ).apply {
                 sizeSchedule = 4
                 sizeEvaluator = 4

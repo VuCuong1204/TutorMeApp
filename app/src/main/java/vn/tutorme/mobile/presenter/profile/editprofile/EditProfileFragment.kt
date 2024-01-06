@@ -167,8 +167,7 @@ class EditProfileFragment : TutorMeFragment<EditProfileFragmentBinding>(R.layout
                 date = date,
                 nameSchool = schoolName,
                 phoneNumber = phone,
-                address = address,
-                avatar = AppPreferences.userInfo?.avatar ?: STRING_DEFAULT
+                address = address
             )
         }
     }
